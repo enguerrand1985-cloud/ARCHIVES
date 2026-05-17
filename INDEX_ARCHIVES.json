@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "document_type": "archives_root_index",
+    "document_role": "canonical_entrypoint_for_archives_repository",
+    "version": "1.0.0",
+    "status": "active",
+    "updated_at": "2026-05-18",
+    "timezone": "Europe/Paris"
+  },
+  "repository": {
+    "github": "enguerrand1985-cloud/ARCHIVES",
+    "local_path": "C:/Users/engue/__SYSTEME - GITHUB__/ARCHIVES"
+  },
+  "role": {
+    "summary": "Structured historical archives, snapshots and absorbed-cycle evidence.",
+    "not_source_of_truth_active": true,
+    "active_truth_repo": "enguerrand1985-cloud/SOURCE-OF-TRUTH",
+    "read_only_by_default": true
+  },
+  "indexed_scopes": {
+    "MEOW_PAW_PAW": {
+      "status": "ARCHIVE_SCOPE_ACTIVE",
+      "index_path": "MEOW PAW PAW/INDEX__ARCHIVES_MEOW_PAW_PAW.json",
+      "summary": "Ancien RUN SongwayPet, anciens SKU, fournisseurs testes et snapshot Source of Truth avant reboot.",
+      "read_when": [
+        "historique",
+        "audit",
+        "preuve",
+        "contradiction",
+        "restauration",
+        "demande explicite"
+      ]
+    }
+  },
+  "unindexed_content_policy": {
+    "status": "present_but_not_canonical_indexed",
+    "rule": "Do not route GPT or skills to non-indexed folders until they are cadrés and explicitly added here."
+  },
+  "read_rules": [
+    "Lire SOURCE OF TRUTH pour l'etat actif.",
+    "Lire ARCHIVES seulement pour historique, audit, preuve, contradiction, restauration ou demande explicite.",
+    "Ne jamais reintroduire une donnee archivee dans l'actif sans request explicite.",
+    "Pour l'instant, seul MEOW_PAW_PAW est référence dans cet index."
+  ]
+}
