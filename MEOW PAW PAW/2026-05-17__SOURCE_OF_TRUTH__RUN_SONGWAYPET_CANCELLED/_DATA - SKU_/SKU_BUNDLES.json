@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "document_type": "sku_bundles",
+    "document_role": "bundle_components_truth_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json"
+    ]
+  },
+  "bundles_by_sku": {
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "bundle_status": "build",
+      "components": [
+        {
+          "product_id": "MPP-BOU-S-MAT-CAT-V1",
+          "qty": 3
+        }
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1/specs_truth/bundle_items"
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "bundle_status": "ready",
+      "components": [
+        {
+          "product_id": "MPP-BAT-STD-MAT-V1",
+          "qty": 1
+        },
+        {
+          "product_id": "MPP-BOU-S-MAT-CAT-V1",
+          "qty": 1
+        }
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1/specs_truth/bundle_items"
+        }
+      ]
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "bundle_status": "to_confirm",
+      "components": [
+        {
+          "product_id": "MPP-BAT-XL-MAT-V1",
+          "qty": 1
+        },
+        {
+          "product_id": "MPP-BOU-S-MAT-CAT-V1",
+          "qty": 1
+        }
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1/specs_truth/bundle_items"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "document_type": "supplier_profile",
+    "document_role": "supplier_identity_contact_and_legal_profile",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json"
+    ]
+  },
+  "supplier_id": "SUP_SONGWAYPET",
+  "identity": {
+    "display_name": "Songway Pet",
+    "entity_type": "factory",
+    "seller_entity": "Hebei Yuanfeng Import and Export Trading CO.,LTD",
+    "location": {
+      "country": "China",
+      "province": "Hebei",
+      "city": "Qinhuangdao",
+      "address": "No.7 Jingpohu Road, Economic and Technological Development Zone"
+    }
+  },
+  "contact": {
+    "name": "Vicky Chen",
+    "preferred_channel": "alibaba",
+    "email": "vicci@songwaypet.com",
+    "phone": "0086-18830362988",
+    "aliases": [
+      "Vicci Chen"
+    ]
+  },
+  "status": "active"
+}

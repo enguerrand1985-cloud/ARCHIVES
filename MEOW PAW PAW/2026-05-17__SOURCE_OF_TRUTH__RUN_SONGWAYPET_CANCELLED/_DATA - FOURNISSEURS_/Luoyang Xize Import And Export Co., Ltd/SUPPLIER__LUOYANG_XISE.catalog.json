@@ -1,0 +1,322 @@
+{
+  "meta": {
+    "document_type": "supplier_catalog",
+    "document_role": "supplier_catalog_and_packaging_legacy_candidate",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/LUOYANG XISE.json"
+    ]
+  },
+  "supplier_id": "SUP-LUOYANG",
+  "children": [
+    {
+      "child_id": "<UUID_LUOYANG_PREMIUM_A>",
+      "status": "build_hold_rnd",
+      "verification_flag": "build_only",
+      "declared_specs": {
+        "length_total_cm": 43,
+        "core_length_cm": 17,
+        "diameter_cm": 4.0,
+        "weight_g": null
+      },
+      "measured_specs": null,
+      "packaging_origin": "OPP bag",
+      "incoterm": "DDP Amazon FR (bulk) / DAP (sample express, taxes exclues)",
+      "price_eur": {
+        "tiers": [
+          {
+            "min_qty": 2,
+            "unit_price": 1.05
+          },
+          {
+            "min_qty": 200,
+            "unit_price": 0.9534
+          },
+          {
+            "min_qty": 1000,
+            "unit_price": 0.8667
+          }
+        ],
+        "currency": "EUR"
+      },
+      "compliance_docs": {
+        "reach": null,
+        "non_toxic": null,
+        "notes": "Matatabi/fruit de galle/chanvre/raphia/plumes."
+      },
+      "sample": {
+        "ordered": true,
+        "received": true,
+        "date_ordered": "2025-09-15",
+        "date_received": "2025-09-29",
+        "payment_confirmed": true,
+        "invoice_ref": "PI #276050255001029987",
+        "amount_usd": 48.0,
+        "amount_eur_est": 41.34,
+        "tva_import_max_eur": 8.27,
+        "tracking_number": "393436499460",
+        "carrier": "FedEx",
+        "service": "International Economy",
+        "date_shipped": "2025-09-22",
+        "label_image_path": "/mnt/data/5431a50f-37b0-4f79-88e7-67cf4232c6fc.png",
+        "import_charge": {
+          "currency": "EUR",
+          "amount": 9.0,
+          "type": "duties_taxes_collected_on_delivery",
+          "carrier": "FedEx",
+          "incoterm": "DAP",
+          "tracking_number": "393436499460",
+          "receipt_number": "888900081361029",
+          "source_proof": "Email FedEx — Merci pour votre paiement"
+        },
+        "received_media": {
+          "photos_local": [
+            "/mnt/data/2d672b23-d743-4448-84ff-297ba810ddc2.png",
+            "/mnt/data/c9ff6a29-5179-4645-ad17-1276e3bc29a6.png",
+            "/mnt/data/03ab12c8-5a43-47ba-85c2-34962fcc44bd.png"
+          ],
+          "notes": "Plumes cassées/écrasées, produit ballotte dans un packaging trop grand."
+        }
+      },
+      "match_to_product": {
+        "target_product_uid": null,
+        "match_level": "loose",
+        "mismatch_notes": "Sample received with OPP/carton; promised kraft box not provided. Packaging too large; feathers damaged in transit.",
+        "target_product_sku": "MPP-BAT-PRE-MAT-V1"
+      },
+      "audit": {
+        "events": null
+      },
+      "notes_extended": [
+        "{\"supplier_contact\": {\"name\": \"Catherine Zhang\", \"email\": \"catherinezhang01@126.com\", \"tel\": \"0379-86-18437911785\"}, \"sample_restrictions\": {\"issue\": \"Gallnuts removed from sample shipment\", \"details\": {\"discovered_during\": \"sample preparation\", \"reason\": \"Strict international courier regulations (e.g. DHL, FedEx) prohibit shipment of certain organic materials\", \"regulation_context\": \"Prevention of pest spread and compliance with phytosanitary standards\", \"scope\": \"air express shipments only (samples via DHL/FedEx)\", \"impact\": \"Gallnuts excluded from sample parcel; rest of product unchanged\", \"future_orders\": \"Gallnuts included in full for mass production shipped by sea freight (DDP Amazon FR)\", \"supplier_assurance\": \"Restriction applies only to express courier samples, not to bulk shipments\", \"communication_date\": \"2025-09-16\", \"source\": \"Supplier email to Enguerrand\"}}, \"latest_highlights\": [\"19/10 : Vision sync — rework packaging kraft confirmé; attente logo + planche fournisseur.\"], \"next_actions\": [\"Envoyer logo Meow Paw Paw (AI/SVG/PDF) + spec 'Luoyang – Catherine Packaging Spec List'.\", \"Fournir PHOTOS/VIDÉO du VRAI étui kraft rigide (intérieur/maintien/plumes) avant toute prod.\", \"Re-valider incoterm DDP Amazon FR + délais OEM après corrections.\"]}",
+        "BUILD/HOLD — uniquement R&D packaging premium. Pas de devis ferme / bulk avant validation packaging."
+      ],
+      "alibaba_url": "https://www.alibaba.com/product-detail/B%C3%A2tonnets-%C3%A0-m%C3%A2cher-pour-chat-naturel_1601204659701.html"
+    },
+    {
+      "child_id": "<UUID_LUOYANG_PREMIUM_B>",
+      "status": "build_hold_rnd",
+      "verification_flag": "build_only",
+      "declared_specs": {
+        "length_total_cm": 38,
+        "core_length_cm": 17,
+        "diameter_cm": 4.0,
+        "weight_g": null
+      },
+      "measured_specs": null,
+      "packaging_origin": "OPP bag",
+      "incoterm": "DAP (sample) / DDP bulk confirmé",
+      "price_eur": {
+        "tiers": [
+          {
+            "min_qty": 2,
+            "unit_price": 1.05
+          },
+          {
+            "min_qty": 200,
+            "unit_price": 0.9534
+          },
+          {
+            "min_qty": 1000,
+            "unit_price": 0.8667
+          }
+        ],
+        "currency": "EUR"
+      },
+      "compliance_docs": {
+        "reach": null,
+        "non_toxic": null,
+        "notes": "Matatabi/fruit de galle/chanvre/raphia/plumes."
+      },
+      "sample": {
+        "ordered": true,
+        "received": false,
+        "date_ordered": "2025-09-15",
+        "date_received": null,
+        "tracking_number": "393436499460",
+        "carrier": "FedEx",
+        "service": "International Economy",
+        "date_shipped": "2025-09-22",
+        "label_image_path": "/mnt/data/5431a50f-37b0-4f79-88e7-67cf4232c6fc.png"
+      },
+      "match_to_product": {
+        "target_product_uid": null,
+        "match_level": "loose",
+        "mismatch_notes": "Diamètre harmonisé estimé 4.0 cm; échantillon 5.21 EUR.",
+        "target_product_sku": "MPP-BAT-PRE-MAT-V1"
+      },
+      "audit": {
+        "created_at": "2025-08-18T14:49:28+02:00",
+        "updated_at": "2025-08-18T14:49:28+02:00",
+        "events": [
+          "import_initial",
+          "lead_time_oem_5j_declare"
+        ]
+      },
+      "notes_extended": [
+        "{\"next_actions\": [\"Recevoir devis détaillé incluant packaging kraft rigide\", \"Confirmer faisabilité DDP Amazon FR\"], \"supplier_contact\": {\"name\": \"Catherine Zhang\", \"email\": \"catherinezhang01@126.com\", \"tel\": \"0379-86-18437911785\"}, \"latest_highlights\": [\"22/09 : FedEx tracking 393436499460 communiqué (Intl Economy).\", \"16/09 : Gallnuts exclus des samples express; inchangé pour bulk par mer.\"]}",
+        "BUILD/HOLD — uniquement R&D packaging premium. Pas de devis ferme / bulk avant validation packaging."
+      ],
+      "alibaba_url": null
+    },
+    {
+      "child_id": "<UUID_LUOYANG_PREMIUM_C>",
+      "status": "build_hold_rnd",
+      "verification_flag": "build_only",
+      "declared_specs": {
+        "length_total_cm": 35,
+        "core_length_cm": 17,
+        "diameter_cm": 4.0,
+        "weight_g": null
+      },
+      "measured_specs": null,
+      "packaging_origin": "OPP bag",
+      "incoterm": "DAP (sample) / DDP bulk confirmé",
+      "price_eur": {
+        "tiers": [
+          {
+            "min_qty": 2,
+            "unit_price": 1.05
+          },
+          {
+            "min_qty": 200,
+            "unit_price": 0.9534
+          },
+          {
+            "min_qty": 1000,
+            "unit_price": 0.8667
+          }
+        ],
+        "currency": "EUR"
+      },
+      "compliance_docs": {
+        "reach": null,
+        "non_toxic": null,
+        "notes": "Matatabi/fruit de galle/chanvre/raphia/plumes."
+      },
+      "sample": {
+        "ordered": true,
+        "received": false,
+        "date_ordered": "2025-09-15",
+        "date_received": null,
+        "tracking_number": "393436499460",
+        "carrier": "FedEx",
+        "service": "International Economy",
+        "date_shipped": "2025-09-22",
+        "label_image_path": "/mnt/data/5431a50f-37b0-4f79-88e7-67cf4232c6fc.png"
+      },
+      "match_to_product": {
+        "target_product_uid": null,
+        "match_level": "loose",
+        "mismatch_notes": "Diamètre harmonisé estimé 4.0 cm; échantillon 5.21 EUR.",
+        "target_product_sku": "MPP-BAT-PRE-MAT-V1"
+      },
+      "audit": {
+        "created_at": "2025-08-18T14:49:28+02:00",
+        "updated_at": "2025-08-18T14:49:28+02:00",
+        "events": [
+          "import_initial",
+          "lead_time_oem_5j_declare"
+        ]
+      },
+      "notes_extended": [
+        "{\"latest_highlights\": null}",
+        "BUILD/HOLD — uniquement R&D packaging premium. Pas de devis ferme / bulk avant validation packaging."
+      ],
+      "alibaba_url": null
+    }
+  ],
+  "catalog_map": [],
+  "scope": {
+    "role": "BUILD_RND_ONLY",
+    "products": [
+      "MPP-BAT-PRE-MAT-V1"
+    ],
+    "policy": "Aucune production ni devis ferme avant validation packaging premium et stabilisation Amazon RUN (Songpet)."
+  },
+  "packaging_specs": {
+    "policy": {
+      "measurement_rules": {
+        "units": {
+          "dimensions": "cm",
+          "weight": "g"
+        }
+      },
+      "modes": {
+        "opp_insert_hybrid": {
+          "rules": [
+            "Insert must be placed INSIDE the bag; recommended coverage ≈ 2/3 of bag height to hide inner raphia strands while keeping both ends and feathers visible."
+          ],
+          "spec": {
+            "insert_std_cm": {
+              "h": 7,
+              "w": 13
+            },
+            "insert_xl_cm": {
+              "h": 15,
+              "w": 22
+            }
+          }
+        }
+      },
+      "principles": [
+        "Compromis premium: kraft-like si possible; fallback OPP acceptable.",
+        "Aucun engagement MOQ élevé uniquement pour l’emballage.",
+        "Photos réelles et mesures requises avant passage READY/LIVE."
+      ],
+      "safety": {
+        "suffocation_warning_required": true,
+        "warning_text_bilingual": "⚠️ Avertissement / Warning — Pour éviter tout risque d’étouffement, tenez ce sac en plastique hors de portée des bébés et des enfants. To avoid danger of suffocation, keep this plastic bag away from babies and children. Do not use in cribs, beds, carriages, or playpens."
+      }
+    },
+    "by_sku": {
+      "MPP-BAT-PRE-MAT-V1": {
+        "sku": "MPP-BAT-PRE-MAT-V1",
+        "product_name": "Premium",
+        "packaging_options": {
+          "opp_25x35": {
+            "available": false,
+            "dims_cm": {
+              "l": 35,
+              "w": 25
+            },
+            "finish": "white_or_pearlescent",
+            "status": "deprecated_for_premium",
+            "structure": "OPP/CPP",
+            "notes": "Not used for Premium (kraft packaging R&D)."
+          },
+          "kraft_tbd": {
+            "available": true,
+            "dims_cm": {},
+            "finish": "kraft",
+            "status": "rework_requested",
+            "structure": "kraft_rigid_or_sleeve",
+            "notes": "Premium packaging à définir (BUILD/R&D). Mensurations requises avant toute production."
+          },
+          "kraft_like": {
+            "available": true,
+            "dims_cm": {},
+            "finish": "kraft",
+            "status": "rework_requested",
+            "structure": "kraft_rigid_or_sleeve",
+            "notes": "Premium packaging à définir (BUILD/R&D). Mensurations requises avant toute production."
+          }
+        },
+        "preference": {
+          "primary": "kraft_tbd"
+        },
+        "measurement_status": "rework_requested",
+        "status": "build_only",
+        "packaging_weight_g": null,
+        "packaging_weight_g_estimated": false,
+        "warnings": [
+          "packaging_not_validated",
+          "quality_plumes_unstable"
+        ]
+      }
+    }
+  }
+}

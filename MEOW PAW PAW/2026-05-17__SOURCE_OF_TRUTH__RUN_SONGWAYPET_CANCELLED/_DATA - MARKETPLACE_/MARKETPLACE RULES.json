@@ -1,0 +1,519 @@
+{
+  "meta": {
+    "document_type": "marketplaces_rules",
+    "document_role": "marketplaces_config",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "simplified_for": "copilot_m365_truth",
+    "simplified_from": "data__marketplaces_rules.json",
+    "source_updated_at": "2026-04-16T00:00:00+02:00",
+    "updated_at": "2026-05-01",
+    "migration_note": "launch_shipping migrated to procurement/pricing; marketplace rules retain generic marketplace policies.",
+    "migrated_out": [
+      {
+        "legacy_json_pointer": "/alibaba/policies/launch_shipping",
+        "target_file": "_DATA - PROCUREMENT_/PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json"
+      }
+    ]
+  },
+  "amazon": {
+    "conventions": {
+      "currency_default": "EUR",
+      "amount_status_allowed": [
+        "confirmed",
+        "estimated",
+        "to_be_reconciled"
+      ],
+      "effective_from_required_when_applicable": true,
+      "sales_channel_canon": "amazon_fba"
+    },
+    "policies": {
+      "referral_fee": {
+        "status": "to_be_reconciled",
+        "effective_from": null,
+        "rate": 0.15,
+        "basis": "sales_price_ttc",
+        "scope": "all_skus"
+      },
+      "fba_unit_costs": {
+        "status": "confirmed",
+        "effective_from": "2025-02-01",
+        "currency": "EUR",
+        "source": {
+          "name": "Amazon FBA rate card (EU/FR)",
+          "effective": "2025-12-15"
+        },
+        "fulfillment_low_price": {
+          "effective_from": "2025-02-01",
+          "price_threshold_ttc_eur": 12,
+          "tiers_fr": [
+            {
+              "size_tier": "petite_enveloppe",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  2.5
+                ]
+              },
+              "weight_tiers_g": [
+                {
+                  "max_g": 20,
+                  "fee_eur": 2.24
+                },
+                {
+                  "max_g": 40,
+                  "fee_eur": 2.26
+                },
+                {
+                  "max_g": 60,
+                  "fee_eur": 2.27
+                },
+                {
+                  "max_g": 80,
+                  "fee_eur": 2.79
+                },
+                {
+                  "max_g": 100,
+                  "fee_eur": 2.81
+                }
+              ]
+            },
+            {
+              "size_tier": "enveloppe_standard",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  2.5
+                ]
+              },
+              "weight_tiers_g": [
+                {
+                  "max_g": 210,
+                  "fee_eur": 2.81
+                },
+                {
+                  "max_g": 460,
+                  "fee_eur": 3.31
+                }
+              ]
+            },
+            {
+              "size_tier": "grande_enveloppe",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  4
+                ]
+              },
+              "weight_tiers_g": [
+                {
+                  "max_g": 960,
+                  "fee_eur": 3.96
+                }
+              ]
+            },
+            {
+              "size_tier": "tres_grande_enveloppe",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  6
+                ]
+              },
+              "weight_tiers_g": [
+                {
+                  "max_g": 960,
+                  "fee_eur": 4.31
+                }
+              ]
+            },
+            {
+              "size_tier": "petit_colis",
+              "constraints": {
+                "max_dimensions_cm": [
+                  35,
+                  25,
+                  12
+                ]
+              },
+              "weight_tiers_g": [
+                {
+                  "max_g": 150,
+                  "fee_eur": 4.31
+                },
+                {
+                  "max_g": 400,
+                  "fee_eur": 4.71
+                }
+              ]
+            }
+          ]
+        },
+        "fulfillment_standard_fr": {
+          "effective_from": "2025-02-01",
+          "tiers": [
+            {
+              "size_tier": "petite_enveloppe",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  2.5
+                ]
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 20,
+                  "fee_eur": 3.09
+                },
+                {
+                  "max_g": 40,
+                  "fee_eur": 3.12
+                },
+                {
+                  "max_g": 60,
+                  "fee_eur": 3.17
+                },
+                {
+                  "max_g": 80,
+                  "fee_eur": 3.48
+                },
+                {
+                  "max_g": 100,
+                  "fee_eur": 3.51
+                }
+              ]
+            },
+            {
+              "size_tier": "enveloppe_standard",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  2.5
+                ]
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 210,
+                  "fee_eur": 3.51
+                },
+                {
+                  "max_g": 460,
+                  "fee_eur": 4.01
+                }
+              ]
+            },
+            {
+              "size_tier": "grande_enveloppe",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  4
+                ]
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 960,
+                  "fee_eur": 4.66
+                }
+              ]
+            },
+            {
+              "size_tier": "tres_grande_enveloppe",
+              "constraints": {
+                "max_dimensions_cm": [
+                  33,
+                  23,
+                  6
+                ]
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 960,
+                  "fee_eur": 4.96
+                }
+              ]
+            },
+            {
+              "size_tier": "petits_colis",
+              "constraints": {
+                "max_dimensions_cm": [
+                  35,
+                  25,
+                  12
+                ],
+                "max_unit_weight_kg": 3.9,
+                "max_dim_weight_kg": 2.1
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 150,
+                  "fee_eur": 4.38
+                },
+                {
+                  "max_g": 400,
+                  "fee_eur": 4.95
+                },
+                {
+                  "max_kg": 0.9,
+                  "fee_eur": 6.35
+                },
+                {
+                  "max_kg": 1.4,
+                  "fee_eur": 7.11
+                },
+                {
+                  "max_kg": 1.9,
+                  "fee_eur": 8.29
+                },
+                {
+                  "max_kg": 3.9,
+                  "fee_eur": 12.56
+                }
+              ]
+            },
+            {
+              "size_tier": "colis_standard",
+              "constraints": {
+                "max_dimensions_cm": [
+                  45,
+                  34,
+                  26
+                ],
+                "max_unit_weight_kg": 11.9,
+                "max_dim_weight_kg": 7.96
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 150,
+                  "fee_eur": 4.4
+                },
+                {
+                  "max_g": 400,
+                  "fee_eur": 5.63
+                },
+                {
+                  "max_kg": 0.9,
+                  "fee_eur": 7.09
+                },
+                {
+                  "max_kg": 1.4,
+                  "fee_eur": 8.42
+                },
+                {
+                  "max_kg": 1.9,
+                  "fee_eur": 9.72
+                },
+                {
+                  "max_kg": 2.9,
+                  "fee_eur": 11.35
+                },
+                {
+                  "max_kg": 3.9,
+                  "fee_eur": 13.9
+                },
+                {
+                  "max_kg": 5.9,
+                  "fee_eur": 14.72
+                },
+                {
+                  "max_kg": 8.9,
+                  "fee_eur": 16.13
+                },
+                {
+                  "max_kg": 11.9,
+                  "fee_eur": 19.31
+                }
+              ]
+            },
+            {
+              "size_tier": "surdimensionne_petite_taille",
+              "constraints": {
+                "max_dimensions_cm": [
+                  61,
+                  46,
+                  46
+                ],
+                "max_unit_weight_kg": 1.76,
+                "max_dim_weight_kg": 25.82
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 760,
+                  "fee_eur": 13.04
+                },
+                {
+                  "min_g_exclusive": 760,
+                  "fee_formula": "+0.24/kg"
+                }
+              ]
+            },
+            {
+              "size_tier": "surdimensionne_standard_leger",
+              "constraints": {
+                "max_dimensions_cm": [
+                  101,
+                  60,
+                  60
+                ],
+                "max_unit_weight_kg": 15,
+                "max_dim_weight_kg": 72.72
+              },
+              "weight_tiers": [
+                {
+                  "max_g": 760,
+                  "fee_eur": 16.49
+                },
+                {
+                  "min_g_exclusive": 760,
+                  "fee_formula": "+0.61/kg"
+                }
+              ]
+            },
+            {
+              "size_tier": "surdimensionne_standard_lourd",
+              "constraints": {
+                "max_dimensions_cm": [
+                  101,
+                  60,
+                  60
+                ],
+                "min_unit_weight_kg_exclusive": 15,
+                "max_unit_weight_kg": 23,
+                "max_dim_weight_kg": 72.72
+              },
+              "weight_tiers": [
+                {
+                  "max_kg": 15.76,
+                  "fee_eur": 23.5
+                },
+                {
+                  "min_kg_exclusive": 15.76,
+                  "fee_formula": "+0.41/kg"
+                }
+              ]
+            },
+            {
+              "size_tier": "surdimensionne_special",
+              "constraints": {
+                "min_dimensions_note": "> 175 x 90 x 90 cm OU poids unitaire > 31,5 kg OU poids dimensionnel > 72,7 kg",
+                "max_unit_weight_kg": 30
+              },
+              "weight_tiers": [
+                {
+                  "max_kg": 30,
+                  "fee_eur": 147.92
+                },
+                {
+                  "min_kg_exclusive": 30,
+                  "fee_formula": "+0.46/kg"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "ppc": {
+        "status": "to_be_reconciled",
+        "effective_from": null,
+        "rules": [
+          {
+            "kind": "rate",
+            "rate": 0.1,
+            "basis": "sales_price_ttc",
+            "scope": "all_skus",
+            "source": "legacy_compta_view.parameters.ttc.ppc_rate",
+            "status": "estimated",
+            "notes": "Legacy baseline only. Apply only when a paid acquisition strategy is explicitly active."
+          }
+        ],
+        "notes": "PPC Amazon. Default to zero when no campaign is active."
+      },
+      "digital_services_fee": {
+        "status": "to_be_reconciled",
+        "effective_from": "2024-10-01",
+        "notes": "Frais de services numeriques (legacy import).",
+        "rules": [
+          {
+            "kind": "rate",
+            "rate": 0.03,
+            "base": "(commission + fba)",
+            "effective_from": "2024-10-01",
+            "notes": "Frais de services numeriques (TSN) : appliques sur les frais Vendre sur Amazon (commission) et Expedie par Amazon (FBA). Calcul modele: dsf = rate * (commission_amount + fba_fee).",
+            "source": "legacy_compta_view.parameters.ttc.digital_services_fee_*",
+            "status": "estimated"
+          }
+        ]
+      },
+      "observed_total_fee_overrides_by_sku": {
+        "status": "estimated",
+        "currency": "EUR",
+        "override_scope": "unit_margin_total_amazon_fees",
+        "override_behavior": "replace_generic_fee_composition_when_use_for_margin_calculation_is_true",
+        "by_sku": {
+          "MPP-BUN-STD-1BOU-S-V1": {
+            "asin": "B0GW72GXDB",
+            "effective_observed_at": "2026-04-06",
+            "observed_from": "Amazon Seller Central",
+            "sales_price_ttc_eur": 12.9,
+            "observed_fulfillment_fee_eur": 4.31,
+            "observed_total_amazon_fees_eur": 6.44,
+            "status": "estimated",
+            "use_for_margin_calculation": true,
+            "notes": "Use 6.44 EUR as provisional Amazon total fees for unit margin calculations until reconciliation with platform exports."
+          }
+        }
+      }
+    }
+  },
+  "alibaba": {
+    "policies": {
+      "trade_assurance": {
+        "status": "to_be_reconciled",
+        "effective_from": null,
+        "rules": [],
+        "notes": "Trade Assurance (policy)."
+      },
+      "card_processing": {
+        "status": "to_be_reconciled",
+        "effective_from": null,
+        "rules": [],
+        "notes": "Frais carte Alibaba / processing (policy)."
+      },
+      "fx": {
+        "status": "planned",
+        "effective_from": null,
+        "rules": [
+          {
+            "currency_pair": "EUR/USD",
+            "spread_estimated_rate": 0.015,
+            "swift_fee_eur_estimated": 20,
+            "double_conversion_risk_note": "Not modeled explicitly; monitor payment receipts for intermediary fees/double conversion.",
+            "base": "supplier_payment",
+            "allocation": "per_unit_run_only",
+            "status": "estimated",
+            "to_be_reconciled_after_first_payment": true,
+            "source": "legacy_compta_view.parameters.ttc.banking_fx",
+            "notes": "Estimate only. Provide real debit/credit + fees to reconcile.",
+            "action_required": {
+              "status": "to_request",
+              "vendor": "SongwayPet",
+              "field": "banking_fx_cost_eur",
+              "note": "À demander (SongwayPet) — renseigner le coût FX bancaire réel (spread/SWIFT/double conversion) après 1er paiement."
+            },
+            "kind": "fx_policy",
+            "spot_rate_eur_per_usd_estimated": 0.860437,
+            "spot_rate_source": "Banque de France daily parity 2025-10-15 (EUR=1.1622 USD; USD=0.860437 EUR)."
+          }
+        ],
+        "notes": "FX / conversion côté Alibaba si applicable (sinon owner rails)."
+      }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "meta": {
+    "document_type": "amazon_labels",
+    "document_role": "amazon_barcode_and_sticker_label_ids_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_HUB - DASHBOARD_/DATA HUB.xlsx",
+      "_DATA - ATELIER COMPOSITION_/ETIQUETTES SPECS.json"
+    ]
+  },
+  "labels_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BAT_STD_MAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_STD_MAT_V1",
+      "label_status": "ready",
+      "insert_status": "tbd",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "FNSKU model transmission and supplier replication rule formalized."
+        }
+      ],
+      "fnsku_label_model_status": "generated_and_transmitted_to_supplier",
+      "supplier_replication_rule": "one_fnsku_model_file_per_sku_is_sufficient_supplier_can_print_or_replicate_for_all_units",
+      "application_responsibility": "supplier",
+      "run_scope": "cancelled_songwaypet_launch_run",
+      "reusable_for_future_listing_or_run": true
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BAT_VAR_MAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_VAR_MAT_V1",
+      "label_status": "pending",
+      "insert_status": "tbd",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4
+        }
+      ]
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BAT_XL_MAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_XL_MAT_V1",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5
+        }
+      ]
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BOU_S_MAT_CAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BOU_S_MAT_CAT_V1",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6
+        }
+      ]
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BUN_3BOU_S_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_3BOU_S_V1",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BUN_STD_1BOU_S_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_STD_1BOU_S_V1",
+      "label_status": "ready",
+      "insert_status": "tbd",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "FNSKU model transmission and supplier replication rule formalized."
+        }
+      ],
+      "fnsku_label_model_status": "generated_and_transmitted_to_supplier",
+      "supplier_replication_rule": "one_fnsku_model_file_per_sku_is_sufficient_supplier_can_print_or_replicate_for_all_units",
+      "application_responsibility": "supplier",
+      "run_scope": "cancelled_songwaypet_launch_run",
+      "reusable_for_future_listing_or_run": true
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BUN_XL_1BOU_S_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_XL_1BOU_S_V1",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9
+        }
+      ]
+    }
+  },
+  "fba_carton_labels_history": [
+    {
+      "shipment_id": "FBA15LSK0YD6",
+      "carton_label_pdf_original_name": "FBA15LSK0YD6-1778759138745.pdf",
+      "carton_label_pdf_sharepoint_name": "AMAZON_FBA__FBA15LSK0YD6__ETIQUETTES_CARTONS_INVALIDES__2026-05-14.pdf",
+      "status": "generated_then_invalidated_by_shipment_cancellation",
+      "reason": "FBA shipment cancelled before dispatch"
+    }
+  ],
+  "source_pointers": [
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/MARKETPLACES/AMAZON/EXPEDITIONS FBA/FBA15LSK0YD6 - ANNULEE/Etiquettes cartons invalides/AMAZON_FBA__FBA15LSK0YD6__ETIQUETTES_CARTONS_INVALIDES__2026-05-14.pdf",
+      "document_role": "invalidated_fba_carton_labels",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    }
+  ]
+}

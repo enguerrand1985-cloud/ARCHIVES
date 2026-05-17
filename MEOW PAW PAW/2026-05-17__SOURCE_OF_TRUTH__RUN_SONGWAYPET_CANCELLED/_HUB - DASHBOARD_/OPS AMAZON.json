@@ -1,0 +1,316 @@
+{
+  "meta": {
+    "document_type": "source_of_truth_json",
+    "document_role": "ops_amazon_truth",
+    "scope": "MEOW_PAW_PAW",
+    "status": "active_truth",
+    "created_at": "2026-05-12",
+    "updated_at": "2026-05-16",
+    "projection_generated_at": "2026-05-16",
+    "projection_note": "JSON GitHub is the structured source of truth; XLSX SharePoint is the human-readable projection.",
+    "source_workbook": {
+      "github_json_path": "C:/Users/engue/__SYSTEME - GITHUB__/SOURCE OF TRUTH/MEOW PAW PAW/_HUB - DASHBOARD_/OPS AMAZON.json",
+      "human_source_path": "C:/Users/engue/Enguerrand Kalfaian/MEOW PAW PAW - Bibliotheque de documents/MARKETPLACES/OPS AMAZON.xlsx",
+      "human_projection_path": "C:/Users/engue/Enguerrand Kalfaian/MEOW PAW PAW - Bibliotheque de documents/MARKETPLACES/OPS AMAZON.xlsx",
+      "file_name": "OPS AMAZON.xlsx",
+      "size_bytes": 18148,
+      "last_write_time": "2026-04-02T19:23:59",
+      "sha256": "a48de56abc3eafe16aa0059661be41b09c979fbfe20675b7041b986fd8f77a07",
+      "read_mode": "openpyxl_formula_view"
+    }
+  },
+  "workbook": {
+    "sheet_count": 5,
+    "sheet_names": [
+      "README",
+      "INBOUND_PLANS",
+      "INVENTORY_SNAPSHOTS",
+      "INVENTORY_EVENTS",
+      "STATUS_GUIDE"
+    ],
+    "sheets": [
+      {
+        "name": "README",
+        "max_row": 9,
+        "max_column": 2,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "OPS_AMAZON.xlsx"
+        ],
+        "rows": [
+          [
+            "OPS_AMAZON.xlsx"
+          ],
+          [],
+          [
+            "Purpose",
+            "Ops workbook for Amazon inbound and inventory tracking. One workbook, multiple operational sheets."
+          ],
+          [
+            "Source files",
+            "ops__amazon_fba_inbound_log.json + ops__amazon_inventory_log.json"
+          ],
+          [
+            "Workbook role",
+            "Copilot-friendly operational template"
+          ],
+          [
+            "Timezone",
+            "Europe/Paris"
+          ],
+          [
+            "Current state",
+            "Both source logs are still in to_create / empty state"
+          ],
+          [
+            "Sheets",
+            "INBOUND_PLANS, INVENTORY_SNAPSHOTS, INVENTORY_EVENTS"
+          ],
+          [
+            "Usage rule",
+            "One row = one operational record"
+          ]
+        ]
+      },
+      {
+        "name": "INBOUND_PLANS",
+        "max_row": 7,
+        "max_column": 18,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "INBOUND_PLANS"
+        ],
+        "rows": [
+          [
+            "INBOUND_PLANS"
+          ],
+          [],
+          [
+            "plan_id",
+            "shipment_id",
+            "shipment_status",
+            "created_at",
+            "expected_ship_date",
+            "expected_receive_date",
+            "sku_id",
+            "carton_option_id",
+            "cartons_qty",
+            "units_total",
+            "freight_amount_native",
+            "freight_currency",
+            "freight_status",
+            "duty_amount_native",
+            "duty_currency",
+            "duty_status",
+            "source_ref",
+            "notes"
+          ],
+          [
+            null,
+            null,
+            "pending",
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            null,
+            "estimated",
+            null,
+            null,
+            "estimated"
+          ],
+          [],
+          [
+            "Fields expected from inbound contract: sku_id, carton_option_id, cartons_qty, units_total."
+          ],
+          [
+            "PLAN-SONGWAYPET-20260514",
+            "FBA15LSK0YD6",
+            "cancelled",
+            "2026-05-14",
+            "2026-05-18",
+            null,
+            "MPP-BAT-STD-MAT-V1;MPP-BUN-STD-1BOU-S-V1",
+            null,
+            2,
+            600,
+            null,
+            null,
+            "cancelled_not_dispatched",
+            null,
+            null,
+            "not_applicable_no_import",
+            "RAPPORT__SYSTEM_IA__TRI_GOOGLE_DRIVE_MEOW__20260516.md",
+            "DDP failed; no tracking; no stock shipped; FBA shipment cancelled before dispatch."
+          ]
+        ]
+      },
+      {
+        "name": "INVENTORY_SNAPSHOTS",
+        "max_row": 8,
+        "max_column": 12,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "INVENTORY_SNAPSHOTS"
+        ],
+        "rows": [
+          [
+            "INVENTORY_SNAPSHOTS"
+          ],
+          [],
+          [
+            "snapshot_date",
+            "sku_id",
+            "fnsku",
+            "asin",
+            "condition",
+            "state",
+            "on_hand_qty",
+            "reserved_qty",
+            "inbound_qty",
+            "status",
+            "source_ref",
+            "notes"
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            "sellable",
+            "available",
+            null,
+            null,
+            null,
+            "confirmed"
+          ],
+          [],
+          [
+            "Use snapshots for current stock state by stock item (SKU/FNSKU/ASIN + condition/state)."
+          ],
+          [
+            "2026-05-15",
+            "MPP-BAT-STD-MAT-V1",
+            "STK_BC_FNSKU_AMZ_MPP_BAT_STD_MAT_V1",
+            "B0GW6MYXQC",
+            "sellable",
+            "no_stock",
+            0,
+            0,
+            0,
+            "confirmed",
+            "RAPPORT__SYSTEM_IA__TRI_GOOGLE_DRIVE_MEOW__20260516.md",
+            "No stock after cancelled inbound plan FBA15LSK0YD6."
+          ],
+          [
+            "2026-05-15",
+            "MPP-BUN-STD-1BOU-S-V1",
+            "STK_BC_FNSKU_AMZ_MPP_BUN_STD_1BOU_S_V1",
+            "B0GW72GXDB",
+            "sellable",
+            "no_stock",
+            0,
+            0,
+            0,
+            "confirmed",
+            "RAPPORT__SYSTEM_IA__TRI_GOOGLE_DRIVE_MEOW__20260516.md",
+            "No stock after cancelled inbound plan FBA15LSK0YD6."
+          ]
+        ]
+      },
+      {
+        "name": "INVENTORY_EVENTS",
+        "max_row": 7,
+        "max_column": 12,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "INVENTORY_EVENTS"
+        ],
+        "rows": [
+          [
+            "INVENTORY_EVENTS"
+          ],
+          [],
+          [
+            "event_date",
+            "event_type",
+            "sku_id",
+            "fnsku",
+            "asin",
+            "condition",
+            "state",
+            "qty_delta",
+            "status",
+            "reference",
+            "source_ref",
+            "notes"
+          ],
+          [
+            null,
+            "adjustment",
+            null,
+            null,
+            null,
+            "sellable",
+            "available",
+            null,
+            "confirmed"
+          ],
+          [],
+          [
+            "Use events for movements / corrections / receipts / losses by stock item."
+          ],
+          [
+            "2026-05-15",
+            "inbound_plan_cancelled",
+            null,
+            null,
+            null,
+            "sellable",
+            "available",
+            0,
+            "confirmed",
+            "FBA15LSK0YD6",
+            "RAPPORT__SYSTEM_IA__TRI_GOOGLE_DRIVE_MEOW__20260516.md",
+            "SongwayPet DDP failed; shipment cancelled before dispatch."
+          ]
+        ]
+      },
+      {
+        "name": "STATUS_GUIDE",
+        "max_row": 6,
+        "max_column": 2,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "STATUS GUIDE"
+        ],
+        "rows": [
+          [
+            "STATUS GUIDE"
+          ],
+          [],
+          [
+            "confirmed",
+            "Validated / sourced value"
+          ],
+          [
+            "estimated",
+            "Estimate not yet reconciled"
+          ],
+          [
+            "to_be_reconciled",
+            "Known but pending reconciliation"
+          ],
+          [
+            "pending",
+            "Operational step not completed yet"
+          ]
+        ]
+      }
+    ]
+  }
+}

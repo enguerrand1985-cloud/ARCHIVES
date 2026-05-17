@@ -1,0 +1,697 @@
+{
+  "meta": {
+    "document_type": "source_of_truth_json",
+    "document_role": "ledger_comptable_truth",
+    "scope": "MEOW_PAW_PAW",
+    "status": "active_truth",
+    "created_at": "2026-05-12",
+    "updated_at": "2026-05-16",
+    "projection_generated_at": "2026-05-16",
+    "projection_note": "JSON GitHub is the structured source of truth; XLSX SharePoint is the human-readable projection.",
+    "source_workbook": {
+      "legacy_github_workbook_path": "C:/Users/engue/__SYSTEME - GITHUB__/SOURCE OF TRUTH/MEOW PAW PAW/_DATA - COMPTABILITE_/LEDGER_COMPTABLE.xlsx",
+      "human_source_path": "C:/Users/engue/Enguerrand Kalfaian/MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/LEDGER_COMPTABLE.xlsx",
+      "human_projection_path": "C:/Users/engue/Enguerrand Kalfaian/MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/LEDGER_COMPTABLE.xlsx",
+      "projection_read_path": "C:/Users/engue/Enguerrand Kalfaian/MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/LEDGER_COMPTABLE.xlsx",
+      "file_name": "LEDGER_COMPTABLE.xlsx",
+      "size_bytes": 18960,
+      "last_write_time": "2026-04-29T04:54:32",
+      "sha256": "25a44f3af6f31f96aa3081372815f51cce539a94667d2e01a2947aa8dc76f4bb",
+      "read_mode": "openpyxl_formula_view"
+    }
+  },
+  "workbook": {
+    "sheet_count": 6,
+    "sheet_names": [
+      "ledger",
+      "chart_of_accounts",
+      "tax_codes",
+      "partners",
+      "sources",
+      "validation"
+    ],
+    "sheets": [
+      {
+        "name": "ledger",
+        "max_row": 18,
+        "max_column": 14,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "date",
+          "entry_id",
+          "piece_id",
+          "line_no",
+          "account",
+          "label",
+          "debit",
+          "credit",
+          "currency",
+          "sku_id",
+          "channel",
+          "source_ref",
+          "status",
+          "notes"
+        ],
+        "rows": [
+          [
+            "date",
+            "entry_id",
+            "piece_id",
+            "line_no",
+            "account",
+            "label",
+            "debit",
+            "credit",
+            "currency",
+            "sku_id",
+            "channel",
+            "source_ref",
+            "status",
+            "notes"
+          ],
+          [
+            "2026-03-13",
+            "ENTR-0001",
+            "PIECE-0001",
+            1,
+            "707100",
+            "Vente Amazon SKU XXXX",
+            0,
+            0,
+            "EUR",
+            "SKU-XXXX",
+            "amazon_fba",
+            "settlement:XYZ",
+            "to_be_reconciled",
+            "Exemple: compléter et effacer cette ligne"
+          ],
+          [
+            "2025-12-12",
+            "ENTR-0002",
+            "PIECE-QONTO-202512",
+            1,
+            null,
+            "Qonto - Remise",
+            0,
+            3.83,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Decembre, 2025.pdf",
+            "to_be_reconciled",
+            "releve OK; a_reconcilier: classification produit bancaire; justificatif_a_rattacher: non"
+          ],
+          [
+            "2025-12-17",
+            "ENTR-0003",
+            "PIECE-QONTO-202512",
+            1,
+            null,
+            "FOUREZ Quentin - A TRADE-VISION -Restitution du Capital Social-Me Quentin Fourez",
+            0,
+            2000,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Decembre, 2025.pdf",
+            "to_be_reconciled",
+            "releve OK; a_reconcilier: qualification capital social/restitution; justificatif_a_rattacher: oui (piece juridique)"
+          ],
+          [
+            "2025-12-18",
+            "ENTR-0004",
+            "PIECE-QONTO-202512",
+            1,
+            null,
+            "Qonto - Abonnement / Frais additionnels",
+            1.1,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Decembre, 2025.pdf",
+            "confirmed",
+            "releve OK; justificatif_a_rattacher: non"
+          ],
+          [
+            "2026-01-01",
+            "ENTR-0005",
+            "PIECE-QONTO-202601",
+            1,
+            null,
+            "Qonto - Abonnement / Frais additionnels",
+            2.4,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Janvier, 2026.pdf",
+            "confirmed",
+            "releve OK; justificatif_a_rattacher: non"
+          ],
+          [
+            "2026-01-02",
+            "ENTR-0006",
+            "PIECE-QONTO-202601",
+            1,
+            null,
+            "AMZN Mktp FR*ZG3IZ7J54 - Carte **5936",
+            46.8,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Janvier, 2026.pdf",
+            "to_be_reconciled",
+            "justificatif_a_rattacher: oui (Amazon) ; a_reconcilier: compte comptable exact"
+          ],
+          [
+            "2026-01-08",
+            "ENTR-0007",
+            "PIECE-QONTO-202601",
+            1,
+            null,
+            "INST NAT PROPRIETE IND - Carte **5936",
+            190,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Janvier, 2026.pdf",
+            "to_be_reconciled",
+            "justificatif_a_rattacher: oui (INPI) ; a_reconcilier: immobilisation/frais"
+          ],
+          [
+            "2026-02-01",
+            "ENTR-0008",
+            "PIECE-QONTO-202602",
+            1,
+            null,
+            "Qonto - Abonnement / Frais additionnels",
+            2.4,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Fevrier, 2026.pdf",
+            "confirmed",
+            "releve OK; justificatif_a_rattacher: non"
+          ],
+          [
+            "2026-02-26",
+            "ENTR-0009",
+            "PIECE-QONTO-202602",
+            1,
+            null,
+            "GS1 FRANCE - Carte **5936",
+            268.8,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Fevrier, 2026.pdf",
+            "to_be_reconciled",
+            "justificatif_a_rattacher: oui (GS1) ; a_reconcilier: compte comptable exact"
+          ],
+          [
+            "2026-03-01",
+            "ENTR-0010",
+            "PIECE-QONTO-202603",
+            1,
+            null,
+            "Qonto - Abonnement / Frais additionnels",
+            2.4,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Mars, 2026.pdf",
+            "confirmed",
+            "releve OK; justificatif_a_rattacher: non"
+          ],
+          [
+            "2026-03-30",
+            "ENTR-0011",
+            "PIECE-QONTO-202603",
+            1,
+            null,
+            "LESTRICOLORES - Carte **5936",
+            16.09,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "Mars, 2026.pdf",
+            "to_be_reconciled",
+            "justificatif_a_rattacher: oui ; a_reconcilier: categorie comptable"
+          ],
+          [
+            "2026-04-16",
+            "ENTR-SONGWAYPET-20260416-QONTO-FEE",
+            "PIECE-QONTO-202604",
+            1,
+            null,
+            "Qonto / frais",
+            12.0,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "QONTO__TRADE-VISION__RELEVE__2026-04.pdf",
+            "to_be_reconciled_pending_may_statement",
+            "Frais Qonto avril connus; classification finale a confirmer."
+          ],
+          [
+            "2026-04-27",
+            "ENTR-SONGWAYPET-20260427-ALIBABA",
+            "PIECE-QONTO-202604",
+            1,
+            null,
+            "Alibaba SongwayPet payment",
+            420.53,
+            0,
+            "EUR",
+            null,
+            "alibaba_qonto",
+            "QONTO__TRADE-VISION__RELEVE__2026-04.pdf",
+            "to_be_reconciled_pending_may_statement",
+            "Paiement Alibaba avril lie au RUN annule; refund approved 945 USD; classification finale pending May Qonto statement."
+          ],
+          [
+            "2026-04-30",
+            "ENTR-20260430-LES-TRICOLORES",
+            "PIECE-QONTO-202604",
+            1,
+            null,
+            "Les Tricolores",
+            16.09,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "QONTO__TRADE-VISION__RELEVE__2026-04.pdf",
+            "to_be_reconciled_pending_may_statement",
+            "Domiciliation; classification finale a confirmer."
+          ],
+          [
+            "2026-05-01",
+            "ENTR-20260501-QONTO-CARTE",
+            "PIECE-QONTO-202605",
+            1,
+            null,
+            "Qonto carte / cout mensuel",
+            24.0,
+            0,
+            "EUR",
+            null,
+            "bank_qonto",
+            "May Qonto statement pending",
+            "to_be_reconciled_pending_may_statement",
+            "Piece releve mai attendue."
+          ],
+          [
+            "2026-05-15",
+            "ENTR-20260515-ALIBABA-FEE",
+            "PIECE-QONTO-202605",
+            1,
+            null,
+            "Alibaba line to reconcile",
+            17.16,
+            0,
+            "EUR",
+            null,
+            "alibaba_qonto",
+            "May Qonto statement pending",
+            "to_be_reconciled_pending_may_statement",
+            "Ligne Alibaba -17.16 EUR a rapprocher au releve de mai."
+          ],
+          [
+            "2026-05-15",
+            "ENTR-20260515-ALIBABA-REFUND",
+            "PIECE-QONTO-202605",
+            1,
+            null,
+            "Alibaba refund visible",
+            0,
+            408.3,
+            "EUR",
+            null,
+            "alibaba_qonto",
+            "May Qonto statement pending",
+            "to_be_reconciled_pending_may_statement",
+            "Refund Alibaba visible Qonto +408.30 EUR; refund approved Alibaba 945 USD; direct loss of 189 USD sales tax not confirmed by Qonto balance; final accounting classification pending May statement."
+          ]
+        ]
+      },
+      {
+        "name": "chart_of_accounts",
+        "max_row": 1,
+        "max_column": 4,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "account",
+          "label",
+          "type",
+          "notes"
+        ],
+        "rows": [
+          [
+            "account",
+            "label",
+            "type",
+            "notes"
+          ]
+        ]
+      },
+      {
+        "name": "tax_codes",
+        "max_row": 2,
+        "max_column": 4,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "tax_code",
+          "description",
+          "rate",
+          "notes"
+        ],
+        "rows": [
+          [
+            "tax_code",
+            "description",
+            "rate",
+            "notes"
+          ],
+          [
+            "TVA20",
+            "TVA standard FR",
+            0.2,
+            "TVA active (reference COMPTA_PARAMETERS)"
+          ]
+        ]
+      },
+      {
+        "name": "partners",
+        "max_row": 4,
+        "max_column": 4,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "partner_id",
+          "partner_name",
+          "type",
+          "notes"
+        ],
+        "rows": [
+          [
+            "partner_id",
+            "partner_name",
+            "type",
+            "notes"
+          ],
+          [
+            "ALIBABA",
+            "Alibaba",
+            "marketplace_procurement",
+            "Trade Assurance refund/payment rail"
+          ],
+          [
+            "QONTO",
+            "Qonto",
+            "bank",
+            "Main TRADE-VISION bank statement source"
+          ],
+          [
+            "AMAZON_FBA",
+            "Amazon FBA",
+            "marketplace",
+            "Cancelled shipment FBA15LSK0YD6"
+          ]
+        ]
+      },
+      {
+        "name": "sources",
+        "max_row": 16,
+        "max_column": 5,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "source",
+          "key",
+          "value",
+          "status",
+          "note"
+        ],
+        "rows": [
+          [
+            "source",
+            "key",
+            "value",
+            "status",
+            "note"
+          ],
+          [
+            "COMPTA_PARAMETERS",
+            "sales_price_mode",
+            "TTC",
+            "confirmed",
+            "Mode prix TTC (référence)"
+          ],
+          [
+            "COMPTA_PARAMETERS",
+            "vat_mode",
+            "active",
+            "confirmed",
+            "TVA active (reference COMPTA_PARAMETERS)"
+          ],
+          [
+            "COMPTA_PARAMETERS",
+            "tva_rate_sales",
+            0.2,
+            "confirmed",
+            "TVA ventes (référence)"
+          ],
+          [
+            "COMPTA_PARAMETERS",
+            "tva_rate_purchases",
+            0.2,
+            "confirmed",
+            "TVA achats (référence)"
+          ],
+          [
+            "COMPTA_PARAMETERS",
+            "tva_recovery_ratio",
+            0.75,
+            "confirmed",
+            "Ratio récupération TVA"
+          ],
+          [
+            "COMPTA_PARAMETERS",
+            "amount_status_allowed",
+            "confirmed|estimated|to_be_reconciled",
+            null,
+            "Statuts autorisés"
+          ],
+          [
+            "MARKETPLACE_RULES",
+            "currency_default",
+            "EUR",
+            "confirmed",
+            "Devise par défaut Amazon"
+          ],
+          [
+            "MARKETPLACE_RULES",
+            "sales_channel_canon",
+            "amazon_fba",
+            "confirmed",
+            "Canal canonique"
+          ],
+          [
+            "MARKETPLACE_RULES",
+            "referral_fee.rate",
+            0.15,
+            "to_be_reconciled",
+            "Commission Amazon (base TTC)"
+          ],
+          [
+            "MARKETPLACE_RULES",
+            "fba_unit_costs",
+            "rate_card_FR_EUR_2025-02-01",
+            "confirmed",
+            "Barème FBA unitaire"
+          ],
+          [
+            "MARKETPLACE_RULES",
+            "ppc",
+            null,
+            "to_be_reconciled",
+            "Politique PPC (à réconcilier)"
+          ],
+          [
+            "MARKETPLACE_RULES",
+            "digital_services_fee",
+            null,
+            "to_be_reconciled",
+            "DSF (à réconcilier)"
+          ],
+          [
+            "SONGWAYPET_REFUND_20260516",
+            "refund_approved_alibaba_usd",
+            945.0,
+            "to_be_reconciled_pending_may_statement",
+            "Refund approved by Alibaba; May Qonto statement pending"
+          ],
+          [
+            "SONGWAYPET_REFUND_20260516",
+            "qonto_refund_visible_eur",
+            408.3,
+            "to_be_reconciled_pending_may_statement",
+            "Visible refund amount from Qonto balance context"
+          ],
+          [
+            "SONGWAYPET_REFUND_20260516",
+            "provisional_net_alibaba_gap_eur",
+            29.39,
+            "to_be_reconciled_pending_may_statement",
+            "Do not close before May Qonto statement"
+          ]
+        ]
+      },
+      {
+        "name": "validation",
+        "max_row": 7,
+        "max_column": 6,
+        "first_non_empty_row": 1,
+        "headers_inferred_from_first_non_empty_row": [
+          "status_options",
+          "currency_options",
+          "channel_options",
+          "COLUMN_4",
+          "checks"
+        ],
+        "rows": [
+          [
+            "status_options",
+            "currency_options",
+            "channel_options",
+            null,
+            "checks"
+          ],
+          [
+            "confirmed",
+            "EUR",
+            "amazon_fba",
+            null,
+            "total_debit",
+            "=SUM(ledger!G2:G100000)"
+          ],
+          [
+            "estimated",
+            "USD",
+            null,
+            null,
+            "total_credit",
+            "=SUM(ledger!H2:H100000)"
+          ],
+          [
+            "to_be_reconciled",
+            "GBP",
+            null,
+            null,
+            "balanced",
+            "=IF(F2=F3,\"OK\",\"NOT BALANCED\")"
+          ],
+          [
+            "unavailable"
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            "missing_source_ref_count",
+            "=COUNTIF(ledger!L2:L100000,\"\")"
+          ],
+          [
+            null,
+            null,
+            null,
+            null,
+            "missing_status_count",
+            "=COUNTIF(ledger!M2:M100000,\"\")"
+          ]
+        ]
+      }
+    ]
+  },
+  "songwaypet_reconciliation_20260516": {
+    "qonto_balance_observed_eur": 1392.36,
+    "provisional_net_alibaba_gap_eur": 29.39,
+    "refund_approved_alibaba_usd": 945.0,
+    "direct_loss_sales_tax_usd_status": "direct_loss_not_confirmed_by_qonto_balance",
+    "final_accounting_classification": "pending_may_qonto_statement",
+    "do_not_close_reconciliation_until": "May Qonto statement attached"
+  },
+  "source_pointers": [
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/2025/12 - Decembre/Releves bancaires/Qonto/QONTO__TRADE-VISION__RELEVE__2025-12.pdf",
+      "document_role": "qonto_bank_statement",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/2026/01 - Janvier/Releves bancaires/Qonto/QONTO__TRADE-VISION__RELEVE__2026-01.pdf",
+      "document_role": "qonto_bank_statement",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/2026/02 - Fevrier/Releves bancaires/Qonto/QONTO__TRADE-VISION__RELEVE__2026-02.pdf",
+      "document_role": "qonto_bank_statement",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/2026/03 - Mars/Releves bancaires/Qonto/QONTO__TRADE-VISION__RELEVE__2026-03.pdf",
+      "document_role": "qonto_bank_statement",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/2026/04 - Avril/Releves bancaires/Qonto/QONTO__TRADE-VISION__RELEVE__2026-04.pdf",
+      "document_role": "qonto_bank_statement",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Trade Assurance/Remboursement/ALIBABA_TRADE_ASSURANCE__SONGWAYPET__REFUND_SCREENSHOT__2026-05-16__01.avif",
+      "document_role": "refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Trade Assurance/Remboursement/ALIBABA_TRADE_ASSURANCE__SONGWAYPET__REFUND_SCREENSHOT__2026-05-16__02.avif",
+      "document_role": "refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    }
+  ]
+}

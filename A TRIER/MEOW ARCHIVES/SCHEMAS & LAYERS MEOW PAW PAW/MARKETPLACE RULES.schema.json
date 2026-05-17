@@ -1,0 +1,1275 @@
+{
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "simplified_for": {
+          "type": "string"
+        },
+        "simplified_from": {
+          "type": "string"
+        },
+        "source_updated_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "timezone",
+        "simplified_for",
+        "simplified_from",
+        "source_updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "amazon": {
+      "type": "object",
+      "properties": {
+        "conventions": {
+          "type": "object",
+          "properties": {
+            "currency_default": {
+              "type": "string"
+            },
+            "amount_status_allowed": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "effective_from_required_when_applicable": {
+              "type": "boolean"
+            },
+            "sales_channel_canon": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "currency_default",
+            "amount_status_allowed",
+            "effective_from_required_when_applicable",
+            "sales_channel_canon"
+          ],
+          "additionalProperties": false
+        },
+        "policies": {
+          "type": "object",
+          "properties": {
+            "referral_fee": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": "null"
+                },
+                "rate": {
+                  "type": "number"
+                },
+                "basis": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "rate",
+                "basis",
+                "scope"
+              ],
+              "additionalProperties": false
+            },
+            "fba_unit_costs": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": "string"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "effective": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name",
+                    "effective"
+                  ],
+                  "additionalProperties": false
+                },
+                "fulfillment_low_price": {
+                  "type": "object",
+                  "properties": {
+                    "effective_from": {
+                      "type": "string"
+                    },
+                    "price_threshold_ttc_eur": {
+                      "type": "integer"
+                    },
+                    "tiers_fr": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "type": "integer"
+                                        },
+                                        {
+                                          "type": "number"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers_g": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "max_g": {
+                                      "type": "integer"
+                                    },
+                                    "fee_eur": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "max_g",
+                                    "fee_eur"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers_g"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers_g": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "max_g": {
+                                      "type": "integer"
+                                    },
+                                    "fee_eur": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "max_g",
+                                    "fee_eur"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers_g"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "effective_from",
+                    "price_threshold_ttc_eur",
+                    "tiers_fr"
+                  ],
+                  "additionalProperties": false
+                },
+                "fulfillment_standard_fr": {
+                  "type": "object",
+                  "properties": {
+                    "effective_from": {
+                      "type": "string"
+                    },
+                    "tiers": {
+                      "type": "array",
+                      "items": {
+                        "anyOf": [
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "anyOf": [
+                                        {
+                                          "type": "integer"
+                                        },
+                                        {
+                                          "type": "number"
+                                        }
+                                      ]
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "max_g": {
+                                      "type": "integer"
+                                    },
+                                    "fee_eur": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "max_g",
+                                    "fee_eur"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer"
+                                    }
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers": {
+                                "type": "array",
+                                "items": {
+                                  "type": "object",
+                                  "properties": {
+                                    "max_g": {
+                                      "type": "integer"
+                                    },
+                                    "fee_eur": {
+                                      "type": "number"
+                                    }
+                                  },
+                                  "required": [
+                                    "max_g",
+                                    "fee_eur"
+                                  ],
+                                  "additionalProperties": false
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "max_unit_weight_kg": {
+                                    "type": "number"
+                                  },
+                                  "max_dim_weight_kg": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm",
+                                  "max_unit_weight_kg",
+                                  "max_dim_weight_kg"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers": {
+                                "type": "array",
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "max_g": {
+                                          "type": "integer"
+                                        },
+                                        "fee_eur": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "max_g",
+                                        "fee_eur"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "max_kg": {
+                                          "type": "number"
+                                        },
+                                        "fee_eur": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "max_kg",
+                                        "fee_eur"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "max_unit_weight_kg": {
+                                    "type": "number"
+                                  },
+                                  "max_dim_weight_kg": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm",
+                                  "max_unit_weight_kg",
+                                  "max_dim_weight_kg"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers": {
+                                "type": "array",
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "max_g": {
+                                          "type": "integer"
+                                        },
+                                        "fee_eur": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "max_g",
+                                        "fee_eur"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "min_g_exclusive": {
+                                          "type": "integer"
+                                        },
+                                        "fee_formula": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "min_g_exclusive",
+                                        "fee_formula"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "max_unit_weight_kg": {
+                                    "type": "integer"
+                                  },
+                                  "max_dim_weight_kg": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm",
+                                  "max_unit_weight_kg",
+                                  "max_dim_weight_kg"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers": {
+                                "type": "array",
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "max_g": {
+                                          "type": "integer"
+                                        },
+                                        "fee_eur": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "max_g",
+                                        "fee_eur"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "min_g_exclusive": {
+                                          "type": "integer"
+                                        },
+                                        "fee_formula": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "min_g_exclusive",
+                                        "fee_formula"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "max_dimensions_cm": {
+                                    "type": "array",
+                                    "items": {
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "min_unit_weight_kg_exclusive": {
+                                    "type": "integer"
+                                  },
+                                  "max_unit_weight_kg": {
+                                    "type": "integer"
+                                  },
+                                  "max_dim_weight_kg": {
+                                    "type": "number"
+                                  }
+                                },
+                                "required": [
+                                  "max_dimensions_cm",
+                                  "min_unit_weight_kg_exclusive",
+                                  "max_unit_weight_kg",
+                                  "max_dim_weight_kg"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers": {
+                                "type": "array",
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "max_kg": {
+                                          "type": "number"
+                                        },
+                                        "fee_eur": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "max_kg",
+                                        "fee_eur"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "min_kg_exclusive": {
+                                          "type": "number"
+                                        },
+                                        "fee_formula": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "min_kg_exclusive",
+                                        "fee_formula"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers"
+                            ],
+                            "additionalProperties": false
+                          },
+                          {
+                            "type": "object",
+                            "properties": {
+                              "size_tier": {
+                                "type": "string"
+                              },
+                              "constraints": {
+                                "type": "object",
+                                "properties": {
+                                  "min_dimensions_note": {
+                                    "type": "string"
+                                  },
+                                  "max_unit_weight_kg": {
+                                    "type": "integer"
+                                  }
+                                },
+                                "required": [
+                                  "min_dimensions_note",
+                                  "max_unit_weight_kg"
+                                ],
+                                "additionalProperties": false
+                              },
+                              "weight_tiers": {
+                                "type": "array",
+                                "items": {
+                                  "anyOf": [
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "max_kg": {
+                                          "type": "integer"
+                                        },
+                                        "fee_eur": {
+                                          "type": "number"
+                                        }
+                                      },
+                                      "required": [
+                                        "max_kg",
+                                        "fee_eur"
+                                      ],
+                                      "additionalProperties": false
+                                    },
+                                    {
+                                      "type": "object",
+                                      "properties": {
+                                        "min_kg_exclusive": {
+                                          "type": "integer"
+                                        },
+                                        "fee_formula": {
+                                          "type": "string"
+                                        }
+                                      },
+                                      "required": [
+                                        "min_kg_exclusive",
+                                        "fee_formula"
+                                      ],
+                                      "additionalProperties": false
+                                    }
+                                  ]
+                                }
+                              }
+                            },
+                            "required": [
+                              "size_tier",
+                              "constraints",
+                              "weight_tiers"
+                            ],
+                            "additionalProperties": false
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "effective_from",
+                    "tiers"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "currency",
+                "source",
+                "fulfillment_low_price",
+                "fulfillment_standard_fr"
+              ],
+              "additionalProperties": false
+            },
+            "ppc": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string"
+                      },
+                      "rate": {
+                        "type": "number"
+                      },
+                      "basis": {
+                        "type": "string"
+                      },
+                      "scope": {
+                        "type": "string"
+                      },
+                      "source": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "rate",
+                      "basis",
+                      "scope",
+                      "source",
+                      "status",
+                      "notes"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "rules",
+                "notes"
+              ],
+              "additionalProperties": false
+            },
+            "digital_services_fee": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "notes": {
+                  "type": "string"
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "kind": {
+                        "type": "string"
+                      },
+                      "rate": {
+                        "type": "number"
+                      },
+                      "base": {
+                        "type": "string"
+                      },
+                      "effective_from": {
+                        "type": [
+                          "string",
+                          "null"
+                        ]
+                      },
+                      "notes": {
+                        "type": "string"
+                      },
+                      "source": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "kind",
+                      "rate",
+                      "base",
+                      "effective_from",
+                      "notes",
+                      "source",
+                      "status"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "notes",
+                "rules"
+              ],
+              "additionalProperties": false
+            },
+            "observed_total_fee_overrides_by_sku": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "override_scope": {
+                  "type": "string"
+                },
+                "override_behavior": {
+                  "type": "string"
+                },
+                "by_sku": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "properties": {
+                      "asin": {
+                        "type": "string"
+                      },
+                      "effective_observed_at": {
+                        "type": "string"
+                      },
+                      "observed_from": {
+                        "type": "string"
+                      },
+                      "sales_price_ttc_eur": {
+                        "type": "number"
+                      },
+                      "observed_fulfillment_fee_eur": {
+                        "type": "number"
+                      },
+                      "observed_total_amazon_fees_eur": {
+                        "type": "number"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "use_for_margin_calculation": {
+                        "type": "boolean"
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "asin",
+                      "effective_observed_at",
+                      "observed_from",
+                      "sales_price_ttc_eur",
+                      "observed_fulfillment_fee_eur",
+                      "observed_total_amazon_fees_eur",
+                      "status",
+                      "use_for_margin_calculation",
+                      "notes"
+                    ],
+                    "additionalProperties": false
+                  }
+                }
+              },
+              "required": [
+                "status",
+                "currency",
+                "override_scope",
+                "override_behavior",
+                "by_sku"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "referral_fee",
+            "fba_unit_costs",
+            "ppc",
+            "digital_services_fee"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "conventions",
+        "policies"
+      ],
+      "additionalProperties": false
+    },
+    "alibaba": {
+      "type": "object",
+      "properties": {
+        "policies": {
+          "type": "object",
+          "properties": {
+            "trade_assurance": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": "null"
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {}
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "rules",
+                "notes"
+              ],
+              "additionalProperties": false
+            },
+            "card_processing": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": "null"
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {}
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "rules",
+                "notes"
+              ],
+              "additionalProperties": false
+            },
+            "launch_shipping": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": "string"
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "vendor": {
+                        "type": "string"
+                      },
+                      "buyer_entity": {
+                        "type": "string"
+                      },
+                      "incoterm": {
+                        "type": "string"
+                      },
+                      "shipping_mode": {
+                        "type": "string"
+                      },
+                      "currency": {
+                        "type": "string"
+                      },
+                      "shipping_cost_native": {
+                        "type": "number"
+                      },
+                      "shipping_cost_native_per_unit": {
+                        "type": "number"
+                      },
+                      "run_units_total": {
+                        "type": "integer"
+                      },
+                      "scope_skus": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "included_scope": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "hidden_costs_confirmed_none": {
+                        "type": "boolean"
+                      },
+                      "forwarder_accepts_france": {
+                        "type": "boolean"
+                      },
+                      "allocation": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "source": {
+                        "type": "string"
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "vendor",
+                      "buyer_entity",
+                      "incoterm",
+                      "shipping_mode",
+                      "currency",
+                      "shipping_cost_native",
+                      "shipping_cost_native_per_unit",
+                      "run_units_total",
+                      "scope_skus",
+                      "included_scope",
+                      "hidden_costs_confirmed_none",
+                      "forwarder_accepts_france",
+                      "allocation",
+                      "status",
+                      "source",
+                      "notes"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "rules",
+                "notes"
+              ],
+              "additionalProperties": false
+            },
+            "fx": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_from": {
+                  "type": "null"
+                },
+                "rules": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "currency_pair": {
+                        "type": "string"
+                      },
+                      "spread_estimated_rate": {
+                        "type": "number"
+                      },
+                      "swift_fee_eur_estimated": {
+                        "type": "integer"
+                      },
+                      "double_conversion_risk_note": {
+                        "type": "string"
+                      },
+                      "base": {
+                        "type": "string"
+                      },
+                      "allocation": {
+                        "type": "string"
+                      },
+                      "status": {
+                        "type": "string"
+                      },
+                      "to_be_reconciled_after_first_payment": {
+                        "type": "boolean"
+                      },
+                      "source": {
+                        "type": "string"
+                      },
+                      "notes": {
+                        "type": "string"
+                      },
+                      "action_required": {
+                        "type": "object",
+                        "properties": {
+                          "status": {
+                            "type": "string"
+                          },
+                          "vendor": {
+                            "type": "string"
+                          },
+                          "field": {
+                            "type": "string"
+                          },
+                          "note": {
+                            "type": "string"
+                          }
+                        },
+                        "required": [
+                          "status",
+                          "vendor",
+                          "field",
+                          "note"
+                        ],
+                        "additionalProperties": false
+                      },
+                      "kind": {
+                        "type": "string"
+                      },
+                      "spot_rate_eur_per_usd_estimated": {
+                        "type": "number"
+                      },
+                      "spot_rate_source": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "currency_pair",
+                      "spread_estimated_rate",
+                      "swift_fee_eur_estimated",
+                      "double_conversion_risk_note",
+                      "base",
+                      "allocation",
+                      "status",
+                      "to_be_reconciled_after_first_payment",
+                      "source",
+                      "notes",
+                      "action_required",
+                      "kind",
+                      "spot_rate_eur_per_usd_estimated",
+                      "spot_rate_source"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status",
+                "effective_from",
+                "rules",
+                "notes"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "trade_assurance",
+            "card_processing",
+            "launch_shipping",
+            "fx"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "policies"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "meta",
+    "amazon",
+    "alibaba"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema for MARKETPLACE RULES.json"
+}

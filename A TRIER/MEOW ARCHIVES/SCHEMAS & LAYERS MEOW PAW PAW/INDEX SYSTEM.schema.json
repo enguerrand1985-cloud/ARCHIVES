@@ -1,0 +1,282 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowpawpaw.local/schemas/index-system.schema.json",
+  "title": "INDEX SYSTEM",
+  "type": "object",
+  "required": [
+    "meta",
+    "root_paths",
+    "routing_policy",
+    "visibility_rules",
+    "system_components",
+    "business_interfaces",
+    "operational_rules"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "visibility",
+        "updated_at",
+        "notes"
+      ],
+      "properties": {
+        "document_type": {
+          "const": "system_index"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "visibility": {
+          "const": "vscode_only"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "root_paths": {
+      "type": "object",
+      "required": [
+        "vscode_workspace_root",
+        "config_root",
+        "prompt_store_root",
+        "system_root",
+        "business_data_root",
+        "schemas_root"
+      ],
+      "properties": {
+        "vscode_workspace_root": {
+          "type": "string"
+        },
+        "config_root": {
+          "type": "string"
+        },
+        "prompt_store_root": {
+          "type": "string"
+        },
+        "system_root": {
+          "type": "string"
+        },
+        "business_data_root": {
+          "type": "string"
+        },
+        "schemas_root": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "routing_policy": {
+      "type": "object",
+      "required": [
+        "system_requests",
+        "business_requests",
+        "mixed_requests"
+      ],
+      "properties": {
+        "system_requests": {
+          "$ref": "#/$defs/routingRule"
+        },
+        "business_requests": {
+          "$ref": "#/$defs/routingRule"
+        },
+        "mixed_requests": {
+          "$ref": "#/$defs/routingRule"
+        }
+      },
+      "additionalProperties": false
+    },
+    "visibility_rules": {
+      "type": "object",
+      "required": [
+        "maintenance_system_perimeter",
+        "business_workspace_perimeter"
+      ],
+      "properties": {
+        "maintenance_system_perimeter": {
+          "type": "object",
+          "required": [
+            "scope",
+            "must_not_be_mentioned_to_business_agents",
+            "must_not_be_used_as_business_source",
+            "must_not_be_cited_in_business_outputs"
+          ],
+          "properties": {
+            "scope": {
+              "type": "string"
+            },
+            "must_not_be_mentioned_to_business_agents": {
+              "type": "boolean"
+            },
+            "must_not_be_used_as_business_source": {
+              "type": "boolean"
+            },
+            "must_not_be_cited_in_business_outputs": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "business_workspace_perimeter": {
+          "type": "object",
+          "required": [
+            "scope",
+            "can_see",
+            "cannot_see"
+          ],
+          "properties": {
+            "scope": {
+              "type": "string"
+            },
+            "can_see": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "cannot_see": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "system_components": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/component"
+      }
+    },
+    "business_interfaces": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/interface"
+      }
+    },
+    "operational_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "routingRule": {
+      "type": "object",
+      "required": [
+        "read_order",
+        "covers"
+      ],
+      "properties": {
+        "read_order": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "covers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "component": {
+      "type": "object",
+      "required": [
+        "id",
+        "path",
+        "path_root",
+        "role",
+        "depends_on"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "path_root": {
+          "type": "string",
+          "enum": [
+            "vscode_workspace_root",
+            "config_root",
+            "prompt_store_root",
+            "system_root",
+            "business_data_root",
+            "schemas_root"
+          ]
+        },
+        "role": {
+          "type": "string"
+        },
+        "depends_on": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "interface": {
+      "type": "object",
+      "required": [
+        "id",
+        "path",
+        "path_root",
+        "role",
+        "authority_level"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "path": {
+          "type": "string"
+        },
+        "path_root": {
+          "type": "string",
+          "enum": [
+            "vscode_workspace_root",
+            "config_root",
+            "prompt_store_root",
+            "system_root",
+            "business_data_root",
+            "schemas_root"
+          ]
+        },
+        "role": {
+          "type": "string"
+        },
+        "authority_level": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,15 @@
+{
+  "meta": {
+    "document_type": "supplier_mapping",
+    "document_role": "local_supplier_product_to_meow_sku_mapping_legacy_empty",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/LUOYANG XISE.json"
+    ]
+  },
+  "supplier_id": "SUP-LUOYANG",
+  "mappings": []
+}

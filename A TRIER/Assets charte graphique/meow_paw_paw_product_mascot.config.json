@@ -1,0 +1,276 @@
+{
+  "config_version": "1.0.0",
+  "asset_type": "product_mascot_generation_config",
+  "mascot_id": "meow_paw_paw_product_mascot_a1_v1",
+  "brand_context": {
+    "brand_name": "Meow Paw Paw",
+    "product_role": "main product mascot",
+    "source_of_truth": "Amazon Main Image A1 + user corrections",
+    "usage": [
+      "image generation",
+      "packaging",
+      "Amazon visuals",
+      "social posts",
+      "stickers",
+      "brand assets"
+    ]
+  },
+  "identity_lock": {
+    "character_type": "anthropomorphic product mascot",
+    "core_identity": "kawaii stylization of the real product, not a generic toy",
+    "recognition_goal": "same mascot first, new pose second",
+    "relationship_to_real_product": "must stay faithful to the Amazon Main product architecture"
+  },
+  "real_product_canonical_structure": {
+    "global_shape": "thin elongated cylinder",
+    "central_zone": "wrapped beige jute rope section",
+    "top_green_zone": "green cap section above the rope",
+    "bottom_green_zone": "green cap section below the rope",
+    "top_attachment": "long beige-golden feathers emerging from the top",
+    "top_secondary_attachment": "small dark brown suspended natural element near the top",
+    "bottom_attachment": "short raffia bundle at the bottom",
+    "asymmetry_rule": "top and bottom are intentionally different"
+  },
+  "visual_dna": {
+    "style_family": [
+      "kawaii",
+      "vector-like",
+      "sticker illustration",
+      "flat illustration with light texture"
+    ],
+    "linework": {
+      "outline_style": "thick dark brown outline",
+      "outline_weight": "consistent",
+      "line_feel": "clean, soft, rounded"
+    },
+    "rendering": {
+      "base_style": "clean 2D mascot rendering",
+      "shading": "very light",
+      "texture": "light soft grain optional",
+      "lighting": "simple and even",
+      "depth": "2D"
+    }
+  },
+  "product_body_rules": {
+    "main_body": {
+      "shape": "slim rounded cylinder",
+      "orientation": "can tilt depending on pose",
+      "readability": "must remain clearly identifiable as the product body"
+    },
+    "rope_zone": {
+      "position": "center",
+      "role": "secondary supporting product feature",
+      "dominance_rule": "visible but not visually dominant",
+      "face_rule": "never place facial features on the rope"
+    },
+    "green_zones": {
+      "count": 2,
+      "top_zone": "primary face area",
+      "bottom_zone": "body support area only",
+      "face_rule": "facial features must always be placed on the top green zone"
+    },
+    "top_features": {
+      "feathers": {
+        "required": true,
+        "description": "long beige-golden feather cluster",
+        "priority": "high"
+      },
+      "brown_element": {
+        "required": true,
+        "description": "small dark brown suspended natural element near the top",
+        "priority": "medium"
+      }
+    },
+    "bottom_features": {
+      "raffia": {
+        "required": true,
+        "description": "short raffia/fiber bundle at the bottom",
+        "priority": "high"
+      }
+    }
+  },
+  "face_rules": {
+    "placement": "always on the top green zone only",
+    "style": "simple kawaii face language",
+    "approved_elements": {
+      "eyes": [
+        "small oval eyes",
+        "small dot eyes",
+        "simple curved happy eyes",
+        "cute surprised eyes"
+      ],
+      "eyebrows": [
+        "soft rounded eyebrows",
+        "simple expressive brows"
+      ],
+      "mouth": [
+        "small smile",
+        "small open smile",
+        "cute surprised mouth",
+        "playful kawaii mouth"
+      ],
+      "cheeks": [
+        "optional soft pink blush circles"
+      ]
+    },
+    "constraints": [
+      "no face on the rope",
+      "no face on the lower green zone",
+      "keep face simple and readable",
+      "avoid hyper-detailed facial rendering"
+    ]
+  },
+  "limb_rules": {
+    "arms": {
+      "count": 2,
+      "color": "green",
+      "style": "simple rounded kawaii arms",
+      "hands": "small simplified cartoon hands"
+    },
+    "legs": {
+      "count": 2,
+      "required": true,
+      "color": "green",
+      "style": "simple rounded kawaii legs",
+      "feet": "small simplified cartoon feet",
+      "lock": "the mascot must have two legs"
+    },
+    "outline": "dark brown thick outline"
+  },
+  "color_palette": {
+    "outline_dark_brown": "#6B4A22",
+    "rope_beige": "#CFA670",
+    "rope_shadow_beige": "#B88E58",
+    "green_moss": "#A7C66A",
+    "green_olive": "#95B45A",
+    "raffia_straw": "#DFC27A",
+    "feather_gold_beige": "#D8A453",
+    "brown_element": "#7A4E2B",
+    "blush_pink": "#F4A6A0",
+    "palette_rules": [
+      "keep colors warm, natural, and soft",
+      "avoid neon saturation",
+      "avoid cold palette drift"
+    ]
+  },
+  "proportions": {
+    "body_shape": "slim vertical or slightly tilted cylinder",
+    "top_green_zone": "large enough to hold the full face clearly",
+    "rope_zone": "centered and visually less important than the face zone",
+    "limb_scale": "small and cute compared with the body",
+    "feather_scale": "visibly expressive but not oversized",
+    "raffia_scale": "smaller than the top feather cluster"
+  },
+  "pose_rules": {
+    "allowed": [
+      "standing",
+      "walking",
+      "running",
+      "waving",
+      "holding an object",
+      "presenting something",
+      "reacting",
+      "celebrating",
+      "happy idle pose",
+      "cute surprised pose"
+    ],
+    "motion_feel": "playful, cheerful, readable",
+    "grounding_rule": "if the pose implies standing or running, the leg placement must remain plausible",
+    "consistency_rule": "pose may change, but the product architecture must stay stable"
+  },
+  "allowed_variations": {
+    "can_change": [
+      "expression",
+      "pose",
+      "arm gesture",
+      "leg position",
+      "body tilt",
+      "emotion",
+      "interaction context",
+      "minor accessory if explicitly requested"
+    ],
+    "must_remain_stable": [
+      "slim cylindrical product body",
+      "top feathers",
+      "small brown suspended element near the top",
+      "bottom raffia bundle",
+      "central beige rope section",
+      "top green face zone",
+      "two green arms",
+      "two green legs",
+      "kawaii sticker style",
+      "thick dark brown outline",
+      "asymmetric real-product logic"
+    ]
+  },
+  "forbidden_drift": [
+    "symmetrical product design",
+    "missing raffia",
+    "missing top feathers",
+    "missing brown suspended element",
+    "face on the rope",
+    "face on the bottom green zone",
+    "only one leg",
+    "realistic human limbs",
+    "rope becoming the main body identity",
+    "photorealism",
+    "3D rendering",
+    "thin outlines",
+    "gritty or dark style",
+    "generic toy unrelated to the real product"
+  ],
+  "composition_rules": {
+    "background": [
+      "transparent background preferred",
+      "simple clean background acceptable"
+    ],
+    "framing": [
+      "keep full mascot visible when possible",
+      "leave clean margin"
+    ],
+    "shadow": "soft simple ground shadow only if needed",
+    "readability": "must remain clear at small size"
+  },
+  "prompt_builder": {
+    "base_prompt": "Cute anthropomorphic product mascot in a kawaii sticker-like 2D illustration style, based on the real product: a slim cylindrical toy with a central beige rope wrap, green top and bottom caps, long beige-golden feathers at the top, a small dark brown suspended natural element near the top, and a raffia bundle at the bottom. Thick dark brown outline, warm natural palette, simple vector-like rendering, two green arms, two green legs, and all facial features placed only on the top green zone.",
+    "consistency_addons": [
+      "same mascot identity",
+      "same product architecture",
+      "same asymmetry as the real product",
+      "rope visible but not dominant",
+      "simple kawaii face language",
+      "transparent background"
+    ],
+    "negative_constraints": [
+      "no face on the rope",
+      "no face on the lower green section",
+      "no missing brown suspended element",
+      "no missing raffia",
+      "no missing feathers",
+      "no one-legged design",
+      "no realism",
+      "no 3D",
+      "no thin lines",
+      "no style drift"
+    ]
+  },
+  "quality_checklist": [
+    "Does it still clearly look like the real product mascot?",
+    "Is the face entirely on the top green zone?",
+    "Is the rope visible but secondary?",
+    "Are the top feathers present?",
+    "Is the small brown suspended element near the top present?",
+    "Is the bottom raffia bundle present?",
+    "Are there two arms and two legs?",
+    "Are the arms and legs green?",
+    "Is the style still kawaii/sticker-like?",
+    "Is the outline thick and dark brown?",
+    "Does the product remain asymmetrical top vs bottom?"
+  ],
+  "output_preferences": {
+    "preferred_format": "PNG",
+    "background": "transparent",
+    "resolution": "high resolution",
+    "asset_reuse_priority": true
+  }
+}

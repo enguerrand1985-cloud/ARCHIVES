@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mascot Generation Config Schema",
+  "type": "object",
+  "required": [
+    "config_version",
+    "asset_type",
+    "mascot_id",
+    "identity_lock",
+    "visual_dna",
+    "color_palette",
+    "proportions",
+    "pose_rules",
+    "allowed_variations",
+    "forbidden_drift",
+    "prompt_builder",
+    "quality_checklist"
+  ],
+  "properties": {
+    "config_version": {
+      "type": "string"
+    },
+    "asset_type": {
+      "type": "string"
+    },
+    "mascot_id": {
+      "type": "string"
+    },
+    "brand_context": {
+      "type": "object"
+    },
+    "identity_lock": {
+      "type": "object"
+    },
+    "visual_dna": {
+      "type": "object"
+    },
+    "color_palette": {
+      "type": "object"
+    },
+    "proportions": {
+      "type": "object"
+    },
+    "pose_rules": {
+      "type": "object"
+    },
+    "expression_library": {
+      "type": "object"
+    },
+    "allowed_variations": {
+      "type": "object"
+    },
+    "forbidden_drift": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "composition_rules": {
+      "type": "object"
+    },
+    "product_interaction_rules": {
+      "type": "object"
+    },
+    "prompt_builder": {
+      "type": "object"
+    },
+    "quality_checklist": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "output_preferences": {
+      "type": "object"
+    }
+  },
+  "additionalProperties": true
+}

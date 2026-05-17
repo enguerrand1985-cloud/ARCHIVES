@@ -1,0 +1,787 @@
+{
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "supplier_id": {
+          "type": "string"
+        },
+        "supplier_name": {
+          "type": "string"
+        },
+        "simplified_for": {
+          "type": "string"
+        },
+        "simplified_from": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "timezone",
+        "supplier_id",
+        "supplier_name",
+        "simplified_for",
+        "simplified_from"
+      ],
+      "additionalProperties": false
+    },
+    "supplier": {
+      "type": "object",
+      "properties": {
+        "supplier_id": {
+          "type": "string"
+        },
+        "identity": {
+          "type": "object",
+          "properties": {
+            "display_name": {
+              "type": "string"
+            },
+            "entity_type": {
+              "type": "string"
+            },
+            "seller_entity": {
+              "type": "string"
+            },
+            "location": {
+              "type": "object",
+              "properties": {
+                "country": {
+                  "type": "string"
+                },
+                "province": {
+                  "type": "string"
+                },
+                "city": {
+                  "type": "string"
+                },
+                "address": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "country",
+                "province",
+                "city",
+                "address"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "display_name",
+            "entity_type",
+            "seller_entity",
+            "location"
+          ],
+          "additionalProperties": false
+        },
+        "contact": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "preferred_channel": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "phone": {
+              "type": "string"
+            },
+            "aliases": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "name",
+            "preferred_channel",
+            "email",
+            "phone",
+            "aliases"
+          ],
+          "additionalProperties": false
+        },
+        "catalog": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "supplier_product_id": {
+                "type": "string"
+              },
+              "display_name": {
+                "type": "string"
+              },
+              "category": {
+                "type": "string"
+              },
+              "tier": {
+                "type": "string"
+              },
+              "run_available": {
+                "type": "boolean"
+              },
+              "default_packaging_option_id": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "supplier_product_id",
+              "display_name",
+              "category",
+              "tier",
+              "run_available",
+              "default_packaging_option_id"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "packaging_options": {
+          "type": "object",
+          "properties": {
+            "PKG_KRAFT_DOLLY_BAG_BULK": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "number"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "closure": {
+                  "type": "string"
+                },
+                "euro_slot": {
+                  "type": "null"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "finish_options": {
+                  "type": "null"
+                },
+                "availability": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "size_cm",
+                "closure",
+                "euro_slot",
+                "finish",
+                "finish_options",
+                "availability",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "PKG_BALL_CLEAR_SEALED": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "null"
+                },
+                "closure": {
+                  "type": "null"
+                },
+                "euro_slot": {
+                  "type": "null"
+                },
+                "finish": {
+                  "type": "null"
+                },
+                "finish_options": {
+                  "type": "null"
+                },
+                "availability": {
+                  "type": "null"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "size_cm",
+                "closure",
+                "euro_slot",
+                "finish",
+                "finish_options",
+                "availability",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "PKG_OPP_ZIP_EUROSLOT_28x35": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "closure": {
+                  "type": "string"
+                },
+                "euro_slot": {
+                  "type": "boolean"
+                },
+                "finish": {
+                  "type": "null"
+                },
+                "finish_options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "availability": {
+                  "type": "null"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "size_cm",
+                "closure",
+                "euro_slot",
+                "finish",
+                "finish_options",
+                "availability",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "PKG_OPP_ZIP_EUROSLOT_07x28": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "closure": {
+                  "type": "string"
+                },
+                "euro_slot": {
+                  "type": "boolean"
+                },
+                "finish": {
+                  "type": "null"
+                },
+                "finish_options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "availability": {
+                  "type": "null"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "size_cm",
+                "closure",
+                "euro_slot",
+                "finish",
+                "finish_options",
+                "availability",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "PKG_OPP_ZIP_EUROSLOT_12x28": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "closure": {
+                  "type": "string"
+                },
+                "euro_slot": {
+                  "type": "boolean"
+                },
+                "finish": {
+                  "type": "null"
+                },
+                "finish_options": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "availability": {
+                  "type": "null"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "size_cm",
+                "closure",
+                "euro_slot",
+                "finish",
+                "finish_options",
+                "availability",
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "PKG_KRAFT_LAMINATED_ZIP_22x15_BULK": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "closure": {
+                  "type": "string"
+                },
+                "euro_slot": {
+                  "type": "null"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "finish_options": {
+                  "type": "null"
+                },
+                "availability": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "type",
+                "size_cm",
+                "closure",
+                "euro_slot",
+                "finish",
+                "finish_options",
+                "availability",
+                "status"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "PKG_KRAFT_DOLLY_BAG_BULK",
+            "PKG_BALL_CLEAR_SEALED",
+            "PKG_OPP_ZIP_EUROSLOT_28x35",
+            "PKG_OPP_ZIP_EUROSLOT_07x28",
+            "PKG_OPP_ZIP_EUROSLOT_12x28",
+            "PKG_KRAFT_LAMINATED_ZIP_22x15_BULK"
+          ],
+          "additionalProperties": false
+        },
+        "carton_options": {
+          "type": "object",
+          "properties": {
+            "CTN_SHIP_42x42x52_UNIQUE": {
+              "type": "object",
+              "properties": {
+                "usage": {
+                  "type": "string"
+                },
+                "scope": {
+                  "type": "string"
+                },
+                "dims_cm": {
+                  "type": "object",
+                  "properties": {
+                    "l": {
+                      "type": "integer"
+                    },
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "l",
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "gross_weight_kg": {
+                  "type": "number"
+                },
+                "gross_weight_status": {
+                  "type": "string"
+                },
+                "units_per_carton": {
+                  "type": "integer"
+                },
+                "units_per_carton_status": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "usage",
+                "scope",
+                "dims_cm",
+                "gross_weight_kg",
+                "gross_weight_status",
+                "units_per_carton",
+                "units_per_carton_status",
+                "status"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "CTN_SHIP_42x42x52_UNIQUE"
+          ],
+          "additionalProperties": false
+        },
+        "commercial_terms": {
+          "type": "object",
+          "properties": {
+            "moq": {
+              "type": "object",
+              "properties": {
+                "baseline_units": {
+                  "type": "integer"
+                },
+                "flexible": {
+                  "type": "boolean"
+                },
+                "negotiable": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "baseline_units",
+                "flexible",
+                "negotiable"
+              ],
+              "additionalProperties": false
+            },
+            "current_launch_order_quote": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "effective_at": {
+                  "type": "string"
+                },
+                "buyer_entity": {
+                  "type": "string"
+                },
+                "incoterm": {
+                  "type": "string"
+                },
+                "shipping_mode": {
+                  "type": "string"
+                },
+                "shipping_cost_usd": {
+                  "type": "number"
+                },
+                "shipping_cost_usd_per_unit": {
+                  "type": "number"
+                },
+                "run_units_total": {
+                  "type": "integer"
+                },
+                "scope_skus": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "included_scope": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "hidden_costs_confirmed_none": {
+                  "type": "boolean"
+                },
+                "forwarder_accepts_france": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "status",
+                "effective_at",
+                "buyer_entity",
+                "incoterm",
+                "shipping_mode",
+                "shipping_cost_usd",
+                "shipping_cost_usd_per_unit",
+                "run_units_total",
+                "scope_skus",
+                "included_scope",
+                "hidden_costs_confirmed_none",
+                "forwarder_accepts_france"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "moq",
+            "current_launch_order_quote"
+          ],
+          "additionalProperties": false
+        },
+        "logistics": {
+          "type": "object",
+          "properties": {
+            "sample_incoterm": {
+              "type": "string"
+            },
+            "amazon_fba_fr_bulk_status": {
+              "type": "string"
+            },
+            "amazon_fba_fr_bulk_requires": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "fnsku_applied_by_supplier": {
+              "type": "boolean"
+            },
+            "fnsku_surcharge": {
+              "type": "string"
+            },
+            "amazon_box_labels_applied_by_supplier": {
+              "type": "boolean"
+            },
+            "carton_labeling_surcharge": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "sample_incoterm",
+            "amazon_fba_fr_bulk_status",
+            "amazon_fba_fr_bulk_requires",
+            "fnsku_applied_by_supplier",
+            "fnsku_surcharge",
+            "amazon_box_labels_applied_by_supplier",
+            "carton_labeling_surcharge"
+          ],
+          "additionalProperties": false
+        },
+        "compliance": {
+          "type": "object",
+          "properties": {
+            "material_safety": {
+              "type": "object",
+              "properties": {
+                "reach_required": {
+                  "type": "boolean"
+                },
+                "supplier_declaration_required": {
+                  "type": "boolean"
+                },
+                "required_documents": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "blocking_for_bulk": {
+                  "type": "boolean"
+                },
+                "documents_state": {
+                  "type": "object",
+                  "properties": {
+                    "reach_conformity_declaration_signed_stamped_dated": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "bom_materials_by_sku": {
+                      "type": "object",
+                      "properties": {
+                        "status": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "status"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "reach_conformity_declaration_signed_stamped_dated",
+                    "bom_materials_by_sku"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "reach_required",
+                "supplier_declaration_required",
+                "required_documents",
+                "blocking_for_bulk",
+                "documents_state"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "material_safety"
+          ],
+          "additionalProperties": false
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "supplier_id",
+        "identity",
+        "contact",
+        "catalog",
+        "packaging_options",
+        "carton_options",
+        "commercial_terms",
+        "logistics",
+        "compliance",
+        "status"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "meta",
+    "supplier"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema for SONGWAYPET.json"
+}

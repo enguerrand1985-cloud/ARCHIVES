@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "document_type": "legacy_llm_backup_manifest",
+    "document_role": "desktop_backup_manifest_for_demoted_persona_llm_files",
+    "version": "1.0.0",
+    "status": "backup_only",
+    "updated_at": "2026-04-24"
+  },
+  "files": {
+    "PERSONA": {
+      "backup_path": "C:/Users/engue/OneDrive/Desktop/BACKUP_FICHES_LLM_PERSONA__2026-04-24/PERSONA.json",
+      "sha256_before_move": "e250bb95cb807d96967efb8eb5849f60d0bcda1a41a4ac97ce39d2b9686c2528",
+      "sha256_after_move": "e250bb95cb807d96967efb8eb5849f60d0bcda1a41a4ac97ce39d2b9686c2528",
+      "size_bytes": 50507
+    },
+    "MICRO": {
+      "backup_path": "C:/Users/engue/OneDrive/Desktop/BACKUP_FICHES_LLM_PERSONA__2026-04-24/MICRO.json",
+      "sha256_before_move": "b8442de3d74462311ab7c0e56bd0b89bfd6870ff7ffa4c1979e3c5cf5c03cb1d",
+      "sha256_after_move": "b8442de3d74462311ab7c0e56bd0b89bfd6870ff7ffa4c1979e3c5cf5c03cb1d",
+      "size_bytes": 57761
+    },
+    "SASU": {
+      "backup_path": "C:/Users/engue/OneDrive/Desktop/BACKUP_FICHES_LLM_PERSONA__2026-04-24/SASU.json",
+      "sha256_before_move": "81d505db567a2e986132ff386829b01f39c4559489d2bd4e6c70c668d2aceee4",
+      "sha256_after_move": "81d505db567a2e986132ff386829b01f39c4559489d2bd4e6c70c668d2aceee4",
+      "size_bytes": 41956
+    },
+    "CB500X": {
+      "backup_path": "C:/Users/engue/OneDrive/Desktop/BACKUP_FICHES_LLM_PERSONA__2026-04-24/Cb 500X.json",
+      "sha256_before_move": "42e0e9db8ebc70ed1a6baad6c9b1adb4844740466d0392cd1af22cb1691c2136",
+      "sha256_after_move": "42e0e9db8ebc70ed1a6baad6c9b1adb4844740466d0392cd1af22cb1691c2136",
+      "size_bytes": 57516
+    }
+  }
+}

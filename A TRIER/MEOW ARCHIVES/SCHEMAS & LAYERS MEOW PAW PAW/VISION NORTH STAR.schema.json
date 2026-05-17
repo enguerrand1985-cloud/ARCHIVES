@@ -1,0 +1,263 @@
+{
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "simplified_for": {
+          "type": "string"
+        },
+        "simplified_from": {
+          "type": "string"
+        },
+        "source_updated_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "timezone",
+        "simplified_for",
+        "simplified_from",
+        "source_updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "budget": {
+      "type": "object",
+      "properties": {
+        "operating_base_eur": {
+          "type": "integer"
+        },
+        "operating_base_status": {
+          "type": "string"
+        },
+        "allocation_rule_percent": {
+          "type": "object",
+          "properties": {
+            "stock": {
+              "type": "integer"
+            },
+            "ads": {
+              "type": "integer"
+            },
+            "buffer": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "stock",
+            "ads",
+            "buffer"
+          ],
+          "additionalProperties": false
+        },
+        "bulk_purchase_budget_eur": {
+          "type": "integer"
+        },
+        "bulk_purchase_budget_status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "operating_base_eur",
+        "operating_base_status",
+        "allocation_rule_percent",
+        "bulk_purchase_budget_eur",
+        "bulk_purchase_budget_status"
+      ],
+      "additionalProperties": false
+    },
+    "targets": {
+      "type": "object",
+      "properties": {
+        "sales_per_day_target": {
+          "type": "object",
+          "properties": {
+            "min": {
+              "type": "integer"
+            },
+            "max": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "min",
+            "max"
+          ],
+          "additionalProperties": false
+        },
+        "tacos_max_pct": {
+          "type": "integer"
+        },
+        "rating_min": {
+          "type": "number"
+        },
+        "return_rate_max_pct": {
+          "type": "integer"
+        },
+        "ppc_reference_pct": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "sales_per_day_target",
+        "tacos_max_pct",
+        "rating_min",
+        "return_rate_max_pct",
+        "ppc_reference_pct"
+      ],
+      "additionalProperties": false
+    },
+    "go_to_market": {
+      "type": "object",
+      "properties": {
+        "launch_mode": {
+          "type": "string"
+        },
+        "amazon_ppc": {
+          "type": "object",
+          "properties": {
+            "allowed": {
+              "type": "boolean"
+            },
+            "timing": {
+              "type": "string"
+            },
+            "intensity": {
+              "type": "string"
+            },
+            "tacos_max_pct": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "allowed",
+            "timing",
+            "intensity",
+            "tacos_max_pct"
+          ],
+          "additionalProperties": false
+        },
+        "tiktok_shop_run_scope": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "launch_mode",
+        "amazon_ppc",
+        "tiktok_shop_run_scope"
+      ],
+      "additionalProperties": false
+    },
+    "horizons": {
+      "type": "object",
+      "properties": {
+        "mid_term_post_run_stable": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "long_term": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "mid_term_post_run_stable",
+        "long_term"
+      ],
+      "additionalProperties": false
+    },
+    "brand_identity": {
+      "type": "object",
+      "properties": {
+        "positioning": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "tone": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "positioning",
+        "values",
+        "tone"
+      ],
+      "additionalProperties": false
+    },
+    "gate_run_stable": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "sales_per_day_min": {
+          "type": "integer"
+        },
+        "sales_per_day_max": {
+          "type": "integer"
+        },
+        "tacos_max_pct": {
+          "type": "integer"
+        },
+        "rating_min": {
+          "type": "number"
+        },
+        "return_rate_max_pct": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "status",
+        "sales_per_day_min",
+        "sales_per_day_max",
+        "tacos_max_pct",
+        "rating_min",
+        "return_rate_max_pct"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "meta",
+    "budget",
+    "targets",
+    "go_to_market",
+    "horizons",
+    "brand_identity",
+    "gate_run_stable"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema for VISION NORTH STAR.json"
+}

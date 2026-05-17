@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "document_type": "procurement_shipping",
+    "document_role": "procurement_shipping_truth_for_songwaypet_launch_run",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json",
+      "_DATA - MARKETPLACE_/MARKETPLACE RULES.json"
+    ]
+  },
+  "procurement_id": "PROCUREMENT__SONGWAYPET__SHIPPING_2026-04",
+  "supplier_id": "SUP_SONGWAYPET",
+  "shipping_status": "cancelled_before_dispatch",
+  "effective_from": "2026-04-16",
+  "shipping_mode": "air",
+  "currency": "USD",
+  "shipping_cost_native": 420,
+  "shipping_cost_native_per_unit": 0.7,
+  "run_units_total": 600,
+  "scope_skus": [
+    "MPP-BAT-STD-MAT-V1",
+    "MPP-BUN-STD-1BOU-S-V1"
+  ],
+  "included_scope": [
+    "product_cost",
+    "packaging",
+    "sticker_logo_customization",
+    "sticker_application",
+    "fnsku_application",
+    "amazon_carton_label_application",
+    "shipment_preparation",
+    "air_shipping"
+  ],
+  "source_trace": [
+    {
+      "source_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json",
+      "json_pointer": "/supplier/commercial_terms/current_launch_order_quote"
+    },
+    {
+      "source_file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+      "json_pointer": "/alibaba/policies/launch_shipping"
+    },
+    {
+      "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+      "detail": "Cartonization and FBA dependency formalized from active state."
+    },
+    {
+      "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__PRODUCTION_SHIPPING.md",
+      "detail": "Supplier cartonization timing and mixed carton note formalized."
+    }
+  ],
+  "cartonization": {
+    "status": "historical_completed_not_dispatched",
+    "cartons_qty": 2,
+    "carton_type": "mixed_cartons_two_skus_each",
+    "dimensions_cm": "43 x 43 x 50",
+    "cartons": [
+      {
+        "carton_no": 1,
+        "amazon_carton_label": "P1-B1",
+        "amazon_carton_unit_id": "FBA15LSK0YD6U000001",
+        "gross_weight_kg_approx": 10.53,
+        "contents": {
+          "MPP-BAT-STD-MAT-V1": 150,
+          "MPP-BUN-STD-1BOU-S-V1": 150
+        }
+      },
+      {
+        "carton_no": 2,
+        "amazon_carton_label": "P1-B2",
+        "amazon_carton_unit_id": "FBA15LSK0YD6U000002",
+        "gross_weight_kg_approx": 10.495,
+        "contents": {
+          "MPP-BAT-STD-MAT-V1": 150,
+          "MPP-BUN-STD-1BOU-S-V1": 150
+        }
+      }
+    ],
+    "totals_by_sku": {
+      "MPP-BAT-STD-MAT-V1": 300,
+      "MPP-BUN-STD-1BOU-S-V1": 300
+    },
+    "units_total": 600
+  },
+  "fba_dependency": {
+    "shipment_id": "FBA15LSK0YD6",
+    "shipment_name": "FBA STA (14/05/2026 11:43)-CDG7",
+    "destination": "CDG7",
+    "shipment_plan_status": "created_then_cancelled",
+    "amazon_status": "Annule",
+    "expected_units": 0,
+    "located_units": 0,
+    "amazon_carton_labels_status": "generated_then_invalidated_by_shipment_cancellation",
+    "carton_label_pdf_original_name": "FBA15LSK0YD6-1778759138745.pdf",
+    "carton_label_pdf_sharepoint_name": "AMAZON_FBA__FBA15LSK0YD6__ETIQUETTES_CARTONS_INVALIDES__2026-05-14.pdf",
+    "tracking_status": "not_applicable_no_tracking",
+    "dispatch_status": "not_dispatched",
+    "stock_shipped_status": "no_stock_shipped"
+  },
+  "ddp_status": "failed",
+  "dispatch_status": "not_dispatched",
+  "tracking_status": "not_applicable_no_tracking",
+  "stock_shipped_status": "no_stock_shipped",
+  "source_pointers": [
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/MARKETPLACES/AMAZON/EXPEDITIONS FBA/FBA15LSK0YD6 - ANNULEE/Etiquettes cartons invalides/AMAZON_FBA__FBA15LSK0YD6__ETIQUETTES_CARTONS_INVALIDES__2026-05-14.pdf",
+      "document_role": "invalidated_fba_carton_labels",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/CONFORMITE LEGAL ADMIN/IMPORT DOUANE/FBA15LSK0YD6 - ANNULEE/Amazon FBA Cost Report/AMAZON_FBA__FBA15LSK0YD6__COST_REPORT_DOUANE__2026-05-14.pdf",
+      "document_role": "cancelled_fba_cost_report",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Trade Assurance/Contrats/ALIBABA_TRADE_ASSURANCE__SONGWAYPET__CONTRACT__2026-05-15__01.pdf",
+      "document_role": "trade_assurance_context",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Trade Assurance/Contrats/ALIBABA_TRADE_ASSURANCE__SONGWAYPET__CONTRACT__2026-05-15__02.pdf",
+      "document_role": "trade_assurance_context",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    }
+  ]
+}

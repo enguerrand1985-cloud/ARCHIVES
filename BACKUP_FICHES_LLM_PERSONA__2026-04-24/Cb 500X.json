@@ -1,0 +1,1763 @@
+{
+  "meta": {
+    "document_type": "scope_file",
+    "document_role": "persona_vehicle_llm_sheet",
+    "version": "1.0.2",
+    "created_at": "2026-03-30T17:18:11+02:00",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-04-02T01:57:20+02:00",
+    "tags": [
+      "persona",
+      "vehicule",
+      "cb500x",
+      "normalisation",
+      "chain-baseline-reset",
+      "garage-service-priority",
+      "maintenance-events-aggregated"
+    ],
+    "change_log": [
+      {
+        "id": "CHG__PERSONA__CB500X__1_0_0",
+        "at": "2026-03-30T17:18:11+02:00",
+        "summary": "Creation fiche conforme PERSONA a partir du bundle Cb 500X (mapping canonique vehicule/assurance/documents).",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__PERSONA__CB500X__1_0_1",
+        "at": "2026-03-30T17:55:30+02:00",
+        "summary": "Ajout des regles baseline chaine: reset apres service garage + controle chaine 1000 km + alignement graissage/nettoyage sur baseline garage prioritaire.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__PERSONA__CB500X__1_0_2",
+        "at": "2026-03-30T18:11:10+02:00",
+        "summary": "Ajout et aggregation des evenements d entretien (garage + perso) en data.scope_specifique.archives, et mise a jour de entretien_mini.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__PERSONA__CB500X__1_0_3",
+        "at": "2026-04-02T01:57:20+02:00",
+        "summary": "Rebuild compliance: llm_contract baseline complet + nettoyage scope_variants (BASE, PERSONA).",
+        "breaking_change": false
+      }
+    ],
+    "migrated_from_version": "",
+    "scope_variants": {
+      "BASE": {
+        "description": "Socle minimal commun de structure et de domaines (BASE). Tout champ hors minimal doit ÃƒÂªtre modÃƒÂ©lisÃƒÂ© via une extension de scope (PERSONA/MICRO/SASU...).",
+        "data_canonique_domains": [
+          "identite",
+          "personnes",
+          "banque",
+          "social",
+          "assurances",
+          "vehicules",
+          "activite",
+          "fiscalite",
+          "documents_index",
+          "profils_numeriques"
+        ],
+        "llm_contract": {
+          "required_playbooks_min": [
+            "PLAYBOOK__ONBOARDING",
+            "PLAYBOOK__DATA_LOOKUP",
+            "PLAYBOOK__MAINTENANCE",
+            "PLAYBOOK__OUTPUT_JSON",
+            "PLAYBOOK__REBUILD_TODO"
+          ],
+          "required_policies_min": [
+            "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+            "POLICY__ARCHIVES_NOT_CANONICAL",
+            "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+            "POLICY__SENSITIVE_DATA_NO_SECRETS",
+            "POLICY__MAINTENANCE_MODE",
+            "POLICY__UPDATE_OUTPUT_MODES",
+            "POLICY__DEPENDENCY_POINTERS",
+            "POLICY__OVERWRITE_BY_ID"
+          ]
+        }
+      },
+      "PERSONA": {
+        "description": "Extension PERSONA: champs additionnels par domaine au-delÃƒÂ  du socle minimal BASE (ex: vehicules avancÃƒÂ©).",
+        "domain_item_extensions": {
+          "vehicules_item_extension": {
+            "annee": null,
+            "vin": "",
+            "entretien_mini": {
+              "chain": {
+                "graissage": [
+                  {
+                    "date": "",
+                    "km": null
+                  }
+                ],
+                "degraissage": [
+                  {
+                    "date": "",
+                    "km": null
+                  }
+                ]
+              },
+              "pneus": {
+                "gonflage": [
+                  {
+                    "date": "",
+                    "km": null
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "type_defs": {
+      "ValueObject": {
+        "value": null,
+        "policy": "",
+        "doit_exister": true
+      },
+      "DocumentIndexItem": {
+        "id": "",
+        "doc_id": "",
+        "filename": "",
+        "sha256": "",
+        "pages": 0,
+        "category": "",
+        "tags": []
+      },
+      "VehiculeItem_BASE": {
+        "id": "",
+        "type": "",
+        "marque": "",
+        "modele": "",
+        "immatriculation": "",
+        "usage": ""
+      },
+      "VehiculeItem_PERSONA_EXT": {
+        "annee": null,
+        "vin": "",
+        "entretien_mini": {
+          "chain": {
+            "graissage": [
+              {
+                "date": "",
+                "km": null
+              }
+            ],
+            "degraissage": [
+              {
+                "date": "",
+                "km": null
+              }
+            ]
+          },
+          "pneus": {
+            "gonflage": [
+              {
+                "date": "",
+                "km": null
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "scope_header": {
+    "scope": "PERSONA",
+    "parent_scope": null,
+    "child_scopes": []
+  },
+  "llm_contract": {
+    "allow_inference": false,
+    "allow_merge": false,
+    "routing": null,
+    "policies": [
+      {
+        "id": "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+        "title": "Scope fermÃ© par dÃ©faut",
+        "description": "Sans demande explicite, pas dâ€™infÃ©rence cross-scope. Toute agrÃ©gation cross-scope doit Ãªtre explicitement demandÃ©e.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__ARCHIVES_NOT_CANONICAL",
+        "title": "Archives non-canoniques",
+        "description": "Les archives ne sont jamais une source de vÃ©ritÃ© si une donnÃ©e canonique existe. Lecture des archives uniquement sur demande explicite.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+        "title": "Canonique propre (pas de preuves/sources)",
+        "description": "Interdiction globale des clÃ©s de provenance/preuve (sources, evidence, source_ref, extraction, etc.). Le fichier dÃ©clare les faits.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__SENSITIVE_DATA_NO_SECRETS",
+        "title": "DonnÃ©es sensibles: pas de secrets",
+        "description": "Les secrets d'authentification (CVV, mots de passe, codes 2FA) ne sont jamais stockÃ©s. Utiliser value=null + policy='masked_not_stored' si besoin.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__MAINTENANCE_MODE",
+        "title": "Maintenance contrÃ´lÃ©e",
+        "description": "Doctrine MAINTENANCE: une IA peut proposer des modifications d'un fichier de scope uniquement sur instruction explicite de l'utilisateur (ex: 'mets Ã  jour la fiche').",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__UPDATE_OUTPUT_MODES",
+        "title": "Modes de sortie dâ€™update",
+        "description": "Objectif: permettre des mises Ã  jour multi-IA (Copilot, GPT, Claude, Gemini, etc.) avec des sorties JSON exploitables.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__DEPENDENCY_POINTERS",
+        "title": "Pointeurs de dÃ©pendances",
+        "description": "Les dÃ©pendances entre data, rÃ¨gles moteur, et todo sont exprimÃ©es via des pointeurs stables (IDs).",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__OVERWRITE_BY_ID",
+        "title": "Overwrite in-place par id",
+        "description": "Politique d'overwrite: une mise Ã  jour d'une entitÃ© canonique se fait par remplacement des champs sur le mÃªme id (overwrite in-place). Interdiction de suppression d'entitÃ©s canoniques en maintenance standard: prÃ©fÃ©rer l'overwrite sur id existant pour reflÃ©ter le nouvel Ã©tat sans conserver d'ancienne occurrence.",
+        "enabled": true
+      }
+    ],
+    "playbooks": [
+      {
+        "id": "PLAYBOOK__ONBOARDING",
+        "title": "Onboarding / comprÃ©hension du fichier",
+        "steps": [
+          "Lire meta",
+          "Lire scope_header",
+          "Lire llm_contract (policies + playbooks)",
+          "Lire mini_index (navigation)",
+          "Lire regles_metier.rules_engine (si objectif action/calcul)",
+          "Lire data.canonique (faits)",
+          "Ne lire data.scope_specifique.archives que sur demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__DATA_LOOKUP",
+        "title": "Recherche factuelle",
+        "steps": [
+          "Lire data.canonique en prioritÃ©",
+          "Utiliser documents_index pour trouver les piÃ¨ces",
+          "Ignorer archives sauf demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__MAINTENANCE",
+        "title": "Maintenance / mise Ã  jour contrÃ´lÃ©e",
+        "steps": [
+          "VÃ©rifier instruction explicite de mise Ã  jour (sinon rester en lecture/planification)",
+          "Appliquer triage (ingestion): identifier faits Ã  mettre Ã  jour, demander les infos manquantes si nÃ©cessaire",
+          "Mettre Ã  jour data.canonique par overwrite in-place (match par id), sans suppression",
+          "Rebuild contrÃ´lÃ© de todo: rÃ©gÃ©nÃ©rer/ajuster les tÃ¢ches liÃ©es via links et/ou rule_id; appliquer rollover recurring si applicable",
+          "Produire une sortie JSON exploitable (MERGE_PATCH par dÃ©faut) + demander validation utilisateur"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__OUTPUT_JSON",
+        "title": "Sortie JSON exploitable (update)",
+        "steps": [
+          "Choisir le mode de sortie: MERGE_PATCH_RFC7396 (dÃ©faut) / FULL_REPLACE (fallback) / PATCH_RFC6902 (avancÃ©)",
+          "Produire un bloc JSON unique sans prose mÃ©langÃ©e",
+          "Inclure mode, target_filename, scope, payload"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__REBUILD_TODO",
+        "title": "Rebuild contrÃ´lÃ© de todo",
+        "steps": [
+          "Identifier les entitÃ©s canoniques modifiÃ©es (ids)",
+          "Retrouver les tÃ¢ches todo impactÃ©es via links (ref_id) et/ou rule_id",
+          "Mettre Ã  jour/remplacer les tÃ¢ches concernÃ©es; conserver les autres",
+          "Appliquer la rÃ¨gle de rollover pour recurring (DONE â‡’ next_run_at recalculÃ© â‡’ PLANNED)"
+        ]
+      }
+    ],
+    "hints": [
+      "Fiche LLM autonome. Respecte strictement le schÃ©ma. Scope fermÃ© par dÃ©faut: pas dâ€™infÃ©rence ou fusion cross-scope sans demande explicite. data.canonique est la source de vÃ©ritÃ©; archives non canoniques (lecture sur demande). Ne jamais inventer de valeurs absentes. Ne jamais stocker de secrets (CVV/mdp/2FA). Mises Ã  jour uniquement sur instruction explicite + validation: overwrite in-place par id (pas de suppression) et rebuild contrÃ´lÃ© de todo via rule_id et todo.links (liens vers ids canoniques, jamais cross-scope). Sortie obligatoire en JSON exploitable: MERGE_PATCH par dÃ©faut, fallback FULL_REPLACE si nÃ©cessaire.",
+      ""
+    ]
+  },
+  "document_header": {
+    "title": "Honda CB500X",
+    "description": "Fiche LLM PERSONA normalisee pour vehicule CB500X.",
+    "owner": null,
+    "legal_entity": null
+  },
+  "mini_index": {
+    "entries": [
+      {
+        "id": "IDX__RULES_ENGINE",
+        "title": "RÃƒÂ¨gles moteur",
+        "path": "regles_metier.rules_engine",
+        "when_to_use": "Quand il faut calculer, planifier, vÃƒÂ©rifier une obligation, prÃƒÂ©parer une action LLM",
+        "priority": 1
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE",
+        "title": "DonnÃƒÂ©es canoniques (source de vÃƒÂ©ritÃƒÂ©)",
+        "path": "data.canonique",
+        "when_to_use": "Quand il faut rÃƒÂ©pondre factuellement, remplir un formulaire, vÃƒÂ©rifier une information",
+        "priority": 2
+      },
+      {
+        "id": "IDX__TODO",
+        "title": "File dÃ¢â‚¬â„¢exÃƒÂ©cution LLM (projection)",
+        "path": "todo",
+        "when_to_use": "Quand il faut lister les actions ÃƒÂ  faire (par le LLM), suivre un cycle, prÃƒÂ©parer une exÃƒÂ©cution",
+        "priority": 3
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__BANQUE",
+        "path": "data.canonique.banque",
+        "priority": 10,
+        "title": "Banque",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PERSONNES",
+        "path": "data.canonique.personnes",
+        "priority": 11,
+        "title": "Personnes & identitÃƒÂ©",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__SOCIAL",
+        "path": "data.canonique.social",
+        "priority": 12,
+        "title": "Social",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__ASSURANCES",
+        "path": "data.canonique.assurances",
+        "priority": 13,
+        "title": "Assurances",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__DOCS",
+        "path": "data.canonique.documents_index",
+        "priority": 14,
+        "title": "Documents index",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__ARCHIVES",
+        "title": "Archives (non-canoniques)",
+        "path": "data.scope_specifique.archives",
+        "when_to_use": "Uniquement si explicitement demandÃƒÂ©, ou pour audit/historique",
+        "priority": 99
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PROFILS_NUMERIQUES",
+        "title": "Profils numÃƒÂ©riques (suite bureautique)",
+        "path": "data.canonique.profils_numeriques",
+        "when_to_use": "AccÃƒÂ¨s aux comptes (Google/Microsoft/O365), services et URLs (suite bureautique).",
+        "priority": 17
+      }
+    ],
+    "legacy_paths": []
+  },
+  "todo": {
+    "recurring": [],
+    "one_shot": []
+  },
+  "notes": [
+    {
+      "id": "NOTE__PERSONA__CB500X__NORMALISATION",
+      "title": "Normalisation depuis bundle",
+      "content": "Donnees structurees depuis le fichier Cb 500X. Champs non explicitement presents laisses vides pour eviter toute invention.",
+      "tags": [
+        "normalisation",
+        "vehicule"
+      ],
+      "created_at": "2026-03-30T17:18:11+02:00",
+      "updated_at": "2026-03-30T17:18:11+02:00",
+      "source": null,
+      "scope_binding": {
+        "scope": "PERSONA",
+        "parent_scope": null
+      }
+    },
+    {
+      "id": "NOTE__PERSONA__CB500X__REGLES_METIER_INJECTED",
+      "title": "R?gles m?tier entretien inject?es",
+      "content": "Injection des r?gles d?entretien/diagnostic depuis Cb 500X.json vers regles_metier.rules_engine et regles_metier.procedures.",
+      "tags": [
+        "regles_metier",
+        "entretien",
+        "cb500x"
+      ],
+      "created_at": "2026-03-30T17:43:58+02:00",
+      "updated_at": "2026-03-30T17:43:58+02:00",
+      "source": null,
+      "scope_binding": {
+        "scope": "PERSONA",
+        "parent_scope": null
+      }
+    }
+  ],
+  "data": {
+    "canonique": {
+      "identite": {
+        "owner_display_name": "",
+        "langue": "",
+        "timezone": "Europe/Paris"
+      },
+      "personnes": [
+        {
+          "id": "",
+          "role": "",
+          "nom_legal_complet": {
+            "value": "",
+            "policy": ""
+          },
+          "date_naissance": {
+            "value": "",
+            "policy": ""
+          },
+          "lieu_naissance": {
+            "value": "",
+            "policy": ""
+          },
+          "nationalite": {
+            "value": "",
+            "policy": ""
+          },
+          "contacts": {
+            "emails": [
+              {
+                "value": "",
+                "label": ""
+              }
+            ],
+            "telephones": [
+              {
+                "value": "",
+                "label": ""
+              }
+            ]
+          },
+          "adresses": {
+            "principale": {
+              "value": "",
+              "policy": ""
+            },
+            "secondaire": {
+              "value": "",
+              "policy": ""
+            }
+          }
+        }
+      ],
+      "banque": {
+        "primary_account_id": null,
+        "accounts": [
+          {
+            "id": "",
+            "provider": "",
+            "label": "",
+            "holder_name": null,
+            "country": "FR",
+            "currency": "EUR",
+            "account_kind": "",
+            "ownership_kind": "",
+            "status": "active",
+            "ibans": [
+              {
+                "id": "",
+                "iban_raw": "",
+                "iban_formatted": "",
+                "currency": "EUR",
+                "kind": ""
+              }
+            ],
+            "bics": [
+              {
+                "bic": ""
+              }
+            ],
+            "account_numbers": {
+              "bank_code": null,
+              "branch_code": null,
+              "account_number": null,
+              "rib_key": null
+            },
+            "domiciliation": {
+              "label": null,
+              "address": null
+            },
+            "cards": [
+              {
+                "id": "",
+                "network": "",
+                "pan_raw": "",
+                "pan_formatted": "",
+                "expiry_mm_yy": "",
+                "cvv": {
+                  "value": null,
+                  "policy": "masked_not_stored"
+                }
+              }
+            ],
+            "tags": [],
+            "notes": ""
+          }
+        ],
+        "fixed_commitments": [
+          {
+            "id": "",
+            "label": "",
+            "category": "",
+            "subcategory": "",
+            "nature": "",
+            "amount": {
+              "value": 0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "",
+              "kind": ""
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "",
+            "notes": ""
+          }
+        ],
+        "recurring_transfers": [
+          {
+            "id": "",
+            "label": "",
+            "direction": "IN",
+            "amount": {
+              "value": 0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null,
+              "estimated_monthly_occurrences": 1
+            },
+            "destination_account_id": "",
+            "source_account_ref": {
+              "scope": null,
+              "account_id": null,
+              "label": ""
+            },
+            "counterparty": {
+              "name": "",
+              "kind": ""
+            },
+            "origin_nature": "",
+            "status": "active",
+            "is_automatic": true,
+            "start_date": null,
+            "end_date": null,
+            "usage": "",
+            "estimated_monthly_total": {
+              "value": 0,
+              "currency": "EUR"
+            },
+            "notes": ""
+          }
+        ],
+        "cashflow_snapshots": [
+          {
+            "id": "",
+            "period": {
+              "year": 0,
+              "month": 0
+            },
+            "scope_affectation": "",
+            "totals": {
+              "recurring_inflows": {
+                "value": 0,
+                "currency": "EUR"
+              },
+              "fixed_commitments": {
+                "value": 0,
+                "currency": "EUR"
+              },
+              "remainder_to_live": {
+                "value": 0,
+                "currency": "EUR"
+              }
+            },
+            "calculation_policy": {
+              "method": "",
+              "assumptions": []
+            },
+            "status": "declared",
+            "notes": ""
+          }
+        ]
+      },
+      "social": {
+        "carte_vitale": {
+          "numero": {
+            "value": "",
+            "policy": ""
+          },
+          "regime": {
+            "value": "",
+            "policy": ""
+          },
+          "pays": {
+            "value": "FR",
+            "policy": ""
+          }
+        }
+      },
+      "assurances": {
+        "habitation": [
+          {
+            "id": "",
+            "compagnie": {
+              "value": "",
+              "policy": ""
+            },
+            "produit": {
+              "value": "",
+              "policy": ""
+            },
+            "reference_contrat": {
+              "value": "",
+              "policy": ""
+            },
+            "adresse_rattachee": {
+              "value": "",
+              "policy": ""
+            },
+            "contact": {
+              "email": {
+                "value": "",
+                "policy": ""
+              },
+              "telephone": {
+                "value": "",
+                "policy": ""
+              },
+              "adresse_postale": {
+                "value": "",
+                "policy": ""
+              }
+            },
+            "dates": {
+              "date_effet": {
+                "value": "",
+                "policy": ""
+              },
+              "date_expiration": {
+                "value": "",
+                "policy": ""
+              }
+            }
+          }
+        ],
+        "vehicule": [
+          {
+            "id": "FACT__PERSONA__ASSURANCE_VEHICULE__CB500X",
+            "compagnie": {
+              "value": "MACIF",
+              "policy": ""
+            },
+            "produit": {
+              "value": "",
+              "policy": ""
+            },
+            "numero_contrat": {
+              "value": "170612133A00",
+              "policy": ""
+            },
+            "numero_societaire": {
+              "value": "",
+              "policy": ""
+            },
+            "vehicule": {
+              "type": {
+                "value": "moto",
+                "policy": ""
+              },
+              "marque": {
+                "value": "Honda",
+                "policy": ""
+              },
+              "modele": {
+                "value": "CB500X A",
+                "policy": ""
+              },
+              "immatriculation": {
+                "value": "GM-108-AR",
+                "policy": ""
+              },
+              "usage": {
+                "value": "",
+                "policy": ""
+              }
+            },
+            "dates": {
+              "date_effet": {
+                "value": "",
+                "policy": ""
+              },
+              "date_expiration": {
+                "value": "2026-04-01",
+                "policy": ""
+              }
+            }
+          }
+        ]
+      },
+      "vehicules": [
+        {
+          "id": "FACT__PERSONA__VEHICULE__CB500X",
+          "type": "moto",
+          "marque": "Honda",
+          "modele": "CB500X A",
+          "immatriculation": "GM-108-AR",
+          "usage": "",
+          "annee": 2023,
+          "vin": "MLHPC64A1NS213199",
+          "entretien_mini": {
+            "chain": {
+              "graissage": [
+                {
+                  "date": "2026-03-24",
+                  "km": 33970
+                },
+                {
+                  "date": "2026-02-25",
+                  "km": 33170
+                },
+                {
+                  "date": "2026-01-23",
+                  "km": 31589
+                }
+              ],
+              "degraissage": [
+                {
+                  "date": "2026-01-18",
+                  "km": 32113
+                },
+                {
+                  "date": "2025-11-18",
+                  "km": 30516
+                }
+              ]
+            },
+            "pneus": {
+              "gonflage": []
+            }
+          }
+        }
+      ],
+      "activite": {
+        "statut": {
+          "value": "",
+          "policy": ""
+        },
+        "code_ape": {
+          "value": "",
+          "policy": ""
+        },
+        "description": {
+          "value": "",
+          "policy": ""
+        }
+      },
+      "fiscalite": {
+        "residence_fiscale_pays": {
+          "value": "FR",
+          "policy": ""
+        }
+      },
+      "documents_index": [
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__001",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__001",
+          "filename": "FactureMoto.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "facture_achat",
+          "tags": [
+            "facture_achat",
+            "cb500x",
+            "2023-12-23"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__002",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__002",
+          "filename": "CarteGrise_2023.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "carte_grise",
+          "tags": [
+            "carte_grise",
+            "cb500x",
+            "2023-12-23"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__003",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__003",
+          "filename": "CritAir_2025.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "certificat_critair",
+          "tags": [
+            "certificat_critair",
+            "cb500x",
+            "2025-01-04"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__004",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__004",
+          "filename": "Permis_2024.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "permis_conduire",
+          "tags": [
+            "permis_conduire",
+            "cb500x",
+            "2024-08-15"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__005",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__005",
+          "filename": "Facture_Accessoires.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "facture_accessoires",
+          "tags": [
+            "facture_accessoires",
+            "cb500x",
+            "2024-01-03"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__006",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__006",
+          "filename": "DS-ASE-INV-FR-2024-58596258.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "facture_accessoire",
+          "tags": [
+            "facture_accessoire",
+            "cb500x",
+            "2024-04-22"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__007",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__007",
+          "filename": "DS-ASE-INV-FR-2024-58596271.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "facture_accessoire",
+          "tags": [
+            "facture_accessoire",
+            "cb500x",
+            "2024-04-22"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__008",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__008",
+          "filename": "DS-ASE-INV-FR-2024-58869093.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "facture_accessoire",
+          "tags": [
+            "facture_accessoire",
+            "cb500x",
+            "2024-04-23"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__009",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__009",
+          "filename": "DS-ASE-INV-FR-2024-58767590.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "facture_accessoire",
+          "tags": [
+            "facture_accessoire",
+            "cb500x",
+            "2024-04-23"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__010",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__010",
+          "filename": "DS-ASE-INV-FR-2024-67456986.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "facture_accessoire",
+          "tags": [
+            "facture_accessoire",
+            "cb500x",
+            "2024-05-10"
+          ]
+        },
+        {
+          "id": "FACT__PERSONA__DOC__CB500X__011",
+          "doc_id": "FACT__PERSONA__DOC__CB500X__011",
+          "filename": "macif_attestation_2025-10-22.pdf",
+          "sha256": "",
+          "pages": 0,
+          "category": "assurance_attestation",
+          "tags": [
+            "assurance_attestation",
+            "cb500x",
+            "2025-10-22"
+          ]
+        }
+      ],
+      "profils_numeriques": {
+        "digital_profiles": [
+          {
+            "id": "",
+            "label": "",
+            "role": "",
+            "account_kind": "",
+            "account_email": "",
+            "tenant_domain": "",
+            "primary_use_cases": [],
+            "browser": {
+              "family": "",
+              "profile_label": ""
+            },
+            "services": [
+              {
+                "kind": "",
+                "label": "",
+                "url": "",
+                "account_email": ""
+              }
+            ],
+            "notes": ""
+          }
+        ]
+      }
+    },
+    "scope_specifique": {
+      "archives": {
+        "items": [
+          {
+            "id": "ARCH__PERSONA__CB500X__GARAGE_SERVICE_HISTORY",
+            "title": "Historique revise garage (agrege)",
+            "kind": "maintenance_history_garage",
+            "content": {
+              "vehicle_ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "entries": [
+                {
+                  "id": "evt_2024-07-16_service_12000",
+                  "date": "2024-07-16",
+                  "km": 12101,
+                  "kind": "service_12000",
+                  "vendor": "4en1 Paris",
+                  "amount_eur_ttc": 266.89,
+                  "operations": [
+                    "oil_change",
+                    "oil_filter_replace",
+                    "drain_washer_replace"
+                  ],
+                  "notes": "Periodic service 12,000 km."
+                },
+                {
+                  "id": "evt_2025-03-25_service_24000",
+                  "date": "2025-03-25",
+                  "km": 23640,
+                  "kind": "service_24000",
+                  "vendor": "4en1 Paris",
+                  "amount_eur_ttc": 660,
+                  "operations": [
+                    "oil_change",
+                    "oil_filter_replace",
+                    "air_filter_replace",
+                    "spark_plugs_replace",
+                    "valve_clearance_adjust",
+                    "mcs_diagnostic"
+                  ],
+                  "notes": "Periodic service 24,000 km."
+                },
+                {
+                  "id": "evt_2026-03-06_service_36000",
+                  "date": "2026-03-06",
+                  "km": 33459,
+                  "kind": "service_36000",
+                  "vendor": "Honda (4 EN 1 Paris)",
+                  "amount_eur_ttc": 1475.29,
+                  "operations": [
+                    "front_rim_replace",
+                    "front_tyre_replace_michelin_anakee_adventure",
+                    "full_chain_kit_replace",
+                    "oil_change_honda_10w30",
+                    "oil_filter_replace",
+                    "drain_washer_replace",
+                    "safety_checks_brake_lights_torque"
+                  ],
+                  "notes": "Major intervention: periodic 36,000 km service (anticipated) + repairs after pothole impact."
+                }
+              ],
+              "aggregation_note": "Aggregated from existing sheet + notebook details provided by user."
+            },
+            "created_at": "2026-03-30T18:11:10+02:00",
+            "tags": [
+              "maintenance",
+              "garage",
+              "service",
+              "cb500x"
+            ],
+            "checksum": null
+          },
+          {
+            "id": "ARCH__PERSONA__CB500X__PERSONAL_CHAIN_HISTORY",
+            "title": "Historique entretien personnel chaine (agrege)",
+            "kind": "maintenance_history_personal_chain",
+            "content": {
+              "vehicle_ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "entries": [
+                {
+                  "id": "evt_2025-11-18_chain_clean",
+                  "date": "2025-11-18",
+                  "km": 30516,
+                  "kind": "chain_clean",
+                  "vendor": "user",
+                  "notes": "Complete cleaning (degreasing), same day as lubrication."
+                },
+                {
+                  "id": "evt_2025-11-18_chain_grease",
+                  "date": "2025-11-18",
+                  "km": 30516,
+                  "kind": "chain_grease",
+                  "vendor": "user",
+                  "notes": "Lubrication, same day as cleaning."
+                },
+                {
+                  "id": "evt_2025-12-13_chain_grease",
+                  "date": "2025-12-13",
+                  "km": 31117,
+                  "kind": "chain_grease",
+                  "vendor": "user",
+                  "notes": "Lubrication."
+                },
+                {
+                  "id": "evt_2026-01-18_chain_clean",
+                  "date": "2026-01-18",
+                  "km": 32113,
+                  "kind": "chain_clean",
+                  "vendor": "user",
+                  "notes": "Complete cleaning (degreasing), then lubrication."
+                },
+                {
+                  "id": "evt_2026-01-18_chain_grease",
+                  "date": "2026-01-18",
+                  "km": 32113,
+                  "kind": "chain_grease",
+                  "vendor": "user",
+                  "notes": "Lubrication after cleaning."
+                },
+                {
+                  "id": "evt_2026-01-23_chain_grease",
+                  "date": "2026-01-23",
+                  "km": 31589,
+                  "kind": "chain_grease",
+                  "vendor": "user",
+                  "notes": "Lubrication."
+                },
+                {
+                  "id": "evt_2026-02-25_chain_grease",
+                  "date": "2026-02-25",
+                  "km": 33170,
+                  "kind": "chain_grease",
+                  "vendor": "user",
+                  "notes": "Lubrication."
+                },
+                {
+                  "id": "evt_2026-03-24_chain_grease",
+                  "date": "2026-03-24",
+                  "km": 33970,
+                  "kind": "chain_grease",
+                  "vendor": "user",
+                  "notes": "First lubrication of the new chain kit."
+                }
+              ],
+              "aggregation_note": "Notebook events merged with existing chain history. Date/km inconsistencies intentionally preserved as factual declarations."
+            },
+            "created_at": "2026-03-30T18:11:10+02:00",
+            "tags": [
+              "maintenance",
+              "personal",
+              "chain",
+              "cb500x"
+            ],
+            "checksum": null
+          }
+        ],
+        "policy": {
+          "not_canonical": true,
+          "read_only": true,
+          "use_only_if_explicitly_requested": true
+        }
+      }
+    }
+  },
+  "regles_metier": {
+    "rules_engine": {
+      "meta": {
+        "engine_version": "2.1.0",
+        "description": "R?gles m?tier d?entretien et diagnostic CB500X extraites de la source v?hicule.",
+        "defaults": {
+          "execution_policy": {
+            "actor": "LLM",
+            "write_allowed": false,
+            "requires_user_validation": true
+          }
+        }
+      },
+      "rules": {
+        "RULE__PERSONA__CB500X__CHAIN_GREASE_600KM": {
+          "title": "Graissage cha?ne tous les 600 km",
+          "description": "Appliquer un graissage periodique de la chaine. La base de calcul est reinitialisee au dernier entretien garage (service) s'il est plus recent que l'entretien personnel.",
+          "category": "ENTRETIEN",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=DAILY;INTERVAL=1",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "KM_WINDOW",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "V?hicule indisponible",
+            "Kilom?trage non disponible"
+          ],
+          "invariants": [
+            "Ne pas inventer de kilometrage",
+            "Ne pas supprimer l'historique existant",
+            "Priorite baseline: dernier entretien garage qualifiant, sinon dernier point de maintenance chaine"
+          ],
+          "procedure": {
+            "steps": [
+              "Identifier la baseline chaine active (dernier entretien garage qualifiant ou, a defaut, dernier entretien chaine personnel)",
+              "Comparer le km courant au km baseline",
+              "Planifier/faire graissage a +600 km depuis la baseline"
+            ],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "todo.recurring"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Cha?ne"
+            }
+          ],
+          "tags": [
+            "entretien",
+            "chaine",
+            "600km"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__PERSONA__CB500X__CHAIN_CLEAN_1000KM": {
+          "title": "Nettoyage cha?ne tous les 1000 km",
+          "description": "Nettoyer la chaine selon la cadence d'entretien personnel, avec baseline reinitialisee apres entretien garage qualifiant.",
+          "category": "ENTRETIEN",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=DAILY;INTERVAL=1",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "KM_WINDOW",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "V?hicule indisponible",
+            "Kilom?trage non disponible"
+          ],
+          "invariants": [
+            "Ne pas inventer de kilometrage",
+            "Priorite baseline: dernier entretien garage qualifiant, sinon dernier point de maintenance chaine"
+          ],
+          "procedure": {
+            "steps": [
+              "Identifier la baseline chaine active (dernier entretien garage qualifiant ou, a defaut, dernier entretien chaine personnel)",
+              "Comparer le km courant au km baseline",
+              "Planifier/faire nettoyage a +1000 km depuis la baseline"
+            ],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "todo.recurring"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Cha?ne"
+            }
+          ],
+          "tags": [
+            "entretien",
+            "chaine",
+            "1000km"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__PERSONA__CB500X__SERVICE_OIL_FILTER_12800KM_OR_12M": {
+          "title": "Vidange huile + filtre (12800 km ou 12 mois)",
+          "description": "R?gle de service p?riodique moteur selon r?f?rence d?entretien.",
+          "category": "ENTRETIEN",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=MONTHLY;INTERVAL=1",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "Date/km dernier service inconnu"
+          ],
+          "invariants": [
+            "Appliquer seuil km OU temps, sans approximation non justifi?e"
+          ],
+          "procedure": {
+            "steps": [
+              "Contr?ler dernier service",
+              "Calculer ?ch?ance km/date",
+              "Planifier intervention"
+            ],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "todo.recurring"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Moteur"
+            }
+          ],
+          "tags": [
+            "entretien",
+            "service",
+            "vidange"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__PERSONA__CB500X__BRAKE_FLUID_2Y": {
+          "title": "Remplacement liquide de frein tous les 2 ans",
+          "description": "R?gle de maintenance p?riodique syst?me freinage.",
+          "category": "ENTRETIEN",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=YEARLY;INTERVAL=1",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "Date dernier remplacement inconnue"
+          ],
+          "invariants": [
+            "Ne pas inventer la date du dernier remplacement"
+          ],
+          "procedure": {
+            "steps": [
+              "V?rifier date dernier remplacement",
+              "Planifier remplacement si >24 mois"
+            ],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "todo.recurring"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Freinage"
+            }
+          ],
+          "tags": [
+            "entretien",
+            "freinage"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__PERSONA__CB500X__COOLANT_3Y": {
+          "title": "Contr?le/remplacement liquide de refroidissement (3 ans)",
+          "description": "R?gle de maintenance p?riodique circuit de refroidissement.",
+          "category": "ENTRETIEN",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=YEARLY;INTERVAL=1",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "Date dernier remplacement inconnue"
+          ],
+          "invariants": [
+            "Ne pas inventer la date du dernier remplacement"
+          ],
+          "procedure": {
+            "steps": [
+              "V?rifier date dernier remplacement",
+              "Planifier contr?le/remplacement si >36 mois"
+            ],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "todo.recurring"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Refroidissement"
+            }
+          ],
+          "tags": [
+            "entretien",
+            "refroidissement"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__PERSONA__CB500X__CHARGE_DIAGNOSTIC_ADHOC": {
+          "title": "Diagnostic syst?me de charge (ad hoc)",
+          "description": "Proc?dure de diagnostic batterie/alternateur/r?gulateur en cas de sympt?me.",
+          "category": "DIAGNOSTIC",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "ADHOC",
+            "rrule": null,
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "Aucun sympt?me ?lectrique rapport?"
+          ],
+          "invariants": [
+            "S?curit? ?lectrique prioritaire"
+          ],
+          "procedure": {
+            "steps": [
+              "Test A: Mesure au repos (contact OFF) Ã¢â€ â€™ noter V.",
+              "Test B: DÃƒÂ©marrer, mesurer au ralenti puis ÃƒÂ  ~4000 rpm Ã¢â€ â€™ la tension doit monter (Ã¢â€°Ë†14 V).",
+              "Test C: Si B ÃƒÂ©choue, dÃƒÂ©brancher stator et mesurer AC entre phases. Valeurs similaires entre paires.",
+              "Test D: Essai avec batterie saine/booster branchÃƒÂ©. Si toujours pas de montÃƒÂ©e Ã¢â€ â€™ charge en cause."
+            ],
+            "checklist": [
+              "Mesurer batterie au repos Ã¢â€ â€™ si <12.3 V, noter.",
+              "DÃƒÂ©marrer: mesurer au ralenti puis ~4k rpm Ã¢â€ â€™ doit monter vers 14 V.",
+              "Si la tension NE MONTE PAS ou DESCEND: suspect alternateur/rÃƒÂ©gulateur.",
+              "DÃƒÂ©brancher stator, mesurer AC entre phases (AÃ¢â‚¬â€˜B, BÃ¢â‚¬â€˜C, AÃ¢â‚¬â€˜C): ~20 V idle, ~50+ V ÃƒÂ  5k rpm, et valeurs proches entre paires.",
+              "Si AC OK mais tension batterie reste basse Ã¢â€ â€™ rÃƒÂ©gulateur en cause.",
+              "Si AC faible/dÃƒÂ©sÃƒÂ©quilibrÃƒÂ©e Ã¢â€ â€™ stator en cause.",
+              "Si AC et rÃƒÂ©gulateur OK mais repos <12.0 V et incapable de tenir Ã¢â€ â€™ batterie hors service."
+            ],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "notes"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Syst?me de charge"
+            }
+          ],
+          "tags": [
+            "diagnostic",
+            "electrique"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__PERSONA__CB500X__CHAIN_BASELINE_RESET_ON_GARAGE_SERVICE": {
+          "title": "Reset baseline chaine apres entretien garage",
+          "description": "Quand un entretien garage qualifiant est enregistre (service_12000, service_24000, service_36000), son kilometrage devient la nouvelle baseline pour les regles chaine.",
+          "category": "ENTRETIEN",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "ADHOC",
+            "rrule": null,
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules",
+              "data.scope_specifique.archives"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "Aucun evenement garage qualifiant trouve",
+            "Kilometrage manquant sur l'evenement garage"
+          ],
+          "invariants": [
+            "Un entretien garage qualifiant plus recent ecrase la baseline personnelle",
+            "Les entretiens perso anterieurs a la baseline garage ne servent plus de base de calcul"
+          ],
+          "procedure": {
+            "steps": [
+              "Filtrer les evenements garage qualifies: service_12000, service_24000, service_36000",
+              "Selectionner le plus recent avec date + km valides",
+              "Definir ce km comme baseline commune des regles chaine (graissage/nettoyage/controle)"
+            ],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "todo.recurring"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Baseline maintenance chaine"
+            }
+          ],
+          "tags": [
+            "entretien",
+            "chaine",
+            "baseline",
+            "garage",
+            "reset"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__PERSONA__CB500X__CHAIN_CONTROL_1000KM": {
+          "title": "Controle tension chaine tous les 1000 km",
+          "description": "Controler tension/etat de chaine tous les 1000 km a partir de la baseline active (garage prioritaire).",
+          "category": "ENTRETIEN",
+          "scope_binding": {
+            "scope": "PERSONA",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=DAILY;INTERVAL=1",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "KM_WINDOW",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.vehicules"
+            ],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "Vehicule indisponible",
+            "Kilometrage non disponible"
+          ],
+          "invariants": [
+            "Ne pas inventer de kilometrage",
+            "Priorite baseline: dernier entretien garage qualifiant, sinon dernier point de maintenance chaine"
+          ],
+          "procedure": {
+            "steps": [
+              "Identifier la baseline chaine active (garage prioritaire)",
+              "Comparer km courant a la baseline",
+              "Planifier/faire controle tension chaine a +1000 km"
+            ],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "todo.recurring"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "vehicle",
+              "ref_id": "FACT__PERSONA__VEHICULE__CB500X",
+              "path": null,
+              "note": "Transmission/chaine"
+            }
+          ],
+          "tags": [
+            "entretien",
+            "chaine",
+            "controle",
+            "1000km"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        }
+      }
+    },
+    "procedures": {
+      "PROC__PERSONA__CB500X__PRE_RIDE_5MIN": {
+        "title": "Pr?-ride (5 min)",
+        "steps": [],
+        "notes": []
+      },
+      "PROC__PERSONA__CB500X__TYRE_CHANGE": {
+        "title": "Changement pneus Ã¢â‚¬â€ pense-bÃƒÂªte",
+        "steps": [
+          "Desserrer ÃƒÂ©crous AV/AR, ÃƒÂ©triers AV",
+          "Lever moto (bÃƒÂ©quille centrale/atelier)",
+          "RepÃƒÂ©rer sens de rotation du pneu",
+          "Couples serrage : AV 54 Nm (axe), ÃƒÂ©trier 30 Nm ; AR 88 Nm",
+          "Pressions : AV 2.5 / AR 2.9 bar; recontrÃƒÂ´le aprÃƒÂ¨s 100 km"
+        ],
+        "notes": []
+      },
+      "PROC__PERSONA__CB500X__CHARGE_DIAGNOSTIC": {
+        "title": "Panne Ã¢â‚¬â€ charge (alternateur/rÃƒÂ©gulateur)",
+        "steps": [
+          "Mesurer batterie au repos Ã¢â€ â€™ si <12.3 V, noter.",
+          "DÃƒÂ©marrer: mesurer au ralenti puis ~4k rpm Ã¢â€ â€™ doit monter vers 14 V.",
+          "Si la tension NE MONTE PAS ou DESCEND: suspect alternateur/rÃƒÂ©gulateur.",
+          "DÃƒÂ©brancher stator, mesurer AC entre phases (AÃ¢â‚¬â€˜B, BÃ¢â‚¬â€˜C, AÃ¢â‚¬â€˜C): ~20 V idle, ~50+ V ÃƒÂ  5k rpm, et valeurs proches entre paires.",
+          "Si AC OK mais tension batterie reste basse Ã¢â€ â€™ rÃƒÂ©gulateur en cause.",
+          "Si AC faible/dÃƒÂ©sÃƒÂ©quilibrÃƒÂ©e Ã¢â€ â€™ stator en cause.",
+          "Si AC et rÃƒÂ©gulateur OK mais repos <12.0 V et incapable de tenir Ã¢â€ â€™ batterie hors service."
+        ],
+        "notes": [
+          "RÃƒÂ¨gle dÃ¢â‚¬â„¢or: moteur tournant, la tension doit monter vs repos. Si ÃƒÂ§a chute ou stagne bas Ã¢â€ â€™ cÃ¢â‚¬â„¢est la charge."
+        ]
+      },
+      "PROC__PERSONA__CB500X__CHAIN_BASELINE_RESET": {
+        "title": "Reset baseline chaine apres service garage",
+        "steps": [
+          "Identifier le dernier service garage qualifiant avec km valide",
+          "Fixer ce km comme baseline commune chaine",
+          "Recalculer les seuils: +600 (graissage), +1000 (nettoyage), +1000 (controle)"
+        ],
+        "notes": [
+          "Cette procedure prime sur une baseline issue uniquement de l'entretien perso."
+        ]
+      },
+      "PROC__PERSONA__CB500X__CHAIN_CONTROL_1000KM": {
+        "title": "Controle tension/etat chaine",
+        "steps": [
+          "Verifier jeu de chaine selon specs",
+          "Verifier alignement/points durs",
+          "Ajuster si necessaire et consigner km/date"
+        ],
+        "notes": []
+      }
+    },
+    "templates_prompts": {
+      "perplexity": {},
+      "other": {}
+    },
+    "references": {
+      "FACT__PERSONA__VEHICULE__CB500X": {
+        "type": "FACT",
+        "path": "data.canonique.vehicules[0]",
+        "description": "Entit? canonique v?hicule CB500X"
+      },
+      "PROC__PERSONA__CB500X__PRE_RIDE_5MIN": {
+        "type": "PROCEDURE",
+        "path": "regles_metier.procedures.PROC__PERSONA__CB500X__PRE_RIDE_5MIN",
+        "description": "Checklist pr?-d?part"
+      },
+      "PROC__PERSONA__CB500X__TYRE_CHANGE": {
+        "type": "PROCEDURE",
+        "path": "regles_metier.procedures.PROC__PERSONA__CB500X__TYRE_CHANGE",
+        "description": "Checklist changement pneus"
+      },
+      "PROC__PERSONA__CB500X__CHARGE_DIAGNOSTIC": {
+        "type": "PROCEDURE",
+        "path": "regles_metier.procedures.PROC__PERSONA__CB500X__CHARGE_DIAGNOSTIC",
+        "description": "Proc?dure diagnostic syst?me de charge"
+      },
+      "PROC__PERSONA__CB500X__CHAIN_BASELINE_RESET": {
+        "type": "PROCEDURE",
+        "path": "regles_metier.procedures.PROC__PERSONA__CB500X__CHAIN_BASELINE_RESET",
+        "description": "Procedure de reset baseline chaine apres service garage"
+      },
+      "PROC__PERSONA__CB500X__CHAIN_CONTROL_1000KM": {
+        "type": "PROCEDURE",
+        "path": "regles_metier.procedures.PROC__PERSONA__CB500X__CHAIN_CONTROL_1000KM",
+        "description": "Procedure de controle tension/etat chaine a 1000 km"
+      }
+    }
+  }
+}

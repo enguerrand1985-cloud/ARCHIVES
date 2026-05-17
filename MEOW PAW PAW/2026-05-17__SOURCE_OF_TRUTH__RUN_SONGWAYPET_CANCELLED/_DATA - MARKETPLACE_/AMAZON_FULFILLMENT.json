@@ -1,0 +1,211 @@
+{
+  "meta": {
+    "document_type": "amazon_fulfillment",
+    "document_role": "amazon_fulfillment_inventory_and_inbound_snapshot_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_HUB - DASHBOARD_/DATA HUB.xlsx",
+      "_HUB - DASHBOARD_/OPS AMAZON.json"
+    ]
+  },
+  "fulfillment_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_STD_MAT_V1",
+      "inbound_status": "cancelled_before_dispatch_no_stock_inbound",
+      "units_available": 0,
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "Current FBA dependency and QC package formalized."
+        }
+      ],
+      "fba_plan_status": "created_then_cancelled",
+      "cartonization_status": "historical_completed_not_dispatched",
+      "required_before_fba_plan_status": "historical_completed",
+      "required_before_fba_plan_history": [
+        "final_carton_count",
+        "contents_by_carton_sku_and_quantity",
+        "carton_dimensions",
+        "gross_weight_per_carton",
+        "mixed_or_separate_carton_confirmation"
+      ],
+      "qc_package_required_before_balance_status": "historical_completed_then_refunded",
+      "qc_package_required_before_balance_history": [
+        "finished_product_photos",
+        "front_and_back_packaging_photos",
+        "stickers_and_labels_applied_photos",
+        "visible_fnsku_photos",
+        "carton_photos_with_amazon_labels_if_available",
+        "final_carton_count_dimensions_gross_weight",
+        "batch_or_traceability_information_if_available"
+      ],
+      "shipment_id": "FBA15LSK0YD6",
+      "shipment_name": "FBA STA (14/05/2026 11:43)-CDG7",
+      "destination": "CDG7",
+      "amazon_status": "Annule",
+      "expected_units": 0,
+      "located_units": 0,
+      "tracking_status": "not_applicable_no_tracking",
+      "launch_status": "dormant_listing_no_stock"
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_VAR_MAT_V1",
+      "inbound_status": "none",
+      "units_available": 0,
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4
+        }
+      ]
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_XL_MAT_V1",
+      "inbound_status": "none",
+      "units_available": 0,
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5
+        }
+      ]
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BOU_S_MAT_CAT_V1",
+      "inbound_status": "none",
+      "units_available": 0,
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6
+        }
+      ]
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_3BOU_S_V1",
+      "inbound_status": "none",
+      "units_available": 0,
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_STD_1BOU_S_V1",
+      "inbound_status": "cancelled_before_dispatch_no_stock_inbound",
+      "units_available": 0,
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "Current FBA dependency and QC package formalized."
+        }
+      ],
+      "fba_plan_status": "created_then_cancelled",
+      "cartonization_status": "historical_completed_not_dispatched",
+      "required_before_fba_plan_status": "historical_completed",
+      "required_before_fba_plan_history": [
+        "final_carton_count",
+        "contents_by_carton_sku_and_quantity",
+        "carton_dimensions",
+        "gross_weight_per_carton",
+        "mixed_or_separate_carton_confirmation"
+      ],
+      "qc_package_required_before_balance_status": "historical_completed_then_refunded",
+      "qc_package_required_before_balance_history": [
+        "finished_product_photos",
+        "front_and_back_packaging_photos",
+        "stickers_and_labels_applied_photos",
+        "visible_fnsku_photos",
+        "carton_photos_with_amazon_labels_if_available",
+        "final_carton_count_dimensions_gross_weight",
+        "batch_or_traceability_information_if_available"
+      ],
+      "shipment_id": "FBA15LSK0YD6",
+      "shipment_name": "FBA STA (14/05/2026 11:43)-CDG7",
+      "destination": "CDG7",
+      "amazon_status": "Annule",
+      "expected_units": 0,
+      "located_units": 0,
+      "tracking_status": "not_applicable_no_tracking",
+      "launch_status": "dormant_listing_no_stock"
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_XL_1BOU_S_V1",
+      "inbound_status": "none",
+      "units_available": 0,
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9
+        }
+      ]
+    }
+  },
+  "shipment_history": [
+    {
+      "shipment_id": "FBA15LSK0YD6",
+      "shipment_name": "FBA STA (14/05/2026 11:43)-CDG7",
+      "destination": "CDG7",
+      "status": "created_then_cancelled",
+      "cancelled_at": "2026-05-15",
+      "expected_units": 0,
+      "located_units": 0,
+      "stock_shipped_status": "no_stock_shipped",
+      "tracking_status": "not_applicable_no_tracking"
+    }
+  ],
+  "source_pointers": [
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/CONFORMITE LEGAL ADMIN/IMPORT DOUANE/FBA15LSK0YD6 - ANNULEE/Amazon FBA Cost Report/AMAZON_FBA__FBA15LSK0YD6__COST_REPORT_DOUANE__2026-05-14.pdf",
+      "document_role": "cancelled_fba_cost_report",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/MARKETPLACES/AMAZON/EXPEDITIONS FBA/FBA15LSK0YD6 - ANNULEE/Etiquettes cartons invalides/AMAZON_FBA__FBA15LSK0YD6__ETIQUETTES_CARTONS_INVALIDES__2026-05-14.pdf",
+      "document_role": "invalidated_fba_carton_labels",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    }
+  ]
+}

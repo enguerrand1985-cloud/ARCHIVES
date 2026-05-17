@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "document_type": "suppliers_registry",
+    "document_role": "lightweight_supplier_registry",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json",
+      "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/LUOYANG XISE.json"
+    ]
+  },
+  "suppliers": [
+    {
+      "supplier_id": "SUP_SONGWAYPET",
+      "display_name": "Songway Pet",
+      "legal_entity": "Hebei Yuanfeng Import and Export Trading CO.,LTD",
+      "folder": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd",
+      "status": "suspended_ddp_customs_failure",
+      "supplier_status": "suspended_ddp_customs_failure",
+      "run_eligibility": "blocked_not_run_eligible_without_forwarder_confirmed_ddp",
+      "reason": "DDP/customs clearance failure on catnip/plant material",
+      "reactivation_conditions": [
+        "forwarder-confirmed DDP for exact product before payment",
+        "exact product + catnip/silvervine/gallfruit/natural plant material explicitly covered",
+        "door-to-door Amazon FBA France",
+        "customs clearance handled by supplier/forwarder",
+        "no buyer customs clearance required"
+      ]
+    },
+    {
+      "supplier_id": "SUP-LUOYANG",
+      "display_name": "Luoyang Xize",
+      "folder": "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd",
+      "status": "legacy_candidate"
+    }
+  ]
+}

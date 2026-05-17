@@ -1,0 +1,10 @@
+# Windows / Office temporary files
+Thumbs.db
+desktop.ini
+~$*
+
+# Local runtime/cache artifacts
+.DS_Store
+*.tmp
+*.bak
+

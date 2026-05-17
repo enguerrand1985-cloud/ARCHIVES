@@ -1,0 +1,680 @@
+{
+  "meta": {
+    "document_type": "compta_parameters",
+    "document_role": "system_config",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "scope": "Meow Paw Paw O.S. — accounting parameters only",
+    "notes": [
+      "Stable accounting conventions and source map only.",
+      "No ledger lines, no ops logs, no moving values, no detailed tariff duplication."
+    ],
+    "updated_at": "2026-05-12"
+  },
+  "accounting_scope": {
+    "legal_structure": "SASU",
+    "legal_entity_name": "TRADE-VISION",
+    "country": "FR",
+    "tax_regime": "IS",
+    "sales_price_mode": "TTC",
+    "vat_mode": "disabled_at_launch",
+    "packaging_cost_model": "embedded_in_supplier_quote"
+  },
+  "status_conventions": {
+    "amount_status_allowed": [
+      "confirmed",
+      "estimated",
+      "to_be_reconciled"
+    ],
+    "missing_value_status": "unavailable",
+    "reporting_rule": "Never present a numeric readout as confirmed if it is not traceable to a declared source."
+  },
+  "tax_reference": {
+    "is_rate": 0.15,
+    "tva_rate_sales": 0.2,
+    "tva_rate_purchases": 0.2,
+    "tva_recovery_ratio": 0,
+    "include_tva_in_margins": false
+  },
+  "fixed_costs_reference": {
+    "status": "confirmed",
+    "currency": "EUR",
+    "period": "monthly",
+    "actual_total_eur": 87.69,
+    "source_of_truth": {
+      "file": "PARAMETERS/PROFIL_SASU.json",
+      "legacy_file": "data__owner_profile.json",
+      "json_path": "/identity/budget_and_storage/fixed_costs_actual_current"
+    }
+  },
+  "margin_modes": {
+    "cash_now": {
+      "purpose": "Pilotage de la realite immediate et de la tresorerie avant activite Amazon stable.",
+      "include_inputs": [
+        "sales_price_mode",
+        "fixed_costs_monthly_base",
+        "is_rate",
+        "vat_sales_rate",
+        "vat_purchases_rate",
+        "vat_recovery_ratio",
+        "include_tva_in_margins"
+      ],
+      "include_policies_when_active": [
+        "ppc_policy"
+      ],
+      "exclude_until_real_activity": [
+        "referral_fee_policy",
+        "fba_fee_policy",
+        "dsf_policy"
+      ],
+      "notes": [
+        "Ne pas compter les frais Amazon tant qu'il n'y a pas de vente ou de facturation Amazon reelle.",
+        "Le PPC reste a zero tant qu'aucune campagne n'est activee."
+      ]
+    },
+    "unit_economics_launch": {
+      "purpose": "Tester la viabilite economique d'une vente Amazon des le lancement.",
+      "include_inputs": [
+        "sales_price_mode",
+        "sales_price_canon",
+        "sales_currency",
+        "sales_channel",
+        "supplier_unit_cost",
+        "packaging_cost_mode",
+        "launch_shipping_policy",
+        "fixed_costs_monthly_base",
+        "referral_fee_policy",
+        "fba_fee_policy",
+        "dsf_policy",
+        "is_rate",
+        "vat_sales_rate",
+        "vat_purchases_rate",
+        "vat_recovery_ratio",
+        "include_tva_in_margins"
+      ],
+      "include_policies_when_active": [
+        "ppc_policy"
+      ],
+      "notes": [
+        "Vue recommandee pour estimer la marge par SKU avant mise en ligne.",
+        "Le PPC doit etre ajoute seulement si une strategie d'acquisition payante est retenue."
+      ]
+    },
+    "scale_scenario": {
+      "purpose": "Scenario prudent pour evaluer une marge sous contraintes plus completes.",
+      "include_inputs": [
+        "sales_price_mode",
+        "sales_price_canon",
+        "sales_currency",
+        "sales_channel",
+        "supplier_unit_cost",
+        "packaging_cost_mode",
+        "launch_shipping_policy",
+        "fixed_costs_monthly_base",
+        "referral_fee_policy",
+        "fba_fee_policy",
+        "ppc_policy",
+        "dsf_policy",
+        "trade_assurance_policy",
+        "card_processing_policy",
+        "fx_policy",
+        "is_rate",
+        "vat_sales_rate",
+        "vat_purchases_rate",
+        "vat_recovery_ratio",
+        "include_tva_in_margins"
+      ],
+      "notes": [
+        "Vue de stress test pour anticiper une structure de couts plus complete.",
+        "Ne pas presenter cette vue comme marge reelle du moment."
+      ]
+    }
+  },
+  "margin_execution_policy": {
+    "default_margin_mode": "unit_economics_launch",
+    "default_sku_selection": {
+      "launch_scope": true,
+      "status_equals": "ready",
+      "notes": [
+        "Ne calculer par defaut que les SKU explicitement retenus pour le lancement.",
+        "Ne pas inclure les SKU hors scope ou non prets dans une moyenne ou un total de lancement."
+      ]
+    },
+    "fba_fee_resolution": {
+      "packaged_specs_source": "packaged_specs_truth",
+      "require_confirmed_measurements": true,
+      "fallback_behavior": "stop_and_flag_missing_packaged_specs",
+      "notes": [
+        "Le bareme FBA ne doit pas etre applique si les dimensions ou le poids colis ne sont pas confirmes.",
+        "Si packaged_specs_truth manque, la sortie doit rester non calculee et expliciter la donnee manquante."
+      ]
+    },
+    "fixed_cost_allocation": {
+      "allocation_basis": "monthly_units_sold_scenario",
+      "default_monthly_units_sold": 60,
+      "allowed_monthly_units_sold_scenarios": [
+        30,
+        60,
+        90
+      ],
+      "notes": [
+        "Les frais fixes ne doivent jamais etre repartis sur le stock ou sur les unites produites.",
+        "La repartition se fait sur un scenario de ventes mensuelles explicite."
+      ]
+    },
+    "tax_projection": {
+      "apply_is_only_if_positive_after_fixed_costs": true,
+      "computation_base": "margin_after_variable_costs_and_fixed_cost_allocation",
+      "negative_margin_behavior": "set_is_projection_to_zero",
+      "notes": [
+        "L'estimatif apres IS est une projection et ne doit pas etre presente comme un flux reel.",
+        "Ne jamais appliquer l'IS sur une marge negative ou avant allocation des frais fixes si la vue inclut ces frais."
+      ]
+    },
+    "uncertainty_contract": {
+      "label_output_as_estimated_if_any_input_not_confirmed": true,
+      "require_explicit_assumptions_section": true,
+      "stop_if_sales_price_missing": true,
+      "stop_if_supplier_cost_missing": true,
+      "stop_if_required_fee_policy_missing": true,
+      "notes": [
+        "Toute sortie doit separer clairement les donnees confirmees et estimees.",
+        "Si un input critique manque, il faut stopper le calcul plutot qu'inventer une valeur."
+      ]
+    }
+  },
+  "marketplace_conventions": {
+    "currency_default": "EUR",
+    "sales_channel_canon": "amazon_fba",
+    "effective_from_required_when_applicable": true,
+    "amount_status_allowed": [
+      "confirmed",
+      "estimated",
+      "to_be_reconciled"
+    ]
+  },
+  "policy_registry": {
+    "amazon": {
+      "referral_fee": {
+        "status": "to_be_reconciled",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/amazon/policies/referral_fee"
+        }
+      },
+      "fba_unit_costs": {
+        "status": "confirmed",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/amazon/policies/fba_unit_costs"
+        }
+      },
+      "ppc": {
+        "status": "to_be_reconciled",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/amazon/policies/ppc"
+        }
+      },
+      "digital_services_fee": {
+        "status": "to_be_reconciled",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/amazon/policies/digital_services_fee"
+        }
+      },
+      "observed_total_fee_overrides_by_sku": {
+        "status": "estimated",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/amazon/policies/observed_total_fee_overrides_by_sku"
+        }
+      }
+    },
+    "alibaba": {
+      "trade_assurance": {
+        "status": "to_be_reconciled",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/alibaba/policies/trade_assurance"
+        }
+      },
+      "card_processing": {
+        "status": "to_be_reconciled",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/alibaba/policies/card_processing"
+        }
+      },
+      "launch_shipping": {
+        "status": "confirmed",
+        "source_of_truth": {
+          "file": "_DATA - PROCUREMENT_/PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json",
+          "legacy_file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_json_path": "/alibaba/policies/launch_shipping",
+          "json_path": "/shipping_cost_native"
+        }
+      },
+      "fx": {
+        "status": "planned",
+        "source_of_truth": {
+          "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "legacy_file": "data__marketplaces_rules.json",
+          "json_path": "/alibaba/policies/fx"
+        }
+      }
+    }
+  },
+  "source_map": {
+    "owner_profile": {
+      "file": "PARAMETERS/PROFIL_SASU.json",
+      "legacy_file": "data__owner_profile.json",
+      "role": "entity parameters, fixed costs, tax references, pricing mode, VAT mode"
+    },
+    "marketplace_rules": {
+      "file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+      "legacy_file": "data__marketplaces_rules.json",
+      "role": "Amazon / Alibaba fee policies, currency conventions, sales channel canon"
+    },
+    "sku_master": {
+      "file": "_DATA - SKU_/SKU.json",
+      "legacy_file": "data__sku_master.json",
+      "role": "SKU TTC pricing and supplier unit cost fields",
+      "status": "legacy_pointer_superseded"
+    },
+    "ledger": {
+      "file": "_DATA - COMPTABILITE_/LEDGER_COMPTABLE.json",
+      "legacy_file": "LEDGER.csv",
+      "role": "Journal comptable"
+    },
+    "ops_amazon": {
+      "file": "_HUB - DASHBOARD_/OPS AMAZON.json",
+      "role": "inbound plans, inventory snapshots, inventory events",
+      "note": "operational support source, not a fee policy source"
+    },
+    "sku_identity": {
+      "file": "_DATA - SKU_/SKU.json",
+      "role": "SKU identity, role, status, naming and launch scope"
+    },
+    "sku_pricing": {
+      "file": "_DATA - SKU_/SKU_PRICING.json",
+      "role": "Retail TTC prices by SKU"
+    },
+    "pricing_contexts": {
+      "file": "_DATA - PRICING_/PRICING_CONTEXTS.json",
+      "role": "Supplier unit costs, cost status and pricing contexts"
+    },
+    "procurement_shipping": {
+      "file": "_DATA - PROCUREMENT_/PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json",
+      "role": "Confirmed launch shipping context"
+    }
+  },
+  "inputs_catalog": {
+    "sales_price_mode": {
+      "category": "CAT_SALES",
+      "home": "owner",
+      "status_rule": "required",
+      "notes": "Choix TTC vs HT (à figer)."
+    },
+    "sales_price_canon": {
+      "category": "CAT_SALES",
+      "home": "data_sku_master",
+      "status_rule": "required",
+      "notes": "Prix canonique par SKU (pointeur dépend du mode)."
+    },
+    "sales_currency": {
+      "category": "CAT_SALES",
+      "home": "marketplaces",
+      "status_rule": "required"
+    },
+    "sales_channel": {
+      "category": "CAT_SALES",
+      "home": "marketplaces",
+      "status_rule": "required"
+    },
+    "supplier_unit_cost": {
+      "category": "CAT_COGS",
+      "home": "data_sku_master",
+      "status_rule": "required",
+      "notes": "COGS fournisseur unitaire par SKU (si connu)."
+    },
+    "packaging_cost_mode": {
+      "category": "CAT_COGS",
+      "home": "owner",
+      "status_rule": "required",
+      "notes": "Traitement du coût packaging (ventilé vs inclus dans devis fournisseur)."
+    },
+    "referral_fee_policy": {
+      "category": "CAT_PLATFORM_FEES",
+      "home": "marketplaces",
+      "status_rule": "required"
+    },
+    "fba_fee_policy": {
+      "category": "CAT_PLATFORM_FEES",
+      "home": "marketplaces",
+      "status_rule": "required"
+    },
+    "ppc_policy": {
+      "category": "CAT_PLATFORM_FEES",
+      "home": "marketplaces",
+      "status_rule": "required"
+    },
+    "dsf_policy": {
+      "category": "CAT_PLATFORM_FEES",
+      "home": "marketplaces",
+      "status_rule": "required",
+      "notes": "Digital Services Fee policy (Amazon)."
+    },
+    "trade_assurance_policy": {
+      "category": "CAT_PROCUREMENT_FEES",
+      "home": "marketplaces",
+      "status_rule": "required"
+    },
+    "card_processing_policy": {
+      "category": "CAT_PROCUREMENT_FEES",
+      "home": "marketplaces",
+      "status_rule": "required"
+    },
+    "launch_shipping_policy": {
+      "category": "CAT_PROCUREMENT_LOGISTICS",
+      "home": "procurement_shipping",
+      "status_rule": "required",
+      "notes": "Shipping final confirme du run de lancement (a utiliser avec les couts unitaires SKU, sans l ecraser dans SKU.json)."
+    },
+    "fx_policy": {
+      "category": "CAT_PAYMENT_RAILS",
+      "home": "marketplaces",
+      "status_rule": "required",
+      "notes": "Policy FX (conversion) utilisée pour convertir les coûts fournisseurs USD vers EUR (Option 2)."
+    },
+    "fixed_costs_monthly_base": {
+      "category": "CAT_TAX_STRUCTURE",
+      "home": "owner",
+      "status_rule": "required",
+      "notes": "Montant mensuel (owner)."
+    }
+  },
+  "source_pointers": {
+    "sales_price_mode": {
+      "canonical_id": "DATA_OWNER_PROFILE",
+      "json_pointer": "/identity/compta_model/sales_price_mode",
+      "status": "confirmed",
+      "notes": "Décision fixée: TTC."
+    },
+    "sales_price_canon": {
+      "canonical_id": "DATA_SKU_PRICING",
+      "status": "confirmed",
+      "json_pointer_template": "/prices_by_sku/{sku_id}/price_ttc_full"
+    },
+    "sales_currency": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/amazon/conventions/currency_default",
+      "status": "confirmed"
+    },
+    "sales_channel": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/amazon/conventions/sales_channel_canon",
+      "status": "confirmed"
+    },
+    "supplier_unit_cost": {
+      "canonical_id": "DATA_PRICING_CONTEXTS",
+      "status": "confirmed",
+      "json_pointer_template": "/supplier_costs_by_sku/{sku_id}/unit_cost_eur"
+    },
+    "referral_fee_policy": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/amazon/policies/referral_fee",
+      "status": "to_be_reconciled"
+    },
+    "fba_fee_policy": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/amazon/policies/fba_unit_costs",
+      "status": "confirmed",
+      "notes": "Barème FBA unitaire (fba_unit_costs) pour marge unitaire. Les coûts périodiques (stockage, aged, etc.) restent dans fba_period_costs pour P&L mensuel."
+    },
+    "ppc_policy": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/amazon/policies/ppc",
+      "status": "to_be_reconciled"
+    },
+    "dsf_policy": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/amazon/policies/digital_services_fee",
+      "status": "to_be_reconciled"
+    },
+    "trade_assurance_policy": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/alibaba/policies/trade_assurance",
+      "status": "to_be_reconciled"
+    },
+    "card_processing_policy": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/alibaba/policies/card_processing",
+      "status": "to_be_reconciled"
+    },
+    "launch_shipping_policy": {
+      "canonical_id": "DATA_PROCUREMENT_SHIPPING",
+      "status": "confirmed",
+      "json_pointer": "/shipping_cost_native",
+      "notes": "Shipping air final confirme du run SongwayPet; sorti de MARKETPLACE RULES."
+    },
+    "fx_policy": {
+      "canonical_id": "DATA_MARKETPLACES_RULES",
+      "json_pointer": "/alibaba/policies/fx",
+      "status": "to_be_reconciled"
+    },
+    "fixed_costs_monthly_base": {
+      "canonical_id": "DATA_OWNER_PROFILE",
+      "json_pointer": "/identity/budget_and_storage/fixed_costs_actual_current/actual_total_eur",
+      "status": "confirmed",
+      "period": "monthly"
+    },
+    "is_rate": {
+      "canonical_id": "DATA_OWNER_PROFILE",
+      "json_pointer": "/identity/compta_model/tax_reference/is_rate",
+      "status": "confirmed",
+      "notes": "IS stocké dans owner_profile (référence)."
+    },
+    "vat_sales_rate": {
+      "canonical_id": "DATA_OWNER_PROFILE",
+      "json_pointer": "/identity/compta_model/vat_reference/tva_rate_sales",
+      "status": "confirmed",
+      "notes": "TVA ventes (référence) stockée dans owner_profile; la policy marketplace peut y faire référence sans duplication."
+    },
+    "vat_purchases_rate": {
+      "canonical_id": "DATA_OWNER_PROFILE",
+      "json_pointer": "/identity/compta_model/vat_reference/tva_rate_purchases",
+      "status": "confirmed"
+    },
+    "vat_recovery_ratio": {
+      "canonical_id": "DATA_OWNER_PROFILE",
+      "json_pointer": "/identity/compta_model/vat_reference/tva_recovery_ratio",
+      "status": "confirmed"
+    },
+    "include_tva_in_margins": {
+      "canonical_id": "DATA_OWNER_PROFILE",
+      "json_pointer": "/identity/compta_model/vat_reference/include_tva_in_margins",
+      "status": "confirmed"
+    }
+  },
+  "ledger_standard": {
+    "append_only": true,
+    "format": "json",
+    "date_format": "YYYY-MM-DD",
+    "required_min_columns": [
+      "date",
+      "piece_id",
+      "line_no",
+      "account",
+      "label",
+      "debit",
+      "credit",
+      "currency"
+    ],
+    "optional_columns": [
+      "vat_rate",
+      "vat_amount",
+      "counterparty",
+      "source_ref",
+      "notes",
+      "reference"
+    ],
+    "catalog_descriptor": {
+      "primary_key": [
+        "entry_id"
+      ],
+      "columns": [
+        "date",
+        "entry_id",
+        "piece_id",
+        "line_no",
+        "account",
+        "label",
+        "debit",
+        "credit",
+        "currency",
+        "sku_id",
+        "channel",
+        "source_ref",
+        "status",
+        "notes"
+      ]
+    }
+  },
+  "ledger_workbook_schema": {
+    "sheets": {
+      "ledger": {
+        "primary_key": [
+          "entry_id"
+        ],
+        "columns": [
+          "date",
+          "entry_id",
+          "piece_id",
+          "line_no",
+          "account",
+          "label",
+          "debit",
+          "credit",
+          "currency",
+          "sku_id",
+          "channel",
+          "source_ref",
+          "status",
+          "notes"
+        ]
+      },
+      "chart_of_accounts": {
+        "primary_key": [
+          "account"
+        ],
+        "columns": [
+          "account",
+          "label",
+          "type",
+          "notes"
+        ]
+      },
+      "tax_codes": {
+        "primary_key": [
+          "tax_code"
+        ],
+        "columns": [
+          "tax_code",
+          "description",
+          "rate",
+          "notes"
+        ]
+      },
+      "partners": {
+        "primary_key": [
+          "partner_id"
+        ],
+        "columns": [
+          "partner_id",
+          "partner_name",
+          "type",
+          "notes"
+        ]
+      },
+      "sources": {
+        "primary_key": [
+          "source",
+          "key"
+        ],
+        "columns": [
+          "source",
+          "key",
+          "value",
+          "status",
+          "note"
+        ]
+      },
+      "validation": {
+        "columns": [
+          "status_options",
+          "currency_options",
+          "channel_options",
+          "checks",
+          "total_deb",
+          "total_cred",
+          "balanced",
+          "missing_s"
+        ],
+        "notes": "Validation sheet for ledger integrity checks"
+      }
+    }
+  },
+  "id_pivots": {
+    "sku_id": {
+      "source": "data__sku_master.json",
+      "status": "confirmed"
+    },
+    "supplier_id": {
+      "source": "data__supplier_master.json",
+      "status": "confirmed"
+    },
+    "amazon": {
+      "msku": {
+        "status": "planned"
+      },
+      "fnsku": {
+        "status": "planned"
+      },
+      "asin": {
+        "status": "planned"
+      },
+      "shipment_id": {
+        "status": "planned"
+      },
+      "inbound_plan_id": {
+        "status": "planned"
+      },
+      "stock_item_id": {
+        "status": "planned"
+      }
+    },
+    "ledger": {
+      "entry_id": {
+        "status": "confirmed"
+      }
+    }
+  },
+  "reporting_contract": {
+    "must_cite_sources": true,
+    "must_separate_statuses": [
+      "confirmed",
+      "estimated",
+      "to_be_reconciled"
+    ],
+    "stop_if_numeric_readout_not_traceable": true,
+    "do_not_present_target_as_actual": true
+  }
+}

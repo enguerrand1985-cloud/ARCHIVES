@@ -1,0 +1,1400 @@
+{
+  "meta": {
+    "document_type": "FICHE LLM",
+    "document_role": "ADMINISTRATIVE",
+    "version": "2.3.7",
+    "created_at": "2026-01-22T00:00:00+01:00",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-04-20T02:29:11+02:00",
+    "tags": [
+      "MICRO",
+      "canonical_clean",
+      "domain_schema"
+    ],
+    "change_log": [
+      {
+        "id": "CHG__MICRO__PROFILS_NUMERIQUES__PORTAILS_ADMIN",
+        "at": "2026-01-23T18:14:20.019798+01:00",
+        "summary": "Ajout des portails CAF/URSSAF (auto-entrepreneur) et Provigis (dashboard) dans profils_numeriques (profil admin).",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__TODO_RULES__CAF_URSSAF__COPILOT_SAFE_GUIDES",
+        "at": "2026-02-04T16:13:30+01:00",
+        "summary": "Ajout de 2 tâches recurring (CAF/URSSAF) + 2 règles moteur associées produisant des guides Copilot-safe (sans pilotage navigateur) à partir du fichier Micro_revenus_2025-2035.xlsx. Ajout d'une règle placeholder Provigis (désactivée).",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__BANQUE__2_3_0",
+        "at": "2026-03-26T00:30:00+01:00",
+        "summary": "Migration du bloc banque vers le modèle canonique convergent: compte Shine enrichi, abonnement Shine en fixed_commitments et revenus plateformes agrégés en recurring_transfers.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__TODO__PROVIGIS__ALIGNMENT_V1",
+        "at": "2026-04-05T00:00:00+02:00",
+        "summary": "Projection de Provigis dans todo.recurring avec activation de la règle métier associée pour alignement sur CAF/URSSAF.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__TODO__NEXT_DUE_DATES__2026_04",
+        "at": "2026-04-05T00:00:00+02:00",
+        "summary": "Mise à jour des tâches récurrentes CAF, URSSAF et Provigis après exécution d'avril avec prochaine échéance fixée au 5 juillet 2026.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__TODO__PROVIGIS__OCCURRENCES_V1",
+        "at": "2026-04-05T00:00:00+02:00",
+        "summary": "Ajout de trois occurrences récurrentes Provigis dans todo pour les obligations courantes: attestation de vigilance, déclaration non-emploi de travailleurs étrangers et immatriculation.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__PROVIGIS__NOMENCLATURE_DATES__V1",
+        "at": "2026-04-05T00:00:00+02:00",
+        "summary": "Alignement Provigis sur la nomenclature réelle par occurrence avec dates propres: identité de l'entreprise, régime social, travailleurs étrangers.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__TODO__PROVIGIS__GLOBAL_REMOVED_V1",
+        "at": "2026-04-05T00:00:00+02:00",
+        "summary": "Suppression de la tâche globale Provigis devenue redondante après la modélisation par occurrences distinctes.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__PROVIGIS__VALID_UNTIL_IN_TASKS__V1",
+        "at": "2026-04-05T00:00:00+02:00",
+        "summary": "Migration Provigis: dates de validité stockées directement dans les trois tâches récurrentes, ids stabilisés, suppression de l'archive dédiée.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__PROVIGIS__DATE_INTERPRETATION__V2",
+        "at": "2026-04-09T00:00:00+02:00",
+        "summary": "Clarification robuste des dates Provigis: valid_until = validite documentaire, status.next_run_at = revue operationnelle, avec priorite explicite pour choisir la date de rappel.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__MICRO__PROVIGIS__TRAVAILLEURS_ETRANGERS__MANUAL_UPDATE__2026_04_19",
+        "at": "2026-04-20T02:29:11+02:00",
+        "summary": "Mise a jour manuelle de l occurrence Provigis 'Travailleurs etrangers' apres verification utilisateur du document comme valide jusqu au 19/10/2026; alignement de valid_until et des dates de pilotage associees.",
+        "breaking_change": false
+      }
+    ],
+    "migrated_from_version": "",
+    "scope_variants": {
+      "BASE": {
+        "description": "Socle commun de structure et de domaines (PERSONA/MICRO).",
+        "data_canonique_domains": [
+          "identite",
+          "personnes",
+          "banque",
+          "social",
+          "assurances",
+          "vehicules",
+          "activite",
+          "fiscalite",
+          "documents_index",
+          "profils_numeriques"
+        ],
+        "llm_contract": {
+          "required_playbooks_min": [
+            "PLAYBOOK__ONBOARDING",
+            "PLAYBOOK__DATA_LOOKUP",
+            "PLAYBOOK__MAINTENANCE",
+            "PLAYBOOK__OUTPUT_JSON",
+            "PLAYBOOK__REBUILD_TODO"
+          ],
+          "required_policies_min": [
+            "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+            "POLICY__ARCHIVES_NOT_CANONICAL",
+            "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+            "POLICY__SENSITIVE_DATA_NO_SECRETS",
+            "POLICY__MAINTENANCE_MODE",
+            "POLICY__UPDATE_OUTPUT_MODES",
+            "POLICY__DEPENDENCY_POINTERS",
+            "POLICY__OVERWRITE_BY_ID"
+          ]
+        }
+      }
+    },
+    "type_defs": {
+      "ValueObject": {
+        "value": null,
+        "policy": "",
+        "doit_exister": true
+      },
+      "DocumentIndexItem": {
+        "id": "",
+        "doc_id": "",
+        "filename": "",
+        "sha256": "",
+        "pages": 0,
+        "category": "",
+        "tags": []
+      }
+    }
+  },
+  "scope_header": {
+    "scope": "MICRO",
+    "parent_scope": null,
+    "child_scopes": []
+  },
+  "llm_contract": {
+    "allow_inference": false,
+    "allow_merge": false,
+    "routing": null,
+    "policies": [
+      {
+        "id": "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+        "title": "Scope fermé par défaut",
+        "description": "Sans demande explicite, pas d’inférence cross-scope. Toute agrégation cross-scope doit être explicitement demandée.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__ARCHIVES_NOT_CANONICAL",
+        "title": "Archives non-canoniques",
+        "description": "Les archives ne sont jamais une source de vérité si une donnée canonique existe. Lecture des archives uniquement sur demande explicite.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+        "title": "Canonique propre (pas de preuves/sources)",
+        "description": "Interdiction globale des clés de provenance/preuve (sources, evidence, source_ref, context_ref, extraction, etc.). Le fichier déclare les faits.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__SENSITIVE_DATA_NO_SECRETS",
+        "title": "Données sensibles: pas de secrets",
+        "description": "Les secrets d'authentification (CVV, mots de passe, codes 2FA) ne sont jamais stockés. Utiliser value=null + policy='masked_not_stored' si besoin.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__MAINTENANCE_MODE",
+        "title": "Maintenance contrôlée",
+        "description": "Doctrine MAINTENANCE: une IA peut proposer des modifications d'un fichier de scope uniquement sur instruction explicite de l'utilisateur (ex: 'mets à jour la fiche').",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__UPDATE_OUTPUT_MODES",
+        "title": "Modes de sortie d’update",
+        "description": "Objectif: permettre des mises à jour multi-IA (Copilot, GPT, Claude, Gemini, etc.) avec des sorties JSON exploitables.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__DEPENDENCY_POINTERS",
+        "title": "Pointeurs de dépendances",
+        "description": "Les dépendances entre data, règles moteur, et todo sont exprimées via des pointeurs stables (IDs).",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__OVERWRITE_BY_ID",
+        "title": "Overwrite in-place par id",
+        "description": "Politique d'overwrite: une mise à jour d'une entité canonique se fait par remplacement des champs sur le même id (overwrite in-place). Interdiction de suppression d'entités canoniques en maintenance standard: préférer l'overwrite sur id existant pour refléter le nouvel état sans conserver d'ancienne occurrence.",
+        "enabled": true
+      }
+    ],
+    "playbooks": [
+      {
+        "id": "PLAYBOOK__ONBOARDING",
+        "title": "Onboarding / compréhension du fichier",
+        "steps": [
+          "Lire meta",
+          "Lire scope_header",
+          "Lire llm_contract (policies + playbooks)",
+          "Lire mini_index (navigation)",
+          "Lire regles_metier.rules_engine (si objectif action/calcul)",
+          "Lire data.canonique (faits)",
+          "Ne lire data.scope_specifique.archives que sur demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__DATA_LOOKUP",
+        "title": "Recherche factuelle",
+        "steps": [
+          "Lire data.canonique en priorité",
+          "Utiliser documents_index pour trouver les pièces",
+          "Ignorer archives sauf demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__MAINTENANCE",
+        "title": "Maintenance / mise à jour contrôlée",
+        "steps": [
+          "Vérifier instruction explicite de mise à jour (sinon rester en lecture/planification)",
+          "Appliquer triage (ingestion): identifier faits à mettre à jour, demander les infos manquantes si nécessaire",
+          "Mettre à jour data.canonique par overwrite in-place (match par id), sans suppression",
+          "Rebuild contrôlé de todo: régénérer/ajuster les tâches liées via links et/ou rule_id; appliquer rollover recurring si applicable",
+          "Produire une sortie JSON exploitable (MERGE_PATCH par défaut) + demander validation utilisateur"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__OUTPUT_JSON",
+        "title": "Sortie JSON exploitable (update)",
+        "steps": [
+          "Choisir le mode de sortie: MERGE_PATCH_RFC7396 (défaut) / FULL_REPLACE (fallback) / PATCH_RFC6902 (avancé)",
+          "Produire un bloc JSON unique sans prose mélangée",
+          "Inclure mode, target_filename, scope, payload"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__REBUILD_TODO",
+        "title": "Rebuild contrôlé de todo",
+        "steps": [
+          "Identifier les entités canoniques modifiées (ids)",
+          "Retrouver les tâches todo impactées via links (ref_id) et/ou rule_id",
+          "Mettre à jour/remplacer les tâches concernées; conserver les autres",
+          "Appliquer la règle de rollover pour recurring (DONE ⇒ next_run_at recalculé ⇒ PLANNED)"
+        ]
+      }
+    ],
+    "hints": [
+      "Fiche LLM autonome. Respecte strictement le schéma. Scope fermé par défaut: pas d’inférence ou fusion cross-scope sans demande explicite. data.canonique est la source de vérité; archives non canoniques (lecture sur demande). Ne jamais inventer de valeurs absentes. Ne jamais stocker de secrets (CVV/mdp/2FA). Mises à jour uniquement sur instruction explicite + validation: overwrite in-place par id (pas de suppression) et rebuild contrôlé de todo via rule_id et todo.links (liens vers ids canoniques, jamais cross-scope). Sortie obligatoire en JSON exploitable: MERGE_PATCH par défaut, fallback FULL_REPLACE si nécessaire.",
+      ""
+    ]
+  },
+  "document_header": {
+    "title": "MICRO ENTREPRISE",
+    "description": "Dossier structuré (exemple) — fiche administrative LLM pour Micro-Entreprise. Source principale : MICRO__copilot_core.json.",
+    "owner": null,
+    "legal_entity": null
+  },
+  "mini_index": {
+    "entries": [
+      {
+        "id": "IDX__RULES_ENGINE",
+        "title": "Règles moteur",
+        "path": "regles_metier.rules_engine",
+        "when_to_use": "Quand il faut calculer, planifier, vérifier une obligation, préparer une action LLM",
+        "priority": 1
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE",
+        "title": "Données canoniques (source de vérité)",
+        "path": "data.canonique",
+        "when_to_use": "Quand il faut répondre factuellement, remplir un formulaire, vérifier une information",
+        "priority": 2
+      },
+      {
+        "id": "IDX__TODO",
+        "title": "File d’exécution LLM (projection)",
+        "path": "todo",
+        "when_to_use": "Quand il faut lister les actions à faire (par le LLM), suivre un cycle, préparer une exécution",
+        "priority": 3
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__ENTITE",
+        "path": "data.canonique.entite",
+        "priority": 10,
+        "title": "Entité (micro-entreprise)",
+        "when_to_use": "SIREN/SIRET/APE, statut, dates"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PERSONNES",
+        "path": "data.canonique.personnes",
+        "priority": 11,
+        "title": "Personnes (liées à la micro)",
+        "when_to_use": "Titulaire / contacts / adresses"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__ACTIVITE",
+        "path": "data.canonique.activite",
+        "priority": 12,
+        "title": "Activité",
+        "when_to_use": "Description, APE, statut"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__FISCALITE",
+        "path": "data.canonique.fiscalite",
+        "priority": 13,
+        "title": "Fiscalité",
+        "when_to_use": "TVA, options fiscales (déclaratif)"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__SOCIAL",
+        "path": "data.canonique.social",
+        "priority": 14,
+        "title": "Social (URSSAF, ACRE, etc.)",
+        "when_to_use": "Comptes, déclarations, aides"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__BANQUE",
+        "path": "data.canonique.banque",
+        "priority": 15,
+        "title": "Banque",
+        "when_to_use": "Comptes, IBAN/BIC, cartes (sans CVV)"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__DOCS",
+        "path": "data.canonique.documents_index",
+        "priority": 16,
+        "title": "Documents index",
+        "when_to_use": "Références de pièces (PDF/PNG) liées à la micro"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PROFILS_NUMERIQUES",
+        "title": "Profils numériques (suite bureautique)",
+        "path": "data.canonique.profils_numeriques",
+        "when_to_use": "Accès aux comptes (Google/Microsoft/O365), services et URLs (suite bureautique).",
+        "priority": 17
+      },
+      {
+        "id": "IDX__ARCHIVES",
+        "title": "Archives (non-canoniques)",
+        "path": "data.scope_specifique.archives",
+        "when_to_use": "Uniquement si explicitement demandé, ou pour audit/historique",
+        "priority": 99
+      }
+    ],
+    "legacy_paths": []
+  },
+  "todo": {
+    "recurring": [
+      {
+        "id": "TODO__MICRO__CAF__DECLARATION_TRIMESTRIELLE__RUN_DAY5",
+        "title": "CAF - Déclaration trimestrielle (jour 5)",
+        "description": "Le 5 (Jan/Avr/Jul/Oct): préparer les montants (fenêtre CAF lag 2) depuis le fichier revenus et générer un guide Copilot-safe pour la saisie CAF.",
+        "rule_id": "RULE__MICRO__CAF__DECLARATION_TRIMESTRIELLE__LAG2__GUIDE_V1",
+        "frequency": {
+          "type": "RRULE",
+          "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+          "timezone": "Europe/Paris"
+        },
+        "window_policy": {
+          "type": "NONE",
+          "days": null
+        },
+        "inputs_required": [
+          "Micro_revenus_2025-2035.xlsx",
+          "FC_IDENTITY_HINT"
+        ],
+        "stop_conditions": [
+          "STOP si authentification FranceConnect requise (humain).",
+          "STOP si les mois affichés par la CAF ne correspondent pas à EXPECTED_MONTHS."
+        ],
+        "outputs_expected": [
+          "EXPECTED_MONTHS",
+          "AMOUNTS_TABLE",
+          "PROMPT_GUIDE_COPILOT_SAFE"
+        ],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": "2026-04-05T00:00:00+02:00",
+          "next_run_at": "2026-07-05T00:00:00+02:00",
+          "last_result_ref": null
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "DIGITAL_PROFILE",
+            "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+            "path": null,
+            "note": "Profil admin pour CAF"
+          },
+          {
+            "type": "SERVICE_URL",
+            "ref_id": "CAF",
+            "path": null,
+            "note": "https://connect.caf.fr/connexionappli/dist/?contexteAppel=caffr"
+          },
+          {
+            "type": "SOURCE_FILE",
+            "ref_id": "Micro_revenus_2025-2035.xlsx",
+            "path": null,
+            "note": "Fichier revenus"
+          }
+        ],
+        "tags": [
+          "CAF",
+          "MICRO",
+          "RUN_DAY_5",
+          "QUARTERLY",
+          "GUIDE_HUMAIN"
+        ]
+      },
+      {
+        "id": "TODO__MICRO__URSSAF__DECLARATION_CA_TRIMESTRIELLE__RUN_DAY5",
+        "title": "URSSAF - Déclaration CA trimestrielle (jour 5)",
+        "description": "Le 5 (Jan/Avr/Jul/Oct): calculer le trimestre civil précédent, sommer le CA (Total Activité) et générer un guide Copilot-safe pour saisir le total en prestations de services sur URSSAF.",
+        "rule_id": "RULE__MICRO__URSSAF__DECLARATION_CA_TRIMESTRIELLE__GUIDE_V1",
+        "frequency": {
+          "type": "RRULE",
+          "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+          "timezone": "Europe/Paris"
+        },
+        "window_policy": {
+          "type": "NONE",
+          "days": null
+        },
+        "inputs_required": [
+          "Micro_revenus_2025-2035.xlsx",
+          "FC_IDENTITY_HINT"
+        ],
+        "stop_conditions": [
+          "STOP si authentification FranceConnect requise (humain).",
+          "STOP si le trimestre affiché/sélectionné ne correspond pas à EXPECTED_QUARTER_LABEL."
+        ],
+        "outputs_expected": [
+          "EXPECTED_QUARTER_LABEL",
+          "QUARTER_TOTAL_SERVICES_EUR_INTEGER",
+          "PROMPT_GUIDE_COPILOT_SAFE"
+        ],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": "2026-04-05T00:00:00+02:00",
+          "next_run_at": "2026-07-05T00:00:00+02:00",
+          "last_result_ref": null
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "DIGITAL_PROFILE",
+            "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+            "path": null,
+            "note": "Profil admin pour URSSAF"
+          },
+          {
+            "type": "SERVICE_URL",
+            "ref_id": "URSSAF_AUTOENTREPRENEUR",
+            "path": null,
+            "note": "https://www.autoentrepreneur.urssaf.fr/"
+          },
+          {
+            "type": "SOURCE_FILE",
+            "ref_id": "Micro_revenus_2025-2035.xlsx",
+            "path": null,
+            "note": "Fichier revenus"
+          }
+        ],
+        "tags": [
+          "URSSAF",
+          "MICRO",
+          "RUN_DAY_5",
+          "QUARTERLY",
+          "GUIDE_HUMAIN"
+        ]
+      },
+      {
+        "id": "TODO__MICRO__PROVIGIS__IDENTITE_ENTREPRISE",
+        "title": "Provigis - Identité de l'entreprise",
+        "description": "Vérifier le statut du document 'Identité de l'entreprise' dans Provigis, puis le modifier ou le remettre à jour si nécessaire avant l'échéance affichée.",
+        "rule_id": "RULE__MICRO__PROVIGIS__BASE__DRAFT_V1",
+        "valid_until": "2026-07-06",
+        "frequency": {
+          "type": "RRULE",
+          "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+          "timezone": "Europe/Paris"
+        },
+        "window_policy": {
+          "type": "NONE",
+          "days": null
+        },
+        "inputs_required": [],
+        "stop_conditions": [
+          "STOP si le dashboard Provigis ne montre pas clairement le statut du document 'Identité de l'entreprise'.",
+          "STOP si Provigis demande une pièce différente de 'Identité de l'entreprise' ou si l'action à faire est ambiguë."
+        ],
+        "outputs_expected": [
+          "PROVIGIS_DOCUMENT_LABEL",
+          "PROVIGIS_VALID_UNTIL",
+          "STATUT_IDENTITE_ENTREPRISE",
+          "WORKFLOW_NEXT_REVIEW_AT",
+          "ACTION_REQUISE"
+        ],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": "2026-04-05T00:00:00+02:00",
+          "next_run_at": "2026-07-06T00:00:00+02:00",
+          "last_result_ref": null
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "DIGITAL_PROFILE",
+            "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+            "path": null,
+            "note": "Profil admin pour Provigis"
+          },
+          {
+            "type": "SERVICE_URL",
+            "ref_id": "PROVIGIS_DASHBOARD",
+            "path": null,
+            "note": "https://supplier.app.provigis.com/dashboard"
+          }
+        ],
+        "tags": [
+          "PROVIGIS",
+          "MICRO",
+          "IDENTITE_ENTREPRISE"
+        ]
+      },
+      {
+        "id": "TODO__MICRO__PROVIGIS__REGIME_SOCIAL",
+        "title": "Provigis - Régime social",
+        "description": "Vérifier le statut du document 'Régime social' dans Provigis, puis le consulter ou le remettre à jour si nécessaire avant l'échéance affichée.",
+        "rule_id": "RULE__MICRO__PROVIGIS__BASE__DRAFT_V1",
+        "valid_until": "2026-06-30",
+        "frequency": {
+          "type": "RRULE",
+          "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+          "timezone": "Europe/Paris"
+        },
+        "window_policy": {
+          "type": "NONE",
+          "days": null
+        },
+        "inputs_required": [],
+        "stop_conditions": [
+          "STOP si le dashboard Provigis ne montre pas clairement le statut du document 'Régime social'.",
+          "STOP si Provigis demande une pièce différente de 'Régime social' ou si l'action à faire est ambiguë."
+        ],
+        "outputs_expected": [
+          "PROVIGIS_DOCUMENT_LABEL",
+          "PROVIGIS_VALID_UNTIL",
+          "STATUT_REGIME_SOCIAL",
+          "WORKFLOW_NEXT_REVIEW_AT",
+          "ACTION_REQUISE"
+        ],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": "2026-04-05T00:00:00+02:00",
+          "next_run_at": "2026-06-30T00:00:00+02:00",
+          "last_result_ref": null
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "DIGITAL_PROFILE",
+            "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+            "path": null,
+            "note": "Profil admin pour Provigis"
+          },
+          {
+            "type": "SERVICE_URL",
+            "ref_id": "PROVIGIS_DASHBOARD",
+            "path": null,
+            "note": "https://supplier.app.provigis.com/dashboard"
+          }
+        ],
+        "tags": [
+          "PROVIGIS",
+          "MICRO",
+          "REGIME_SOCIAL"
+        ]
+      },
+      {
+        "id": "TODO__MICRO__PROVIGIS__TRAVAILLEURS_ETRANGERS",
+        "title": "Provigis - Travailleurs étrangers",
+        "description": "Vérifier le statut du document 'Travailleurs étrangers' dans Provigis, puis le modifier ou le remettre à jour si nécessaire avant l'échéance affichée.",
+        "rule_id": "RULE__MICRO__PROVIGIS__BASE__DRAFT_V1",
+        "valid_until": "2026-10-19",
+        "frequency": {
+          "type": "RRULE",
+          "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+          "timezone": "Europe/Paris"
+        },
+        "window_policy": {
+          "type": "NONE",
+          "days": null
+        },
+        "inputs_required": [],
+        "stop_conditions": [
+          "STOP si le dashboard Provigis ne montre pas clairement le statut du document 'Travailleurs étrangers'.",
+          "STOP si Provigis demande une pièce différente de 'Travailleurs étrangers' ou si l'action à faire est ambiguë."
+        ],
+        "outputs_expected": [
+          "PROVIGIS_DOCUMENT_LABEL",
+          "PROVIGIS_VALID_UNTIL",
+          "STATUT_TRAVAILLEURS_ETRANGERS",
+          "WORKFLOW_NEXT_REVIEW_AT",
+          "ACTION_REQUISE"
+        ],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": "2026-04-19T00:00:00+02:00",
+          "next_run_at": "2026-10-19T00:00:00+02:00",
+          "last_result_ref": null
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "DIGITAL_PROFILE",
+            "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+            "path": null,
+            "note": "Profil admin pour Provigis"
+          },
+          {
+            "type": "SERVICE_URL",
+            "ref_id": "PROVIGIS_DASHBOARD",
+            "path": null,
+            "note": "https://supplier.app.provigis.com/dashboard"
+          }
+        ],
+        "tags": [
+          "PROVIGIS",
+          "MICRO",
+          "TRAVAILLEURS_ETRANGERS"
+        ]
+      }
+    ],
+    "one_shot": []
+  },
+  "notes": [],
+  "data": {
+    "canonique": {
+      "entite": {
+        "forme_juridique": {
+          "value": "Entreprise individuelle (micro-entrepreneur)"
+        },
+        "siren": {
+          "value": "890925399"
+        },
+        "siret": {
+          "value": "89092539900010"
+        },
+        "ape": {
+          "value": "5320Z"
+        },
+        "date_debut_activite": {
+          "value": "2020-11-11"
+        },
+        "statut_activite": {
+          "value": "active (user stated)"
+        }
+      },
+      "identite": {
+        "owner_display_name": "",
+        "langue": "",
+        "timezone": "Europe/Paris"
+      },
+      "personnes": [
+        {
+          "id": "PERSON__MICRO__TITULAIRE",
+          "role": "TITULAIRE",
+          "nom_legal_complet": {
+            "value": "KALFAIAN Enguerrand Henri Djo-Son Griffin"
+          },
+          "date_naissance": {
+            "value": "1985-09-08"
+          },
+          "lieu_naissance": {
+            "value": "Séoul, Corée"
+          },
+          "nationalite": {
+            "value": "française"
+          },
+          "contacts": {
+            "emails": [
+              {
+                "value": "Enguerrand.kalfaian@outlook.com",
+                "label": "administratif"
+              }
+            ],
+            "telephones": [
+              {
+                "value": "06 25 29 13 18",
+                "label": "mobile"
+              }
+            ]
+          },
+          "adresses": {
+            "principale": {
+              "value": "15 rue du Grenier Saint-Lazare, 75003 Paris"
+            },
+            "secondaire": {
+              "value": ""
+            }
+          }
+        }
+      ],
+      "banque": {
+        "primary_account_id": "BANK__MICRO__SHINE",
+        "accounts": [
+          {
+            "id": "BANK__MICRO__SHINE",
+            "provider": "Shine",
+            "label": "Compte professionnel Shine",
+            "holder_name": null,
+            "country": "FR",
+            "currency": "EUR",
+            "account_kind": "checking",
+            "ownership_kind": "business_attached",
+            "status": "active",
+            "ibans": [
+              {
+                "id": "IBAN__MICRO__SHINE__01",
+                "iban_raw": "FR7617418000010000305516766",
+                "iban_formatted": "FR76 1741 8000 0100 0030 5516 766",
+                "currency": "EUR",
+                "kind": "checking"
+              }
+            ],
+            "bics": [
+              {
+                "bic": "SNNNFR22XXX"
+              }
+            ],
+            "account_numbers": {
+              "bank_code": null,
+              "branch_code": null,
+              "account_number": null,
+              "rib_key": null
+            },
+            "domiciliation": {
+              "label": null,
+              "address": null
+            },
+            "cards": [
+              {
+                "id": "CARD__MICRO__SHINE__01",
+                "network": "UNKNOWN",
+                "pan_raw": "5169000039386780",
+                "pan_formatted": "5169 0000 3938 6780",
+                "expiry_mm_yy": "03/27",
+                "cvv": {
+                  "value": null,
+                  "policy": "masked_not_stored"
+                }
+              }
+            ],
+            "tags": [],
+            "notes": ""
+          }
+        ],
+        "fixed_commitments": [
+          {
+            "id": "FIXED__MICRO__SHINE__SUBSCRIPTION",
+            "label": "Abonnement mensuel Shine",
+            "category": "BANKING_FEE",
+            "subcategory": "ACCOUNT_SUBSCRIPTION",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 13.2,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__MICRO__SHINE",
+              "card_id": null,
+              "method": "DIRECT_DEBIT"
+            },
+            "counterparty": {
+              "name": "Shine",
+              "kind": "BANK"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "MICRO",
+            "notes": "Montant declaratif approximatif accepte par l'utilisateur."
+          }
+        ],
+        "recurring_transfers": [
+          {
+            "id": "FLOW__MICRO__REVENUS_PLATEFORMES",
+            "label": "Revenus plateformes",
+            "direction": "IN",
+            "amount": {
+              "value": 150.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "WEEKLY",
+              "rrule": null,
+              "estimated_monthly_occurrences": 4
+            },
+            "destination_account_id": "BANK__MICRO__SHINE",
+            "source_account_ref": {
+              "scope": null,
+              "account_id": null,
+              "label": "revenus_plateformes"
+            },
+            "counterparty": {
+              "name": "revenus_plateformes",
+              "kind": "PLATFORM"
+            },
+            "origin_nature": "PLATFORM_REVENUE",
+            "status": "active",
+            "is_automatic": true,
+            "start_date": null,
+            "end_date": null,
+            "usage": "revenus livraison",
+            "estimated_monthly_total": {
+              "value": 600.0,
+              "currency": "EUR"
+            },
+            "notes": "Flux agrege declaratif. Le detail plateforme par plateforme n'est pas maintenu a ce stade."
+          }
+        ],
+        "cashflow_snapshots": []
+      },
+      "social": {
+        "urssaf": {
+          "bureau": {
+            "value": "Urssaf Île-de-France (Montreuil Cedex)"
+          },
+          "numero_compte": {
+            "value": "1171565018817"
+          },
+          "preuve_declaration": {
+            "value": "Déclaration CA prise en compte (T3 2025)"
+          },
+          "acre": {
+            "value": "ACRE/ACCRE validation document provided"
+          }
+        }
+      },
+      "assurances": {
+        "habitation": [],
+        "vehicule": []
+      },
+      "vehicules": [],
+      "activite": {
+        "statut": {
+          "value": "active (user stated)"
+        },
+        "code_ape": {
+          "value": "5320Z"
+        },
+        "description": {
+          "value": "Livraison de repas"
+        }
+      },
+      "fiscalite": {
+        "versement_liberatoire": {
+          "value": "no (user stated)"
+        },
+        "regime_tva": {
+          "value": "franchise_en_base",
+          "note": "Déclaratif (source: user_statement). À confirmer par document DGFiP si besoin."
+        },
+        "documents_dgfip": {
+          "value": "not provided yet"
+        },
+        "residence_fiscale_pays": {
+          "value": "FR"
+        }
+      },
+      "documents_index": [
+        {
+          "doc_id": "Formalité_PRZGH.pdf",
+          "type": "pdf",
+          "filename": "Formalité_PRZGH.pdf",
+          "filesize_bytes": 2211795,
+          "sha256": "1e1b47af1ce67eb774a3f7413a5878e36527346c58175ef16f266b9a4360c34c",
+          "pages": 4
+        },
+        {
+          "doc_id": "Accre validation.pdf",
+          "type": "pdf",
+          "filename": "Accre validation.pdf",
+          "filesize_bytes": 165685,
+          "sha256": "d20314baff93aa050875657fb3b3b3ca51c1221397aef8ac5ad31ab9b6eb2cb1",
+          "pages": 1
+        },
+        {
+          "doc_id": "Avis_de_situation_SIRENE_2026.pdf",
+          "type": "pdf",
+          "filename": "Avis_de_situation_SIRENE_2026.pdf",
+          "filesize_bytes": 158621,
+          "sha256": "86404326e62f8cec74dc4961f4190a6f1935748d8c9b9beb231844df00429531",
+          "pages": 1
+        },
+        {
+          "doc_id": "extrait casier B3-DESKTOP-D7SNNPG.pdf",
+          "type": "pdf",
+          "filename": "extrait casier B3-DESKTOP-D7SNNPG.pdf",
+          "filesize_bytes": 140965,
+          "sha256": "e1ab2fb02d9e5c40bc76a392fa9d6a39e6ca7b54c4628fc940cf7da4520859b4",
+          "pages": 1
+        },
+        {
+          "doc_id": "URSSAF_declaration_CA_T3_2025.png",
+          "type": "image",
+          "filename": "6e1b2db8-bb3a-4bb2-b984-b24bc485f8b8.png",
+          "filesize_bytes": 115576,
+          "sha256": "e4d7b27fbac5e40c7eb7688bad6ad3c9553bbe2aca20e7d95f8c0b519a3426c7"
+        },
+        {
+          "doc_id": "SHINE_IBAN.png",
+          "type": "image",
+          "filename": "shinescreenshot_from_chat.jpg"
+        },
+        {
+          "doc_id": "doc__micro__bank_src__shine_iban_png",
+          "filename": "SHINE_IBAN.png",
+          "sha256": null,
+          "type": "bank_source"
+        }
+      ],
+      "profils_numeriques": {
+        "digital_profiles": [
+          {
+            "id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+            "label": "edge_personnel_admin",
+            "role": "OS administratif / compliance",
+            "account_kind": "MICROSOFT",
+            "account_email": "Enguerrand.kalfaian@outlook.com",
+            "tenant_domain": "",
+            "primary_use_cases": [
+              "CAF, URSSAF, impôts, France Travail, Mon Compte Formation.",
+              "Gestion micro-entreprise et future SASU côté administratif.",
+              "Interactions avec l’État, organismes sociaux et fiscaux."
+            ],
+            "browser": {
+              "family": "Edge",
+              "profile_label": "Admin"
+            },
+            "services": [
+              {
+                "kind": "MAIL",
+                "label": "Outlook.com",
+                "url": "https://outlook.live.com/mail/0/",
+                "account_email": "Enguerrand.kalfaian@outlook.com"
+              },
+              {
+                "kind": "DRIVE",
+                "label": "OneDrive",
+                "url": "https://onedrive.live.com/?view=0",
+                "account_email": ""
+              },
+              {
+                "kind": "CALENDAR",
+                "label": "Calendrier",
+                "url": "https://outlook.live.com/calendar/0/view/month",
+                "account_email": ""
+              },
+              {
+                "kind": "TASKS",
+                "label": "Microsoft To Do",
+                "url": "https://to-do.live.com/tasks/myday",
+                "account_email": ""
+              },
+              {
+                "kind": "ADMIN_PORTAL",
+                "label": "CAF - Connexion",
+                "url": "https://connect.caf.fr/connexionappli/dist/?contexteAppel=caffr",
+                "account_email": ""
+              },
+              {
+                "kind": "ADMIN_PORTAL",
+                "label": "URSSAF - Auto-entrepreneur",
+                "url": "https://www.autoentrepreneur.urssaf.fr/",
+                "account_email": ""
+              },
+              {
+                "kind": "ADMIN_PORTAL",
+                "label": "Provigis - Dashboard",
+                "url": "https://supplier.app.provigis.com/dashboard",
+                "account_email": ""
+              }
+            ],
+            "notes": ""
+          }
+        ]
+      }
+    },
+    "scope_specifique": {
+      "archives": {
+        "policy": {
+          "not_canonical": true,
+          "read_only": true,
+          "use_only_if_explicitly_requested": true
+        },
+        "items": []
+      }
+    }
+  },
+  "regles_metier": {
+    "rules_engine": {
+      "meta": {
+        "engine_version": "2.0.0",
+        "description": "Règles moteur déclaratives (source). Les tâches todo sont des tâches d’exécution, pas une projection.",
+        "defaults": {
+          "execution_policy": {
+            "actor": "LLM",
+            "write_allowed": false,
+            "requires_user_validation": true
+          }
+        }
+      },
+      "rules": {
+        "RULE__MICRO__CAF__DECLARATION_TRIMESTRIELLE__LAG2__GUIDE_V1": {
+          "title": "CAF - Déclaration trimestrielle ressources (micro) (guide humain)",
+          "description": "Calcule la fenêtre CAF (3 mois, fin M-2) à partir du mois d'exécution, extrait les montants depuis Micro_revenus_2025-2035.xlsx (Total Activité) et génère un guide Copilot-safe (sans pilotage navigateur).",
+          "category": "ADMIN",
+          "scope_binding": {
+            "scope": "MICRO",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.profils_numeriques",
+              "data.canonique.social"
+            ],
+            "files_required": [
+              "Micro_revenus_2025-2035.xlsx"
+            ],
+            "credentials_required": false
+          },
+          "stop_conditions": [],
+          "invariants": [
+            "Mois de référence = mois d'exécution (timezone Europe/Paris).",
+            "Fenêtre CAF = 3 mois finissant à M-2 (période attendue = [M-4..M-2]).",
+            "Montants en euros entiers (tronquer les centimes).",
+            "STOP si les mois affichés dans l'UI CAF ne correspondent pas à EXPECTED_MONTHS."
+          ],
+          "procedure": {
+            "steps": [
+              "Lire Micro_revenus_2025-2035.xlsx: onglet '{YYYY}', en-tête ligne 3, colonnes 'Mois' et 'Total Activité'; ignorer lignes dont 'Mois' commence par 'Total'.",
+              "Déterminer le mois de référence = mois d'exécution.",
+              "Calculer EXPECTED_MONTHS = [M-4, M-3, M-2] (avec année associée).",
+              "Extraire les 3 montants 'Total Activité' correspondants, tronquer à l'euro, construire AMOUNTS_TABLE (mois -> montant).",
+              "Générer le guide via template 'copilot_guide_caf_micro_quarterly_v1' en injectant FC_IDENTITY_HINT, EXPECTED_MONTHS, AMOUNTS_TABLE."
+            ],
+            "checklist": [
+              "Ouvrir la CAF via le profil numérique référencé.",
+              "Accéder à la déclaration 'ressources trimestrielles'.",
+              "Vérifier les mois affichés = EXPECTED_MONTHS (sinon STOP).",
+              "Saisir les montants (sans centimes) en 'Revenus non salariés' / 'Prestations commerciales ou artisanales'.",
+              "Valider après relecture."
+            ],
+            "prompts_refs": [
+              "copilot_guide_caf_micro_quarterly_v1"
+            ]
+          },
+          "outputs": {
+            "artifacts": [
+              "PROMPT_GUIDE_COPILOT_SAFE"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "DIGITAL_PROFILE",
+              "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+              "path": "data.canonique.profils_numeriques.digital_profiles[id=DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN]",
+              "note": "Profil navigateur admin (Edge/Profil Admin)"
+            },
+            {
+              "type": "SERVICE_URL",
+              "ref_id": "CAF",
+              "path": "data.canonique.profils_numeriques.digital_profiles[id=DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN].services[label='CAF - Connexion'].url",
+              "note": "Portail CAF"
+            },
+            {
+              "type": "SOURCE_FILE",
+              "ref_id": "Micro_revenus_2025-2035.xlsx",
+              "path": null,
+              "note": "Fichier source des montants (xlsx)."
+            }
+          ],
+          "tags": [
+            "CAF",
+            "MICRO",
+            "PERIOD_MODEL:ROLLING_3_MONTHS_LAG_2",
+            "MODE:GUIDE_HUMAIN"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__MICRO__URSSAF__DECLARATION_CA_TRIMESTRIELLE__GUIDE_V1": {
+          "title": "URSSAF - Déclaration CA trimestrielle auto-entrepreneur (guide humain)",
+          "description": "Calcule le trimestre à déclarer (trimestre précédent) à partir du mois d'exécution, extrait le total (Total Activité) depuis Micro_revenus_2025-2035.xlsx et génère un guide Copilot-safe (sans pilotage navigateur) pour saisir le total en 'prestations de services'.",
+          "category": "ADMIN",
+          "scope_binding": {
+            "scope": "MICRO",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.profils_numeriques",
+              "data.canonique.social"
+            ],
+            "files_required": [
+              "Micro_revenus_2025-2035.xlsx"
+            ],
+            "credentials_required": false
+          },
+          "stop_conditions": [],
+          "invariants": [
+            "Mois de référence = mois d'exécution (timezone Europe/Paris).",
+            "Trimestre à déclarer = trimestre civil précédent le mois de référence (Jan->Q4 année-1, Avr->Q1, Jul->Q2, Oct->Q3).",
+            "Montants en euros entiers (tronquer les centimes).",
+            "Saisie: Ventes=0, Services commerciales/artisanales=TOTAL, Autres services=0 (invariant activité).",
+            "STOP si le trimestre affiché/sélectionné ne correspond pas à EXPECTED_QUARTER_LABEL."
+          ],
+          "procedure": {
+            "steps": [
+              "Lire Micro_revenus_2025-2035.xlsx: onglet '{YYYY}', en-tête ligne 3, colonne 'Total Activité'; ignorer lignes 'Total*'.",
+              "Déterminer le mois de référence = mois d'exécution.",
+              "Déterminer le trimestre civil précédent et l'année correspondante.",
+              "Calculer EXPECTED_QUARTER_LABEL (convention): '{N}e trimestre {YYYY}'.",
+              "Sommer les 3 mois du trimestre sur 'Total Activité', tronquer à l'euro: QUARTER_TOTAL_SERVICES_EUR_INTEGER.",
+              "Générer le guide via template 'copilot_guide_urssaf_micro_quarterly_v1' en injectant FC_IDENTITY_HINT, EXPECTED_QUARTER_LABEL, QUARTER_TOTAL_SERVICES_EUR_INTEGER."
+            ],
+            "checklist": [
+              "Ouvrir URSSAF auto-entrepreneur via le profil numérique référencé.",
+              "Aller à 'Déclarer et payer' (ou équivalent).",
+              "Sélectionner le trimestre EXPECTED_QUARTER_LABEL (sinon STOP).",
+              "Saisir les montants (Ventes=0, Services=TOTAL, Autres=0).",
+              "Valider puis STOP après confirmation (ne pas payer automatiquement)."
+            ],
+            "prompts_refs": [
+              "copilot_guide_urssaf_micro_quarterly_v1"
+            ]
+          },
+          "outputs": {
+            "artifacts": [
+              "PROMPT_GUIDE_COPILOT_SAFE"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "DIGITAL_PROFILE",
+              "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+              "path": "data.canonique.profils_numeriques.digital_profiles[id=DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN]",
+              "note": "Profil navigateur admin (Edge/Profil Admin)"
+            },
+            {
+              "type": "SERVICE_URL",
+              "ref_id": "URSSAF_AUTOENTREPRENEUR",
+              "path": "data.canonique.profils_numeriques.digital_profiles[id=DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN].services[label='URSSAF - Auto-entrepreneur'].url",
+              "note": "Portail URSSAF auto-entrepreneur"
+            },
+            {
+              "type": "SOURCE_FILE",
+              "ref_id": "Micro_revenus_2025-2035.xlsx",
+              "path": null,
+              "note": "Fichier source des montants (xlsx)."
+            }
+          ],
+          "tags": [
+            "URSSAF",
+            "MICRO",
+            "PERIOD_MODEL:CIVIL_QUARTER_PREVIOUS",
+            "MODE:GUIDE_HUMAIN",
+            "INVARIANT:SERVICES_BUCKET"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        },
+        "RULE__MICRO__PROVIGIS__BASE__DRAFT_V1": {
+          "date_interpretation_policy": {
+            "document_validity_field": "valid_until",
+            "workflow_review_field": "status.next_run_at",
+            "selection_priority": [
+              "user_explicit",
+              "conversation_active",
+              "explicit_designated_date",
+              "other_dates_in_file"
+            ],
+            "forbid_automatic_reminder_date_inference_without_explicit_priority": true,
+            "compatibility_mode": "no_key_rename_aliases_only",
+            "conceptual_aliases": {
+              "document_valid_until": "valid_until",
+              "workflow_next_review_at": "status.next_run_at"
+            }
+          },
+          "title": "Provigis - Obligations courantes (guide humain)",
+          "description": "Contrôle récurrent des obligations Provigis courantes par occurrence: identité de l'entreprise, régime social et travailleurs étrangers. Aucun automatisme Copilot.",
+          "category": "ADMIN",
+          "scope_binding": {
+            "scope": "MICRO",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "RRULE",
+            "rrule": "FREQ=YEARLY;BYMONTH=1,4,7,10;BYMONTHDAY=5",
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null
+          },
+          "inputs": {
+            "data_paths_required": [
+              "data.canonique.profils_numeriques",
+              "data.canonique.social"
+            ],
+            "files_required": [
+              "Micro_revenus_2025-2035.xlsx"
+            ],
+            "credentials_required": false
+          },
+          "stop_conditions": [
+            "STOP si Provigis demande une pièce non couverte par la règle actuelle.",
+            "STOP si le libellé demandé dans Provigis est ambigu ou ne correspond pas à l'une des trois obligations courantes."
+          ],
+          "invariants": [
+            "Le contrôle Provigis porte sur trois occurrences courantes: identité de l'entreprise, régime social et travailleurs étrangers.",
+            "Chaque occurrence Provigis porte sa date de validité directement dans la tâche recurring via valid_until."
+          ],
+          "procedure": {
+            "steps": [
+              "Se connecter au dashboard Provigis (profil admin).",
+              "Identifier les demandes en cours et les documents requis pour les trois occurrences courantes.",
+              "Contrôler le document 'Identité de l'entreprise' et le modifier ou le remettre à jour si nécessaire.",
+              "Contrôler le document 'Régime social' et le consulter ou le remettre à jour si nécessaire.",
+              "Contrôler le document 'Travailleurs étrangers' et le modifier ou le remettre à jour si nécessaire."
+            ],
+            "checklist": [
+              "Vérifier le statut affiché pour 'Identité de l'entreprise' et sa date de validité.",
+              "Vérifier le statut affiché pour 'Régime social' et sa date de validité.",
+              "Vérifier le statut affiché pour 'Travailleurs étrangers' et sa date de validité.",
+              "S'arrêter si une pièce inattendue ou ambiguë est demandée."
+            ],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [
+              "PROMPT_GUIDE_COPILOT_SAFE"
+            ],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true
+          },
+          "links": [
+            {
+              "type": "DIGITAL_PROFILE",
+              "ref_id": "DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN",
+              "path": "data.canonique.profils_numeriques.digital_profiles[id=DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN]",
+              "note": "Profil navigateur admin"
+            },
+            {
+              "type": "SERVICE_URL",
+              "ref_id": "PROVIGIS_DASHBOARD",
+              "path": "data.canonique.profils_numeriques.digital_profiles[id=DIGIPROF__MICRO__EDGE_PERSONNEL_ADMIN].services[label='Provigis - Dashboard'].url",
+              "note": "Dashboard Provigis"
+            }
+          ],
+          "tags": [
+            "PROVIGIS",
+            "MICRO",
+            "PLACEHOLDER"
+          ],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        }
+      }
+    },
+    "procedures": {},
+    "templates_prompts": {
+      "perplexity": {},
+      "other": {
+        "copilot_guide_caf_micro_quarterly_v1": {
+          "template_key": "copilot_guide_caf_micro_quarterly_v1",
+          "language": "fr",
+          "template_md": "GUIDE HUMAIN (Copilot-safe)\n\nOBJECTIF\nJe veux que tu me guides pour compléter ma déclaration trimestrielle CAF (RSA / Prime d’activité) en tant que micro-entrepreneur.\nIMPORTANT: tu ne prends pas le contrôle du navigateur. Je réalise moi-même les clics et la saisie. Tu me dis quoi faire et quoi vérifier.\n\nAUTHENTIFICATION (FranceConnect)\n- Si je ne suis pas connecté, guide-moi pour me connecter via FranceConnect (Impots.gouv) puis STOP juste avant toute saisie d’identifiants/mot de passe/MFA.\n- Si plusieurs identités FranceConnect sont proposées, choisis celle correspondant à: {{FC_IDENTITY_HINT}}.\n\nCONTROLES (STOP si échec)\n1) Une fois connecté, je dois être sur un domaine caf.fr (pendant le login, connect.caf.fr peut apparaître).\n2) Les mois affichés par la CAF doivent correspondre à EXPECTED_MONTHS.\n3) La catégorie \"Revenus non salariés\" doit être sélectionnée.\n4) Le type doit être \"Prestations commerciales ou artisanales\".\n5) Les montants doivent être des entiers euros (sans centimes).\n\nDONNÉES À SAISIR\nEXPECTED_MONTHS\n{{EXPECTED_MONTHS}}\n\nAMOUNTS (euros entiers)\n{{AMOUNTS_TABLE}}\n\nETAPES (haut niveau)\n1) Ouvrir la CAF (via le profil navigateur indiqué si besoin).\n2) Accéder à la déclaration \"ressources trimestrielles\".\n3) Vérifier les mois affichés = EXPECTED_MONTHS.\n4) Aller à la section \"Revenus non salariés\" → choisir \"Prestations commerciales ou artisanales\".\n5) Saisir les 3 montants (sans centimes) + répondre OUI si question \"Toujours en activité non salariée actuellement ?\".\n6) Relire le récapitulatif, vérifier montants/mois, puis valider.\n\nSORTIE ATTENDUE\n- Confirmer que la déclaration est validée\n- Rapporter les mois + montants saisis\n",
+          "variables": {
+            "FC_IDENTITY_HINT": "critère de sélection FranceConnect (ex: identifiant/indice visuel)",
+            "EXPECTED_MONTHS": "liste à puces des 3 mois attendus (ex: Septembre 2025, Octobre 2025, Novembre 2025)",
+            "AMOUNTS_TABLE": "table: mois -> montant entier € (sans centimes)"
+          }
+        },
+        "copilot_guide_urssaf_micro_quarterly_v1": {
+          "template_key": "copilot_guide_urssaf_micro_quarterly_v1",
+          "language": "fr",
+          "template_md": "GUIDE HUMAIN (Copilot-safe)\n\nOBJECTIF\nMe guider pour compléter ma déclaration trimestrielle URSSAF auto-entrepreneur (chiffre d’affaires), puis la valider, sans déclencher le paiement automatiquement.\nIMPORTANT: tu ne prends pas le contrôle du navigateur. Je réalise moi-même les clics et la saisie. Tu me dis quoi faire et quoi vérifier.\n\nAUTHENTIFICATION (FranceConnect)\n- Si je ne suis pas connecté, guide-moi pour me connecter via FranceConnect (Impots.gouv) puis STOP juste avant toute saisie d’identifiants/mot de passe/MFA.\n- Si plusieurs identités FranceConnect sont proposées, choisir celle correspondant à: {{FC_IDENTITY_HINT}}.\n\nCONTROLES (STOP si échec)\n1) Domaine autoentrepreneur.urssaf.fr (www possible pendant redirections).\n2) Le trimestre affiché/sélectionné doit correspondre à EXPECTED_QUARTER_LABEL.\n3) Les champs de CA doivent inclure les 3 catégories (ventes / services / autres services). Si absent → STOP.\n4) Montants en entiers euros (sans centimes).\n\nDONNÉES À SAISIR\nEXPECTED_QUARTER_LABEL: {{EXPECTED_QUARTER_LABEL}}\nTOTAL SERVICES (euros entiers): {{QUARTER_TOTAL_SERVICES_EUR_INTEGER}}\n\nETAPES (haut niveau)\n1) Ouvrir le portail URSSAF auto-entrepreneur.\n2) Aller à \"Déclarer et payer\" (ou équivalent) et sélectionner le trimestre EXPECTED_QUARTER_LABEL.\n3) Saisir:\n   - Ventes de marchandises: 0\n   - Prestations de services commerciales ou artisanales: {{QUARTER_TOTAL_SERVICES_EUR_INTEGER}}\n   - Autres prestations de services: 0\n4) Valider la déclaration après relecture du récapitulatif.\n5) STOP après confirmation de succès (ne pas lancer le paiement automatiquement).\n\nSORTIE ATTENDUE\n- Confirmer trimestre validé\n- Montant saisi\n- Alerter si mismatch\n",
+          "variables": {
+            "FC_IDENTITY_HINT": "critère de sélection FranceConnect (ex: identifiant/indice visuel)",
+            "EXPECTED_QUARTER_LABEL": "label lisible (ex: '4e trimestre 2025')",
+            "QUARTER_TOTAL_SERVICES_EUR_INTEGER": "montant entier € (sans centimes)"
+          }
+        }
+      }
+    },
+    "references": {
+      "FACT__MICRO__ENTITE": {
+        "type": "FACT",
+        "path": "data.canonique.entite",
+        "description": "SIREN/SIRET/APE, statut, dates."
+      },
+      "FACT__MICRO__PERSONNES": {
+        "type": "FACT",
+        "path": "data.canonique.personnes",
+        "description": "Titulaire / contacts / adresses."
+      },
+      "FACT__MICRO__ACTIVITE": {
+        "type": "FACT",
+        "path": "data.canonique.activite",
+        "description": "Activité (statut, APE, description)."
+      },
+      "FACT__MICRO__FISCALITE": {
+        "type": "FACT",
+        "path": "data.canonique.fiscalite",
+        "description": "Fiscalité (déclaratif)."
+      },
+      "FACT__MICRO__SOCIAL": {
+        "type": "FACT",
+        "path": "data.canonique.social",
+        "description": "Social (URSSAF, ACRE, déclarations)."
+      },
+      "FACT__MICRO__BANQUE": {
+        "type": "FACT",
+        "path": "data.canonique.banque",
+        "description": "Banque (comptes, IBAN/BIC, cartes sans CVV, engagements fixes et virements recurrents)."
+      },
+      "FACT__MICRO__DOCS_INDEX": {
+        "type": "FACT",
+        "path": "data.canonique.documents_index",
+        "description": "Index des documents liés à la micro."
+      },
+      "ARCH__MICRO__ARCHIVES": {
+        "type": "FACT",
+        "path": "data.scope_specifique.archives",
+        "description": "Archives non-canoniques (lecture sur demande)."
+      }
+    }
+  }
+}

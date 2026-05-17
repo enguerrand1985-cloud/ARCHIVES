@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "document_type": "sku_identity_registry",
+    "document_role": "internal_sku_identity_truth",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json",
+      "_HUB - DASHBOARD_/DATA HUB.xlsx"
+    ]
+  },
+  "skus": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "product_uid": "9222b601-abd8-4fdf-b675-a89ce948415d",
+      "product_logical_uid": "BATOUNET",
+      "role": "core",
+      "status": "ready",
+      "status_from_data_hub": "ready",
+      "launch_scope": true,
+      "naming": {
+        "product_family": "batounet",
+        "product_name": "Le Bâtounet",
+        "short_name": "STD"
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-STD-MAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3
+        }
+      ]
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "product_uid": "6398dc81-1a6d-46d5-9452-472d49b8b931",
+      "product_logical_uid": "BATOUNET",
+      "role": "core",
+      "status": "build",
+      "status_from_data_hub": "build",
+      "launch_scope": false,
+      "naming": {
+        "product_family": "batounet",
+        "product_name": "Le GROS Bâtounet Variante",
+        "short_name": "Variante"
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-VAR-MAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4
+        }
+      ]
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "product_uid": "0b52cf26-a005-4e9c-84ca-ff207e9341ad",
+      "product_logical_uid": "BATOUNET",
+      "role": "core",
+      "status": "build",
+      "status_from_data_hub": "build",
+      "launch_scope": false,
+      "naming": {
+        "product_family": "batounet",
+        "product_name": "Le GROS Bâtounet",
+        "short_name": "XL"
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-XL-MAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5
+        }
+      ]
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "product_uid": "e106910b-35c4-4180-9a45-06bc4ff65941",
+      "product_logical_uid": "BOULE_MATATABI",
+      "role": "component",
+      "status": "build",
+      "status_from_data_hub": "build",
+      "launch_scope": false,
+      "naming": {
+        "product_family": "boules",
+        "product_name": "Boule Matatabi (S)",
+        "short_name": "BOU-S"
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BOU-S-MAT-CAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6
+        }
+      ]
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "product_uid": "5971beec-f763-4019-9df0-2df09d9fcca2",
+      "product_logical_uid": "BUNDLE_3BOU_S",
+      "role": "bundle",
+      "status": "build",
+      "status_from_data_hub": "build",
+      "launch_scope": false,
+      "naming": {
+        "product_family": "boules",
+        "product_name": "Les Boulettes",
+        "short_name": "bundle boule"
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "product_uid": "b3f1e6d0-3e1e-46f1-9b65-std1ball-20251024",
+      "product_logical_uid": "BUNDLE_STD_1BOU_S",
+      "role": "bundle",
+      "status": "ready",
+      "status_from_data_hub": "ready",
+      "launch_scope": true,
+      "naming": {
+        "product_family": "bundle",
+        "product_name": "Le Bâtounet & La Boulette",
+        "short_name": "bundle std"
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8
+        }
+      ]
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "product_uid": "edc05d92-7b55-4b42-a67a-xl1ball-20251025",
+      "product_logical_uid": "BUNDLE_XL_1BOU_S",
+      "role": "bundle",
+      "status": "to_confirm",
+      "status_from_data_hub": "build",
+      "launch_scope": false,
+      "naming": {
+        "product_family": "bundle",
+        "product_name": "Le Packounet (XL + Boule)",
+        "short_name": "bundle XL"
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9
+        }
+      ]
+    }
+  }
+}

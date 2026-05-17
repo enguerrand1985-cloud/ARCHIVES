@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "document_type": "supplier_profile",
+    "document_role": "supplier_identity_profile_legacy_candidate",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/LUOYANG XISE.json"
+    ]
+  },
+  "supplier_id": "SUP-LUOYANG",
+  "slug": "luoyang-xize",
+  "parent": {
+    "name": "Luoyang Xize Import And Export Co., Ltd."
+  },
+  "supplier_snapshot_identity": {
+    "supplier_name": "Luoyang Xize",
+    "primary_contact": "Catherine Zhang",
+    "role": "Premium product supplier only",
+    "exclusion_scope": [
+      "Standard",
+      "XL",
+      "Bundles"
+    ]
+  },
+  "locks": {
+    "mode": "build_only",
+    "allowed_actions": [
+      "packaging_exploration",
+      "packaging_proposals",
+      "sampling_only",
+      "dimensioning"
+    ],
+    "blocked_actions": [
+      "pricing_commitment",
+      "bulk_order",
+      "logistics_commitment",
+      "mass_production"
+    ]
+  }
+}

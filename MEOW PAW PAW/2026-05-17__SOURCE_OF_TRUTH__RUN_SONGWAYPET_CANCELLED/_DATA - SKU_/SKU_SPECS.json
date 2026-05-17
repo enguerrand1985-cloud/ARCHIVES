@@ -1,0 +1,120 @@
+{
+  "meta": {
+    "document_type": "sku_specs",
+    "document_role": "internal_product_physical_specs_truth",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json"
+    ]
+  },
+  "specs_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "physical_specs": {
+        "core_length_cm": 8.0,
+        "diameter_cm": 1.7,
+        "length_total_cm": 20.0,
+        "weight_g": 11
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-STD-MAT-V1/specs_truth"
+        }
+      ]
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "physical_specs": {
+        "core_length_cm": 17.0,
+        "diameter_cm": 4.0,
+        "length_total_cm": 43.0,
+        "weight_g": 87
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-VAR-MAT-V1/specs_truth"
+        }
+      ]
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "physical_specs": {
+        "core_length_cm": 16.0,
+        "diameter_cm": 4.0,
+        "length_total_cm": 31.0,
+        "weight_g": 78
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-XL-MAT-V1/specs_truth"
+        }
+      ]
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "physical_specs": {
+        "core_length_cm": null,
+        "diameter_cm": 5.99,
+        "length_total_cm": null,
+        "weight_g": 21.6
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BOU-S-MAT-CAT-V1/specs_truth"
+        }
+      ]
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "physical_specs": {
+        "core_length_cm": null,
+        "diameter_cm": null,
+        "length_total_cm": null,
+        "weight_g": null
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1/specs_truth"
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "physical_specs": {
+        "core_length_cm": null,
+        "diameter_cm": null,
+        "length_total_cm": null,
+        "weight_g": null
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1/specs_truth"
+        }
+      ]
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "physical_specs": {
+        "core_length_cm": null,
+        "diameter_cm": null,
+        "length_total_cm": null,
+        "weight_g": null
+      },
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1/specs_truth"
+        }
+      ]
+    }
+  }
+}

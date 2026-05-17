@@ -1,0 +1,145 @@
+{
+  "meta": {
+    "document_type": "amazon_listings",
+    "document_role": "amazon_listing_identifiers_and_listing_status_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_HUB - DASHBOARD_/DATA HUB.xlsx"
+    ]
+  },
+  "listings_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "amazon_seller_sku": "MPP-BAT-STD-MAT-V1",
+      "asin": "B0GW6MYXQC",
+      "listing_status": "offer_active_out_of_stock_to_be_verified",
+      "variation_theme": "none",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__AMAZON_LAUNCH.md",
+          "detail": "Listing ASIN and active/out-of-stock status formalized from former tome, now routed through Amazon Launch follow-up."
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__IDENTIFIANTS_GS1_GTIN_FNSKU.md",
+          "detail": "Amazon/FNSKU sequence formalized from former tome, now routed through identifiers follow-up."
+        }
+      ],
+      "offer_status": "active",
+      "inventory_status": "no_stock_no_inbound_after_cancelled_shipment",
+      "run_scope": "songwaypet_run_cancelled",
+      "title_branding_check": {
+        "current_problem_term": "Batonnet",
+        "desired_branding_term": "Batounet",
+        "correction_status": "future_seller_central_correction_non_blocking_current_lot"
+      },
+      "launch_status": "suspended",
+      "commercial_launch_status": "not_launched",
+      "ppc_status": "not_started",
+      "vine_status": "not_started",
+      "coupon_status": "not_started"
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "amazon_seller_sku": "MPP-BAT-VAR-MAT-V1",
+      "listing_status": "not_started",
+      "variation_theme": "none",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4
+        }
+      ]
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "amazon_seller_sku": "MPP-BAT-XL-MAT-V1",
+      "listing_status": "not_started",
+      "variation_theme": "none",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5
+        }
+      ]
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "amazon_seller_sku": "MPP-BOU-S-MAT-CAT-V1",
+      "listing_status": "not_started",
+      "variation_theme": "none",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6
+        }
+      ]
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "amazon_seller_sku": "MPP-BUN-3BOU-S-V1",
+      "listing_status": "not_started",
+      "variation_theme": "none",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "amazon_seller_sku": "MPP-BUN-STD-1BOU-S-V1",
+      "asin": "B0GW72GXDB",
+      "listing_status": "offer_active_out_of_stock_to_be_verified",
+      "variation_theme": "none",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__AMAZON_LAUNCH.md",
+          "detail": "Listing ASIN and active/out-of-stock status formalized from former tome, now routed through Amazon Launch follow-up."
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__IDENTIFIANTS_GS1_GTIN_FNSKU.md",
+          "detail": "Amazon/FNSKU sequence formalized from former tome, now routed through identifiers follow-up."
+        }
+      ],
+      "offer_status": "active",
+      "inventory_status": "no_stock_no_inbound_after_cancelled_shipment",
+      "run_scope": "songwaypet_run_cancelled",
+      "launch_status": "suspended",
+      "commercial_launch_status": "not_launched",
+      "ppc_status": "not_started",
+      "vine_status": "not_started",
+      "coupon_status": "not_started"
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "amazon_seller_sku": "MPP-BUN-XL-1BOU-S-V1",
+      "listing_status": "not_started",
+      "variation_theme": "none",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9
+        }
+      ]
+    }
+  }
+}

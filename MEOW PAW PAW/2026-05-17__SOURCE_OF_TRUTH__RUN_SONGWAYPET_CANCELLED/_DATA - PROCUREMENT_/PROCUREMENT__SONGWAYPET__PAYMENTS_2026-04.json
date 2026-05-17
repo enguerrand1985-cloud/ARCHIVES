@@ -1,0 +1,200 @@
+{
+  "meta": {
+    "document_type": "procurement_payments",
+    "document_role": "procurement_payment_tracking_for_songwaypet_launch_run",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json"
+    ]
+  },
+  "procurement_id": "PROCUREMENT__SONGWAYPET__PAYMENTS_2026-04",
+  "supplier_id": "SUP_SONGWAYPET",
+  "payment_status": "refund_visible_qonto_reconciliation_pending_statement",
+  "payments": [
+    {
+      "payment_id": "PAY_SONGWAYPET_ALIBABA_DEPOSIT_2026-04-27",
+      "kind": "deposit",
+      "status": "paid",
+      "amount_usd": 283.5,
+      "basis": "30_percent_of_supplier_plus_shipping_ex_tax_945_usd",
+      "alibaba_total_displayed_usd": 1134.0,
+      "alibaba_sales_tax_usd": 189.0,
+      "debited_amount_eur_displayed": 408.32,
+      "transaction_fee_eur_displayed": 12.21,
+      "payment_method": "credit_or_debit_card",
+      "order_date_pst": "2026-04-26T18:59:16-08:00",
+      "payment_received_at_pst": "2026-04-26T19:05:00-08:00",
+      "payment_received_at_france_approx": "2026-04-27T04:05:00+02:00",
+      "refund_status": "approved",
+      "refund_amount_usd": 283.5
+    },
+    {
+      "payment_id": "PAY_SONGWAYPET_ALIBABA_BALANCE_2026-05_PENDING",
+      "kind": "balance",
+      "status": "paid_then_refunded",
+      "amount_usd": 661.5,
+      "basis": "70_percent_of_supplier_plus_shipping_ex_tax_945_usd",
+      "alibaba_estimate_eur_displayed": 571.64,
+      "guardrail": "Before balance payment, verify that only the supplier balance of 661.50 USD is requested and that no additional Alibaba tax anomaly appears.",
+      "refund_status": "approved",
+      "refund_amount_usd": 661.5
+    }
+  ],
+  "source_trace": [
+    {
+      "source_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json",
+      "json_pointer": "/supplier/commercial_terms/current_launch_order_quote",
+      "note": "Legacy source did not expose deposit/balance lines."
+    },
+    {
+      "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+      "detail": "Payment identifiers, deposit, balance, Alibaba tax and EUR debit formalized from active follow-up."
+    },
+    {
+      "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__FOURNISSEUR_SONGWAYPET.md",
+      "detail": "2026-04-27 initial Alibaba payment entry formalized."
+    },
+    {
+      "source_file": "JOURNAUX/RAPPORTS/RAPPORT__SYSTEM_IA__TRI_GOOGLE_DRIVE_MEOW__20260516.md",
+      "detail": "Refund screenshots and Qonto statements classified in SharePoint."
+    }
+  ],
+  "alibaba_order_id": "23491032501049987",
+  "alibaba_transaction_id": "2888021022026042619897005010023",
+  "procurement_order_id": "PROCUREMENT__SONGWAYPET__ORDER_2026-04__YF202604521",
+  "currency_reference": "USD",
+  "payment_terms": {
+    "base_amount_supplier_plus_shipping_usd": 945.0,
+    "deposit_percent": 30,
+    "deposit_amount_usd": 283.5,
+    "balance_percent": 70,
+    "balance_amount_usd": 661.5
+  },
+  "tax_and_fee_notes": {
+    "alibaba_sales_tax_usd": 189.0,
+    "sales_tax_status": "appears_paid_with_initial_payment",
+    "tax_exempt_banner_seen": true,
+    "tax_exempt_banner_meaning": "Alibaba indicates future commercial purchases should not be taxed after exempt buyer verification.",
+    "accounting_treatment_status": "pending_may_qonto_statement",
+    "sales_tax_direct_loss_status": "direct_loss_not_confirmed_by_qonto_balance",
+    "do_not_mark_as_final_loss": true
+  },
+  "refund_status": "approved_and_partially_reconciled",
+  "final_reconciliation_status": "pending_may_qonto_statement",
+  "refund_summary_20260516": {
+    "supplier_plus_shipping_paid_status": "paid_then_refunded",
+    "alibaba_refund_total_approved_usd": 945.0,
+    "deposit_refund_usd": 283.5,
+    "balance_refund_usd": 661.5,
+    "qonto_refund_visible_eur": 408.3,
+    "qonto_balance_observed_eur": 1392.36,
+    "provisional_net_alibaba_gap_eur": 29.39,
+    "line_to_reconcile_eur": -17.16,
+    "april_alibaba_payment_eur": -420.53,
+    "final_reconciliation_status": "pending_may_qonto_statement"
+  },
+  "source_pointers": [
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Trade Assurance/Remboursement/ALIBABA_TRADE_ASSURANCE__SONGWAYPET__REFUND_SCREENSHOT__2026-05-16__01.avif",
+      "document_role": "refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Trade Assurance/Remboursement/ALIBABA_TRADE_ASSURANCE__SONGWAYPET__REFUND_SCREENSHOT__2026-05-16__02.avif",
+      "document_role": "refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/COMPTABILITE FINANCE/2026/04 - Avril/Releves bancaires/Qonto/QONTO__TRADE-VISION__RELEVE__2026-04.pdf",
+      "document_role": "bank_statement_reconciliation_candidate",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__01.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__02.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__03.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__04.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__05.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__06.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__07.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__08.png",
+      "document_role": "supplier_chat_refund_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+﻿RECAP SECURITE BOX - 2026-04-07
+
+Contexte
+- Audit visuel des reglages SFR (securite, reseau v4/v6, Wi-Fi).
+- Objectif: durcir la box sans casser l'usage quotidien (dont PS5 colocataire).
+
+1) Etat observe pendant la session
+- Pare-feu box IPv4: OFF (vu sur capture).
+- Pare-feu box IPv6: OFF (vu sur capture).
+- DMZ: OFF.
+- DMZv6: OFF.
+- Filtrage ICMP entrant IPv6: OFF.
+- Redirections de ports IPv4: aucune regle.
+- Declenchement de ports: aucune regle.
+- Regles firewall IPv6 (reseau v6): aucune regle.
+- ALG SIP: ON.
+- ALG PPTP: ON.
+- ALG GRE: ON.
+- Wi-Fi prive: securite mixte WPA2/WPA-PSK (AES).
+- Wi-Fi invite: securite mixte WPA2/WPA-PSK, chiffrement TKIP+AES.
+- WPS: ON.
+- Filtrage MAC: OFF.
+
+2) Recommandations immediates (faible risque d'impact)
+- Activer le pare-feu IPv4: ON.
+- Activer le pare-feu IPv6: ON.
+- Laisser DMZ et DMZv6 sur OFF.
+- Garder aucune redirection/declenchement de ports (tant que pas de besoin explicite).
+- ALG PPTP: passer OFF.
+- ALG GRE: passer OFF.
+- ALG SIP: peut rester ON pour prudence telephonie box (a re-tester plus tard si besoin).
+
+3) Recommandations a faire plus tard (fenetre de maintenance avec coloc/PS5)
+- Desactiver WPS (mettre OFF).
+- Durcir le Wi-Fi prive vers WPA2-PSK (AES) minimum, idealement WPA2/WPA3 si disponible.
+- Durcir le Wi-Fi invite (eviter TKIP, preferer AES only) ou desactiver le reseau invite si inutile.
+- Verifier NAT PS5 apres changements Wi-Fi/WPS/pare-feu.
+- Si probleme PS5 en ligne, ajuster UPnP en priorite plutot qu'ouvrir DMZ.
+
+4) Strategie retenue
+- Faire d'abord les reglages sans impact majeur.
+- Reporter les reglages Wi-Fi sensibles a une session dediee (avec test PS5 juste apres).
+
+5) Prochaine etape proposee
+- Capturer l'onglet UPnP pour validation finale.
+- Produire une version finale du checklist "Applique / A faire / Test PS5".

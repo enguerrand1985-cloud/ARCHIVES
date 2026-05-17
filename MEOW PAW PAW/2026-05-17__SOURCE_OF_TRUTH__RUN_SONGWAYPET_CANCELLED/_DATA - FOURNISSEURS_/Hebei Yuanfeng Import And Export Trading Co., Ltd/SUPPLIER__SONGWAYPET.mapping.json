@@ -1,0 +1,156 @@
+{
+  "meta": {
+    "document_type": "supplier_mapping",
+    "document_role": "local_supplier_product_to_meow_sku_mapping",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_HUB - DASHBOARD_/DATA HUB.xlsx",
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json",
+      "_DATA - SKU_/SKU.json"
+    ]
+  },
+  "supplier_id": "SUP_SONGWAYPET",
+  "mappings": [
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BAT-STD-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_standard"
+      ],
+      "meow_sku": "MPP-BAT-STD-MAT-V1",
+      "mapping_status": "inferred_needs_validation",
+      "validation_source": "legacy SKU family and DATA HUB supplier_id; not a supplier-signed mapping",
+      "packaging_option_id": "PKG_OPP_ZIP_EUROSLOT_07x28",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "pricing_context_ref": "PRICING_CONTEXT__SUP_SONGWAYPET__MPP-BAT-STD-MAT-V1",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3
+        }
+      ]
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BAT-VAR-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_xl"
+      ],
+      "meow_sku": "MPP-BAT-VAR-MAT-V1",
+      "mapping_status": "inferred_needs_validation",
+      "validation_source": "legacy SKU family and DATA HUB supplier_id; not a supplier-signed mapping",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "pricing_context_ref": "PRICING_CONTEXT__SUP_SONGWAYPET__MPP-BAT-VAR-MAT-V1",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4
+        }
+      ]
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BAT-XL-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_xl"
+      ],
+      "meow_sku": "MPP-BAT-XL-MAT-V1",
+      "mapping_status": "inferred_needs_validation",
+      "validation_source": "legacy SKU family and DATA HUB supplier_id; not a supplier-signed mapping",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "pricing_context_ref": "PRICING_CONTEXT__SUP_SONGWAYPET__MPP-BAT-XL-MAT-V1",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5
+        }
+      ]
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BOU-S-MAT-CAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BOU-S-MAT-CAT-V1",
+      "mapping_status": "inferred_needs_validation",
+      "validation_source": "legacy SKU family and DATA HUB supplier_id; not a supplier-signed mapping",
+      "packaging_option_id": "PKG_BALL_CLEAR_SEALED",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "pricing_context_ref": "PRICING_CONTEXT__SUP_SONGWAYPET__MPP-BOU-S-MAT-CAT-V1",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6
+        }
+      ]
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BUN-3BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BUN-3BOU-S-V1",
+      "mapping_status": "inferred_needs_validation",
+      "validation_source": "legacy SKU family and DATA HUB supplier_id; not a supplier-signed mapping",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "pricing_context_ref": "PRICING_CONTEXT__SUP_SONGWAYPET__MPP-BUN-3BOU-S-V1",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7
+        }
+      ]
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BUN-STD-1BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_standard",
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BUN-STD-1BOU-S-V1",
+      "mapping_status": "inferred_needs_validation",
+      "validation_source": "legacy SKU family and DATA HUB supplier_id; not a supplier-signed mapping",
+      "packaging_option_id": "PKG_OPP_ZIP_EUROSLOT_12x28",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "pricing_context_ref": "PRICING_CONTEXT__SUP_SONGWAYPET__MPP-BUN-STD-1BOU-S-V1",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8
+        }
+      ]
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BUN-XL-1BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_xl",
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BUN-XL-1BOU-S-V1",
+      "mapping_status": "inferred_needs_validation",
+      "validation_source": "legacy SKU family and DATA HUB supplier_id; not a supplier-signed mapping",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "pricing_context_ref": "PRICING_CONTEXT__SUP_SONGWAYPET__MPP-BUN-XL-1BOU-S-V1",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9
+        }
+      ]
+    }
+  ]
+}

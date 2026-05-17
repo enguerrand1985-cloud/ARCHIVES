@@ -1,0 +1,546 @@
+{
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "simplified_for": {
+          "type": "string"
+        },
+        "simplified_from": {
+          "type": "string"
+        },
+        "source_updated_at": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "timezone",
+        "simplified_for",
+        "simplified_from",
+        "source_updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "identity": {
+      "type": "object",
+      "properties": {
+        "legal_entity": {
+          "type": "object",
+          "properties": {
+            "form": {
+              "type": "string"
+            },
+            "denomination": {
+              "type": "string"
+            },
+            "president": {
+              "type": "string"
+            },
+            "siren": {
+              "type": "string"
+            },
+            "siret": {
+              "type": "string"
+            },
+            "rcs": {
+              "type": "string"
+            },
+            "registration_date": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "form",
+            "denomination",
+            "president",
+            "siren",
+            "siret",
+            "rcs",
+            "registration_date"
+          ],
+          "additionalProperties": false
+        },
+        "headquarters": {
+          "type": "object",
+          "properties": {
+            "address": {
+              "type": "string"
+            },
+            "domiciliation": {
+              "type": "object",
+              "properties": {
+                "provider": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "provider",
+                "status"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "address",
+            "domiciliation"
+          ],
+          "additionalProperties": false
+        },
+        "capital": {
+          "type": "object",
+          "properties": {
+            "amount_eur": {
+              "type": "integer"
+            },
+            "nature": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "release_date": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "amount_eur",
+            "nature",
+            "status",
+            "release_date"
+          ],
+          "additionalProperties": false
+        },
+        "bank_account": {
+          "type": "object",
+          "properties": {
+            "bank": {
+              "type": "string"
+            },
+            "account_type": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "bank",
+            "account_type",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "trademarks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "brand_label_exact": {
+                "type": "string"
+              },
+              "jurisdiction": {
+                "type": "string"
+              },
+              "office": {
+                "type": "string"
+              },
+              "application_number": {
+                "type": "string"
+              },
+              "filed_at": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "brand_label_exact",
+              "jurisdiction",
+              "office",
+              "application_number",
+              "filed_at",
+              "status"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "budget_and_storage": {
+          "type": "object",
+          "properties": {
+            "total_budget_eur": {
+              "type": "integer"
+            },
+            "storage_policy": {
+              "type": "string"
+            },
+            "fixed_costs_estimate": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "period": {
+                  "type": "string"
+                },
+                "estimated_total_eur": {
+                  "type": "number"
+                },
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "amount_eur_monthly": {
+                            "type": "integer"
+                          },
+                          "amount_eur_yearly": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "kind",
+                          "status",
+                          "amount_eur_monthly",
+                          "amount_eur_yearly"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "amount_eur_monthly": {
+                            "type": "number"
+                          },
+                          "amount_eur_yearly": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "kind",
+                          "status",
+                          "amount_eur_monthly",
+                          "amount_eur_yearly"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "status",
+                "currency",
+                "period",
+                "estimated_total_eur",
+                "components"
+              ],
+              "additionalProperties": false
+            },
+            "fixed_costs_actual_current": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "as_of": {
+                  "type": "string"
+                },
+                "currency": {
+                  "type": "string"
+                },
+                "period": {
+                  "type": "string"
+                },
+                "actual_total_eur": {
+                  "type": "number"
+                },
+                "components": {
+                  "type": "array",
+                  "items": {
+                    "anyOf": [
+                      {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "amount_eur_monthly": {
+                            "type": "integer"
+                          },
+                          "amount_eur_yearly": {
+                            "type": "integer"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "kind",
+                          "status",
+                          "amount_eur_monthly",
+                          "amount_eur_yearly"
+                        ],
+                        "additionalProperties": false
+                      },
+                      {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "kind": {
+                            "type": "string"
+                          },
+                          "status": {
+                            "type": "string"
+                          },
+                          "amount_eur_monthly": {
+                            "type": "number"
+                          },
+                          "amount_eur_yearly": {
+                            "type": "number"
+                          }
+                        },
+                        "required": [
+                          "name",
+                          "kind",
+                          "status",
+                          "amount_eur_monthly",
+                          "amount_eur_yearly"
+                        ],
+                        "additionalProperties": false
+                      }
+                    ]
+                  }
+                }
+              },
+              "required": [
+                "status",
+                "as_of",
+                "currency",
+                "period",
+                "actual_total_eur",
+                "components"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "total_budget_eur",
+            "storage_policy",
+            "fixed_costs_estimate"
+          ],
+          "additionalProperties": false
+        },
+        "constraints_and_dependencies": {
+          "type": "object",
+          "properties": {
+            "experience_level": {
+              "type": "string"
+            },
+            "certifications": {
+              "type": "object",
+              "properties": {
+                "reach": {
+                  "type": "string"
+                },
+                "non_toxic": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "reach",
+                "non_toxic"
+              ],
+              "additionalProperties": false
+            },
+            "potential_blockers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "experience_level",
+            "certifications",
+            "potential_blockers"
+          ],
+          "additionalProperties": false
+        },
+        "compta_model": {
+          "type": "object",
+          "properties": {
+            "sales_price_mode": {
+              "type": "string"
+            },
+            "vat_mode": {
+              "type": "string"
+            },
+            "packaging_cost_model": {
+              "type": "string"
+            },
+            "tax_reference": {
+              "type": "object",
+              "properties": {
+                "is_rate": {
+                  "type": "number"
+                }
+              },
+              "required": [
+                "is_rate"
+              ],
+              "additionalProperties": false
+            },
+            "vat_reference": {
+              "type": "object",
+              "properties": {
+                "tva_rate_sales": {
+                  "type": "number"
+                },
+                "tva_rate_purchases": {
+                  "type": "number"
+                },
+                "tva_recovery_ratio": {
+                  "type": "number"
+                },
+                "include_tva_in_margins": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "tva_rate_sales",
+                "tva_rate_purchases",
+                "tva_recovery_ratio",
+                "include_tva_in_margins"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "sales_price_mode",
+            "vat_mode",
+            "packaging_cost_model",
+            "tax_reference",
+            "vat_reference"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "legal_entity",
+        "headquarters",
+        "capital",
+        "bank_account",
+        "trademarks",
+        "budget_and_storage",
+        "constraints_and_dependencies",
+        "compta_model"
+      ],
+      "additionalProperties": false
+    },
+    "vision": {
+      "type": "object",
+      "properties": {
+        "goal": {
+          "type": "string"
+        },
+        "brand_identity": {
+          "type": "object",
+          "properties": {
+            "positioning": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "values": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "tone": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "positioning",
+            "values",
+            "tone"
+          ],
+          "additionalProperties": false
+        },
+        "long_term_image": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "goal",
+        "brand_identity",
+        "long_term_image"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "meta",
+    "identity",
+    "vision"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema for PROFIL SASU.json"
+}

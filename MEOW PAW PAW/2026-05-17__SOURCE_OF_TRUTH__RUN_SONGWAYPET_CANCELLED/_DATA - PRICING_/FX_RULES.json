@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "document_type": "fx_rules",
+    "document_role": "foreign_exchange_policy_and_references",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - MARKETPLACE_/MARKETPLACE RULES.json"
+    ]
+  },
+  "rules": {
+    "status": "planned",
+    "effective_from": null,
+    "rules": [
+      {
+        "currency_pair": "EUR/USD",
+        "spread_estimated_rate": 0.015,
+        "swift_fee_eur_estimated": 20,
+        "double_conversion_risk_note": "Not modeled explicitly; monitor payment receipts for intermediary fees/double conversion.",
+        "base": "supplier_payment",
+        "allocation": "per_unit_run_only",
+        "status": "estimated",
+        "to_be_reconciled_after_first_payment": true,
+        "source": "legacy_compta_view.parameters.ttc.banking_fx",
+        "notes": "Estimate only. Provide real debit/credit + fees to reconcile.",
+        "action_required": {
+          "status": "to_request",
+          "vendor": "SongwayPet",
+          "field": "banking_fx_cost_eur",
+          "note": "À demander (SongwayPet) — renseigner le coût FX bancaire réel (spread/SWIFT/double conversion) après 1er paiement."
+        },
+        "kind": "fx_policy",
+        "spot_rate_eur_per_usd_estimated": 0.860437,
+        "spot_rate_source": "Banque de France daily parity 2025-10-15 (EUR=1.1622 USD; USD=0.860437 EUR)."
+      }
+    ],
+    "notes": "FX / conversion côté Alibaba si applicable (sinon owner rails)."
+  }
+}

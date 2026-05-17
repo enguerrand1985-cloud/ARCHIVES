@@ -1,0 +1,556 @@
+{
+  "mode": "FULL_REPLACE",
+  "target_filename": "SLATE.json",
+  "scope": "PROCESS_SLATE",
+  "payload": {
+    "meta": {
+      "file_type": "PROCESS_SLATE",
+      "version": "0.1.7",
+      "timezone": "Europe/Paris",
+      "created_at": "2026-01-22T00:00:00+01:00",
+      "updated_at": "2026-01-23T21:19:23+01:00",
+      "owner": null,
+      "tags": [
+        "process_tracking",
+        "triage_first",
+        "schema_evolution_pending",
+        "no_fact_invention",
+        "scope_kernels",
+        "obligations_activation",
+        "todo_then_rules",
+        "slate_transition_file",
+        "banking_fixed_costs_planning",
+        "compta_module_planning"
+      ]
+    },
+    "context": {
+      "goal": "Suivre les prochaines étapes de structuration des fiches LLM (scopes PERSONA/MICRO/SASU) et préparer l’ajout ultérieur de règles métier associées. Slate sert de fichier de transition pour projeter le plan et les dépendances avant cristallisation dans regles_metier (documents règles) et les fiches de scope.",
+      "principles": [
+        "Ne pas inventer de données factuelles manquantes",
+        "Triage avant écriture canonique (canonique / archives / notes)",
+        "Préparer des emplacements stables (IDs, champs) pour brancher des règles métier plus tard",
+        "Socle commun (structure) dans chaque scope, activation conditionnelle des obligations (pas d’obligation sans fait déclencheur)",
+        "Séparation stricte: data.canonique (faits) ≠ regles_metier (logique) ≠ todo (projection d’exécution)",
+        "Approche progressive: 1) data 2) obligations/todo 3) règles métier (rules_engine) qui pilotent/projettent les todo",
+        "No cross-scope implicite: chaque scope reste autonome (mini-OS/\"kernel\"), toute agrégation est explicitement demandée",
+        "Données sensibles: ne jamais stocker de secrets d’authentification (mots de passe, 2FA, etc.). Les URLs et emails peuvent exister si nécessaires, mais sans secrets."
+      ]
+    },
+    "workstreams": [
+      {
+        "id": "WS__ALL__BANKING_PROFILE_RECURRING_FIXED_COSTS",
+        "scope": "MULTI_SCOPE",
+        "title": "Profil bancaire: recensement abonnements / frais fixes récurrents (PERSONA/MICRO/SASU)",
+        "status": "TODO",
+        "blocking": false,
+        "objective": "Recenser et modéliser les abonnements et frais fixes récurrents (mensuels/annuels/etc.) par scope (PERSONA/MICRO/SASU) afin de permettre l’exploitation par un futur système comptable et des règles métier (classification, export, alertes).",
+        "constraints": [
+          "Pas d’inférence cross-scope implicite: chaque scope possède sa propre liste canonique",
+          "Éviter la duplication: une ligne par scope (duplication contrôlée uniquement si service réellement partagé et décision explicite)",
+          "Schema-first: pas d’ajout ad-hoc en canonique; évolution de schéma requise si champ absent",
+          "Ne jamais stocker de secrets (mdp / 2FA / tokens)",
+          "Triage-first: si ambigu/contradictoire/incomplet, rester en Slate/notes jusqu’à clarification"
+        ],
+        "items_to_place": [
+          {
+            "id": "ITEM__PERSONA__BANQUE__FRAIS_FIXES_RENSEIGNER",
+            "label": "Lister les abonnements et frais fixes PERSONA (mensuels/annuels) + catégories",
+            "target_zone": "PERSONA.data.canonique.banque (futur sous-domaine)",
+            "field_candidates": [
+              "banque.frais_recurrents[] (schema_evolution_required)",
+              "banque.abonnements[] (schema_evolution_required)"
+            ],
+            "status": "TODO",
+            "notes": "À renseigner: provider/merchant, montant, périodicité, date début/fin, tags/catégorie, lien compte (optionnel)."
+          },
+          {
+            "id": "ITEM__MICRO__BANQUE__FRAIS_FIXES_RENSEIGNER",
+            "label": "Lister les abonnements et frais fixes MICRO (mensuels/annuels) + catégories",
+            "target_zone": "MICRO.data.canonique.banque (futur sous-domaine)",
+            "field_candidates": [
+              "banque.frais_recurrents[] (schema_evolution_required)",
+              "banque.abonnements[] (schema_evolution_required)"
+            ],
+            "status": "TODO",
+            "notes": "À renseigner sans inventer: uniquement ce qui est confirmé."
+          },
+          {
+            "id": "ITEM__SASU__BANQUE__FRAIS_FIXES_RENSEIGNER",
+            "label": "Lister les abonnements et frais fixes SASU (mensuels/annuels) + catégories",
+            "target_zone": "SASU.data.canonique.banque (futur sous-domaine)",
+            "field_candidates": [
+              "banque.frais_recurrents[] (schema_evolution_required)",
+              "banque.abonnements[] (schema_evolution_required)"
+            ],
+            "status": "TODO",
+            "notes": "SASU: inclure outils marque (si applicable) et coûts récurrents pro."
+          },
+          {
+            "id": "ITEM__ALL__COMPTA__RULES_BACKLOG",
+            "label": "Backlog de règles comptables (classification / export / contrôle) par scope",
+            "target_zone": "regles_metier (plus tard) + todo (projection future)",
+            "field_candidates": [
+              "RULE__PERSONA__COMPTA__* (à créer plus tard)",
+              "RULE__MICRO__COMPTA__* (à créer plus tard)",
+              "RULE__SASU__COMPTA__* (à créer plus tard)"
+            ],
+            "status": "TODO",
+            "notes": "Famille de règles homologues, déclinées par scope (pas de règle globale cross-scope)."
+          }
+        ],
+        "open_design_questions": [
+          {
+            "id": "Q__BANKING_FIXED_COSTS__DEFINITION",
+            "question": "Définir précisément \"frais fixes / abonnements\" : mensuel uniquement ? annuel lissé ? récurrent variable ?",
+            "status": "OPEN"
+          },
+          {
+            "id": "Q__BANKING_FIXED_COSTS__ACCOUNT_LINK",
+            "question": "Faut-il lier chaque frais récurrent à un account_id (banque.accounts[].id) ou rester abstrait (optionnel) ?",
+            "status": "OPEN"
+          },
+          {
+            "id": "Q__BANKING_FIXED_COSTS__HYBRID_SCOPES",
+            "question": "Cas hybride (usage perso+pro) : duplication contrôlée par scope (2 lignes) ou règle de répartition explicite ?",
+            "status": "OPEN"
+          },
+          {
+            "id": "Q__BANKING_FIXED_COSTS__MIN_FIELDS",
+            "question": "Champs minimaux: id, label/provider, montant, devise, periodicité, dates, catégorie/tags, statut actif/inactif, notes ?",
+            "status": "OPEN"
+          },
+          {
+            "id": "Q__BANKING_FIXED_COSTS__COMPTA_OUTPUTS",
+            "question": "Quels outputs comptables visés plus tard (export, plan de comptes, catégories fiscales) afin de cadrer le modèle dès maintenant ?",
+            "status": "OPEN"
+          }
+        ],
+        "schema_impacts": [
+          {
+            "id": "SCHEMA__IMPACT__ALL__BANQUE_RECURRING_FEES_EXT",
+            "title": "Extension du domaine banque pour frais récurrents / abonnements (référençables, value-only)",
+            "status": "NEEDED",
+            "change_type": "SCHEMA_CHANGE_REQUIRED",
+            "reason": "Le schéma banque actuel modélise comptes/cartes mais pas une table de frais récurrents/abonnements exploitable par règles et système comptable."
+          }
+        ],
+        "next_actions": [
+          {
+            "id": "NA__BANKING_FIXED_COSTS__MODEL_MINIMUM",
+            "title": "Définir le modèle minimal canonique d’un frais récurrent / abonnement (value-only) + conventions d’IDs",
+            "status": "TODO",
+            "depends_on": [],
+            "deliverable": "Spéc du mini-modèle + champs obligatoires + statut actif/inactif"
+          },
+          {
+            "id": "NA__BANKING_FIXED_COSTS__SCHEMA_UPDATE_PROPOSAL",
+            "title": "Proposer une évolution du schéma (schema.json) pour ajouter la structure frais récurrents dans banque",
+            "status": "TODO",
+            "depends_on": [
+              "NA__BANKING_FIXED_COSTS__MODEL_MINIMUM"
+            ],
+            "deliverable": "Proposition structurée (sans écriture silencieuse) pour extension de banque"
+          },
+          {
+            "id": "NA__COMPTA__RULES_FAMILY_DEFINITION",
+            "title": "Définir la famille minimale de règles comptables par scope (classification + export mapping) sans logique détaillée (IDs uniquement)",
+            "status": "TODO",
+            "depends_on": [
+              "NA__BANKING_FIXED_COSTS__MODEL_MINIMUM"
+            ],
+            "deliverable": "Liste de RULE__* par scope + mapping vers futurs todo.links"
+          }
+        ]
+      },
+      {
+        "id": "WS__ALL__OBLIGATIONS_SOCIALES_FISCALES__SOCLE_TODO_FIRST",
+        "scope": "MULTI_SCOPE",
+        "title": "Socle obligations (social/fiscal) : projection TODO d’abord, règles métier ensuite",
+        "status": "TODO",
+        "blocking": false,
+        "objectives": [
+          "Définir un gabarit commun d’obligation (todo.recurring / one_shot) utilisable par PERSONA/MICRO/SASU",
+          "Définir la doctrine d’activation conditionnelle (obligation dormante tant qu’aucun fait déclencheur n’est vrai)",
+          "Lister les obligations réellement actives par scope sans inventer",
+          "Préparer la migration vers regles_metier.rules_engine (écriture en une passe plus tard)"
+        ],
+        "assumptions_and_inputs_declared": [
+          {
+            "id": "ASSUME__MICRO__TVA_NOT_ASSUJETTI",
+            "scope": "MICRO",
+            "statement": "Micro: pas assujetti à la TVA (déclaré).",
+            "status": "DECLARED"
+          },
+          {
+            "id": "ASSUME__MICRO__NO_VERSEMENT_LIBERATOIRE",
+            "scope": "MICRO",
+            "statement": "Micro: pas d’option versement libératoire (déclaré).",
+            "status": "DECLARED"
+          },
+          {
+            "id": "ASSUME__SASU__NO_TVA",
+            "scope": "SASU",
+            "statement": "SASU: pas de TVA (déclaré).",
+            "status": "DECLARED"
+          },
+          {
+            "id": "ASSUME__SASU__NO_REMUNERATION_DIVIDENDS_LATER",
+            "scope": "SASU",
+            "statement": "SASU: pas de rémunération actuellement; logique dividendes plus tard (déclaré).",
+            "status": "DECLARED"
+          }
+        ],
+        "items_to_place": [
+          {
+            "id": "ITEM__MICRO__SOCIAL__URSSAF_DECLARATIONS_CA",
+            "label": "URSSAF Micro: déclarations chiffre d’affaires + échéances",
+            "target_zone": "MICRO.todo.recurring (plus tard)",
+            "field_candidates": [
+              "todo.recurring[] + rule_id futur RULE__MICRO__SOCIAL__URSSAF"
+            ],
+            "status": "TODO",
+            "notes": "Obligation active attendue en MICRO. La logique détaillée viendra dans rules_engine; TODO projetée d’abord."
+          },
+          {
+            "id": "ITEM__MICRO__FISCAL__CFE",
+            "label": "CFE Micro: échéance et cycle",
+            "target_zone": "MICRO.todo.recurring (plus tard)",
+            "field_candidates": [
+              "todo.recurring[] + rule_id futur RULE__MICRO__FISCAL__CFE"
+            ],
+            "status": "TODO",
+            "notes": "TVA non assujetti et pas de versement libératoire: ne pas créer de tâches TVA/VL."
+          },
+          {
+            "id": "ITEM__PERSONA__FISCAL__IR_SCHEDULING_OPTIONAL",
+            "label": "IR PERSONA: échéancier/repères (optionnel)",
+            "target_zone": "PERSONA.todo.recurring (plus tard)",
+            "field_candidates": [
+              "todo.recurring[] + rule_id futur RULE__PERSONA__FISCAL__IR"
+            ],
+            "status": "PARKED",
+            "notes": "À activer uniquement si besoin de pilotage perso; ne pas dupliquer les calculs micro/sasu."
+          },
+          {
+            "id": "ITEM__SASU__FISCAL__IS_LATENT",
+            "label": "IS SASU: obligation latente (activation à clôture/évènement)",
+            "target_zone": "SASU.todo (plus tard, dormante)",
+            "field_candidates": [
+              "todo.recurring[] + rule_id futur RULE__SASU__FISCAL__IS"
+            ],
+            "status": "PARKED",
+            "notes": "Ne pas activer de tâches tant qu’aucun fait déclencheur (activité/exercice/clôture/résultat) n’est présent."
+          },
+          {
+            "id": "ITEM__SASU__FISCAL__CFE_LATENT",
+            "label": "CFE SASU: obligation latente (souvent N+1, possible exonération 1ère année)",
+            "target_zone": "SASU.todo (plus tard, dormante)",
+            "field_candidates": [
+              "todo.recurring[] + rule_id futur RULE__SASU__FISCAL__CFE"
+            ],
+            "status": "PARKED",
+            "notes": "Ne pas projeter maintenant si aucune info/avis/échéance confirmée."
+          },
+          {
+            "id": "ITEM__PERSONA__SOCIAL__CAF_DECLARATION_ROLLING_3_MONTHS",
+            "label": "CAF: déclaration trimestrielle avec période 3 mois glissants (période à confirmer sur portail)",
+            "target_zone": "PERSONA.todo.recurring (plus tard)",
+            "field_candidates": [
+              "todo.recurring[] + rule_id futur RULE__PERSONA__SOCIAL__CAF__PROMPT_DECLARATION"
+            ],
+            "status": "TODO",
+            "notes": "La tâche todo doit porter une cadence trimestrielle + un modèle de période 'ROLLING_3_MONTHS'. La règle/prompt doit demander de vérifier la période exacte affichée par la CAF (sans inventer)."
+          },
+          {
+            "id": "ITEM__SASU__COMPLIANCE__PROVIGIS_ATTESTATIONS_QUARTERLY_CHECK",
+            "label": "Provigis: vérification / upload périodique (attestation vigilance URSSAF, déclarations, Kbis) piloté par portail",
+            "target_zone": "SASU.todo.recurring (plus tard)",
+            "field_candidates": [
+              "todo.recurring[] + rule_id futur RULE__SASU__COMPLIANCE__PROVIGIS__PROMPT_CHECK_AND_UPLOAD"
+            ],
+            "status": "TODO",
+            "notes": "Cadence 'environ tous les 3 mois' mentionnée mais incertaine ('je crois'). Modèle 'PLATFORM_DRIVEN' : la règle/prompt doit guider la connexion, identifier les demandes en cours (attestation vigilance, déclaration absence employés étrangers, Kbis/statuts) et demander les dates/échéances visibles sur le portail."
+          }
+        ],
+        "schema_impacts": [
+          {
+            "id": "SCHEMA__IMPACT__ALL__OBLIGATIONS_TRIGGER_MODEL",
+            "title": "Modèle explicite d’activation (triggers) pour obligations (social/fiscal)",
+            "status": "NEEDED",
+            "change_type": "DESIGN_CONVENTION_OR_SCHEMA_CHANGE",
+            "reason": "Pour éviter la projection de todo ‘au feeling’, il faut une convention claire d’activation/inactivation."
+          },
+          {
+            "id": "SCHEMA__IMPACT__ALL__OBLIGATIONS_PERIOD_MODEL_FIELDS",
+            "title": "Convention ou extension schéma: champs todo pour modèle de période et échéance pilotée portail",
+            "status": "NEEDED",
+            "change_type": "DESIGN_CONVENTION_OR_SCHEMA_CHANGE",
+            "reason": "Certaines obligations sont trimestrielles mais non alignées sur trimestre civil (CAF: 3 mois glissants) ou pilotées par le portail (Provigis). Il faut un champ de 'period_model' et/ou un mode 'platform_driven' sans inventer de dates."
+          }
+        ],
+        "next_actions": [
+          {
+            "id": "NA__OBLIGATIONS__DEFINE_TEMPLATE",
+            "title": "Définir le gabarit minimal d’une obligation (todo) + conventions de tags/links",
+            "status": "TODO",
+            "depends_on": [],
+            "deliverable": "Spéc: champs obligatoires (title, cadence, links, status, execution_policy) + conventions type/ref_id"
+          },
+          {
+            "id": "NA__OBLIGATIONS__DEFINE_ACTIVATION_RULES",
+            "title": "Définir la doctrine d’activation conditionnelle par scope (MICRO actif, SASU dormant, PERSONA optionnel)",
+            "status": "TODO",
+            "depends_on": [
+              "NA__OBLIGATIONS__DEFINE_TEMPLATE"
+            ],
+            "deliverable": "Règles de déclenchement (facts -> obligation active) sans inventer de faits"
+          },
+          {
+            "id": "NA__OBLIGATIONS__PREP_RULES_ENGINE_BATCH",
+            "title": "Préparer la cristallisation 'd’un coup' dans regles_metier.rules_engine (documents règles)",
+            "status": "TODO",
+            "depends_on": [
+              "NA__OBLIGATIONS__DEFINE_ACTIVATION_RULES"
+            ],
+            "deliverable": "Liste des RULE__* à créer + mapping vers todo projections"
+          },
+          {
+            "id": "NA__OBLIGATIONS__DEFINE_PERIOD_MODELS_NOMENCLATURE",
+            "title": "Définir la nomenclature des modèles de période (CIVIL_QUARTER / ROLLING_3_MONTHS / PLATFORM_DRIVEN) et comment ils s’expriment dans todo",
+            "status": "TODO",
+            "depends_on": [
+              "NA__OBLIGATIONS__DEFINE_TEMPLATE"
+            ],
+            "deliverable": "Spéc des champs/conventions + exemples (URSSAF vs CAF vs Provigis)"
+          },
+          {
+            "id": "NA__OBLIGATIONS__CONFIRM_CAF_ROLLING_PERIOD_RULE",
+            "title": "Confirmer la règle CAF des 3 mois glissants et définir la manière de récupérer la période exacte via portail (sans l'inventer)",
+            "status": "TODO",
+            "depends_on": [
+              "NA__OBLIGATIONS__DEFINE_PERIOD_MODELS_NOMENCLATURE"
+            ],
+            "deliverable": "Note de cadrage + exemple de prompt attendu"
+          },
+          {
+            "id": "NA__OBLIGATIONS__PROVIGIS_TASKS_INVENTORY",
+            "title": "Inventorier les items Provigis (attestation vigilance URSSAF / déclaration absence employés étrangers / Kbis / statuts) + préciser cadence réelle si possible",
+            "status": "TODO",
+            "depends_on": [
+              "NA__OBLIGATIONS__DEFINE_PERIOD_MODELS_NOMENCLATURE"
+            ],
+            "deliverable": "Liste d'obligations + statut (confirmed/uncertain) + stratégie PLATFORM_DRIVEN"
+          }
+        ],
+        "open_design_questions": [
+          {
+            "id": "Q__OBLIGATIONS__PERIOD_MODELS",
+            "question": "Définir une nomenclature de modèles de période pour les obligations: CIVIL_QUARTER (trimestre civil), ROLLING_3_MONTHS (3 mois glissants), PLATFORM_DRIVEN (période/dates pilotées par le portail).",
+            "status": "OPEN"
+          },
+          {
+            "id": "Q__OBLIGATIONS__CAF_ROLLING_MONTHS",
+            "question": "CAF: confirmer la règle de 3 mois glissants (ex: pour un 'T4' affiché, période demandée = septembre/octobre/novembre) et définir comment la tâche todo doit demander la période exacte affichée sur le portail (sans l'inventer).",
+            "status": "OPEN"
+          },
+          {
+            "id": "Q__OBLIGATIONS__PORTAL_DEADLINES_UNPREDICTABLE",
+            "question": "Comment modéliser les obligations dont la date/échéance est imprévisible et pilotée par le portail (ex: demandes à la connexion, échéances variables) : TASK 'CHECK_AND_UPLOAD' + cadence de vérification ?",
+            "status": "OPEN"
+          }
+        ]
+      },
+      {
+        "id": "WS__ALL__SLATE_TO_RULES__CRYSTALLISATION",
+        "scope": "MULTI_SCOPE",
+        "title": "Cristallisation: migration Slate → regles_metier (documents règles) + projection todo par scope",
+        "status": "TODO",
+        "blocking": false,
+        "objectives": [
+          "Définir quand Slate est 'terminé' (critères de sortie)",
+          "Définir le mapping: Workstream/Items → RULE__* / PROC__* / TPL__* / TODO projections",
+          "Exécuter une migration en une passe (batch) pour éviter la dette et la duplication",
+          "Marquer Slate comme obsolète après migration (fichier voué à disparaître)"
+        ],
+        "next_actions": [
+          {
+            "id": "NA__SLATE_MIGRATION__EXIT_CRITERIA",
+            "title": "Définir les critères de sortie (Slate → règles)",
+            "status": "TODO",
+            "depends_on": [],
+            "deliverable": "Critères: data placée, schéma stable, gabarits obligations validés"
+          },
+          {
+            "id": "NA__SLATE_MIGRATION__MAPPING_TABLE",
+            "title": "Établir la table de correspondance (items -> rule_id/procedure/template/todo)",
+            "status": "TODO",
+            "depends_on": [
+              "NA__SLATE_MIGRATION__EXIT_CRITERIA"
+            ],
+            "deliverable": "Table de mapping (IDs stables) + stratégie de déduplication"
+          },
+          {
+            "id": "NA__SLATE_MIGRATION__BATCH_WRITE_RULES",
+            "title": "Écriture batch dans regles_metier (d’un coup) + projection todo par scope",
+            "status": "TODO",
+            "depends_on": [
+              "NA__SLATE_MIGRATION__MAPPING_TABLE"
+            ],
+            "deliverable": "Set de RULE__* + todo (recurring/one_shot) par scope, sans cross-scope"
+          }
+        ]
+      },
+      {
+        "id": "WS__ALL__PORTAL_PROMPT_GENERATION_RULES",
+        "scope": "MULTI_SCOPE",
+        "title": "Règles 'générateurs de prompts' pour portails (CAF/URSSAF/Provigis): sortie bloc copiable",
+        "status": "TODO",
+        "blocking": false,
+        "objective": "Définir une famille de règles métier dont la sortie est un bloc de prompt structuré à copier-coller (humain -> Perplexity ou autre), en résolvant l’URL et le profil numérique depuis data.canonique.profils_numeriques, et en s’appuyant sur la todo (cadence/période/mode).",
+        "constraints": [
+          "Aucun envoi automatique à un LLM externe: la règle génère seulement le prompt (copiable).",
+          "Pas de secrets (mdp/2FA/tokens) dans la data ni dans le prompt.",
+          "Les URLs/profils proviennent uniquement de data.canonique.profils_numeriques (par scope).",
+          "La todo reste déclarative (quoi/quand) : pas d’étapes détaillées dedans.",
+          "Activation conditionnelle: si URL/profil manquant, la règle doit produire un prompt de clarification plutôt que d’inventer."
+        ],
+        "items_to_place": [
+          {
+            "id": "ITEM__ALL__PROMPT_RULES__OUTPUT_CONTRACT",
+            "label": "Contrat de sortie d’un prompt (structure stable)",
+            "target_zone": "regles_metier (plus tard) + guidance runtime",
+            "field_candidates": [
+              "RULE__*__PROMPT__* (à créer plus tard)",
+              "Template de prompt: sections Contexte / URL / Profil / Étapes / Questions"
+            ],
+            "status": "TODO",
+            "notes": "Le prompt doit être rendu en un bloc texte unique, copiable, avec une structure stable. La règle assemble le prompt à partir de la todo + profils numériques."
+          },
+          {
+            "id": "ITEM__ALL__PROMPT_RULES__URL_RESOLUTION",
+            "label": "Résolution URL + profil numérique depuis data.canonique.profils_numeriques",
+            "target_zone": "regles_metier (plus tard)",
+            "field_candidates": [
+              "links[] vers profils_numeriques (type/ref_id) + lookup par kind/service"
+            ],
+            "status": "TODO",
+            "notes": "La règle doit pointer des IDs (profil/service) plutôt que copier des URLs dans todo."
+          }
+        ],
+        "open_design_questions": [
+          {
+            "id": "Q__PROMPT_RULES__TEMPLATE_FIELDS",
+            "question": "Quelles sections obligatoires dans le prompt (Contexte, Objectif, URL, Profil navigateur, Étapes, Questions) et quels champs proviennent de la todo vs data ?",
+            "status": "OPEN"
+          },
+          {
+            "id": "Q__PROMPT_RULES__FAILURE_MODES",
+            "question": "Que faire si l’URL/profil est absent: générer un prompt de clarification (questions) ou bloquer la tâche ?",
+            "status": "OPEN"
+          }
+        ],
+        "schema_impacts": [
+          {
+            "id": "SCHEMA__IMPACT__ALL__PROMPT_OUTPUT_METADATA",
+            "title": "Convention: champ todo.output_kind='PROMPT_BLOCK' et/ou rule.output_kind pour distinguer les règles génératrices de texte",
+            "status": "NEEDED",
+            "change_type": "DESIGN_CONVENTION_OR_SCHEMA_CHANGE",
+            "reason": "Pour que le système sache qu’une règle produit un bloc texte copiable (et non une action interne), il faut une convention/metadata."
+          }
+        ],
+        "next_actions": [
+          {
+            "id": "NA__PROMPT_RULES__DEFINE_OUTPUT_CONTRACT",
+            "title": "Définir le contrat de sortie (format de bloc copiable) + sections minimales",
+            "status": "TODO",
+            "depends_on": [],
+            "deliverable": "Spéc template + exemples (CAF / URSSAF / Provigis) sans contenu sensible"
+          },
+          {
+            "id": "NA__PROMPT_RULES__BIND_TODO_TO_PROFILE_LINKS",
+            "title": "Définir comment une todo référence un profil numérique (links type/ref_id) et comment la règle résout l’URL exacte",
+            "status": "TODO",
+            "depends_on": [
+              "NA__PROMPT_RULES__DEFINE_OUTPUT_CONTRACT"
+            ],
+            "deliverable": "Convention de links + mapping service_kind -> URL"
+          },
+          {
+            "id": "NA__PROMPT_RULES__FIRST_REAL_PROMPT_INGESTION",
+            "title": "Ingestion du premier prompt réel (fourni par l’utilisateur) pour CAF ou URSSAF, puis normalisation template",
+            "status": "TODO",
+            "depends_on": [
+              "NA__PROMPT_RULES__BIND_TODO_TO_PROFILE_LINKS"
+            ],
+            "deliverable": "Prompt normalisé + points de données manquants à combler"
+          }
+        ]
+      }
+    ],
+    "global_risks": [
+      {
+        "id": "RISK__SCHEMA_DRIFT",
+        "title": "Risque de dérive du schéma (ajouts ad-hoc)",
+        "mitigation": "Toute donnée non modélisée doit déclencher une évolution de schéma avant ajout en canonique."
+      },
+      {
+        "id": "RISK__CROSS_SCOPE_LEAK",
+        "title": "Risque de mélange cross-scope",
+        "mitigation": "Toujours stocker par scope; toute agrégation doit être explicitement demandée."
+      },
+      {
+        "id": "RISK__PREMATURE_TODO_RULES",
+        "title": "Risque de projection trop tôt (todo anxiogène / règles fausses)",
+        "mitigation": "Activation conditionnelle obligatoire; todo d’abord uniquement pour obligations réellement actives; règles métier écrites en batch après stabilisation."
+      },
+      {
+        "id": "RISK__FEELING_BASED_PROJECTION",
+        "title": "Risque de projection 'au feeling' par une IA sans triggers explicites",
+        "mitigation": "Définir une convention d’activation/inactivation (triggers) et l’appliquer systématiquement avant toute création de todo."
+      },
+      {
+        "id": "RISK__CREDENTIALS_LEAK",
+        "title": "Risque d’inclusion de secrets (mdp/2FA/tokens) dans les modèles (profils numériques / banque)",
+        "mitigation": "Interdire explicitement le stockage de secrets; n’autoriser que emails/URLs nécessaires; conserver toute info ambiguë en notes/Slate jusqu’à cadrage."
+      }
+    ],
+    "decisions_log": [
+      {
+        "id": "DEC__0002",
+        "title": "Socle obligations commun, activation conditionnelle par scope",
+        "status": "PROPOSED",
+        "details": "Chaque scope embarque la structure (socle) obligations; seules les obligations réellement déclenchées par des faits canoniques génèrent des todo. SASU peut rester dormant tant qu’aucun fait déclencheur n’existe (ex: pas de rémunération, pas de TVA, pas d’évènement fiscal confirmé)."
+      },
+      {
+        "id": "DEC__0003",
+        "title": "Fiscalité: IR en PERSONA; CFE en MICRO/SASU; IS en SASU (latent)",
+        "status": "PROPOSED",
+        "details": "Séparer impôt personnel (IR) et fiscalité d’activité/entité (MICRO/SASU). Ne pas créer de tâches TVA/VL si non applicables; ne pas activer IS/CFE SASU sans évènement/fait déclencheur confirmé."
+      },
+      {
+        "id": "DEC__0004",
+        "title": "Slate = fichier de transition voué à disparaître après cristallisation",
+        "status": "PROPOSED",
+        "details": "Slate sert à projeter plan/dépendances et préparer une écriture batch dans regles_metier + projection todo. Après migration, Slate est obsolète."
+      },
+      {
+        "id": "DEC__0007",
+        "title": "Frais fixes / abonnements: canonique après schéma, pas en scope_specifique",
+        "status": "PROPOSED",
+        "details": "Les frais fixes et abonnements destinés à la compta et aux règles doivent vivre en data.canonique (par scope) après ajout d’un modèle dans le schéma (extension de banque ou domaine dédié). Éviter le stockage durable en scope_specifique (archives) sauf trace non modélisée."
+      },
+      {
+        "id": "DEC__0008",
+        "title": "Module comptable: famille de règles homologues par scope (pas de règle globale)",
+        "status": "PROPOSED",
+        "details": "La comptabilité (classification, export, contrôles) sera modélisée comme une famille de règles RULE__* déclinées par scope (PERSONA/MICRO/SASU), avec pointeurs vers les entités canoniques (frais récurrents, profils numériques)."
+      },
+      {
+        "id": "DEC__0009",
+        "title": "Obligations: modèles de période + règles génératrices de prompt (bloc copiable)",
+        "status": "PROPOSED",
+        "details": "Certaines obligations sont trimestrielles mais non alignées sur le trimestre civil (CAF: 3 mois glissants) ou pilotées par le portail (Provigis: demandes variables). La todo décrit cadence + modèle de période; la règle métier résout URL/profil depuis profils_numeriques et génère un prompt structuré copiable (humain -> LLM externe), sans envoi automatique."
+      }
+    ]
+  }
+}

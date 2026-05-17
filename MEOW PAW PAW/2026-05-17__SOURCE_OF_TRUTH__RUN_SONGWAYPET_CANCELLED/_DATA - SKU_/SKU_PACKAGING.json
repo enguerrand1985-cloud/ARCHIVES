@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "document_type": "sku_packaging",
+    "document_role": "packaged_dimensions_and_packaging_selection_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json",
+      "_HUB - DASHBOARD_/DATA HUB.xlsx"
+    ]
+  },
+  "packaging_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "packaging_option_id": "PKG_OPP_ZIP_EUROSLOT_07x28",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "packaged_length_cm": 28,
+      "packaged_width_cm": 7,
+      "packaged_height_cm": 1.8,
+      "packaged_weight_g": 14.61,
+      "measurement_status": "confirmed",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-STD-MAT-V1/packaged_specs_truth"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3,
+          "source_columns": [
+            "packaging_option_id",
+            "carton_option_id",
+            "packaged_length_cm",
+            "packaged_width_cm",
+            "packaged_height_cm",
+            "packaged_weight_g",
+            "packaged_measurement_status"
+          ]
+        }
+      ],
+      "legacy_sku_packaged_specs_truth": {
+        "length_cm": 28,
+        "width_cm": 7,
+        "height_cm": 1.8,
+        "packaged_weight_g": 14.61,
+        "measurement_status": "confirmed"
+      }
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-VAR-MAT-V1/packaged_specs_truth"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4,
+          "source_columns": [
+            "packaging_option_id",
+            "carton_option_id",
+            "packaged_length_cm",
+            "packaged_width_cm",
+            "packaged_height_cm",
+            "packaged_weight_g",
+            "packaged_measurement_status"
+          ]
+        }
+      ]
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "packaged_length_cm": 35,
+      "packaged_width_cm": 28,
+      "packaged_height_cm": 4.2,
+      "packaged_weight_g": 87,
+      "measurement_status": "confirmed",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-XL-MAT-V1/packaged_specs_truth"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5,
+          "source_columns": [
+            "packaging_option_id",
+            "carton_option_id",
+            "packaged_length_cm",
+            "packaged_width_cm",
+            "packaged_height_cm",
+            "packaged_weight_g",
+            "packaged_measurement_status"
+          ]
+        }
+      ],
+      "legacy_sku_packaged_specs_truth": {
+        "length_cm": 35,
+        "width_cm": 28,
+        "height_cm": 4.2,
+        "packaged_weight_g": 87,
+        "measurement_status": "confirmed"
+      }
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "packaging_option_id": "PKG_BALL_CLEAR_SEALED",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BOU-S-MAT-CAT-V1/packaged_specs_truth"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6,
+          "source_columns": [
+            "packaging_option_id",
+            "carton_option_id",
+            "packaged_length_cm",
+            "packaged_width_cm",
+            "packaged_height_cm",
+            "packaged_weight_g",
+            "packaged_measurement_status"
+          ]
+        }
+      ]
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1/packaged_specs_truth"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7,
+          "source_columns": [
+            "packaging_option_id",
+            "carton_option_id",
+            "packaged_length_cm",
+            "packaged_width_cm",
+            "packaged_height_cm",
+            "packaged_weight_g",
+            "packaged_measurement_status"
+          ]
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "packaging_option_id": "PKG_OPP_ZIP_EUROSLOT_12x28",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "packaged_length_cm": 28,
+      "packaged_width_cm": 12,
+      "packaged_height_cm": 6,
+      "packaged_weight_g": 37.38,
+      "measurement_status": "confirmed",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1/packaged_specs_truth"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8,
+          "source_columns": [
+            "packaging_option_id",
+            "carton_option_id",
+            "packaged_length_cm",
+            "packaged_width_cm",
+            "packaged_height_cm",
+            "packaged_weight_g",
+            "packaged_measurement_status"
+          ]
+        }
+      ],
+      "legacy_sku_packaged_specs_truth": {
+        "length_cm": 28,
+        "width_cm": 12,
+        "height_cm": 6,
+        "packaged_weight_g": 37.38,
+        "measurement_status": "confirmed"
+      }
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "carton_option_id": "CTN_SHIP_42x42x52_UNIQUE",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1/packaged_specs_truth"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9,
+          "source_columns": [
+            "packaging_option_id",
+            "carton_option_id",
+            "packaged_length_cm",
+            "packaged_width_cm",
+            "packaged_height_cm",
+            "packaged_weight_g",
+            "packaged_measurement_status"
+          ]
+        }
+      ]
+    }
+  }
+}

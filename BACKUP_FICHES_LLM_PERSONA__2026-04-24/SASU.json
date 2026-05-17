@@ -1,0 +1,1312 @@
+{
+  "meta": {
+    "document_type": "LLM_SCOPE_FILE",
+    "document_role": "ADMINISTRATIVE",
+    "version": "1.1.2",
+    "created_at": "",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-03-26T01:30:00+01:00",
+    "tags": [
+      "SASU",
+      "TRADE_VISION"
+    ],
+    "change_log": [
+      {
+        "id": "CHG__SASU__PROFILS_NUMERIQUES__PORTAILS_ADMIN",
+        "at": "2026-01-23T18:14:20.019798+01:00",
+        "summary": "Ajout des portails CAF et URSSAF (auto-entrepreneur) dans profils_numeriques (profil admin).",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__SASU__BANQUE__1_1_0",
+        "at": "2026-03-26T01:00:00+01:00",
+        "summary": "Normalisation du compte Qonto vers le modèle banque convergent et ajout des frais fixes Qonto et Les Tricolores.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__SASU__BANQUE__1_1_1",
+        "at": "2026-03-26T01:15:00+01:00",
+        "summary": "Suppression de l'IBAN Qonto transitoire; conservation de l'IBAN principal se terminant par 547.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__SASU__IP__1_1_2",
+        "at": "2026-03-26T01:30:00+01:00",
+        "summary": "Ajout d'un dossier IP indiquant Amazon Brand Registry valide et marque acceptee.",
+        "breaking_change": false
+      }
+    ],
+    "migrated_from_version": "",
+    "scope_variants": {
+      "BASE": {
+        "description": "Socle commun de structure et de domaines (PERSONA/MICRO).",
+        "data_canonique_domains": [
+          "identite",
+          "personnes",
+          "banque",
+          "social",
+          "assurances",
+          "vehicules",
+          "activite",
+          "fiscalite",
+          "documents_index",
+          "profils_numeriques"
+        ],
+        "llm_contract": {
+          "required_playbooks_min": [
+            "PLAYBOOK__ONBOARDING",
+            "PLAYBOOK__DATA_LOOKUP",
+            "PLAYBOOK__MAINTENANCE",
+            "PLAYBOOK__OUTPUT_JSON",
+            "PLAYBOOK__REBUILD_TODO"
+          ],
+          "required_policies_min": [
+            "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+            "POLICY__ARCHIVES_NOT_CANONICAL",
+            "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+            "POLICY__SENSITIVE_DATA_NO_SECRETS",
+            "POLICY__MAINTENANCE_MODE",
+            "POLICY__UPDATE_OUTPUT_MODES",
+            "POLICY__DEPENDENCY_POINTERS",
+            "POLICY__OVERWRITE_BY_ID"
+          ]
+        }
+      }
+    },
+    "type_defs": {
+      "ValueObject": {
+        "value": null,
+        "policy": "",
+        "doit_exister": true
+      },
+      "DocumentIndexItem": {
+        "id": "",
+        "doc_id": "",
+        "filename": "",
+        "sha256": "",
+        "pages": 0,
+        "category": "",
+        "tags": []
+      }
+    }
+  },
+  "scope_header": {
+    "scope": "SASU",
+    "parent_scope": null,
+    "child_scopes": [
+      "QONTO",
+      "INPI",
+      "LES_TRICOLORES"
+    ]
+  },
+  "llm_contract": {
+    "allow_inference": false,
+    "allow_merge": false,
+    "routing": null,
+    "policies": [
+      {
+        "id": "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+        "title": "Scope fermé par défaut",
+        "description": "Sans demande explicite, pas d’inférence cross-scope. Toute agrégation cross-scope doit être explicitement demandée.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__ARCHIVES_NOT_CANONICAL",
+        "title": "Archives non-canoniques",
+        "description": "Les archives ne sont jamais une source de vérité si une donnée canonique existe. Lecture des archives uniquement sur demande explicite.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+        "title": "Canonique propre (pas de preuves/sources)",
+        "description": "Interdiction globale des clés de provenance/preuve (sources, evidence, source_ref, extraction, etc.). Le fichier déclare les faits.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__SENSITIVE_DATA_NO_SECRETS",
+        "title": "Données sensibles: pas de secrets",
+        "description": "Les secrets d'authentification (CVV, mots de passe, codes 2FA) ne sont jamais stockés. Utiliser value=null + policy='masked_not_stored' si besoin.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__MAINTENANCE_MODE",
+        "title": "Maintenance contrôlée",
+        "description": "Doctrine MAINTENANCE: une IA peut proposer des modifications d'un fichier de scope uniquement sur instruction explicite de l'utilisateur (ex: 'mets à jour la fiche').",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__UPDATE_OUTPUT_MODES",
+        "title": "Modes de sortie d’update",
+        "description": "Objectif: permettre des mises à jour multi-IA (Copilot, GPT, Claude, Gemini, etc.) avec des sorties JSON exploitables.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__DEPENDENCY_POINTERS",
+        "title": "Pointeurs de dépendances",
+        "description": "Les dépendances entre data, règles moteur, et todo sont exprimées via des pointeurs stables (IDs).",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__OVERWRITE_BY_ID",
+        "title": "Overwrite in-place par id",
+        "description": "Politique d'overwrite: une mise à jour d'une entité canonique se fait par remplacement des champs sur le même id (overwrite in-place). Interdiction de suppression d'entités canoniques en maintenance standard: préférer l'overwrite sur id existant pour refléter le nouvel état sans conserver d'ancienne occurrence.",
+        "enabled": true
+      }
+    ],
+    "playbooks": [
+      {
+        "id": "PLAYBOOK__ONBOARDING",
+        "title": "Onboarding / compréhension du fichier",
+        "steps": [
+          "Lire meta",
+          "Lire scope_header",
+          "Lire llm_contract (policies + playbooks)",
+          "Lire mini_index (navigation)",
+          "Lire regles_metier.rules_engine (si objectif action/calcul)",
+          "Lire data.canonique (faits)",
+          "Ne lire data.scope_specifique.archives que sur demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__DATA_LOOKUP",
+        "title": "Recherche factuelle",
+        "steps": [
+          "Lire data.canonique en priorité",
+          "Utiliser documents_index pour trouver les pièces",
+          "Ignorer archives sauf demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__MAINTENANCE",
+        "title": "Maintenance / mise à jour contrôlée",
+        "steps": [
+          "Vérifier instruction explicite de mise à jour (sinon rester en lecture/planification)",
+          "Appliquer triage (ingestion): identifier faits à mettre à jour, demander les infos manquantes si nécessaire",
+          "Mettre à jour data.canonique par overwrite in-place (match par id), sans suppression",
+          "Rebuild contrôlé de todo: régénérer/ajuster les tâches liées via links et/ou rule_id; appliquer rollover recurring si applicable",
+          "Produire une sortie JSON exploitable (MERGE_PATCH par défaut) + demander validation utilisateur"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__OUTPUT_JSON",
+        "title": "Sortie JSON exploitable (update)",
+        "steps": [
+          "Choisir le mode de sortie: MERGE_PATCH_RFC7396 (défaut) / FULL_REPLACE (fallback) / PATCH_RFC6902 (avancé)",
+          "Produire un bloc JSON unique sans prose mélangée",
+          "Inclure mode, target_filename, scope, payload"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__REBUILD_TODO",
+        "title": "Rebuild contrôlé de todo",
+        "steps": [
+          "Identifier les entités canoniques modifiées (ids)",
+          "Retrouver les tâches todo impactées via links (ref_id) et/ou rule_id",
+          "Mettre à jour/remplacer les tâches concernées; conserver les autres",
+          "Appliquer la règle de rollover pour recurring (DONE ⇒ next_run_at recalculé ⇒ PLANNED)"
+        ]
+      }
+    ],
+    "hints": [
+      "Fiche LLM autonome. Respecte strictement le schéma. Scope fermé par défaut: pas d’inférence ou fusion cross-scope sans demande explicite. data.canonique est la source de vérité; archives non canoniques (lecture sur demande). Ne jamais inventer de valeurs absentes. Ne jamais stocker de secrets (CVV/mdp/2FA). Mises à jour uniquement sur instruction explicite + validation: overwrite in-place par id (pas de suppression) et rebuild contrôlé de todo via rule_id et todo.links (liens vers ids canoniques, jamais cross-scope). Sortie obligatoire en JSON exploitable: MERGE_PATCH par défaut, fallback FULL_REPLACE si nécessaire.",
+      ""
+    ]
+  },
+  "document_header": {
+    "title": "TRADE VISION",
+    "description": "SASU - surcouche entreprise",
+    "owner": null,
+    "legal_entity": "TRADE VISION"
+  },
+  "mini_index": {
+    "entries": [
+      {
+        "id": "IDX__RULES_ENGINE",
+        "title": "Règles moteur",
+        "path": "regles_metier.rules_engine",
+        "when_to_use": "Quand il faut calculer, planifier, vérifier une obligation, préparer une action LLM",
+        "priority": 1
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE",
+        "title": "Données canoniques (source de vérité)",
+        "path": "data.canonique",
+        "when_to_use": "Quand il faut répondre factuellement, remplir un formulaire, vérifier une information",
+        "priority": 2
+      },
+      {
+        "id": "IDX__TODO",
+        "title": "File d’exécution LLM (projection)",
+        "path": "todo",
+        "when_to_use": "Quand il faut lister les actions à faire (par le LLM), suivre un cycle, préparer une exécution",
+        "priority": 3
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__BANQUE",
+        "path": "data.canonique.banque",
+        "priority": 10,
+        "title": "Banque",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PERSONNES",
+        "path": "data.canonique.personnes",
+        "priority": 11,
+        "title": "Personnes & identité",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__SOCIAL",
+        "path": "data.canonique.social",
+        "priority": 12,
+        "title": "Social",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__ASSURANCES",
+        "path": "data.canonique.assurances",
+        "priority": 13,
+        "title": "Assurances",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__DOCS",
+        "path": "data.canonique.documents_index",
+        "priority": 14,
+        "title": "Documents index",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PROFILS_NUMERIQUES",
+        "title": "Profils numériques (suite bureautique)",
+        "path": "data.canonique.profils_numeriques",
+        "when_to_use": "Accès aux comptes (Google/Microsoft/O365), services et URLs (suite bureautique).",
+        "priority": 25
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__ENTREPRISE",
+        "path": "data.canonique.entreprise",
+        "priority": 20,
+        "title": "Entreprise (SASU)",
+        "when_to_use": "SIREN/SIRET/RCS/TVA/capital/siège"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__DOMICILIATION",
+        "path": "data.canonique.domiciliation",
+        "priority": 21,
+        "title": "Domiciliation",
+        "when_to_use": "Adresse siège, prestataire, contrat"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__DGFIP",
+        "path": "data.canonique.dgfip",
+        "priority": 22,
+        "title": "DGFiP / SIE",
+        "when_to_use": "Contacts SIE, régimes IS/TVA"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__IP",
+        "path": "data.canonique.ip",
+        "priority": 23,
+        "title": "INPI / Propriété intellectuelle",
+        "when_to_use": "Marques, dépôts, dossiers"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__CUSTOMS",
+        "path": "data.canonique.customs",
+        "priority": 24,
+        "title": "Douanes / EORI",
+        "when_to_use": "EORI et éléments douane"
+      },
+      {
+        "id": "IDX__ARCHIVES",
+        "title": "Archives (non-canoniques)",
+        "path": "data.scope_specifique.archives",
+        "when_to_use": "Uniquement si explicitement demandé, ou pour audit/historique",
+        "priority": 99
+      }
+    ],
+    "legacy_paths": []
+  },
+  "todo": {
+    "recurring": [],
+    "one_shot": []
+  },
+  "notes": [],
+  "data": {
+    "canonique": {
+      "identite": {
+        "owner_display_name": "TRADE-VISION",
+        "langue": "fr",
+        "timezone": "Europe/Paris"
+      },
+      "personnes": [
+        {
+          "id": "PERSON__SASU__PRESIDENT__01",
+          "role": "PRESIDENT",
+          "nom_legal_complet": {
+            "value": "KALFAIAN Enguerrand Henri Djo-Son Griffin"
+          },
+          "date_naissance": {
+            "value": "1985-09-08"
+          },
+          "lieu_naissance": {
+            "value": "Séoul, Corée"
+          },
+          "nationalite": {
+            "value": "française"
+          },
+          "contacts": {
+            "emails": [
+              {
+                "value": "Enguerrand.kalfaian@outlook.com",
+                "label": "administratif"
+              }
+            ],
+            "telephones": [
+              {
+                "value": "06 25 29 13 18",
+                "label": "mobile"
+              }
+            ]
+          },
+          "adresses": {
+            "principale": {
+              "value": "15 rue du Grenier Saint-Lazare, 75003 Paris"
+            },
+            "secondaire": {
+              "value": "10 allée Diane de Poitiers, 75019 Paris"
+            }
+          }
+        }
+      ],
+      "entreprise": {
+        "id": "ENT__SASU__TRADE_VISION",
+        "denomination": {
+          "value": "TRADE-VISION"
+        },
+        "contacts": {
+          "emails": [
+            {
+              "value": "djoson@meowpawpaw.onmicrosoft.com",
+              "label": "entreprise"
+            }
+          ],
+          "telephones": [
+            {
+              "value": "",
+              "label": "standard"
+            }
+          ]
+        },
+        "adresses": {
+          "siege_social": {
+            "value": "61 rue de Lyon 75012 Paris"
+          },
+          "domiciliation": {
+            "value": "61 rue de Lyon 75012 Paris"
+          }
+        },
+        "forme_juridique": {
+          "value": "Société par actions simplifiée (Société à associé unique)",
+          "policy": ""
+        },
+        "siren": {
+          "value": "994492353",
+          "policy": ""
+        },
+        "siret_siege": {
+          "value": "99449235300010",
+          "policy": ""
+        },
+        "rcs_ville": {
+          "value": "Paris",
+          "policy": ""
+        },
+        "numero_rcs": {
+          "value": "994 492 353",
+          "policy": ""
+        },
+        "capital_social_eur": {
+          "value": "2 000,00",
+          "policy": ""
+        },
+        "date_creation": {
+          "value": "2025-12-11",
+          "policy": ""
+        },
+        "siege_adresse": {
+          "value": "61 rue de Lyon 75012 Paris",
+          "policy": ""
+        },
+        "tva_intracom": {
+          "value": "",
+          "policy": ""
+        },
+        "date_debut_activite": {
+          "value": "2025-11-25"
+        }
+      },
+      "banque": {
+        "primary_account_id": "BANK__SASU__QONTO",
+        "accounts": [
+          {
+            "id": "BANK__SASU__QONTO",
+            "provider": "Qonto",
+            "label": "Compte professionnel Qonto",
+            "holder_name": null,
+            "country": "FR",
+            "currency": "EUR",
+            "account_kind": "checking",
+            "ownership_kind": "business_attached",
+            "status": "active",
+            "ibans": [
+              {
+                "id": "IBAN__SASU__QONTO__02",
+                "iban_raw": "FR7616958000012144873237547",
+                "iban_formatted": "FR76 1695 8000 0121 4487 3237 547",
+                "currency": "EUR",
+                "kind": "checking"
+              }
+            ],
+            "bics": [
+              {
+                "bic": "QNTOFRP1XXX"
+              }
+            ],
+            "account_numbers": {
+              "bank_code": null,
+              "branch_code": null,
+              "account_number": null,
+              "rib_key": null
+            },
+            "domiciliation": {
+              "label": null,
+              "address": null
+            },
+            "cards": [],
+            "tags": [],
+            "notes": ""
+          }
+        ],
+        "fixed_commitments": [
+          {
+            "id": "FIXED__SASU__LES_TRICOLORES",
+            "label": "Les Tricolores",
+            "category": "OTHER_FIXED",
+            "subcategory": "",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 16.09,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__SASU__QONTO",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "Les Tricolores",
+              "kind": "OTHER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "SASU",
+            "notes": "Montant declaratif fourni par l'utilisateur."
+          },
+          {
+            "id": "FIXED__SASU__QONTO__CARD_FEE",
+            "label": "Frais de carte Qonto",
+            "category": "BANKING_FEE",
+            "subcategory": "CARD_FEE",
+            "nature": "BANK_FEE",
+            "amount": {
+              "value": 2.4,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__SASU__QONTO",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "Qonto",
+              "kind": "BANK"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "SASU",
+            "notes": "Montant declaratif fourni par l'utilisateur."
+          }
+        ],
+        "recurring_transfers": [],
+        "cashflow_snapshots": []
+      },
+      "activite": {
+        "statut": {
+          "value": "SASU"
+        },
+        "code_ape": {
+          "value": "4791B"
+        },
+        "description": {
+          "value": ""
+        }
+      },
+      "fiscalite": {
+        "residence_fiscale_pays": {
+          "value": "FR"
+        }
+      },
+      "documents_index": [
+        {
+          "id": "DOC__SASU__doc_90234_attestation_domiciliation_pdf_ac4849fe",
+          "doc_id": "doc_90234_attestation_domiciliation_pdf_ac4849fe",
+          "filename": "90234-attestation-domiciliation.pdf",
+          "sha256": "0527b0984a1e42674488e259515a626a8b814f8097f72ff12cec24017aff8c75",
+          "pages": 1,
+          "category": "domiciliation",
+          "tags": [
+            "domiciliation"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_90234_contract_pdf_pdf_f4afa3e7",
+          "doc_id": "doc_90234_contract_pdf_pdf_f4afa3e7",
+          "filename": "90234-contract-pdf.pdf",
+          "sha256": "495ebabedba3afc535e042974b7376271ba812a565ff7d9ad97e4f2a05dda80d",
+          "pages": 15,
+          "category": "domiciliation",
+          "tags": [
+            "domiciliation"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_adresse_pdf_190c0f43",
+          "doc_id": "doc_adresse_pdf_190c0f43",
+          "filename": "Adresse.pdf",
+          "sha256": "8b579a11d0393d71b2ae11f5fba5de8ffbbf9d57ddaec8c972ea2ec863b3b90b",
+          "pages": 1,
+          "category": "other",
+          "tags": [
+            "other"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_dgfip_pdf_94871061",
+          "doc_id": "doc_dgfip_pdf_94871061",
+          "filename": "DGFIP.pdf",
+          "sha256": "f995015d6665fed3593725817709fa579f1666f533a5f1a7b5af9902e71a838d",
+          "pages": 8,
+          "category": "tax.dgfip",
+          "tags": [
+            "tax.dgfip"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_document_de_synthese_j00194036109_be_valide_pdf_fb485cd5",
+          "doc_id": "doc_document_de_synthese_j00194036109_be_valide_pdf_fb485cd5",
+          "filename": "Document_de_Synthese_J00194036109_BE_valide.pdf",
+          "sha256": "ed8850e1650807642a86b52b3956c911a3790872a44816d7117980ce6177d00b",
+          "pages": 2,
+          "category": "beneficial_ownership",
+          "tags": [
+            "beneficial_ownership"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_domiciliation_pro_pdf_3a139116",
+          "doc_id": "doc_domiciliation_pro_pdf_3a139116",
+          "filename": "Domiciliation_pro.pdf",
+          "sha256": "afa9686d5e50fd2b2f4dd2c4f06e8fc942bec803dcd3b30dfd26780187733d22",
+          "pages": 18,
+          "category": "domiciliation",
+          "tags": [
+            "domiciliation"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_eori_autorisation_pdf_522aa593",
+          "doc_id": "doc_eori_autorisation_pdf_522aa593",
+          "filename": "EORI autorisation.pdf",
+          "sha256": "3feaede04ba519d74b83131d0e1f5178f46d0cd5b72a37b44d221a3d10e0205e",
+          "pages": 1,
+          "category": "customs.eori",
+          "tags": [
+            "customs.eori"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_extrait_kbis_pdf_b33358ce",
+          "doc_id": "doc_extrait_kbis_pdf_b33358ce",
+          "filename": "EXTRAIT KBIS.pdf",
+          "sha256": "f2c44d4d4ca344fb332830dfe99bfdfe81cd83110f5d47d5a17e6f4a68f3316f",
+          "pages": 2,
+          "category": "legal_identity.kbis",
+          "tags": [
+            "legal_identity.kbis"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_export_portail_data_les_tricolores_du_28_11_2025_pdf_82cf40c7",
+          "doc_id": "doc_export_portail_data_les_tricolores_du_28_11_2025_pdf_82cf40c7",
+          "filename": "Export_Portail_Data_LES_TRICOLORES_Du_28-11-2025.pdf",
+          "sha256": "fd5a855718194e6fcfdeb2337be1e5ef0b580db3e44c100eecfa3993287534a5",
+          "pages": 9,
+          "category": "domiciliation",
+          "tags": [
+            "domiciliation"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_facture_pdf_0b6f4733",
+          "doc_id": "doc_facture_pdf_0b6f4733",
+          "filename": "Facture.pdf",
+          "sha256": "95b31982f01767c3cd62043b97a19ae7fbd7bbcc65fb4c19109fb2f3789073aa",
+          "pages": 2,
+          "category": "billing",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_iban_trade_vision_pdf_f61f2d97",
+          "doc_id": "doc_iban_trade_vision_pdf_f61f2d97",
+          "filename": "IBAN TRADE-VISION.pdf",
+          "sha256": "5fd6b5c6a67442da679081f14f99964cb186ca61d9ca5fe964ea26a042a7175a",
+          "pages": 1,
+          "category": "banking",
+          "tags": [
+            "banking"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_inpi_recipice_marque_pdf_444d3851",
+          "doc_id": "doc_inpi_recipice_marque_pdf_444d3851",
+          "filename": "INPI_RECIPICE_Marque.pdf",
+          "sha256": "1affc718b3b23b0de6ab8f08e93e87d66d9c2246ae5542ca569e9ed46743f8ca",
+          "pages": 2,
+          "category": "ip.inpi",
+          "tags": [
+            "ip.inpi"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_liste_des_souscripteurs_pdf_2d799ca9",
+          "doc_id": "doc_liste_des_souscripteurs_pdf_2d799ca9",
+          "filename": "Liste des souscripteurs.pdf",
+          "sha256": "ce23d49639988888f35a8de7384448860b2606beede4d1f2579435d1405ba42b",
+          "pages": 1,
+          "category": "company_formation",
+          "tags": [
+            "company_formation"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_recepisse_de_depot_d_actes_pdf_0a3d2ae1",
+          "doc_id": "doc_recepisse_de_depot_d_actes_pdf_0a3d2ae1",
+          "filename": "RECEPISSE DE DEPOT D'ACTES.pdf",
+          "sha256": "0676720a3d25cffcfd45a5db94856f7764ff4c3441cb6cc844996f312197b389",
+          "pages": 1,
+          "category": "company_formation",
+          "tags": [
+            "company_formation"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_registre_des_b_n_ficiaires_effectifs_pdf_797577bf",
+          "doc_id": "doc_registre_des_b_n_ficiaires_effectifs_pdf_797577bf",
+          "filename": "Registre des bénéficiaires effectifs.pdf",
+          "sha256": "8736d483a1b5cb66acce721874bb6f44c0d1a50843c72f9a143f384df9917e24",
+          "pages": 1,
+          "category": "beneficial_ownership",
+          "tags": [
+            "beneficial_ownership"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_trade_vision_status_pdf_0870ff28",
+          "doc_id": "doc_trade_vision_status_pdf_0870ff28",
+          "filename": "TRADE - Vision_STATUS.pdf",
+          "sha256": "03fc2339d6938e71be8e2029231a8805e89baf469a4008475606711f06fc266e",
+          "pages": 7,
+          "category": "legal_documents.statutes",
+          "tags": [
+            "legal_documents.statutes"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_trade_vision_compte_principal_iban_fr_pdf_7f8cbc27",
+          "doc_id": "doc_trade_vision_compte_principal_iban_fr_pdf_7f8cbc27",
+          "filename": "TRADE-VISION - Compte principal-iban-fr.pdf",
+          "sha256": "5fd6b5c6a67442da679081f14f99964cb186ca61d9ca5fe964ea26a042a7175a",
+          "pages": 1,
+          "category": "banking",
+          "tags": [
+            "banking"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_certificat_de_depot_pdf_47bdf062",
+          "doc_id": "doc_certificat_de_depot_pdf_47bdf062",
+          "filename": "certificat_de_depot.pdf",
+          "sha256": "ad322289d7141b8113807d251526e7efd96da8adde32406f64e491c0c131f1a5",
+          "pages": 1,
+          "category": "company_formation",
+          "tags": [
+            "company_formation"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_forestdl_iban_trade_vision_1188_enguerrand_kalfaian_1_2_iban_fr_pdf_29846785",
+          "doc_id": "doc_forestdl_iban_trade_vision_1188_enguerrand_kalfaian_1_2_iban_fr_pdf_29846785",
+          "filename": "forestdl_iban_trade-vision-1188-enguerrand-kalfaian-1-2-iban-fr.pdf",
+          "sha256": "48b310bccc7a08be79f004ae7a7c5ee102383130923cda2333a481df2d2e9591",
+          "pages": 1,
+          "category": "banking",
+          "tags": [
+            "banking"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_fr_namirial_tan_pdf_acf5987a",
+          "doc_id": "doc_fr_namirial_tan_pdf_acf5987a",
+          "filename": "fr_Namirial_TAn.pdf",
+          "sha256": "386f30e712c9a1c70f5fae613dc269b71f42ffdfdaee04009be357029c829dad",
+          "pages": 9,
+          "category": "other",
+          "tags": [
+            "other"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_fr_privacystate_pdf_fb68c2ef",
+          "doc_id": "doc_fr_privacystate_pdf_fb68c2ef",
+          "filename": "fr_PrivacyState.pdf",
+          "sha256": "9e7e56c702a50fc7a1e5b35dacc529248da1c2a5b1ac6d67846d6973ce245ae0",
+          "pages": 23,
+          "category": "other",
+          "tags": [
+            "other"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_recapitulatif_transaction5214718_version1_pdf_bf8d0e3c",
+          "doc_id": "doc_recapitulatif_transaction5214718_version1_pdf_bf8d0e3c",
+          "filename": "recapitulatif_transaction5214718_version1.pdf",
+          "sha256": "1affc718b3b23b0de6ab8f08e93e87d66d9c2246ae5542ca569e9ed46743f8ca",
+          "pages": 2,
+          "category": "ip.inpi",
+          "tags": [
+            "ip.inpi"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_recu_de_remboursement_pdf_d9ae2dcc",
+          "doc_id": "doc_recu_de_remboursement_pdf_d9ae2dcc",
+          "filename": "recu_de_remboursement.pdf",
+          "sha256": "099c96ee2349ded15c593cbe50fc0554d6dca5c4a6a0db10ea482a6fe2f81d8c",
+          "pages": 1,
+          "category": "billing",
+          "tags": [
+            "billing"
+          ]
+        },
+        {
+          "id": "DOC__SASU__doc_ticket_d_pot_de_marque_pdf_4bf26859",
+          "doc_id": "doc_ticket_d_pot_de_marque_pdf_4bf26859",
+          "filename": "ticket_dépot de marque.pdf",
+          "sha256": "dde2bd71afe154a6108b3aa375801b64c04aa80c063842eed07618d4c51c0524",
+          "pages": 1,
+          "category": "ip.inpi",
+          "tags": [
+            "ip.inpi"
+          ]
+        }
+      ],
+      "social": {
+        "carte_vitale": {
+          "numero": {
+            "value": "",
+            "policy": ""
+          },
+          "regime": {
+            "value": "",
+            "policy": ""
+          },
+          "pays": {
+            "value": "FR",
+            "policy": ""
+          }
+        }
+      },
+      "assurances": {
+        "habitation": [
+          {
+            "id": "",
+            "compagnie": {
+              "value": "",
+              "policy": ""
+            },
+            "produit": {
+              "value": "",
+              "policy": ""
+            },
+            "reference_contrat": {
+              "value": "",
+              "policy": ""
+            },
+            "adresse_rattachee": {
+              "value": "",
+              "policy": ""
+            },
+            "contact": {
+              "email": {
+                "value": "",
+                "policy": ""
+              },
+              "telephone": {
+                "value": "",
+                "policy": ""
+              },
+              "adresse_postale": {
+                "value": "",
+                "policy": ""
+              }
+            },
+            "dates": {
+              "date_effet": {
+                "value": "",
+                "policy": ""
+              },
+              "date_expiration": {
+                "value": "",
+                "policy": ""
+              }
+            }
+          }
+        ],
+        "vehicule": [
+          {
+            "id": "",
+            "compagnie": {
+              "value": "",
+              "policy": ""
+            },
+            "produit": {
+              "value": "",
+              "policy": ""
+            },
+            "numero_contrat": {
+              "value": "",
+              "policy": ""
+            },
+            "numero_societaire": {
+              "value": "",
+              "policy": ""
+            },
+            "vehicule": {
+              "type": {
+                "value": "",
+                "policy": ""
+              },
+              "marque": {
+                "value": "",
+                "policy": ""
+              },
+              "modele": {
+                "value": "",
+                "policy": ""
+              },
+              "immatriculation": {
+                "value": "",
+                "policy": ""
+              },
+              "usage": {
+                "value": "",
+                "policy": ""
+              }
+            },
+            "dates": {
+              "date_effet": {
+                "value": "",
+                "policy": ""
+              },
+              "date_expiration": {
+                "value": "",
+                "policy": ""
+              }
+            }
+          }
+        ]
+      },
+      "vehicules": [
+        {
+          "id": "",
+          "type": "",
+          "marque": "",
+          "modele": "",
+          "immatriculation": "",
+          "usage": ""
+        }
+      ],
+      "domiciliation": {
+        "id": "DOM__SASU__LES_TRICOLORES__01",
+        "prestataire": {
+          "value": "LES TRICOLORES",
+          "policy": ""
+        },
+        "adresse": {
+          "value": "61 rue de Lyon 75012 Paris",
+          "policy": ""
+        },
+        "date_debut": {
+          "value": "2025-10-29",
+          "policy": ""
+        },
+        "date_fin": {
+          "value": "",
+          "policy": ""
+        },
+        "reference_contrat": {
+          "value": "",
+          "policy": ""
+        }
+      },
+      "dgfip": {
+        "id": "DGFIP__SASU__PARIS12E__01",
+        "sie": {
+          "nom": {
+            "value": "Service des Impôts des Entreprises PARIS 12E — Centre des Finances Publiques",
+            "policy": ""
+          },
+          "adresse": {
+            "value": "27 bis rue des Meuniers, 75602 Paris Cedex 12",
+            "policy": ""
+          },
+          "telephone": {
+            "value": "01 44 74 26 34",
+            "policy": ""
+          },
+          "email": {
+            "value": "sie.paris-12e@dgfip.finances.gouv.fr",
+            "policy": ""
+          }
+        },
+        "regimes": {
+          "impot_societes": {
+            "value": "RSI - Réel simplifié d'imposition",
+            "policy": ""
+          },
+          "tva": {
+            "value": "RFB - Franchise en base",
+            "policy": ""
+          }
+        }
+      },
+      "ip": {
+        "id": "IP__SASU__INPI__01",
+        "marques": [
+          {
+            "id": "TRADEMARK__SASU__MEOW_PAW_PAW__01",
+            "name": {
+              "value": "Meow Paw Paw"
+            },
+            "application_number": {
+              "value": "5214718"
+            },
+            "filing_date": {
+              "value": "2026-01-07"
+            },
+            "nice_classes": [
+              "28"
+            ],
+            "fees_eur": {
+              "value": "190"
+            }
+          }
+        ],
+        "dossiers_inpi": [
+          {
+            "id": "IPDOSSIER__SASU__AMAZON_BRAND_REGISTRY__01",
+            "program": {
+              "value": "amazon_brand_registry"
+            },
+            "marque": {
+              "value": "Meow Paw Paw"
+            },
+            "status": {
+              "value": "validated_accepted"
+            },
+            "validated_at": {
+              "value": "",
+              "policy": "not_provided"
+            },
+            "notes": {
+              "value": "Brand Registry Amazon passe et valide; marque acceptee."
+            }
+          }
+        ]
+      },
+      "customs": {
+        "id": "CUSTOMS__SASU__EORI__01",
+        "eori": {
+          "value": "FR99449235300010",
+          "policy": ""
+        },
+        "notes": {
+          "value": "",
+          "policy": ""
+        },
+        "functional_email": {
+          "value": "Enguerrand.kalfaian@outlook.com"
+        },
+        "contact_phone": {
+          "value": "0625291318"
+        },
+        "attribution_date": {
+          "value": "2026-01-09"
+        },
+        "address": {
+          "value": "61 Rue DE LYON 75012 PARIS FR"
+        }
+      },
+      "profils_numeriques": {
+        "digital_profiles": [
+          {
+            "id": "DIGIPROF__SASU__EDGE_PERSONNEL_ADMIN",
+            "label": "edge_personnel_admin",
+            "role": "OS administratif / compliance",
+            "account_kind": "MICROSOFT",
+            "account_email": "Enguerrand.kalfaian@outlook.com",
+            "tenant_domain": "",
+            "primary_use_cases": [
+              "CAF, URSSAF, impôts, France Travail, Mon Compte Formation.",
+              "Gestion micro-entreprise et future SASU côté administratif.",
+              "Interactions avec l’État, organismes sociaux et fiscaux."
+            ],
+            "browser": {
+              "family": "Edge",
+              "profile_label": "Admin"
+            },
+            "services": [
+              {
+                "kind": "MAIL",
+                "label": "Outlook.com",
+                "url": "https://outlook.live.com/mail/0/",
+                "account_email": "Enguerrand.kalfaian@outlook.com"
+              },
+              {
+                "kind": "DRIVE",
+                "label": "OneDrive",
+                "url": "https://onedrive.live.com/?view=0",
+                "account_email": ""
+              },
+              {
+                "kind": "CALENDAR",
+                "label": "Calendrier",
+                "url": "https://outlook.live.com/calendar/0/view/month",
+                "account_email": ""
+              },
+              {
+                "kind": "TASKS",
+                "label": "Microsoft To Do",
+                "url": "https://to-do.live.com/tasks/myday",
+                "account_email": ""
+              },
+              {
+                "kind": "ADMIN_PORTAL",
+                "label": "CAF - Connexion",
+                "url": "https://connect.caf.fr/connexionappli/dist/?contexteAppel=caffr",
+                "account_email": ""
+              },
+              {
+                "kind": "ADMIN_PORTAL",
+                "label": "URSSAF - Auto-entrepreneur",
+                "url": "https://www.autoentrepreneur.urssaf.fr/",
+                "account_email": ""
+              }
+            ],
+            "notes": ""
+          },
+          {
+            "id": "DIGIPROF__SASU__EDGE_PRO_ECOMMERCE",
+            "label": "edge_pro_ecommerce",
+            "role": "OS e-commerce / sourcing / Amazon",
+            "account_kind": "O365_TENANT",
+            "account_email": "Djoson@meowpawpaw.onmicrosoft.com",
+            "tenant_domain": "meowpawpaw.onmicrosoft.com",
+            "primary_use_cases": [
+              "Recherche et gestion fournisseurs (Alibaba, etc.).",
+              "Sourcing produits, packaging, outils Amazon / FBA.",
+              "Suivi et documentation du projet Meow Paw Paw et activités e-commerce."
+            ],
+            "browser": {
+              "family": "Edge",
+              "profile_label": ""
+            },
+            "services": [
+              {
+                "kind": "MAIL",
+                "label": "Outlook Office 365 (marque)",
+                "url": "https://outlook.office365.com/mail/",
+                "account_email": "Djoson@meowpawpaw.onmicrosoft.com"
+              },
+              {
+                "kind": "DRIVE",
+                "label": "OneDrive/SharePoint (marque)",
+                "url": "https://meowpawpaw-my.sharepoint.com/my",
+                "account_email": ""
+              },
+              {
+                "kind": "CALENDAR",
+                "label": "Calendrier (marque)",
+                "url": "https://outlook.office365.com/calendar/view/workweek",
+                "account_email": ""
+              },
+              {
+                "kind": "TASKS",
+                "label": "Microsoft To Do (marque)",
+                "url": "https://to-do.office.com/tasks/myday",
+                "account_email": ""
+              }
+            ],
+            "notes": ""
+          }
+        ]
+      }
+    },
+    "scope_specifique": {
+      "archives": {
+        "items": [],
+        "policy": {
+          "not_canonical": true,
+          "read_only": true,
+          "use_only_if_explicitly_requested": true
+        }
+      },
+      "capital": {
+        "capital_social_eur": {
+          "value": "2000,00"
+        },
+        "shares_count": {
+          "value": 200
+        },
+        "share_nominal_value_eur": {
+          "value": "10"
+        },
+        "total_subscribed_eur": {
+          "value": "2000"
+        },
+        "capital_fully_paid_percent": {
+          "value": "100"
+        },
+        "subscriber_list_date": {
+          "value": "2025-11-25"
+        }
+      },
+      "dgfip_details": {
+        "reference": {
+          "value": "994492353 00010"
+        },
+        "letter_date": {
+          "value": "2025-12-12"
+        },
+        "memento_siret": {
+          "value": "99449235300010"
+        },
+        "memento_activity_code_ape": {
+          "value": "4791B"
+        },
+        "memento_regimes_full": {
+          "IS": {
+            "regime": "RSI - Réel simplifié d'imposition",
+            "rof": "IS1"
+          },
+          "TVA": {
+            "regime": "RFB - Franchise en base",
+            "rof": "TVA1"
+          },
+          "CFE": {
+            "regime": "VLF*",
+            "rof": "CFE1"
+          },
+          "CVAE": {
+            "regime": "REGDECLA - Régime de la déclaration",
+            "rof": "CVAE1"
+          },
+          "RCM": {
+            "regime": "(non précisé)",
+            "rof": "RCM1"
+          }
+        },
+        "regime_lines": [
+          "entreprises (CFE) que lors de la création."
+        ]
+      },
+      "domiciliation_details": {
+        "domiciliataire_rcs_number": {
+          "value": "849 409 313"
+        },
+        "provider_rcs_number": {
+          "value": "849 409 313"
+        },
+        "provider_registered_office": {
+          "value": "6 rue d’Armaillé Paris 75017 France"
+        },
+        "attestation_date": {
+          "value": "2025-11-01"
+        }
+      },
+      "customs_details": {
+        "functional_email": {
+          "value": "Enguerrand.kalfaian@outlook.com"
+        },
+        "contact_phone": {
+          "value": "0625291318"
+        },
+        "attribution_date": {
+          "value": "2026-01-09"
+        }
+      }
+    }
+  },
+  "regles_metier": {
+    "rules_engine": {
+      "meta": {
+        "engine_version": "2.0.0",
+        "description": "Règles moteur déclaratives (source). todo = projection.",
+        "defaults": {
+          "execution_policy": {
+            "actor": "LLM",
+            "write_allowed": false,
+            "requires_user_validation": true
+          }
+        }
+      },
+      "rules": {}
+    },
+    "procedures": {},
+    "templates_prompts": {
+      "perplexity": {},
+      "other": {}
+    },
+    "references": {}
+  }
+}

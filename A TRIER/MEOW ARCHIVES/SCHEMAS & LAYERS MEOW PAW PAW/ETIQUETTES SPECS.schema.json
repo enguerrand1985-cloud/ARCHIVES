@@ -1,0 +1,1220 @@
+﻿{
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "simplified_for": {
+          "type": "string"
+        },
+        "sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "source_updated_at": {
+          "type": "object",
+          "properties": {
+            "etiquettes_master": {
+              "type": "string"
+            },
+            "manuel_extension": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "etiquettes_master",
+            "manuel_extension"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "timezone",
+        "simplified_for",
+        "sources",
+        "source_updated_at"
+      ],
+      "additionalProperties": false
+    },
+    "standards": {
+      "type": "object",
+      "properties": {
+        "pdf_prepress": {
+          "type": "object",
+          "properties": {
+            "pdf_standard": {
+              "type": "string"
+            },
+            "compatibility": {
+              "type": "string"
+            },
+            "color_profile_target": {
+              "type": "string"
+            },
+            "color_mode": {
+              "type": "string"
+            },
+            "resolution_ppi_effects": {
+              "type": "integer"
+            },
+            "bleed_mm": {
+              "type": "integer"
+            },
+            "safe_margin_mm": {
+              "type": "integer"
+            },
+            "no_transparency": {
+              "type": "boolean"
+            },
+            "crop_marks_policy": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "pdf_standard",
+            "compatibility",
+            "color_profile_target",
+            "color_mode",
+            "resolution_ppi_effects",
+            "bleed_mm",
+            "safe_margin_mm",
+            "no_transparency",
+            "crop_marks_policy"
+          ],
+          "additionalProperties": false
+        },
+        "png_front_stickers": {
+          "type": "object",
+          "properties": {
+            "format": {
+              "type": "string"
+            },
+            "background": {
+              "type": "string"
+            },
+            "color_profile": {
+              "type": "string"
+            },
+            "resolution_dpi": {
+              "type": "integer"
+            }
+          },
+          "required": [
+            "format",
+            "background",
+            "color_profile",
+            "resolution_dpi"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "pdf_prepress",
+        "png_front_stickers"
+      ],
+      "additionalProperties": false
+    },
+    "labels_by_sku": {
+      "type": "object",
+      "properties": {
+        "MPP-BAT-PRE-MAT-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "null"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": {
+                  "type": "null"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "target_px": {
+                  "type": "null"
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "placement": {
+                  "type": "string"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": {
+                  "type": "null"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "color_mode": {
+                  "type": "string"
+                },
+                "background": {
+                  "type": "string"
+                },
+                "packaging_dims_cm": {
+                  "type": "null"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        },
+        "MPP-BAT-STD-MAT-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "number"
+                    },
+                    "h": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "target_px": {
+                  "type": "integer"
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "placement": {
+                  "type": "string"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "color_mode": {
+                  "type": "string"
+                },
+                "background": {
+                  "type": "string"
+                },
+                "packaging_dims_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "typography": {
+                  "type": "object",
+                  "properties": {
+                    "font": {
+                      "type": "string"
+                    },
+                    "max_pt": {
+                      "type": "integer"
+                    },
+                    "min_pt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "font",
+                    "max_pt",
+                    "min_pt"
+                  ],
+                  "additionalProperties": false
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "typography",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        },
+        "MPP-BAT-VAR-MAT-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "null"
+                },
+                "size_cm": {
+                  "type": "null"
+                },
+                "target_px": {
+                  "type": "null"
+                },
+                "resolution_dpi": {
+                  "type": "null"
+                },
+                "finish": {
+                  "type": "null"
+                },
+                "placement": {
+                  "type": "null"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "null"
+                },
+                "resolution_dpi": {
+                  "type": "null"
+                },
+                "color_mode": {
+                  "type": "null"
+                },
+                "background": {
+                  "type": "null"
+                },
+                "packaging_dims_cm": {
+                  "type": "null"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        },
+        "MPP-BAT-XL-MAT-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "number"
+                    },
+                    "h": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "target_px": {
+                  "type": "integer"
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "placement": {
+                  "type": "string"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "color_mode": {
+                  "type": "string"
+                },
+                "background": {
+                  "type": "string"
+                },
+                "packaging_dims_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "typography": {
+                  "type": "object",
+                  "properties": {
+                    "font": {
+                      "type": "string"
+                    },
+                    "max_pt": {
+                      "type": "number"
+                    },
+                    "min_pt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "font",
+                    "max_pt",
+                    "min_pt"
+                  ],
+                  "additionalProperties": false
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "typography",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        },
+        "MPP-BOU-S-MAT-CAT-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "null"
+                },
+                "size_cm": {
+                  "type": "null"
+                },
+                "target_px": {
+                  "type": "null"
+                },
+                "resolution_dpi": {
+                  "type": "null"
+                },
+                "finish": {
+                  "type": "null"
+                },
+                "placement": {
+                  "type": "null"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "null"
+                },
+                "resolution_dpi": {
+                  "type": "null"
+                },
+                "color_mode": {
+                  "type": "null"
+                },
+                "background": {
+                  "type": "null"
+                },
+                "packaging_dims_cm": {
+                  "type": "null"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        },
+        "MPP-BUN-3BOU-S-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "target_px": {
+                  "type": "null"
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "placement": {
+                  "type": "string"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": {
+                  "type": "null"
+                }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "color_mode": {
+                  "type": "string"
+                },
+                "background": {
+                  "type": "string"
+                },
+                "packaging_dims_cm": {
+                  "type": "null"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        },
+        "MPP-BUN-STD-1BOU-S-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "number"
+                    },
+                    "h": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "target_px": {
+                  "type": "integer"
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "placement": {
+                  "type": "string"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "color_mode": {
+                  "type": "string"
+                },
+                "background": {
+                  "type": "string"
+                },
+                "packaging_dims_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "typography": {
+                  "type": "object",
+                  "properties": {
+                    "font": {
+                      "type": "string"
+                    },
+                    "max_pt": {
+                      "type": "number"
+                    },
+                    "min_pt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "font",
+                    "max_pt",
+                    "min_pt"
+                  ],
+                  "additionalProperties": false
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "typography",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        },
+        "MPP-BUN-XL-1BOU-S-V1": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "front_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "shape": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "number"
+                    },
+                    "h": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "target_px": {
+                  "type": "integer"
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "finish": {
+                  "type": "string"
+                },
+                "placement": {
+                  "type": "string"
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "shape",
+                "size_cm",
+                "target_px",
+                "resolution_dpi",
+                "finish",
+                "placement",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            },
+            "back_label": {
+              "type": "object",
+              "properties": {
+                "label_id": { "type": "string", "pattern": "^LBL_PROD_[A-Z0-9_]+_(FRONT|BACK)$" },
+                "status": {
+                  "type": "string"
+                },
+                "size_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "h": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "h"
+                  ],
+                  "additionalProperties": false
+                },
+                "resolution_dpi": {
+                  "type": "integer"
+                },
+                "color_mode": {
+                  "type": "string"
+                },
+                "background": {
+                  "type": "string"
+                },
+                "packaging_dims_cm": {
+                  "type": "object",
+                  "properties": {
+                    "w": {
+                      "type": "integer"
+                    },
+                    "l": {
+                      "type": "integer"
+                    }
+                  },
+                  "required": [
+                    "w",
+                    "l"
+                  ],
+                  "additionalProperties": false
+                },
+                "typography": {
+                  "type": "object",
+                  "properties": {
+                    "font": {
+                      "type": "string"
+                    },
+                    "max_pt": {
+                      "type": "number"
+                    },
+                    "min_pt": {
+                      "type": "number"
+                    }
+                  },
+                  "required": [
+                    "font",
+                    "max_pt",
+                    "min_pt"
+                  ],
+                  "additionalProperties": false
+                },
+                "export_format": { "type": "string", "enum": ["PNG", "PDF/X-1a:2001"] },
+                "source_filename": { "type": "string", "pattern": "^.+\\.([Pp][Nn][Gg]|[Pp][Dd][Ff])$" }
+              },
+              "required": [
+                "label_id",
+                "status",
+                "size_cm",
+                "resolution_dpi",
+                "color_mode",
+                "background",
+                "packaging_dims_cm",
+                "typography",
+                "export_format",
+                "source_filename"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "status",
+            "front_label",
+            "back_label"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "MPP-BAT-PRE-MAT-V1",
+        "MPP-BAT-STD-MAT-V1",
+        "MPP-BAT-VAR-MAT-V1",
+        "MPP-BAT-XL-MAT-V1",
+        "MPP-BOU-S-MAT-CAT-V1",
+        "MPP-BUN-3BOU-S-V1",
+        "MPP-BUN-STD-1BOU-S-V1",
+        "MPP-BUN-XL-1BOU-S-V1"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "meta",
+    "standards",
+    "labels_by_sku"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema for ETIQUETTES SPECS.json"
+}
+

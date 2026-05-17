@@ -1,0 +1,94 @@
+{
+  "meta": {
+    "document_type": "supplier_product_mapping_index",
+    "document_role": "central_lightweight_supplier_product_to_meow_sku_index",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_HUB - DASHBOARD_/DATA HUB.xlsx"
+    ]
+  },
+  "mappings": [
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BAT-STD-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_standard"
+      ],
+      "meow_sku": "MPP-BAT-STD-MAT-V1",
+      "mapping_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "mapping_status": "inferred_needs_validation",
+      "is_primary_supplier": true
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BAT-VAR-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_xl"
+      ],
+      "meow_sku": "MPP-BAT-VAR-MAT-V1",
+      "mapping_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "mapping_status": "inferred_needs_validation",
+      "is_primary_supplier": true
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BAT-XL-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_xl"
+      ],
+      "meow_sku": "MPP-BAT-XL-MAT-V1",
+      "mapping_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "mapping_status": "inferred_needs_validation",
+      "is_primary_supplier": true
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BOU-S-MAT-CAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BOU-S-MAT-CAT-V1",
+      "mapping_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "mapping_status": "inferred_needs_validation",
+      "is_primary_supplier": true
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BUN-3BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BUN-3BOU-S-V1",
+      "mapping_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "mapping_status": "inferred_needs_validation",
+      "is_primary_supplier": true
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BUN-STD-1BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_standard",
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BUN-STD-1BOU-S-V1",
+      "mapping_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "mapping_status": "inferred_needs_validation",
+      "is_primary_supplier": true
+    },
+    {
+      "mapping_id": "MAP__SUP_SONGWAYPET__MPP-BUN-XL-1BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "supplier_product_ids": [
+        "songwaypet_catnip_stick_xl",
+        "songwaypet_catnip_silvervine_ball"
+      ],
+      "meow_sku": "MPP-BUN-XL-1BOU-S-V1",
+      "mapping_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "mapping_status": "inferred_needs_validation",
+      "is_primary_supplier": true
+    }
+  ]
+}

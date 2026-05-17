@@ -1,0 +1,20 @@
+{
+  "meta": {
+    "document_type": "cost_calculation_rules",
+    "document_role": "cost_and_margin_calculation_policy",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "PARAMETERS/COMPTA_PARAMETERS.json",
+      "_DATA - MARKETPLACE_/MARKETPLACE RULES.json"
+    ]
+  },
+  "rules": {
+    "supplier_cost_home": "_DATA - PRICING_/PRICING_CONTEXTS.json",
+    "retail_ttc_home": "_DATA - SKU_/SKU_PRICING.json",
+    "launch_shipping_home": "_DATA - PROCUREMENT_/PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json",
+    "amazon_fee_policy_home": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json"
+  }
+}

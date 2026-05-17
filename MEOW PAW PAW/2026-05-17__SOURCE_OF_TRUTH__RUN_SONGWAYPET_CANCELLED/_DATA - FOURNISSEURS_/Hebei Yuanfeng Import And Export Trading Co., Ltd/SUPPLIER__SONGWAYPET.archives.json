@@ -1,0 +1,646 @@
+{
+  "meta": {
+    "document_type": "supplier_history_archive",
+    "document_role": "truth_complement",
+    "version": "refactor_ecommerce_v1",
+    "supplier_id": "SUP_SONGWAYPET",
+    "supplier_name": "Songway Pet",
+    "timezone": "Europe/Paris",
+    "created_at": "2026-04-29T04:12:51+02:00",
+    "complements_truth_file": "SONGWAYPET.json",
+    "source_archives": [
+      "[ ARCHIVES ] -  songpet archives.json",
+      "[ ARCHIVES ] SUPPLIER__SONGPET.json",
+      "[ ARCHIVES ] SUPPLIER__SONGPET2.json"
+    ],
+    "updated_at": "2026-05-17",
+    "current_truth_refs": [
+      "SUPPLIER__SONGWAYPET.procurement.json",
+      "PROCUREMENT__SONGWAYPET__ORDER_2026-04__YF202604521.json",
+      "PROCUREMENT__SONGWAYPET__PAYMENTS_2026-04.json",
+      "PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json",
+      "AMAZON_FULFILLMENT.json",
+      "AMAZON_LABELS.json",
+      "SUPPLIERS.registry.json"
+    ]
+  },
+  "history_only": {
+    "timeline_events": [
+      {
+        "date": "2025-10-14T02:44:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci reÃ§oit le logo Â« MEOW PAW PAW Â» et indique quâ€™un designer fera une proposition de design."
+      },
+      {
+        "date": "2025-10-12T00:46:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_reply",
+        "summary": "RÃ©ponse : 1 produit par sachet OPP (vente unitaire premium)."
+      },
+      {
+        "date": "2025-09-15T05:16:00+02:00",
+        "channel": "Alibaba",
+        "status": "pi",
+        "summary": "Commande affiche 48.00 USD, paiement en attente; DDP 30 jours aprÃ¨s paiement initial."
+      },
+      {
+        "date": "2025-10-11T00:02:00+02:00",
+        "channel": "Buyer Note",
+        "status": "packaging_guideline",
+        "summary": "Vente unitaire; pas dâ€™impression directe du logo sur le sachet; prÃ©fÃ©rer Ã©tiquette (sticker) centrÃ©e. Insert Ã  lâ€™intÃ©rieur, couvrant ~2/3 de la hauteur pour cacher les brins de raphia, en laissant visibles les deux extrÃ©mitÃ©s et les plumes."
+      },
+      {
+        "date": "2025-10-08",
+        "channel": "Alibaba Chat",
+        "status": "discussion_packaging",
+        "summary": "Extended discussion covering OPP packaging, Simili Craft / Dolly Bag options, and Catnip/Silvervine ball packaging."
+      },
+      {
+        "date": "2025-09-15T18:25:00+02:00",
+        "channel": "Buyer",
+        "status": "payment_confirmed",
+        "summary": "Paiement confirmÃ© sur Alibaba pour samples Standard et XL."
+      },
+      {
+        "date": "2025-10-14T03:33:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci confirme : stickers avec fond transparent acceptÃ©s, aucune restriction."
+      },
+      {
+        "date": "2025-10-17T00:39:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_attachment",
+        "summary": "Envoi du fichier 'avertissement.pdf' pour message de sÃ©curitÃ© sac plastique / dos de packaging."
+      },
+      {
+        "date": "2025-10-14T00:55:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci prÃ©cise que le sample XL (22.5 Ã— 15 cm) nâ€™est quâ€™un exemple ; la taille rÃ©elle doit Ãªtre â‰¥ 35 cm pour le grand catnip (31 cm produit). Impression possible avec MOQ ; recommande stickers plutÃ´t quâ€™insert opaque."
+      },
+      {
+        "date": "2025-10-11T21:06:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_message",
+        "summary": "Test â‰¤700 pcs, OPP blanc (Standard) / kraft brun Dolly Bag (XL), demande dimensions et matÃ©riaux, positionnement premium et soin du packaging."
+      },
+      {
+        "date": "2025-10-12T00:43:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_question",
+        "summary": "Vicci : combien de produits par sachet OPP ? et quantitÃ© de chaque produit ?"
+      },
+      {
+        "date": "2025-08-29",
+        "channel": "Alibaba Chat",
+        "status": "quote",
+        "summary": "EXW $0.18/pc @100; lead 5j; air freight ~$90/100; 'sensitive goods channel'."
+      },
+      {
+        "date": "2025-10-17T20:22:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_reply",
+        "summary": "RÃ©ponse: lâ€™exemple est provisoire; lâ€™Ã©tiquette dos finale sera fournie plus tard quand les donnÃ©es seront complÃ¨tes."
+      },
+      {
+        "date": "2025-10-14T03:30:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Photo : trois formes de balles de cataire (triangulaire, cubique, polygonale)."
+      },
+      {
+        "date": "2025-10-13T04:53:00+08:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci Chen confirms the small product (Standard) can use a 7Ã—28 cm pearl film Yin-Yang OPP bag (in stock)."
+      },
+      {
+        "date": "2025-10-12T00:48:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_reply",
+        "summary": "Clarification : vente unitaire Standard/XL/Boule pour Amazon FR; bundles plus tard; besoin dâ€™un packaging propre (sticker/insert), pas de sachets groupÃ©s."
+      },
+      {
+        "date": "2025-09-22T03:50:00+08:00",
+        "channel": "Alibaba Chat",
+        "status": null,
+        "summary": "Vicci Chen: 'It's perfect on our side, thank you for the details provided today.'"
+      },
+      {
+        "date": "2025-10-14T07:54:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci prÃ©cise : kraft bag 25Ã—35 cm trop grand pour un produit ; version 10Ã—35 cm nÃ©cessite MOQ 20 000 pcs. Propose dâ€™en placer trois par sac 25Ã—35 cm."
+      },
+      {
+        "date": "2025-09-14",
+        "channel": "Both",
+        "status": "order_address",
+        "summary": "DDP sample OK; suggestion dâ€™adresse CN pour Ã©viter ~8$ taxe; acheteur garde adresse FR."
+      },
+      {
+        "date": "2025-10-17T00:20:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_question",
+        "summary": "Demande dâ€™un format PDF pour les logos ; trois PDF transmis par lâ€™acheteur."
+      },
+      {
+        "date": "2025-10-14T03:12:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Photo envoyÃ©e du sac plastique scellÃ© contenant un Ã©chantillon."
+      },
+      {
+        "date": "2025-10-13T17:06:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_message",
+        "summary": "Buyer asks if a second round of samples with personalized packaging is possible after logo approval and confirms willingness to pay."
+      },
+      {
+        "date": "2025-10-13T04:54:00+08:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci Chen adds that the large product (XL) needs a custom 10Ã—35 cm OPP bag due to its length; shared a reference photo."
+      },
+      {
+        "date": "2025-10-16T19:50:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_attachment",
+        "summary": "Envoi des logos produits (Boulette, Gros bÃ¢tonnet, BÃ¢tonnet) et mapping des noms."
+      },
+      {
+        "date": "2025-10-10",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci sent Songway Pet full catalogue (PDF) and clarified available OPP/plastic sealing options with sample photos."
+      },
+      {
+        "date": "2025-10-14T03:14:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci confirme que le sticker peut Ãªtre placÃ© sur le packaging."
+      },
+      {
+        "date": "2025-10-17T00:27:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_reply",
+        "summary": "PrÃ©cision sur transparence: impression Ã  partir de PNG 300 dpi, PDF pour gabarit uniquement."
+      },
+      {
+        "date": "2025-10-17T08:47:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_question",
+        "summary": "Question: le dos nÃ©cessite-t-il une modification ? Exemple dâ€™un ancien client partagÃ©."
+      },
+      {
+        "date": "2025-10-14T03:13:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Demande si un autocollant peut Ãªtre apposÃ© sur le sac plastique."
+      },
+      {
+        "date": "2025-10-23T23:45:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "waiting_reply",
+        "summary": "Sent drafts of back labels (STD / XL / Boules S) as PDF attachments. Asked for feasibility and quote for a personal order of 10 units per SKU (total 30) with stickers applied, DDP France. Mentioned final labels will follow with FR_test_700."
+      },
+      {
+        "date": "2025-10-14T03:37:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Samples gratuits (hors frais dâ€™envoi) : < 0,5 kg, coÃ»t = 40 USD comme prÃ©cÃ©demment."
+      },
+      {
+        "date": "2025-09-22T03:40:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "ready",
+        "summary": "Sample prÃªt; expÃ©dition possible aujourdâ€™hui; ETA 8â€“12 jours ouvrÃ©s; tracking Ã  venir."
+      },
+      {
+        "date": "2025-09-10T02:53:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "docs",
+        "summary": "Dit que le test cataire vient de finir; rapport 'bientÃ´t prÃªt' (contradiction)."
+      },
+      {
+        "date": "2025-09-10T03:01:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "packaging",
+        "summary": "Montre sac kraft et sac 'yin-yang nacre film'. Kraft demandÃ© par lâ€™acheteur."
+      },
+      {
+        "date": "2025-09-15T12:45:00+02:00",
+        "channel": "Supplier",
+        "status": "ack",
+        "summary": "AccusÃ© de rÃ©ception; en attente dâ€™expÃ©dition."
+      },
+      {
+        "date": "2025-10-14T03:10:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "PrÃ©cision : souhaite le sac scellÃ© comme sur les photos, avec le logo fourni collÃ© sur le produit."
+      },
+      {
+        "date": "2025-09-25T04:54:00+08:00",
+        "channel": "Alibaba Chat",
+        "status": null,
+        "summary": "UPS Tracking communiquÃ©: 1Z57208V0412352776 (UPS Saver, 1P)."
+      },
+      {
+        "date": "2025-10-14T03:17:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Annonce envoi du fichier sticker sous 2 jours et demande un nouveau sample complet avec packaging personnalisÃ©."
+      },
+      {
+        "date": "2025-10-14T03:12:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Demande de confirmation : Â« take a photo ? Â»"
+      },
+      {
+        "date": "2025-09-05",
+        "channel": "Alibaba Chat",
+        "status": "follow_up",
+        "summary": "Demande de confirmation pour Ã©mettre PI."
+      },
+      {
+        "date": "2025-09-12T22:47:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "moq_packaging",
+        "summary": "MOQ packaging annoncÃ© = 2000 puis 20 (contradiction). Acheteur exige kraft neutre."
+      },
+      {
+        "date": "2025-10-11T21:12:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_question",
+        "summary": "Peut-on faire des stickers transparents mats en couleur (clear labels) ?"
+      },
+      {
+        "date": "2025-10-14T07:49:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Photo du sac kraft transparent milieu (25Ã—35 cm) proposÃ©e pour Ã©valuer alternative."
+      },
+      {
+        "date": "2025-10-10",
+        "channel": "Alibaba Chat",
+        "status": "message_sent",
+        "summary": "Buyer requested precise bag dimensions, logo customization formats, and packaging variants by size."
+      },
+      {
+        "date": "2025-09-01",
+        "channel": "Alibaba Chat",
+        "status": "catalog",
+        "summary": "PDF catalogue envoyÃ© (jouets 2â€“62, lasers 63â€“64, arbres 65â€“82, griffoirs 83â€“90)."
+      },
+      {
+        "date": "2025-10-14T03:33:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Confirme choix de la forme polygonale pour lâ€™Ã©chantillon."
+      },
+      {
+        "date": "2025-09-25T04:51:00+08:00",
+        "channel": "Alibaba Chat",
+        "status": null,
+        "summary": "Vicci Chen: 'It will arrive in 7â€“9 business days.'"
+      },
+      {
+        "date": "2025-10-14T03:27:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Confirme quâ€™ils peuvent imprimer le sticker si le fichier source est fourni ; adapteront la taille au packaging."
+      },
+      {
+        "date": "2025-10-14T03:13:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci explique : premier type = emballage scellÃ©, second = sac plastique transparent."
+      },
+      {
+        "date": "2025-10-14T03:14:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Confirme prÃ©fÃ©rence pour le sac plastique scellÃ©."
+      },
+      {
+        "date": "2025-10-11T00:00:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_update",
+        "summary": "Vicci confirme MOQ packaging 2000 pcs pour personnalisation; sachets en rouleau thermoscellÃ© (+10 cm de marge latÃ©rale); logo recommandÃ© au centre; designers internes disponibles."
+      },
+      {
+        "date": "2025-10-06",
+        "channel": "Alibaba Chat",
+        "status": "acknowledged",
+        "summary": "Sample received in excellent condition. Packaging and product quality confirmed very good."
+      },
+      {
+        "date": "2025-09-08",
+        "channel": "Alibaba Chat",
+        "status": "samples",
+        "summary": "Plusieurs formes de cataire; samples gratuits."
+      },
+      {
+        "date": "2025-10-14T03:15:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Demande si les stickers seront envoyÃ©s depuis la France pour quâ€™ils soient apposÃ©s sur place."
+      },
+      {
+        "date": "2025-09-22T03:40:00+08:00",
+        "channel": "Alibaba Chat",
+        "status": null,
+        "summary": "Vicci Chen: 'The sample is ready. If there are no issues, we can ship it today and it will arrive in about 8â€“12 business days.'"
+      },
+      {
+        "date": "2025-10-14T03:09:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Annonce envoi du logo et message sÃ©curitÃ© plastique sous 2 jours ; rappel que lâ€™Ã©tiquette FNSKU devra Ãªtre appliquÃ©e plus tard."
+      },
+      {
+        "date": "2025-10-14T02:56:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Confirmation que le logo complet sera envoyÃ© le lendemain (fichier AI/SVG)."
+      },
+      {
+        "date": "2025-10-14T03:32:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Question : quelle forme de balle choisir pour lâ€™Ã©chantillon ?"
+      },
+      {
+        "date": "2025-10-15T23:00:00+02:00",
+        "channel": "Buyer Note",
+        "status": "positioning_clarified",
+        "summary": "Refus MOQ 20 000/2 000 pcs et packs multi-items. ModÃ¨le confirmÃ©: vente unitaire premium. Frein maintenu; Ã©ventuel test â‰¤700 pcs aprÃ¨s validation packaging + conformitÃ©."
+      },
+      {
+        "date": "2025-10-11T22:27:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "packaging_preferences",
+        "summary": "PrÃ©fÃ©rences packaging par taille : Std 20 cm â†’ OPP blanc transparent ; XL 30/31 cm â†’ OPP plus grand OU kraft brun laminÃ© (Dolly Bag) personnalisÃ©. Demande dimensions OPP disponibles."
+      },
+      {
+        "date": "2025-10-06",
+        "channel": "Alibaba Chat",
+        "status": "acknowledged",
+        "summary": "Sample received in perfect condition. Packaging and presentation very good. Supplier thanked; next contact scheduled in one month."
+      },
+      {
+        "date": "2025-10-13T17:03:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_message",
+        "summary": "Buyer asks for Songpet customization capabilities (printing types, finishes: matte/glossy, foil, sticker, insert) and proposes 7x28 cm OPP for Standard, kraft Dolly Bag 22.5x15 for XL."
+      },
+      {
+        "date": "2025-09-22T03:03:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "sample_pack",
+        "summary": "DÃ©tails sample et packaging; taille pack personnalisable; options non-kraft montrÃ©es; acheteur rÃ©affirme kraft-only et plume sur Standard."
+      },
+      {
+        "date": "2025-10-11T22:26:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Demande de prix pour un test marchÃ© France avec MOQ 700 (tous articles combinÃ©s). Vente unitaire, positionnement premium."
+      },
+      {
+        "date": "2025-09-22T03:52:00+08:00",
+        "channel": "Alibaba Chat",
+        "status": null,
+        "summary": "Vicci Chen: 'OK, I will send it to my freight forwarder today, and I will notify you as soon as I have the tracking number.'"
+      },
+      {
+        "date": "2025-10-14T02:48:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Partage de photo montrant deux options dâ€™emballage : sac plastique transparent rÃ©gulier et sac plastique scellÃ©."
+      },
+      {
+        "date": "2025-09-09T20:42:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "claims",
+        "summary": "Affirme DDP France, certifs REACH/non-toxique 'Ã  jour', packaging kraft; 'samples et certificats prÃªts'."
+      },
+      {
+        "date": "2025-10-11T21:29:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_attachment",
+        "summary": "Envoi du logo Meow Paw Paw pour test (sticker transparent mat)."
+      },
+      {
+        "date": "2025-10-17T00:30:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci: le designer vÃ©rifie; choix du format source (.AI ou .SVG) laissÃ© au designer."
+      },
+      {
+        "date": "2025-10-14T03:10:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Demande de Vicci : prendre une photo avant expÃ©dition."
+      },
+      {
+        "date": "2025-10-14T01:20:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "buyer_request_quote",
+        "summary": "Demande prÃ©cisions : confirmation format 10Ã—35 cm pour le grand modÃ¨le ; question sur format de fichier logo (.AI / .SVG) pour sticker."
+      },
+      {
+        "date": "2025-10-14T03:22:00+02:00",
+        "channel": "Alibaba Chat",
+        "status": "supplier_reply",
+        "summary": "Vicci recommande que le design soit fait par Enguerrand pour gagner du temps (fuseau horaire)."
+      }
+    ],
+    "legacy_plans": [
+      {
+        "batch_id": "FR_bulk_1000_v1",
+        "status": "superseded_by_2026_run_cancelled",
+        "generated_at": "2025-10-25T12:00:00+02:00",
+        "supplier": "Hebei Yuanfeng / Songway Pet (Vicci Chen)",
+        "amazon_fba_quantity": 900,
+        "note": "Premier bulk simplifiÃ© Songpet â€” 1000 pcs (400 STD, 400 XL, 200 3Ã—Boules). Objectif : test production avant montÃ©e en charge.",
+        "replaced_or_deprecated": true,
+        "archive_reason": "Superseded by 2026 SongwayPet launch run cancellation after DDP/customs clearance failure."
+      },
+      {
+        "batch_id": "FR_bulk_2000_v2",
+        "status": "superseded_by_2026_run_cancelled",
+        "generated_at": "2025-10-25T12:00:00+02:00",
+        "supplier": "Hebei Yuanfeng / Songway Pet (Vicci Chen)",
+        "amazon_fba_quantity": 2000,
+        "note": "Phase 2 : montÃ©e Ã  2000 pcs aprÃ¨s validation du premier bulk, ajout packaging personnalisÃ© + conformitÃ© REACH/Non-toxique.",
+        "replaced_or_deprecated": true,
+        "archive_reason": "Superseded by 2026 SongwayPet launch run cancellation after DDP/customs clearance failure."
+      },
+      {
+        "batch_id": "FR_bulk_900_scenarioD_v1",
+        "status": "superseded_by_2026_run_cancelled",
+        "generated_at": null,
+        "supplier": "Hebei Yuanfeng / Songway Pet (Vicci Chen)",
+        "amazon_fba_quantity": null,
+        "note": null,
+        "replaced_or_deprecated": true,
+        "archive_reason": "Superseded by 2026 SongwayPet launch run cancellation after DDP/customs clearance failure."
+      }
+    ],
+    "quotes_history": [
+      {
+        "reference": "Proforma PI_2025-10-15_VicciChen",
+        "date_quote": "2025-10-15",
+        "incoterm": "DDP France (air, Ã  confirmer)",
+        "total_amount_usd": 810.0,
+        "total_amount_eur": 745.2,
+        "status": "quote_confirmed"
+      }
+    ],
+    "open_questions_history": [
+      {
+        "id": "Q_BUNDLE_ASSEMBLY",
+        "priority": "P0",
+        "status": "obsolete_for_cancelled_run",
+        "question": "Can you assemble bundles (1 bÃ¢ton + 1 boule) and pack them in OPP 25Ã—35 with insert carton? Please confirm workflow and extra cost if any.",
+        "tags": [
+          "bundles",
+          "assembly",
+          "workflow",
+          "cost"
+        ],
+        "closure_reason": "SongwayPet 2026 launch run cancelled before dispatch after DDP/customs clearance failure."
+      },
+      {
+        "id": "Q_BUNDLE_PACK_WEIGHTS",
+        "priority": "P1",
+        "status": "obsolete_for_cancelled_run",
+        "question": "Please provide packed weight & dimensions for bundles STD+1 boule and XL+1 boule (for FBA fee validation).",
+        "tags": [
+          "bundles",
+          "packaging",
+          "weights",
+          "dimensions",
+          "fba_fees"
+        ],
+        "closure_reason": "SongwayPet 2026 launch run cancelled before dispatch after DDP/customs clearance failure."
+      },
+      {
+        "id": "Q_DDP_PI_LOCK",
+        "priority": "P0",
+        "status": "superseded_by_2026_ddp_failure",
+        "question": "Can you re-issue the Proforma Invoice with explicit DDP to Amazon FBA France (all duties/VAT included) and confirm no extra charges after shipment?",
+        "tags": [
+          "shipping",
+          "ddp",
+          "incoterm",
+          "proforma",
+          "pi",
+          "pricing"
+        ],
+        "closure_reason": "SongwayPet 2026 launch run cancelled before dispatch after DDP/customs clearance failure."
+      },
+      {
+        "id": "Q_OPP_BAG_DIMENSIONS",
+        "priority": "P1",
+        "status": "obsolete_for_cancelled_run",
+        "question": "Bundle 3 boules : confirmer dimensions sachet OPP recommandÃ© (LÃ—HÃ—capacitÃ©) et surface plane pour sticker arriÃ¨re + FNSKU.",
+        "tags": [
+          "packaging",
+          "opp",
+          "dimensions",
+          "bundle"
+        ],
+        "closure_reason": "SongwayPet 2026 launch run cancelled before dispatch after DDP/customs clearance failure."
+      }
+    ],
+    "transform_log": [
+      {
+        "at": "2025-12-29T01:10:47+01:00",
+        "actor": "assistant",
+        "type": "restructure",
+        "summary": "Restructured SUPPLIER__SONGPET into standard {meta,data,ops,compliance,history,links}. Batches are treated as prevision (not requested) and legacy snapshots preserved under history. No notes.todo section added in this patch."
+      }
+    ],
+    "exchanged_assets_index": [
+      {
+        "child_id": "SUP-SONGPET-20250922",
+        "delivery_note": "Logos Meow Paw Paw livrÃ©s Ã  Vicci Chen (Songpet) le 2025-10-15 â€” version transparente, 300 dpi.",
+        "formats": [
+          "PNG",
+          "PDF"
+        ],
+        "logos": [
+          "Logo marque.png",
+          "Logo marque XL.png",
+          "Logo marque Premium.png",
+          "Logo marque boulette.png"
+        ],
+        "stickers_warning": "sticker_warning_v1.pdf"
+      }
+    ],
+    "terminal_run_history_2026": {
+      "status": "run_cancelled_and_refunded",
+      "summary": "SongwayPet carried the launch run up to packaging, cartonization, FBA shipment creation and carton labels, but the DDP/customs clearance rail failed at execution because the forwarder treated catnip as plant material. The run was cancelled before dispatch and refunded via Alibaba Trade Assurance.",
+      "timeline": [
+        {
+          "date": "2026-04-27",
+          "event": "deposit_paid",
+          "summary": "Alibaba deposit paid for SongwayPet launch run."
+        },
+        {
+          "date": "2026-05-14",
+          "event": "fba_plan_created",
+          "summary": "Amazon FBA shipment FBA15LSK0YD6 created; carton labels generated and sent to supplier."
+        },
+        {
+          "date": "2026-05-15",
+          "event": "balance_paid_and_ddp_failure_detected",
+          "summary": "After balance payment and final checks, supplier/forwarder stated that DDP/customs clearance could not be handled because catnip was considered plant material."
+        },
+        {
+          "date": "2026-05-15",
+          "event": "refund_accepted",
+          "summary": "Refund requested and accepted via Alibaba Trade Assurance. Approved refund: 945.00 USD, Qonto refund visible at +408.30 EUR, final reconciliation pending May statement."
+        },
+        {
+          "date": "2026-05-15",
+          "event": "fba_shipment_cancelled",
+          "summary": "Amazon shipment FBA15LSK0YD6 cancelled before dispatch; no tracking and no stock shipped."
+        },
+        {
+          "date": "2026-05-16",
+          "event": "source_of_truth_updated",
+          "summary": "Source of Truth updated after SongwayPet cancelled run."
+        }
+      ]
+    },
+    "lessons_learned": [
+      {
+        "id": "LESSON_DDP_FORWARDER_CONFIRMATION_REQUIRED",
+        "summary": "Supplier-level DDP claims are not sufficient. Future catnip/silvervine/gallfruit/natural plant material runs require explicit written confirmation from the forwarder for the exact product, Amazon FBA France, DDP door-to-door, customs clearance handled by supplier/forwarder, and no buyer customs clearance."
+      }
+    ],
+    "active_truth_pointers": {
+      "procurement_truth": "SUPPLIER__SONGWAYPET.procurement.json",
+      "order_truth": "PROCUREMENT__SONGWAYPET__ORDER_2026-04__YF202604521.json",
+      "payment_truth": "PROCUREMENT__SONGWAYPET__PAYMENTS_2026-04.json",
+      "shipping_truth": "PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json",
+      "amazon_truth": "AMAZON_FULFILLMENT.json",
+      "evidence_location": "SharePoint fournisseur SongwayPet / COMMANDES / 2026-04 - Alibaba - RUN annule rembourse"
+    },
+    "encoding_cleanup_deferred": "Legacy archive text still contains historical encoding artifacts in older imported fragments; cleanup intentionally deferred to avoid a large non-functional diff."
+  },
+  "dedup_against_truth": {
+    "excluded_domains": [
+      "supplier identity/contact baseline",
+      "active catalog and active packaging baseline",
+      "active compliance/process rules already in SONGWAYPET.json"
+    ],
+    "note": "This archive keeps historical traces and intentionally avoids duplicating active source-of-truth sections."
+  }
+}

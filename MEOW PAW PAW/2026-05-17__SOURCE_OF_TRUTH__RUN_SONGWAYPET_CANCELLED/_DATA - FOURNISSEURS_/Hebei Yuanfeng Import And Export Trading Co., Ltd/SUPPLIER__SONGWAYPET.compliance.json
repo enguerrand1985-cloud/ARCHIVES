@@ -1,0 +1,268 @@
+{
+  "meta": {
+    "document_type": "supplier_compliance",
+    "document_role": "supplier_compliance_evidence_and_material_safety",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json"
+    ]
+  },
+  "supplier_id": "SUP_SONGWAYPET",
+  "compliance": {
+    "dossier_logic": {
+      "reading_model": "multi_piece_complementary",
+      "single_document_proof_model": false,
+      "primary_layers": [
+        "contractual",
+        "supplier_written_confirmations",
+        "technical_support",
+        "regulatory_external"
+      ],
+      "notes": [
+        "Read the supplier dossier by complementary layers, not as a single perfect proof.",
+        "Technical reports may support raw materials or similar product families without constituting exact launch-SKU-specific proof."
+      ]
+    },
+    "material_safety": {
+      "reach_required": false,
+      "supplier_declaration_required": true,
+      "required_documents": [
+        "reach_conformity_declaration_signed_stamped_dated",
+        "bom_materials_by_sku"
+      ],
+      "blocking_for_bulk": true,
+      "documents_state": {
+        "reach_conformity_declaration_signed_stamped_dated": {
+          "status": "prepared"
+        },
+        "bom_materials_by_sku": {
+          "status": "pending"
+        }
+      }
+    },
+    "supporting_evidence": {
+      "technical_support": {
+        "sgs_catnip_report": {
+          "status": "received",
+          "report_number": "ASH25-0072850-01A1",
+          "lab": "SGS-CSTC Standards Technical Services (Shanghai) Co.,Ltd.",
+          "report_date": "2025-10-24",
+          "sample_name": "Catnip",
+          "style_no": "MWCATNIP02",
+          "sample_scope": "raw_material",
+          "applicability": "raw_material_only_not_finished_sku_specific",
+          "result_summary": {
+            "e_coli_cfu_g": "<10",
+            "total_plate_count_cfu_g": "1.2×10^5",
+            "total_plate_count_limit_cfu_g": "≤5×10^5",
+            "salmonella_25g": "ND",
+            "salmonella_limit": "Absence"
+          },
+          "conclusion": "supportive_raw_catnip_microbiological_report",
+          "source_file": "ASH25-0072850-01A1 (O-SHAFL202502280258)(2026-04-14 20_40_23).pdf"
+        },
+        "soar_family_toy_report": {
+          "status": "received",
+          "report_number": "S250410056001-1",
+          "lab": "Soar Testing Certification (GuangDong) Co., Ltd.",
+          "report_date": "2025-04-16",
+          "sample_name": "Pet toys (Apple, featherball, redfeatherball, hollowfish, feathermouse, bird, triangularfish)",
+          "sample_scope": "family_product_support",
+          "tested_components": [
+            "light yellow hair",
+            "brown material"
+          ],
+          "age_grading": "3Y+",
+          "test_frameworks": [
+            "GB6675.1-2014",
+            "GB6675.2-2014",
+            "GB6675.3-2014",
+            "GB6675.4-2014"
+          ],
+          "overall_conclusion": "PASS",
+          "applicability": "family_product_support_only_not_exact_songwaypet_launch_skus",
+          "conclusion": "supportive_family_pet_toy_report",
+          "source_file": "HUANGHUA MAOMAO - TEST REPORT.pdf"
+        }
+      },
+      "supplier_written_confirmations": {
+        "materials_and_customs_context": {
+          "status": "received",
+          "light_yellow_hair_interpreted_as": "feather",
+          "feathers_status": "treated_transformed",
+          "hs_code_used": "4421.99.99",
+          "forwarder_accepts_france": "contradicted_by_shipping_execution_current_catnip_run",
+          "notes": [
+            "These confirmations complement technical support and contract layers.",
+            "They do not replace exact SKU-specific laboratory proof."
+          ]
+        },
+        "current_launch_scope_confirmation": {
+          "status": "received",
+          "confirms_current_launch_quote_layer": true,
+          "confirmed_scope": [
+            "product_cost",
+            "packaging",
+            "sticker_logo_customization",
+            "sticker_application",
+            "fnsku_application",
+            "amazon_carton_label_application",
+            "shipment_preparation",
+            "air_shipping"
+          ],
+          "shipping_final_usd": 420,
+          "hidden_costs_confirmed_none": true,
+          "notes": [
+            "Canonical launch-order commercial values remain stored under commercial_terms.current_launch_order_quote."
+          ]
+        },
+        "feather_treatment_current_run": {
+          "status": "supplier_declared",
+          "source_type": "supplier_chat_declaration",
+          "feathers_status": "treated_transformed",
+          "treatment_temperature_claim": ">100C",
+          "evidence_strength": "useful_operational_declaration_not_signed_technical_certificate",
+          "risk_reading": "residual_documentary_risk_reduced_not_fully_closed"
+        },
+        "gallfruit_current_run": {
+          "status": "supplier_confirmed_after_forwarder_check",
+          "source_type": "supplier_chat_declaration",
+          "temporary_alert": "factory_had_mentioned_possible_gallfruit_to_catnip_replacement_due_to_export_restrictions",
+          "buyer_decision": "replacement_not_accepted",
+          "expected_product_version": "with_gallfruit_fruit_de_galle",
+          "production_watch": "confirm_effective_production_matches_gallfruit_version"
+        }
+      }
+    },
+    "regulatory_external_reading": {
+      "fr_sivep_processed_herbs_email": {
+        "status": "received",
+        "source_date": "2026-04-15",
+        "source_authority": "SIVEP Orly / DRIAAF Ile-de-France",
+        "channel": "email",
+        "conclusions": [
+          "Dried and ground herbs are outside phytosanitary import regulation as processed products.",
+          "SIVEP phytosanitary service does not answer for feathers in this case."
+        ],
+        "applicability": "risk_reading_external_not_full_clearance",
+        "source_file": "Re_ Demande vis a vis de futur produits mis en vente.eml"
+      },
+      "feathers_referral_to_veterinary_pcf": {
+        "status": "received",
+        "source_date": "2026-04-15",
+        "referred_service": "PCF vétérinaire",
+        "contact_email": "pif94.orly.sivep@agriculture.gouv.fr",
+        "applicability": "risk_reading_external_not_full_clearance",
+        "notes": [
+          "This referral clarifies service perimeter but does not by itself clear the treated-feathers point."
+        ]
+      }
+    },
+    "contract_documents_current_run": {
+      "supplier_framework_agreement": {
+        "status": "signed_and_stamped_exploitable",
+        "pi_reference": "YF202604521",
+        "known_form_issue": "representative_name_missing_in_some_signature_blocks_but_company_title_signature_stamp_present"
+      },
+      "supplier_compliance_attestation": {
+        "status": "signed_and_stamped_exploitable",
+        "known_form_issue": "traceability_or_batch_identification_incomplete"
+      },
+      "open_recovery_points_before_shipment_or_balance": [
+        "batch_or_lot_coding_rule",
+        "traceability_or_batch_identification",
+        "qc_package_photos_and_carton_data"
+      ]
+    },
+    "customs_clearance_execution_result": {
+      "status": "failed",
+      "date": "2026-05-15",
+      "reason": "catnip considered plant by supplier/forwarder",
+      "implication": "prior supplier confirmations were not sufficient for operational DDP customs clearance",
+      "future_requirement": "forwarder-specific written confirmation for exact product and DDP customs clearance before any future payment"
+    },
+    "prior_forwarder_or_supplier_confirmation_status": "contradicted_by_shipping_execution",
+    "risk_reading_20260516": "Regulatory/external reading is not equivalent to forwarder DDP clearance; future launch requires forwarder-specific written confirmation.",
+    "open_points_update_20260516": {
+      "shipping_customs_clearance_current_run": "closed_by_run_cancellation",
+      "future_rail": "requires_new_verification"
+    }
+  },
+  "source_pointers": [
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__01.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__02.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__03.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__04.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__05.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__06.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__07.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    },
+    {
+      "storage_space": "sharepoint_pro_meow",
+      "path": "MEOW PAW PAW - Bibliotheque de documents/ORGANISATIONS/FOURNISSEURS/SONGWAYPET - Hebei Yuanfeng Import And Export Trading Co Ltd/COMMANDES/2026-04 - Alibaba - RUN annule rembourse/Conversations Alibaba/ALIBABA_CHAT__SONGWAYPET__RUN_CANCEL_REFUND__2026-05-16__08.png",
+      "document_role": "supplier_chat_ddp_failure_evidence",
+      "document_status": "final_human_proof",
+      "linked_event": "songwaypet_run_cancelled_refunded_2026_05",
+      "added_at": "2026-05-16",
+      "confidence": "high"
+    }
+  ]
+}

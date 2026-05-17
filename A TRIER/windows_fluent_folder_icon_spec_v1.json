@@ -1,0 +1,262 @@
+{
+  "meta": {
+    "schema": "windows_fluent_folder_icon_spec_v1",
+    "version": "1.0.0",
+    "description": "Spécification de génération pour icônes dossier Windows style Fluent UI, fond transparent, pictogramme central minimaliste.",
+    "authoring_mode": "reproducible_visual_spec"
+  },
+  "global_style": {
+    "design_language": "Windows Fluent UI",
+    "platform_target": "Windows 11",
+    "icon_family": "custom folder shortcuts",
+    "look_and_feel": {
+      "minimal": true,
+      "clean": true,
+      "soft_depth": true,
+      "cartoon": false,
+      "neon": false,
+      "overdecorated": false,
+      "flat_only": false,
+      "aggressive_3d": false
+    }
+  },
+  "canvas": {
+    "aspect_ratio": "1:1",
+    "working_size_px": 1024,
+    "background": {
+      "type": "transparent",
+      "checkerboard_visible": false,
+      "solid_fill": null
+    },
+    "export": {
+      "png_transparent": true,
+      "ico": {
+        "enabled": true,
+        "sizes_px": [
+          256,
+          128,
+          64,
+          48,
+          32,
+          16
+        ]
+      }
+    }
+  },
+  "folder_base": {
+    "type": "windows_folder_modern",
+    "shape": {
+      "corner_radius_px": 42,
+      "top_tab": true,
+      "tab_alignment": "left",
+      "tab_softness": "rounded",
+      "front_plate_ratio": 0.84
+    },
+    "perspective": {
+      "mode": "front_soft",
+      "tilt_degrees": 0,
+      "distortion": "very_low"
+    },
+    "surface": {
+      "finish": "soft_matte",
+      "micro_texture": "very_subtle",
+      "gloss": "low"
+    },
+    "depth": {
+      "front_plate_layer": true,
+      "back_plate_layer": true,
+      "layer_separation_px": 14,
+      "shadow_softness": "medium",
+      "shadow_opacity": 0.18
+    },
+    "outline": {
+      "enabled": false,
+      "hard_stroke": false
+    }
+  },
+  "lighting": {
+    "style": "soft_studio",
+    "top_highlight": true,
+    "rim_light": false,
+    "light_direction": "top_left",
+    "contrast": "medium_low",
+    "bloom": false
+  },
+  "color_system": {
+    "folder_fill_mode": "solid_gradient_soft",
+    "folder_palettes": {
+      "gray": {
+        "base": "#D7DCE4",
+        "shadow": "#A8B0BC",
+        "highlight": "#F2F5F8"
+      },
+      "turquoise_blue": {
+        "base": "#64DFF1",
+        "shadow": "#2EAFE2",
+        "highlight": "#BDF7FF"
+      },
+      "purple": {
+        "base": "#B06CFF",
+        "shadow": "#7B3FE3",
+        "highlight": "#E0B8FF"
+      }
+    },
+    "pictogram_default": {
+      "fill": "#FFFFFF",
+      "secondary_fill": "#F3F6FA",
+      "outline": false
+    }
+  },
+  "composition": {
+    "subject_alignment": "center",
+    "safe_margin_ratio": 0.12,
+    "pictogram_scale_ratio": 0.34,
+    "pictogram_vertical_offset_ratio": 0.02,
+    "balance": "centered",
+    "readability_at_small_size": {
+      "priority": "high",
+      "max_detail_level": "low",
+      "thin_lines_allowed": false,
+      "min_stroke_px_at_1024": 26
+    }
+  },
+  "pictogram_rules": {
+    "style": "minimal_fluent_pictogram",
+    "geometry": {
+      "simple_shapes_only": true,
+      "rounded_corners": true,
+      "symmetry_preferred": true
+    },
+    "rendering": {
+      "filled": true,
+      "outlined_only": false,
+      "embossed_effect": "very_subtle",
+      "inner_shadow": "low",
+      "floating_effect": "slight"
+    },
+    "forbidden": {
+      "tiny_text": true,
+      "complex_scene": true,
+      "photo_realism": true,
+      "busy_background": true,
+      "checkerboard": true,
+      "watermark": true
+    }
+  },
+  "prompt_rules": {
+    "must_include": [
+      "transparent background",
+      "Windows 11 Fluent UI folder",
+      "minimal central white pictogram",
+      "soft gradients",
+      "rounded corners",
+      "clean modern icon",
+      "no checkerboard visible",
+      "no watermark",
+      "high readability",
+      "square composition"
+    ],
+    "must_avoid": [
+      "black background",
+      "dark studio background",
+      "neon glow",
+      "overly glossy plastic look",
+      "text labels",
+      "photo collage realism",
+      "tiny decorative details",
+      "visible transparency grid"
+    ]
+  },
+  "postprocess": {
+    "remove_background": true,
+    "alpha_cleanup": true,
+    "crop_to_visible_bounds": true,
+    "recenter_on_square_canvas": true,
+    "preserve_transparency": true,
+    "ico_generate": true
+  },
+  "variants": {
+    "robot_gray": {
+      "folder_palette": "gray",
+      "pictogram": {
+        "type": "robot_head",
+        "style": "minimal",
+        "fill": "#FFFFFF",
+        "accent": "#A9E8FF"
+      }
+    },
+    "micro_turquoise": {
+      "folder_palette": "turquoise_blue",
+      "pictogram": {
+        "type": "small_storefront",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    },
+    "sasu_turquoise": {
+      "folder_palette": "turquoise_blue",
+      "pictogram": {
+        "type": "large_corporate_building",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    },
+    "salariat_turquoise": {
+      "folder_palette": "turquoise_blue",
+      "pictogram": {
+        "type": "front_facing_person_with_cap",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    },
+    "documents_turquoise": {
+      "folder_palette": "turquoise_blue",
+      "pictogram": {
+        "type": "three_stacked_flying_sheets",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    },
+    "screenshot_windows_blue": {
+      "folder_palette": "turquoise_blue",
+      "pictogram": {
+        "type": "horizontal_screenshot_frame",
+        "style": "minimal",
+        "fill": "#FFFFFF",
+        "accent": "#111111"
+      }
+    },
+    "screenshot_mobile_blue": {
+      "folder_palette": "turquoise_blue",
+      "pictogram": {
+        "type": "vertical_phone_with_screenshot_frame",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    },
+    "dcim_purple": {
+      "folder_palette": "purple",
+      "pictogram": {
+        "type": "camera",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    },
+    "photo_collage_purple": {
+      "folder_palette": "purple",
+      "pictogram": {
+        "type": "photo_plus_collage_grid",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    },
+    "phone_folder_purple": {
+      "folder_palette": "purple",
+      "pictogram": {
+        "type": "smartphone_with_folder",
+        "style": "minimal",
+        "fill": "#FFFFFF"
+      }
+    }
+  }
+}

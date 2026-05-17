@@ -1,0 +1,233 @@
+{
+  "meta": {
+    "document_type": "product_identifiers",
+    "document_role": "product_uids_gtin_and_external_identifier_truth",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json",
+      "_HUB - DASHBOARD_/DATA HUB.xlsx"
+    ]
+  },
+  "identifiers_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "product_uid": "9222b601-abd8-4fdf-b675-a89ce948415d",
+      "product_logical_uid": "BATOUNET",
+      "amazon_seller_sku": "MPP-BAT-STD-MAT-V1",
+      "gtin13": "3770042193011",
+      "gtin13_issuer": "gs1_france",
+      "printed_ean_gtin": false,
+      "amazon_labeling_mode": "FNSKU",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BAT_STD_MAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_STD_MAT_V1",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-STD-MAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3
+        }
+      ],
+      "legacy_sku_barcode_on_pack": {
+        "printed_ean_gtin": false,
+        "amazon_labeling_mode": "FNSKU",
+        "gtin13": "3770042193011",
+        "gtin13_issuer": "gs1_france"
+      }
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "product_uid": "6398dc81-1a6d-46d5-9452-472d49b8b931",
+      "product_logical_uid": "BATOUNET",
+      "amazon_seller_sku": "MPP-BAT-VAR-MAT-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BAT_VAR_MAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_VAR_MAT_V1",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-VAR-MAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4
+        }
+      ],
+      "legacy_sku_barcode_on_pack": {
+        "printed_ean_gtin": null,
+        "amazon_labeling_mode": null,
+        "gtin13": null,
+        "gtin13_issuer": null
+      }
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "product_uid": "0b52cf26-a005-4e9c-84ca-ff207e9341ad",
+      "product_logical_uid": "BATOUNET",
+      "amazon_seller_sku": "MPP-BAT-XL-MAT-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BAT_XL_MAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BAT_XL_MAT_V1",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-XL-MAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5
+        }
+      ],
+      "legacy_sku_barcode_on_pack": {
+        "printed_ean_gtin": null,
+        "amazon_labeling_mode": null,
+        "gtin13": null,
+        "gtin13_issuer": null
+      }
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "product_uid": "e106910b-35c4-4180-9a45-06bc4ff65941",
+      "product_logical_uid": "BOULE_MATATABI",
+      "amazon_seller_sku": "MPP-BOU-S-MAT-CAT-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BOU_S_MAT_CAT_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BOU_S_MAT_CAT_V1",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BOU-S-MAT-CAT-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6
+        }
+      ],
+      "legacy_sku_barcode_on_pack": {
+        "printed_ean_gtin": null,
+        "amazon_labeling_mode": null,
+        "gtin13": null,
+        "gtin13_issuer": null
+      }
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "product_uid": "5971beec-f763-4019-9df0-2df09d9fcca2",
+      "product_logical_uid": "BUNDLE_3BOU_S",
+      "amazon_seller_sku": "MPP-BUN-3BOU-S-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BUN_3BOU_S_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_3BOU_S_V1",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7
+        }
+      ],
+      "legacy_sku_barcode_on_pack": {
+        "printed_ean_gtin": null,
+        "amazon_labeling_mode": null,
+        "gtin13": null,
+        "gtin13_issuer": null
+      }
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "product_uid": "b3f1e6d0-3e1e-46f1-9b65-std1ball-20251024",
+      "product_logical_uid": "BUNDLE_STD_1BOU_S",
+      "amazon_seller_sku": "MPP-BUN-STD-1BOU-S-V1",
+      "gtin13": "3770042193004",
+      "gtin13_issuer": "gs1_france",
+      "printed_ean_gtin": false,
+      "amazon_labeling_mode": "FNSKU",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BUN_STD_1BOU_S_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_STD_1BOU_S_V1",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8
+        }
+      ],
+      "legacy_sku_barcode_on_pack": {
+        "printed_ean_gtin": false,
+        "amazon_labeling_mode": "FNSKU",
+        "gtin13": "3770042193004",
+        "gtin13_issuer": "gs1_france"
+      }
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "product_uid": "edc05d92-7b55-4b42-a67a-xl1ball-20251025",
+      "product_logical_uid": "BUNDLE_XL_1BOU_S",
+      "amazon_seller_sku": "MPP-BUN-XL-1BOU-S-V1",
+      "ean_sticker_id": "STK_BC_EAN_MPP_BUN_XL_1BOU_S_V1",
+      "fnsku_sticker_id": "STK_BC_FNSKU_AMZ_MPP_BUN_XL_1BOU_S_V1",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9
+        }
+      ],
+      "legacy_sku_barcode_on_pack": {
+        "printed_ean_gtin": null,
+        "amazon_labeling_mode": null,
+        "gtin13": null,
+        "gtin13_issuer": null
+      }
+    }
+  },
+  "registries": {
+    "data_hub_registries_sheet": [
+      [
+        "REGISTRIES",
+        null,
+        null,
+        null
+      ],
+      [
+        "registry",
+        "field",
+        "value",
+        "status"
+      ],
+      [
+        "gs1",
+        "member_org",
+        "GS1 France",
+        "planned"
+      ],
+      [
+        "gs1",
+        "company_prefix",
+        null,
+        "planned"
+      ],
+      [
+        "gs1",
+        "notes",
+        "Route décidée: GS1. Action différée: adhésion + attribution GTIN uniquement après confirmation fournisseur (bundles/packaging) et gate G3.",
+        "planned"
+      ]
+    ]
+  }
+}

@@ -1,0 +1,219 @@
+{
+  "meta": {
+    "document_type": "sku_pricing",
+    "document_role": "retail_price_ttc_truth_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json",
+      "_HUB - DASHBOARD_/DATA HUB.xlsx"
+    ]
+  },
+  "prices_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "currency": "EUR",
+      "sales_price_mode": "TTC",
+      "price_ttc_full": 9.49,
+      "price_ttc_promo": 8.99,
+      "price_ttc_floor": 8.49,
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-STD-MAT-V1/pricing_truth_ttc"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3,
+          "source_columns": [
+            "price_ttc_full",
+            "price_ttc_promo",
+            "price_ttc_floor"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_ttc": {
+        "floor": 8.49,
+        "full": 9.49,
+        "promo": 8.99
+      }
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "currency": "EUR",
+      "sales_price_mode": "TTC",
+      "price_ttc_full": 13.9,
+      "price_ttc_promo": 13.49,
+      "price_ttc_floor": 12.9,
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-VAR-MAT-V1/pricing_truth_ttc"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4,
+          "source_columns": [
+            "price_ttc_full",
+            "price_ttc_promo",
+            "price_ttc_floor"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_ttc": {
+        "floor": 12.9,
+        "full": 13.9,
+        "promo": 13.49
+      }
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "currency": "EUR",
+      "sales_price_mode": "TTC",
+      "price_ttc_full": 12.49,
+      "price_ttc_promo": 11.9,
+      "price_ttc_floor": 10.49,
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-XL-MAT-V1/pricing_truth_ttc"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5,
+          "source_columns": [
+            "price_ttc_full",
+            "price_ttc_promo",
+            "price_ttc_floor"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_ttc": {
+        "floor": 10.49,
+        "full": 12.49,
+        "promo": 11.9
+      }
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "currency": "EUR",
+      "sales_price_mode": "TTC",
+      "price_ttc_full": null,
+      "price_ttc_promo": null,
+      "price_ttc_floor": null,
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BOU-S-MAT-CAT-V1/pricing_truth_ttc"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6,
+          "source_columns": [
+            "price_ttc_full",
+            "price_ttc_promo",
+            "price_ttc_floor"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_ttc": {
+        "floor": null,
+        "full": null,
+        "promo": null
+      }
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "currency": "EUR",
+      "sales_price_mode": "TTC",
+      "price_ttc_full": 10.99,
+      "price_ttc_promo": 10.49,
+      "price_ttc_floor": 9.49,
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1/pricing_truth_ttc"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7,
+          "source_columns": [
+            "price_ttc_full",
+            "price_ttc_promo",
+            "price_ttc_floor"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_ttc": {
+        "floor": 9.49,
+        "full": 10.99,
+        "promo": 10.49
+      }
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "currency": "EUR",
+      "sales_price_mode": "TTC",
+      "price_ttc_full": 12.9,
+      "price_ttc_promo": 12.49,
+      "price_ttc_floor": 11.49,
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1/pricing_truth_ttc"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8,
+          "source_columns": [
+            "price_ttc_full",
+            "price_ttc_promo",
+            "price_ttc_floor"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_ttc": {
+        "floor": 11.49,
+        "full": 12.9,
+        "promo": 12.49
+      }
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "currency": "EUR",
+      "sales_price_mode": "TTC",
+      "price_ttc_full": 14.9,
+      "price_ttc_promo": 13.9,
+      "price_ttc_floor": 13.49,
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1/pricing_truth_ttc"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9,
+          "source_columns": [
+            "price_ttc_full",
+            "price_ttc_promo",
+            "price_ttc_floor"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_ttc": {
+        "floor": 13.49,
+        "full": 14.9,
+        "promo": 13.9
+      }
+    }
+  }
+}

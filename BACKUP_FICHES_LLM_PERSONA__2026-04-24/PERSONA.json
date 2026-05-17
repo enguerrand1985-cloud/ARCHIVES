@@ -1,0 +1,1574 @@
+{
+  "meta": {
+    "document_type": "SCOPE_FILE",
+    "document_role": "ADMINISTRATIVE",
+    "version": "1.1.0",
+    "created_at": "2026-01-22T06:44:03+01:00",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-03-31T00:00:00+01:00",
+    "tags": [
+      "PERSONA",
+      "canonical_clean",
+      "domain_schema"
+    ],
+    "change_log": [
+      {
+        "id": "CHG__PERSONA__1_0_1",
+        "at": "2026-01-23T19:03:02.208431+01:00",
+        "summary": "Ajout d'un mini-historique d'entretien moto (vehicules[].entretien_mini) pour graissage/dégraissage et pneus; ajout d'une entrée mini_index pour vehicules.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__PERSONA__1_1_0",
+        "at": "2026-03-26T00:00:00+01:00",
+        "summary": "Extension canonique du domaine banque: enrichissement des comptes et ajout des engagements fixes ainsi que des virements récurrents.",
+        "breaking_change": false
+      },
+      {
+        "id": "CHG__PERSONA__1_1_1",
+        "at": "2026-03-31T00:00:00+01:00",
+        "summary": "Ajout de end_date (2026-10-28) sur FIXED__PERSONA__ADOBE_CC + todo one_shot de résiliation avant reconduction.",
+        "breaking_change": false
+      }
+    ],
+    "migrated_from_version": "",
+    "scope_variants": {
+      "BASE": {
+        "description": "Socle commun de structure et de domaines (PERSONA/MICRO).",
+        "data_canonique_domains": [
+          "identite",
+          "personnes",
+          "banque",
+          "social",
+          "assurances",
+          "vehicules",
+          "activite",
+          "fiscalite",
+          "documents_index",
+          "profils_numeriques"
+        ],
+        "llm_contract": {
+          "required_playbooks_min": [
+            "PLAYBOOK__ONBOARDING",
+            "PLAYBOOK__DATA_LOOKUP",
+            "PLAYBOOK__MAINTENANCE",
+            "PLAYBOOK__OUTPUT_JSON",
+            "PLAYBOOK__REBUILD_TODO"
+          ],
+          "required_policies_min": [
+            "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+            "POLICY__ARCHIVES_NOT_CANONICAL",
+            "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+            "POLICY__SENSITIVE_DATA_NO_SECRETS",
+            "POLICY__MAINTENANCE_MODE",
+            "POLICY__UPDATE_OUTPUT_MODES",
+            "POLICY__DEPENDENCY_POINTERS",
+            "POLICY__OVERWRITE_BY_ID"
+          ]
+        }
+      }
+    },
+    "type_defs": {
+      "ValueObject": {
+        "value": null,
+        "policy": "",
+        "doit_exister": true
+      },
+      "DocumentIndexItem": {
+        "id": "",
+        "doc_id": "",
+        "filename": "",
+        "sha256": "",
+        "pages": 0,
+        "category": "",
+        "tags": []
+      }
+    }
+  },
+  "scope_header": {
+    "scope": "PERSONA",
+    "parent_scope": null,
+    "child_scopes": []
+  },
+  "llm_contract": {
+    "allow_inference": false,
+    "allow_merge": false,
+    "routing": null,
+    "policies": [
+      {
+        "id": "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+        "title": "Scope fermé par défaut",
+        "description": "Sans demande explicite, pas d’inférence cross-scope. Toute agrégation cross-scope doit être explicitement demandée.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__ARCHIVES_NOT_CANONICAL",
+        "title": "Archives non-canoniques",
+        "description": "Les archives ne sont jamais une source de vérité si une donnée canonique existe. Lecture des archives uniquement sur demande explicite.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__CANONIQUE_CLEAN_NO_EVIDENCE_KEYS",
+        "title": "Canonique propre (pas de preuves/sources)",
+        "description": "Interdiction globale des clés de provenance/preuve (sources, evidence, source_ref, extraction, etc.). Le fichier déclare les faits.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__SENSITIVE_DATA_NO_SECRETS",
+        "title": "Données sensibles: pas de secrets",
+        "description": "Les secrets d'authentification (CVV, mots de passe, codes 2FA) ne sont jamais stockés. Utiliser value=null + policy='masked_not_stored' si besoin.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__MAINTENANCE_MODE",
+        "title": "Maintenance contrôlée",
+        "description": "Doctrine MAINTENANCE: une IA peut proposer des modifications d'un fichier de scope uniquement sur instruction explicite de l'utilisateur (ex: 'mets à jour la fiche').",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__UPDATE_OUTPUT_MODES",
+        "title": "Modes de sortie d’update",
+        "description": "Objectif: permettre des mises à jour multi-IA (Copilot, GPT, Claude, Gemini, etc.) avec des sorties JSON exploitables.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__DEPENDENCY_POINTERS",
+        "title": "Pointeurs de dépendances",
+        "description": "Les dépendances entre data, règles moteur, et todo sont exprimées via des pointeurs stables (IDs).",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__OVERWRITE_BY_ID",
+        "title": "Overwrite in-place par id",
+        "description": "Politique d'overwrite: une mise à jour d'une entité canonique se fait par remplacement des champs sur le même id (overwrite in-place). Interdiction de suppression d'entités canoniques en maintenance standard: préférer l'overwrite sur id existant pour refléter le nouvel état sans conserver d'ancienne occurrence.",
+        "enabled": true
+      }
+    ],
+    "playbooks": [
+      {
+        "id": "PLAYBOOK__ONBOARDING",
+        "title": "Onboarding / compréhension du fichier",
+        "steps": [
+          "Lire meta",
+          "Lire scope_header",
+          "Lire llm_contract (policies + playbooks)",
+          "Lire mini_index (navigation)",
+          "Lire regles_metier.rules_engine (si objectif action/calcul)",
+          "Lire data.canonique (faits)",
+          "Ne lire data.scope_specifique.archives que sur demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__DATA_LOOKUP",
+        "title": "Recherche factuelle",
+        "steps": [
+          "Lire data.canonique en priorité",
+          "Utiliser documents_index pour trouver les pièces",
+          "Ignorer archives sauf demande explicite"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__MAINTENANCE",
+        "title": "Maintenance / mise à jour contrôlée",
+        "steps": [
+          "Vérifier instruction explicite de mise à jour (sinon rester en lecture/planification)",
+          "Appliquer triage (ingestion): identifier faits à mettre à jour, demander les infos manquantes si nécessaire",
+          "Mettre à jour data.canonique par overwrite in-place (match par id), sans suppression",
+          "Rebuild contrôlé de todo: régénérer/ajuster les tâches liées via links et/ou rule_id; appliquer rollover recurring si applicable",
+          "Produire une sortie JSON exploitable (MERGE_PATCH par défaut) + demander validation utilisateur"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__OUTPUT_JSON",
+        "title": "Sortie JSON exploitable (update)",
+        "steps": [
+          "Choisir le mode de sortie: MERGE_PATCH_RFC7396 (défaut) / FULL_REPLACE (fallback) / PATCH_RFC6902 (avancé)",
+          "Produire un bloc JSON unique sans prose mélangée",
+          "Inclure mode, target_filename, scope, payload"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__REBUILD_TODO",
+        "title": "Rebuild contrôlé de todo",
+        "steps": [
+          "Identifier les entités canoniques modifiées (ids)",
+          "Retrouver les tâches todo impactées via links (ref_id) et/ou rule_id",
+          "Mettre à jour/remplacer les tâches concernées; conserver les autres",
+          "Appliquer la règle de rollover pour recurring (DONE ⇒ next_run_at recalculé ⇒ PLANNED)"
+        ]
+      }
+    ],
+    "hints": [
+      "Fiche LLM autonome. Respecte strictement le schéma. Scope fermé par défaut: pas d’inférence ou fusion cross-scope sans demande explicite. data.canonique est la source de vérité; archives non canoniques (lecture sur demande). Ne jamais inventer de valeurs absentes. Ne jamais stocker de secrets (CVV/mdp/2FA). Mises à jour uniquement sur instruction explicite + validation: overwrite in-place par id (pas de suppression) et rebuild contrôlé de todo via rule_id et todo.links (liens vers ids canoniques, jamais cross-scope). Sortie obligatoire en JSON exploitable: MERGE_PATCH par défaut, fallback FULL_REPLACE si nécessaire.",
+      ""
+    ]
+  },
+  "document_header": {
+    "title": "Fiche PERSONA",
+    "description": "Profil personnel (faits canoniques + index de documents).",
+    "owner": null,
+    "legal_entity": null
+  },
+  "mini_index": {
+    "entries": [
+      {
+        "id": "IDX__RULES_ENGINE",
+        "title": "Règles moteur",
+        "path": "regles_metier.rules_engine",
+        "when_to_use": "Quand il faut calculer, planifier, vérifier une obligation, préparer une action LLM",
+        "priority": 1
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE",
+        "title": "Données canoniques (source de vérité)",
+        "path": "data.canonique",
+        "when_to_use": "Quand il faut répondre factuellement, remplir un formulaire, vérifier une information",
+        "priority": 2
+      },
+      {
+        "id": "IDX__TODO",
+        "title": "File d’exécution LLM (projection)",
+        "path": "todo",
+        "when_to_use": "Quand il faut lister les actions à faire (par le LLM), suivre un cycle, préparer une exécution",
+        "priority": 3
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__IDENTITE",
+        "path": "data.canonique.identite",
+        "priority": 10,
+        "title": "Identité (fichier)",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PERSONNES",
+        "path": "data.canonique.personnes",
+        "priority": 11,
+        "title": "Personnes & identité",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__BANQUE",
+        "path": "data.canonique.banque",
+        "priority": 12,
+        "title": "Banque",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__SOCIAL",
+        "path": "data.canonique.social",
+        "priority": 13,
+        "title": "Social",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__ASSURANCES",
+        "path": "data.canonique.assurances",
+        "priority": 14,
+        "title": "Assurances",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__DOCS",
+        "path": "data.canonique.documents_index",
+        "priority": 15,
+        "title": "Documents index",
+        "when_to_use": "Navigation domaine"
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__PROFILS_NUMERIQUES",
+        "title": "Profils numériques (suite bureautique)",
+        "path": "data.canonique.profils_numeriques",
+        "when_to_use": "Accès aux comptes (Google/Microsoft/O365), services et URLs (suite bureautique).",
+        "priority": 16
+      },
+      {
+        "id": "IDX__ARCHIVES",
+        "title": "Archives (non-canoniques)",
+        "path": "data.scope_specifique.archives",
+        "when_to_use": "Uniquement si explicitement demandé, ou pour audit/historique",
+        "priority": 99
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE__VEHICULES",
+        "path": "data.canonique.vehicules",
+        "priority": 17,
+        "title": "Véhicules",
+        "when_to_use": "Moto/immat/VIN/année + mini-historique entretien (graissage/dégraissage/pneus)"
+      }
+    ],
+    "legacy_paths": []
+  },
+  "todo": {
+    "recurring": [],
+    "one_shot": [
+      {
+        "id": "TODO__PERSONA__RESILIATION_ADOBE_CC",
+        "title": "Résilier l'abonnement Adobe Creative Cloud",
+        "description": "Résilier l'abonnement Adobe CC avant la date de reconduction du 28 octobre 2026 pour éviter le renouvellement automatique (78,65 €/mois).",
+        "rule_id": null,
+        "due_at": "2026-10-27",
+        "inputs_required": [
+          "Connexion au compte Adobe (Enguerrand1985@gmail.com)",
+          "Accès à la page de gestion d'abonnement Adobe"
+        ],
+        "stop_conditions": [
+          "Confirmation de résiliation reçue par email"
+        ],
+        "outputs_expected": [
+          "Abonnement résilié avant le 2026-10-28"
+        ],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": null,
+          "last_result_ref": null
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "FACT",
+            "ref_id": "FIXED__PERSONA__ADOBE_CC",
+            "path": "data.canonique.banque.engagements_fixes",
+            "note": "Engagement fixe Adobe CC à résilier"
+          }
+        ],
+        "tags": ["RESILIATION", "DIGITAL_SUBSCRIPTION"]
+      }
+    ]
+  },
+  "notes": [],
+  "data": {
+    "canonique": {
+      "identite": {
+        "owner_display_name": "",
+        "langue": "",
+        "timezone": "Europe/Paris"
+      },
+      "personnes": [
+        {
+          "id": "PERSON__PERSONA__OWNER",
+          "role": "OWNER",
+          "nom_legal_complet": {
+            "value": "KALFAIAN Enguerrand Henri Djo-Son Griffin"
+          },
+          "date_naissance": {
+            "value": "1985-09-08"
+          },
+          "lieu_naissance": {
+            "value": "Séoul, Corée"
+          },
+          "nationalite": {
+            "value": "française"
+          },
+          "contacts": {
+            "emails": [
+              {
+                "value": "Enguerrand1985@gmail.com",
+                "label": "personnel"
+              }
+            ],
+            "telephones": [
+              {
+                "value": "06 25 29 13 18",
+                "label": "mobile"
+              }
+            ]
+          },
+          "adresses": {
+            "principale": {
+              "value": "15 rue du Grenier Saint-Lazare, 75003 Paris"
+            },
+            "secondaire": {
+              "value": "10 allée Diane de Poitiers, 75019 Paris"
+            }
+          }
+        },
+        {
+          "id": "PERSON__PERSONA__PERE",
+          "role": "PERE",
+          "nom_legal_complet": {
+            "value": "KALFAIAN Jean Paul"
+          },
+          "date_naissance": {
+            "value": "1948-04-02"
+          },
+          "lieu_naissance": {
+            "value": "Paris 15e"
+          },
+          "nationalite": {
+            "value": ""
+          },
+          "contacts": {
+            "emails": [],
+            "telephones": []
+          },
+          "adresses": {
+            "principale": {
+              "value": ""
+            },
+            "secondaire": {
+              "value": ""
+            }
+          }
+        },
+        {
+          "id": "PERSON__PERSONA__MERE",
+          "role": "MERE",
+          "nom_legal_complet": {
+            "value": "de BORNIOL Isabelle Yvonne Amélie"
+          },
+          "date_naissance": {
+            "value": "1949-10-18"
+          },
+          "lieu_naissance": {
+            "value": "Paris 15e"
+          },
+          "nationalite": {
+            "value": ""
+          },
+          "contacts": {
+            "emails": [],
+            "telephones": []
+          },
+          "adresses": {
+            "principale": {
+              "value": ""
+            },
+            "secondaire": {
+              "value": ""
+            }
+          }
+        }
+      ],
+      "banque": {
+        "primary_account_id": "BANK__PERSONA__LCL",
+        "accounts": [
+          {
+            "id": "BANK__PERSONA__LCL",
+            "provider": "LCL",
+            "label": "Compte LCL",
+            "country": "FR",
+            "currency": "EUR",
+            "account_kind": "checking",
+            "ownership_kind": "personal",
+            "status": "active",
+            "ibans": [
+              {
+                "id": "IBAN__PERSONA__LCL__01",
+                "iban_raw": "FR4330002096360000000184N22",
+                "iban_formatted": "FR43 3000 2096 3600 0000 0184 N22",
+                "currency": "EUR",
+                "kind": "checking"
+              }
+            ],
+            "bics": [
+              {
+                "bic": "CRLYFRPP"
+              }
+            ],
+            "cards": [
+              {
+                "id": "CARD__PERSONA__LCL__01",
+                "network": "",
+                "pan_raw": "4972039779013303",
+                "pan_formatted": "4972 0397 7901 3303",
+                "expiry_mm_yy": "09/28",
+                "cvv": {
+                  "value": null,
+                  "policy": "masked_not_stored"
+                }
+              }
+            ],
+            "notes": ""
+          },
+          {
+            "id": "BANK__PERSONA__NICKEL",
+            "provider": "Nickel",
+            "label": "Compte Nickel",
+            "country": "FR",
+            "currency": "EUR",
+            "account_kind": "prepaid",
+            "ownership_kind": "personal",
+            "status": "active",
+            "ibans": [
+              {
+                "id": "IBAN__PERSONA__NICKEL__01",
+                "iban_raw": "FR7616598000010337057000171",
+                "iban_formatted": "FR76 1659 8000 0103 3705 7000 171",
+                "currency": "EUR",
+                "kind": "checking"
+              }
+            ],
+            "bics": [
+              {
+                "bic": "FPELFR21XXX"
+              }
+            ],
+            "cards": [
+              {
+                "id": "CARD__PERSONA__NICKEL__01",
+                "network": "",
+                "pan_raw": "5290970042004400",
+                "pan_formatted": "5290 9700 4200 4400",
+                "expiry_mm_yy": "05/27",
+                "cvv": {
+                  "value": null,
+                  "policy": "masked_not_stored"
+                }
+              }
+            ],
+            "notes": ""
+          },
+          {
+            "id": "BANK__PERSONA__LYDIA_SUMERIA",
+            "provider": "Lydia (Sumeria)",
+            "label": "Compte Lydia (Sumeria)",
+            "country": "FR",
+            "currency": "EUR",
+            "account_kind": "wallet",
+            "ownership_kind": "personal",
+            "status": "active",
+            "ibans": [
+              {
+                "id": "IBAN__PERSONA__LYDIA_SUMERIA__01",
+                "iban_raw": "FR7617598000010000078969274",
+                "iban_formatted": "FR76 1759 8000 0100 0007 8969 274",
+                "currency": "EUR",
+                "kind": "checking"
+              }
+            ],
+            "bics": [
+              {
+                "bic": "LYDIFRP2XXX"
+              }
+            ],
+            "cards": [
+              {
+                "id": "CARD__PERSONA__LYDIA_SUMERIA__01",
+                "network": "",
+                "pan_raw": "4785543048398343",
+                "pan_formatted": "4785 5430 4839 8343",
+                "expiry_mm_yy": "12/26",
+                "cvv": {
+                  "value": null,
+                  "policy": "masked_not_stored"
+                }
+              }
+            ],
+            "notes": ""
+          }
+        ],
+        "fixed_commitments": [
+          {
+            "id": "FIXED__PERSONA__SFR__FORFAIT_MOBILE",
+            "label": "SFR forfait mobile",
+            "category": "TELECOM",
+            "subcategory": "MOBILE_PLAN",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 7.99,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "SFR",
+              "kind": "TELCO"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__SFR__FORFAIT_MOBILE_MERE",
+            "label": "SFR forfait mobile mère",
+            "category": "TELECOM",
+            "subcategory": "MOBILE_PLAN",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 6.99,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "SFR",
+              "kind": "TELCO"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__SFR__BOX",
+            "label": "SFR box internet",
+            "category": "TELECOM",
+            "subcategory": "INTERNET_BOX",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 24.48,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "SFR",
+              "kind": "TELCO"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__SFR__OPTION",
+            "label": "SFR option",
+            "category": "TELECOM",
+            "subcategory": "OPTION",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 1.99,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "SFR",
+              "kind": "TELCO"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__KLINGAI",
+            "label": "KlingAI",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "AI_SERVICE",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 7.71,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "KlingAI",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__GOOGLE_PLAY",
+            "label": "Google Play",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "APP_STORE",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 2.09,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "Google Play",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__YOUTUBE_PREMIUM",
+            "label": "YouTube Premium",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "STREAMING",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 12.99,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "YouTube",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__EA",
+            "label": "EA Electronic Arts",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "GAMING",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 19.05,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "Electronic Arts",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__COPILOT_PERSO",
+            "label": "Copilot (perso)",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "AI_SERVICE",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 10.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "Microsoft Copilot",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__COPILOT_PRO",
+            "label": "Copilot Pro Business",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "AI_SERVICE",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 18.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "GitHub Copilot",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": "2027-03-12",
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": "Abonnement annuel. Echeance actuelle au 12 mars 2027."
+          },
+          {
+            "id": "FIXED__PERSONA__GITHUB",
+            "label": "ChatGPT Plus",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "AI_SERVICE",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 23.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "OpenAI",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": "Remplacement de GitHub Copilot par ChatGPT Plus. Montant verrouille par utilisateur a 23,00 EUR / mois."
+          },
+          {
+            "id": "FIXED__PERSONA__ADOBE_CC",
+            "label": "Adobe CC",
+            "category": "DIGITAL_SUBSCRIPTION",
+            "subcategory": "SOFTWARE",
+            "nature": "SUBSCRIPTION",
+            "amount": {
+              "value": 78.65,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "Adobe",
+              "kind": "DIGITAL_PROVIDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": "2026-10-28",
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": "Date de reconduction annuelle. Résilier avant cette date pour éviter le renouvellement."
+          },
+          {
+            "id": "FIXED__PERSONA__MACIF",
+            "label": "MACIF",
+            "category": "INSURANCE",
+            "subcategory": "VEHICLE_INSURANCE",
+            "nature": "INSURANCE_PREMIUM",
+            "amount": {
+              "value": 96.05,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "MACIF",
+              "kind": "INSURER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "PERSONA",
+            "notes": "Charge mensuelle liee au contrat assurance."
+          },
+          {
+            "id": "FIXED__PERSONA__LCL__ASSURANCE_MOYENS_PAIEMENT",
+            "label": "Assurance moyens de paiement",
+            "category": "BANKING_FEE",
+            "subcategory": "PAYMENT_PROTECTION",
+            "nature": "PREMIUM_SERVICE",
+            "amount": {
+              "value": 3.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "LCL",
+              "kind": "BANK"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__LCL__COTISATION_CARTE",
+            "label": "Cotisation carte LCL",
+            "category": "BANKING_FEE",
+            "subcategory": "CARD_FEE",
+            "nature": "BANK_FEE",
+            "amount": {
+              "value": 4.35,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__LCL",
+              "card_id": "CARD__PERSONA__LCL__01",
+              "method": ""
+            },
+            "counterparty": {
+              "name": "LCL",
+              "kind": "BANK"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": false,
+            "scope_affectation": "PERSONA",
+            "notes": ""
+          },
+          {
+            "id": "FIXED__PERSONA__AMAZON_CREDIT",
+            "label": "Crédit Amazon",
+            "category": "DEBT_REPAYMENT",
+            "subcategory": "CONSUMER_CREDIT",
+            "nature": "LOAN_REPAYMENT",
+            "amount": {
+              "value": 92.75,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null
+            },
+            "payment": {
+              "direction": "OUT",
+              "account_id": "BANK__PERSONA__NICKEL",
+              "card_id": null,
+              "method": ""
+            },
+            "counterparty": {
+              "name": "Amazon",
+              "kind": "LENDER"
+            },
+            "status": "active",
+            "start_date": null,
+            "end_date": null,
+            "is_automatic": true,
+            "is_essential": true,
+            "scope_affectation": "PERSONA",
+            "notes": "Montant total du credit declare: 362 EUR."
+          }
+        ],
+        "recurring_transfers": [
+          {
+            "id": "FLOW__PERSONA__MICRO_TO_LCL",
+            "label": "Approvisionnement personnel depuis MICRO",
+            "direction": "IN",
+            "amount": {
+              "value": 100.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "WEEKLY",
+              "rrule": null,
+              "estimated_monthly_occurrences": 4
+            },
+            "destination_account_id": "BANK__PERSONA__LCL",
+            "source_account_ref": {
+              "scope": "MICRO",
+              "account_id": null,
+              "label": "Compte MICRO"
+            },
+            "counterparty": {
+              "name": "Compte MICRO",
+              "kind": "INTERNAL_TRANSFER"
+            },
+            "origin_nature": "PERSONAL_TOP_UP",
+            "status": "active",
+            "is_automatic": true,
+            "start_date": null,
+            "end_date": null,
+            "usage": "Approvisionnement personnel",
+            "estimated_monthly_total": {
+              "value": 400.0,
+              "currency": "EUR"
+            },
+            "notes": ""
+          },
+          {
+            "id": "FLOW__PERSONA__REVENUS_FONCIERS_TO_NICKEL",
+            "label": "Revenus fonciers",
+            "direction": "IN",
+            "amount": {
+              "value": 600.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null,
+              "estimated_monthly_occurrences": 1
+            },
+            "destination_account_id": "BANK__PERSONA__NICKEL",
+            "source_account_ref": {
+              "scope": null,
+              "account_id": null,
+              "label": "revenus fonciers"
+            },
+            "counterparty": {
+              "name": "revenus fonciers",
+              "kind": "PROPERTY_INCOME"
+            },
+            "origin_nature": "RENTAL_INCOME",
+            "status": "active",
+            "is_automatic": true,
+            "start_date": null,
+            "end_date": null,
+            "usage": "",
+            "estimated_monthly_total": {
+              "value": 600.0,
+              "currency": "EUR"
+            },
+            "notes": ""
+          },
+          {
+            "id": "FLOW__PERSONA__CAF_TO_LYDIA_SUMERIA",
+            "label": "Virement recurrent CAF",
+            "direction": "IN",
+            "amount": {
+              "value": 300.0,
+              "currency": "EUR"
+            },
+            "frequency": {
+              "type": "MONTHLY",
+              "rrule": null,
+              "estimated_monthly_occurrences": 1
+            },
+            "destination_account_id": "BANK__PERSONA__LYDIA_SUMERIA",
+            "source_account_ref": {
+              "scope": null,
+              "account_id": null,
+              "label": "CAF"
+            },
+            "counterparty": {
+              "name": "CAF",
+              "kind": "BENEFIT_BODY"
+            },
+            "origin_nature": "SOCIAL_BENEFIT",
+            "status": "active",
+            "is_automatic": true,
+            "start_date": null,
+            "end_date": null,
+            "usage": "",
+            "estimated_monthly_total": {
+              "value": 300.0,
+              "currency": "EUR"
+            },
+            "notes": ""
+          }
+        ],
+        "cashflow_snapshots": []
+      },
+      "social": {
+        "carte_vitale": {
+          "numero": {
+            "value": "1 85 09 99 237 005 12"
+          },
+          "regime": {
+            "value": "securite_sociale_france"
+          },
+          "pays": {
+            "value": "FR"
+          }
+        }
+      },
+      "assurances": {
+        "habitation": [],
+        "vehicule": [
+          {
+            "id": "INS__PERSONA__DEUX_ROUES_MACIF",
+            "compagnie": {
+              "value": "MACIF"
+            },
+            "produit": {
+              "value": "attestation_assurance"
+            },
+            "numero_contrat": {
+              "value": "17061213A500"
+            },
+            "numero_societaire": {
+              "value": "17061213"
+            },
+            "vehicule": {
+              "type": {
+                "value": "deux_roues"
+              },
+              "marque": {
+                "value": "HONDA"
+              },
+              "modele": {
+                "value": "CB500X"
+              },
+              "immatriculation": {
+                "value": "GM-108-AR"
+              },
+              "usage": {
+                "value": ""
+              }
+            },
+            "dates": {
+              "date_effet": {
+                "value": "2023-12-26"
+              },
+              "date_expiration": {
+                "value": ""
+              }
+            }
+          }
+        ]
+      },
+      "vehicules": [
+        {
+          "id": "VEH__PERSONA__HONDA_CB_GM108AR",
+          "type": "deux_roues",
+          "marque": "HONDA",
+          "modele": "CB500X",
+          "immatriculation": "GM-108-AR",
+          "usage": "",
+          "annee": 2023,
+          "vin": "MLHPC64A1NS213199",
+          "entretien_mini": {
+            "chain": {
+              "graissage": []
+            },
+            "pneus": {
+              "gonflage": []
+            }
+          }
+        }
+      ],
+      "activite": {
+        "statut": {
+          "value": ""
+        },
+        "code_ape": {
+          "value": ""
+        },
+        "description": {
+          "value": ""
+        }
+      },
+      "fiscalite": {
+        "residence_fiscale_pays": {
+          "value": "FR"
+        }
+      },
+      "documents_index": [
+        {
+          "id": "DOC__PERSONA__CNI",
+          "kind": "CNI",
+          "title": "Carte nationale d'identité",
+          "reference": "201075V50292",
+          "valid_until": "2035-10-07",
+          "persons_related": [
+            "PERSON__PERSONA__OWNER"
+          ],
+          "tags": []
+        },
+        {
+          "id": "DOC__PERSONA__PERMIS",
+          "kind": "PERMIS_CONDUIRE",
+          "title": "Permis de conduire",
+          "reference": "24AH09107",
+          "valid_until": "2039-03-15",
+          "persons_related": [
+            "PERSON__PERSONA__OWNER"
+          ],
+          "tags": []
+        },
+        {
+          "id": "DOC__PERSONA__EXTRAIT_ACTE_NAISSANCE",
+          "kind": "EXTRAIT_ACTE_NAISSANCE",
+          "title": "Extrait d'acte de naissance",
+          "reference": "TR-DIVERS.1987..00160",
+          "issue_date": "2008-04-29",
+          "issuer": "Nantes",
+          "persons_related": [
+            "PERSON__PERSONA__OWNER",
+            "PERSON__PERSONA__PERE",
+            "PERSON__PERSONA__MERE"
+          ],
+          "tags": []
+        },
+        {
+          "id": "DOC__PERSONA__ASSURANCE_2R_MACIF",
+          "kind": "attestation_assurance",
+          "title": "Attestation assurance deux roues",
+          "reference": "17061213A500",
+          "issue_date": "2026-01-21",
+          "issuer": "MACIF",
+          "persons_related": [
+            "PERSON__PERSONA__OWNER"
+          ],
+          "tags": [
+            "responsabilite_civile",
+            "dommages_par_accident_et_vandalisme",
+            "incendie_explosion_attentats_et_terrorisme",
+            "vol",
+            "bris_optiques_phare",
+            "evenements_climatiques",
+            "catastrophes_naturelles",
+            "catastrophes_technologiques",
+            "frais_remorquage_et_annexes",
+            "insolvabilite_tiers_responsable",
+            "equipement_motard",
+            "assistance_generale",
+            "defense_et_recours"
+          ]
+        },
+        {
+          "id": "DOC__PERSONA__ASSISTANCE_PERSONNES_MACIF",
+          "kind": "attestation_garantie_assistance_aux_personnes",
+          "title": "Attestation garantie assistance aux personnes",
+          "reference": "17061213",
+          "issue_date": "2026-01-21",
+          "issuer": "MACIF",
+          "persons_related": [
+            "PERSON__PERSONA__OWNER"
+          ],
+          "tags": []
+        }
+      ],
+      "profils_numeriques": {
+        "digital_profiles": [
+          {
+            "id": "DIGIPROF__PERSONA__CHROME_PERSONNEL",
+            "label": "google_chrome_personnel",
+            "role": "OS personnel (vie privée / achats / famille)",
+            "account_kind": "GOOGLE",
+            "account_email": "Enguerrand1985@gmail.com",
+            "tenant_domain": "",
+            "primary_use_cases": [
+              "Navigation personnelle et divertissement.",
+              "Listes d’achats et gestion des commandes.",
+              "Vie familiale et usages privés."
+            ],
+            "browser": {
+              "family": "Chrome",
+              "profile_label": "Personnel"
+            },
+            "services": [
+              {
+                "kind": "MAIL",
+                "label": "Gmail",
+                "url": "https://mail.google.com/mail/u/0/#inbox",
+                "account_email": "Enguerrand1985@gmail.com"
+              },
+              {
+                "kind": "DRIVE",
+                "label": "Drive",
+                "url": "https://drive.google.com/drive/my-drive",
+                "account_email": ""
+              },
+              {
+                "kind": "CALENDAR",
+                "label": "Calendrier",
+                "url": "https://calendar.google.com/calendar/u/0/r/month/2026/1/1",
+                "account_email": ""
+              },
+              {
+                "kind": "TASKS",
+                "label": "Tasks",
+                "url": "https://tasks.google.com/tasks/",
+                "account_email": ""
+              },
+              {
+                "kind": "NOTES",
+                "label": "Keep",
+                "url": "https://keep.google.com/#home",
+                "account_email": ""
+              }
+            ],
+            "notes": ""
+          }
+        ]
+      }
+    },
+    "scope_specifique": {
+      "archives": {
+        "items": [
+          {
+            "id": "ARCH__PERSONA__ASSURANCE_DEUX_ROUES_DETAILS",
+            "title": "Détails attestation assurance deux roues (MACIF)",
+            "kind": "ASSURANCE_DEUX_ROUES_DETAILS",
+            "content": {
+              "echeance_annuelle": "04-01",
+              "mode_renouvellement": "tacite_reconduction",
+              "contacts": {
+                "telephone": "09 69 39 49 49",
+                "email": "relationgestion@macif.fr",
+                "site": "www.macif.fr"
+              },
+              "emission": {
+                "date": "2026-01-21",
+                "lieu": "Niort",
+                "signataire": {
+                  "nom": "DOGNETON",
+                  "prenom": "Jean-Philippe",
+                  "fonction": "Directeur Général"
+                }
+              },
+              "garanties": [
+                "responsabilite_civile",
+                "dommages_par_accident_et_vandalisme",
+                "incendie_explosion_attentats_et_terrorisme",
+                "vol",
+                "bris_optiques_phare",
+                "evenements_climatiques",
+                "catastrophes_naturelles",
+                "catastrophes_technologiques",
+                "frais_remorquage_et_annexes",
+                "insolvabilite_tiers_responsable",
+                "equipement_motard",
+                "assistance_generale",
+                "defense_et_recours"
+              ]
+            },
+            "created_at": "2026-01-22T06:44:03+01:00",
+            "tags": [
+              "DETAILS",
+              "NON_CANONIQUE"
+            ],
+            "checksum": null
+          },
+          {
+            "id": "ARCH__PERSONA__ASSISTANCE_PERSONNES_DETAILS",
+            "title": "Détails attestation assistance aux personnes (MACIF)",
+            "kind": "ASSISTANCE_PERSONNES_DETAILS",
+            "content": {
+              "societaire_numero": "17061213",
+              "contrat_cadre": {
+                "nom": "Garantie Accident",
+                "organisme_assistance": "Macif Assistance"
+              },
+              "prestations_principales": {
+                "rapatriement": {
+                  "france": {
+                    "condition_distance_km": 50,
+                    "description": "organisation_et_prise_en_charge"
+                  },
+                  "etranger": {
+                    "condition_distance_km": null,
+                    "description": "organisation_et_prise_en_charge"
+                  }
+                },
+                "recherche_et_secours": {
+                  "france": {
+                    "condition_distance_km": null
+                  },
+                  "etranger": {
+                    "condition_distance_km": null
+                  }
+                }
+              },
+              "sejours_touristiques_duree_max_continue": "P1Y",
+              "echeance_annuelle": "04-01",
+              "contacts_assistance": {
+                "france": "0 800 774 774",
+                "etranger": "+33 5 49 774 774"
+              },
+              "emission": {
+                "date": "2026-01-21",
+                "lieu": "Niort",
+                "signataire": {
+                  "nom": "DOGNETON",
+                  "prenom": "Jean-Philippe",
+                  "fonction": "Directeur Général"
+                }
+              }
+            },
+            "created_at": "2026-01-22T06:44:03+01:00",
+            "tags": [
+              "DETAILS",
+              "NON_CANONIQUE"
+            ],
+            "checksum": null
+          }
+        ],
+        "policy": {
+          "not_canonical": true,
+          "read_only": true,
+          "use_only_if_explicitly_requested": true
+        }
+      }
+    }
+  },
+  "regles_metier": {
+    "rules_engine": {
+      "meta": {
+        "engine_version": "2.0.0",
+        "description": "Règles moteur déclaratives (source). Les tâches todo sont une projection (exécution).",
+        "defaults": {
+          "execution_policy": {
+            "actor": "LLM",
+            "write_allowed": false,
+            "requires_user_validation": true
+          }
+        }
+      },
+      "rules": {}
+    },
+    "procedures": {},
+    "templates_prompts": {
+      "perplexity": {},
+      "other": {}
+    },
+    "references": {
+      "FACT__PERSONA__PERSONNES": {
+        "type": "FACT",
+        "path": "data.canonique.personnes",
+        "description": "Identité et contacts (personnes)."
+      },
+      "FACT__PERSONA__BANQUE": {
+        "type": "FACT",
+        "path": "data.canonique.banque",
+        "description": "Comptes, IBAN/BIC, cartes (sans CVV), engagements fixes et virements récurrents."
+      },
+      "FACT__PERSONA__SOCIAL": {
+        "type": "FACT",
+        "path": "data.canonique.social",
+        "description": "Informations sociales (carte vitale)."
+      },
+      "FACT__PERSONA__ASSURANCES": {
+        "type": "FACT",
+        "path": "data.canonique.assurances",
+        "description": "Assurances structurées selon schéma."
+      },
+      "FACT__PERSONA__DOCS_INDEX": {
+        "type": "FACT",
+        "path": "data.canonique.documents_index",
+        "description": "Index des documents (métadonnées)."
+      },
+      "ARCH__PERSONA__ARCHIVES": {
+        "type": "FACT",
+        "path": "data.scope_specifique.archives",
+        "description": "Archives non-canoniques (lecture sur demande)."
+      }
+    }
+  }
+}

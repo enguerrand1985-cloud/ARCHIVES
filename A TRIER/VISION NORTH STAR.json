@@ -1,0 +1,83 @@
+{
+  "meta": {
+    "document_type": "vision_north_star",
+    "document_role": "guidance_truth",
+    "version": "copilot_truth_v1",
+    "timezone": "Europe/Paris",
+    "simplified_for": "copilot_m365_truth",
+    "simplified_from": "data__vision_north_star.json",
+    "source_updated_at": "2026-01-17T20:39:59+01:00"
+  },
+  "budget": {
+    "operating_base_eur": 2000,
+    "operating_base_status": "confirmed",
+    "allocation_rule_percent": {
+      "stock": 60,
+      "ads": 30,
+      "buffer": 10
+    },
+    "bulk_purchase_budget_eur": 1400,
+    "bulk_purchase_budget_status": "confirmed"
+  },
+  "targets": {
+    "sales_per_day_target": {
+      "min": 3,
+      "max": 5
+    },
+    "tacos_max_pct": 20,
+    "rating_min": 4.4,
+    "return_rate_max_pct": 5,
+    "ppc_reference_pct": 10
+  },
+  "go_to_market": {
+    "launch_mode": "soft_launch_learning",
+    "amazon_ppc": {
+      "allowed": true,
+      "timing": "after_listing_live_and_first_signals",
+      "intensity": "light",
+      "tacos_max_pct": 20
+    },
+    "tiktok_shop_run_scope": "not_in_run"
+  },
+  "horizons": {
+    "mid_term_post_run_stable": [
+      "Formaliser la stratégie 'faire vivre le produit' (contenu, preuve sociale, lignes rouges).",
+      "Canaux hors Amazon : cadrer, tester progressivement (sans précipitation).",
+      "BUILD : Premium = hors RUN (à reconsidérer uniquement après stabilité)."
+    ],
+    "long_term": [
+      "Éditions limitées visuelles (rythme calendaire).",
+      "Extensions multi-canales : à décider après preuves Amazon (TikTok Shop / boutiques spécialisées / autres marketplaces).",
+      "Installer la marque comme référence FR des jouets chats beaux, sûrs et durables.",
+      "Storytelling autour de la mascotte Bâtounet + univers graphique distinctif."
+    ]
+  },
+  "brand_identity": {
+    "positioning": [
+      "premium",
+      "kawaii",
+      "eco_responsable",
+      "zero_plastique"
+    ],
+    "values": [
+      "naturel",
+      "bien_etre_animal",
+      "esthetique_soignee",
+      "packaging_cadeau"
+    ],
+    "tone": [
+      "chaleureux",
+      "creatif",
+      "visuel",
+      "oriente_communaute"
+    ]
+  },
+  "gate_run_stable": {
+    "status": "defined",
+    "sales_per_day_min": 3,
+    "sales_per_day_max": 5,
+    "tacos_max_pct": 20,
+    "rating_min": 4.4,
+    "return_rate_max_pct": 5
+  }
+}

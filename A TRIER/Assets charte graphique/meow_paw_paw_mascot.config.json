@@ -1,0 +1,255 @@
+{
+  "config_version": "1.0.0",
+  "asset_type": "mascot_generation_config",
+  "mascot_id": "meow_paw_paw_orange_tabby_kawaii_v1",
+  "brand_context": {
+    "brand_name": "Meow Paw Paw",
+    "usage": [
+      "image generation",
+      "packaging",
+      "e-commerce visuals",
+      "social media assets",
+      "stickers",
+      "product inserts"
+    ]
+  },
+  "identity_lock": {
+    "species": "cat",
+    "archetype": "cute orange tabby mascot",
+    "style_family": [
+      "kawaii",
+      "chibi",
+      "vector-like",
+      "sticker mascot",
+      "flat illustration with soft texture"
+    ],
+    "core_personality": [
+      "joyful",
+      "gentle",
+      "playful",
+      "warm",
+      "friendly",
+      "reassuring"
+    ],
+    "recognition_goal": "Every new variation must read as the same mascot first, and only then as a new pose, mood, or action."
+  },
+  "visual_dna": {
+    "silhouette": {
+      "head": "large rounded head",
+      "body": "small compact rounded body",
+      "legs": "short soft legs",
+      "paws": "small rounded paws",
+      "tail": "rounded upward tabby tail",
+      "readability": "clear silhouette, recognizable at small size"
+    },
+    "linework": {
+      "outline_style": "thick dark brown outline",
+      "outline_weight": "consistent",
+      "line_feel": "clean, soft, sticker-like",
+      "inner_details": "minimal and simplified"
+    },
+    "face": {
+      "eyes": [
+        "simple curved arc eyes",
+        "closed happy eyes",
+        "small dot-like or arc variations only if still kawaii"
+      ],
+      "nose": "small rounded brown nose",
+      "mouth": "tiny friendly kawaii mouth, often open smile or soft smile",
+      "cheeks": "pink circular blush spots",
+      "muzzle": "small cream oval muzzle patch",
+      "expression_rule": "Expressions can vary, but must remain simple, cute, and brand-safe."
+    },
+    "fur_markings": {
+      "base_fur": "light warm orange",
+      "tabby_marks": "few soft orange stripes on forehead, back, limbs, and tail",
+      "belly": "cream or pale ivory belly patch",
+      "paw_tips": "optional pale cream tips",
+      "detail_rule": "markings stay sparse, clean, and decorative rather than realistic"
+    },
+    "rendering": {
+      "base_style": "flat color blocks",
+      "shading": "very light and minimal",
+      "texture": "optional subtle soft grain",
+      "lighting": "simple, even, non-dramatic",
+      "depth": "2D mascot look, not 3D"
+    }
+  },
+  "color_palette": {
+    "outline_dark_brown": "#6B3F24",
+    "base_orange": "#F7C77A",
+    "secondary_orange": "#F2B45C",
+    "stripe_orange": "#E9A14B",
+    "cream_muzzle_belly": "#F7E8C9",
+    "pink_cheeks_inner_ear": "#F6A3A0",
+    "nose_mouth_brown": "#7A4A2A",
+    "shadow_neutral": "#D8C8B5",
+    "palette_rules": [
+      "keep palette warm and soft",
+      "avoid neon tones",
+      "avoid cold blue or saturated purple dominance",
+      "new props may add color, but mascot body palette stays stable"
+    ]
+  },
+  "proportions": {
+    "head_to_body_ratio": "head visually dominant, about 1.1x to 1.4x body height in cute poses",
+    "ear_size": "medium-large, rounded triangle",
+    "limb_length": "short, simplified",
+    "tail_length": "medium, expressive, rounded",
+    "anatomy_rule": "stylized and cute, not realistic feline anatomy"
+  },
+  "pose_rules": {
+    "allowed": [
+      "running",
+      "sitting",
+      "standing",
+      "holding product",
+      "jumping lightly",
+      "playing",
+      "waving",
+      "hugging an object",
+      "looking curious",
+      "sleeping",
+      "celebrating"
+    ],
+    "grounding_rule": "If the pose implies running or standing, at least one paw should plausibly connect to the ground unless the request explicitly asks for jumping.",
+    "motion_style": "use simple motion lines, soft oval shadow, and readable paw placement",
+    "pose_feel": "energetic but controlled, always cute and balanced"
+  },
+  "expression_library": {
+    "approved_examples": [
+      "big open joyful smile",
+      "small content smile",
+      "playful grin",
+      "curious happy face",
+      "soft proud smile",
+      "excited closed-eye smile",
+      "gentle sleepy smile",
+      "surprised but cute expression"
+    ],
+    "constraints": [
+      "never aggressive",
+      "never creepy",
+      "never hyper-detailed",
+      "never realistic teeth",
+      "never intense anger unless explicitly requested and still softened"
+    ]
+  },
+  "allowed_variations": {
+    "can_change": [
+      "pose",
+      "facial expression",
+      "head tilt",
+      "accessories",
+      "seasonal elements",
+      "product interaction",
+      "simple outfit pieces",
+      "handheld objects",
+      "scene context",
+      "view angle up to light 3/4 view"
+    ],
+    "must_remain_stable": [
+      "same species and orange tabby identity",
+      "same kawaii mascot style",
+      "same thick brown outline logic",
+      "same warm pastel palette family",
+      "same simplified face language",
+      "same rounded silhouette language",
+      "same branding-friendly softness"
+    ]
+  },
+  "forbidden_drift": [
+    "semi-realistic cat",
+    "real fur texture",
+    "thin outlines",
+    "anime complexity",
+    "Pixar or 3D rendering",
+    "dramatic cinematic lighting",
+    "over-muscular body",
+    "long realistic limbs",
+    "sharp claws or fangs",
+    "photorealism",
+    "different cat breed identity",
+    "different body color identity",
+    "violent or scary look",
+    "gritty or dark tone"
+  ],
+  "composition_rules": {
+    "background": [
+      "transparent background preferred for asset generation",
+      "simple clean background acceptable",
+      "avoid busy complex scenery unless explicitly requested"
+    ],
+    "framing": [
+      "keep full silhouette visible when possible",
+      "leave clean margin around mascot",
+      "optimize for sticker, thumbnail, and packaging reuse"
+    ],
+    "shadow": "soft simple oval or minimal ground shadow only",
+    "readability": "image must remain clear at small size"
+  },
+  "product_interaction_rules": {
+    "relationship_to_product": "Mascot should look like a joyful companion of the product, not a separate unrelated character.",
+    "handling_style": [
+      "hugging",
+      "holding",
+      "chasing",
+      "presenting",
+      "playing with",
+      "sleeping near product"
+    ],
+    "safety_rule": "interaction stays cute, clean, and visually legible"
+  },
+  "prompt_builder": {
+    "base_prompt": "Cute orange tabby cat mascot in a kawaii chibi vector-like sticker style, thick dark brown outline, warm pastel palette, rounded head, small rounded body, pink cheeks, cream muzzle, minimal facial features, sparse decorative tabby stripes, soft clean 2D mascot rendering.",
+    "consistency_addons": [
+      "same mascot identity",
+      "same silhouette language",
+      "same line weight logic",
+      "same brand-safe kawaii expression system",
+      "simple readable composition",
+      "transparent background"
+    ],
+    "negative_constraints": [
+      "no realism",
+      "no 3D",
+      "no thin lines",
+      "no gritty texture",
+      "no complex background",
+      "no anatomy drift",
+      "no style drift",
+      "no different cat design"
+    ],
+    "assembly_template": {
+      "formula": "{base_prompt} {pose_or_action}. {emotion}. {prop_or_context}. Keep the exact same mascot identity and art style. {consistency_addons}. {negative_constraints}.",
+      "example_inputs": [
+        {
+          "pose_or_action": "Running joyfully with one front paw touching the ground and the others in a cute motion cycle",
+          "emotion": "Happy playful open-mouth smile",
+          "prop_or_context": "Chasing a small toy, transparent background"
+        },
+        {
+          "pose_or_action": "Sitting neatly while holding the product with both paws",
+          "emotion": "Soft proud smile with closed happy eyes",
+          "prop_or_context": "Transparent background"
+        }
+      ]
+    }
+  },
+  "quality_checklist": [
+    "Does it still look like the same orange tabby mascot?",
+    "Are the outline thickness and brown color consistent?",
+    "Is the face still simple and kawaii?",
+    "Are the colors still warm and pastel?",
+    "Is the anatomy still stylized rather than realistic?",
+    "Is the silhouette readable?",
+    "Would this still fit on packaging or a product card?",
+    "Did the pose change without changing the mascot identity?"
+  ],
+  "output_preferences": {
+    "preferred_format": "PNG",
+    "background": "transparent",
+    "resolution": "high resolution square or composition-fit canvas",
+    "asset_reuse_priority": true
+  }
+}

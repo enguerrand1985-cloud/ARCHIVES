@@ -1,0 +1,202 @@
+{
+  "source_path": "C:\\Users\\engue\\__SYSTEME - GITHUB__\\SOURCE OF TRUTH\\MEOW PAW PAW",
+  "destination_path": "C:\\Users\\engue\\__SYSTEME - GITHUB__\\ARCHIVES\\MEOW PAW PAW\\2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED",
+  "date": "2026-05-17",
+  "created_at": "2026-05-17T18:52:00",
+  "file_count": 38,
+  "directory_count": 14,
+  "files": [
+    {
+      "relative_path": "PARAMETERS/COMPTA_PARAMETERS.json",
+      "size_bytes": 20903,
+      "sha256": "875a3f2835ac10ad1d8e80a61e79cfde1d11d5e16840f14f063988334f9c1379"
+    },
+    {
+      "relative_path": "PARAMETERS/PROFIL_SASU.json",
+      "size_bytes": 6562,
+      "sha256": "93e2a659166ae44e0b90051e7c0b53720cc5a13dae222735df7d9c85984292b6"
+    },
+    {
+      "relative_path": "PARAMETERS/TAXONOMIE_METIER.json",
+      "size_bytes": 22447,
+      "sha256": "fdf1bc4a34f167196ae23b1dffebcd4bdb5a9e928815f2238ef038757001722d"
+    },
+    {
+      "relative_path": "_DATA - ATELIER COMPOSITION_/ETIQUETTES SPECS.json",
+      "size_bytes": 15037,
+      "sha256": "2f39301aeee427c0a38baeeecc5521cbed70f79741176c6166c632409baf0dea"
+    },
+    {
+      "relative_path": "_DATA - COMPTABILITE_/LEDGER_COMPTABLE.json",
+      "size_bytes": 21196,
+      "sha256": "53839386a867adbf47503727c80c52cb99cdc83405817123c8d675126961b44e"
+    },
+    {
+      "relative_path": "_DATA - DATA_QUALITY_/DATA_QUALITY.json",
+      "size_bytes": 5534,
+      "sha256": "b63ebeb164b7451778b9ce6703fe5df5d9453848b7b545211e97ca608596724d"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/SUPPLIERS.registry.json",
+      "size_bytes": 1630,
+      "sha256": "06e50a727bc714c43fa2f15a8f6fe94961b0ff8d304c034d28e24d8f23095b72"
+    },
+    {
+      "relative_path": "_DATA - IDENTIFIANTS_/PRODUCT_IDENTIFIERS.json",
+      "size_bytes": 7428,
+      "sha256": "ce64689bb3db1f680455d0b17ff78507ba98cb3fd7f215420d2168440b8b98a5"
+    },
+    {
+      "relative_path": "_DATA - MAPPINGS_/MAP_INDEX__SUPPLIER_PRODUCT__MEOW_SKU.json",
+      "size_bytes": 3781,
+      "sha256": "e9c199eba159cdf21c39654f3b9f81d8ee278ca15ffd7dbbca9c24ca855462c0"
+    },
+    {
+      "relative_path": "_DATA - MARKETPLACE_/AMAZON_FULFILLMENT.json",
+      "size_bytes": 7969,
+      "sha256": "154a44bd95d1813c42162d5642b93618ffae6a32a14fdc3a185092e83b3d365b"
+    },
+    {
+      "relative_path": "_DATA - MARKETPLACE_/AMAZON_LABELS.json",
+      "size_bytes": 5691,
+      "sha256": "57cd945939a5bc88c93702efd6eec8ed1bf949f8a62d5563e8dd599a0ea23500"
+    },
+    {
+      "relative_path": "_DATA - MARKETPLACE_/AMAZON_LISTINGS.json",
+      "size_bytes": 5173,
+      "sha256": "26d9db8b82cc09d4200e99594c03dbae777cd78d96b0937b6b90d3ebffa36043"
+    },
+    {
+      "relative_path": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+      "size_bytes": 15728,
+      "sha256": "a2ab39c72b8dedb40315ab0ca116bd6b13334dbc37d4244b82f27e58e0c1f83c"
+    },
+    {
+      "relative_path": "_DATA - PRICING_/COST_CALCULATION_RULES.json",
+      "size_bytes": 748,
+      "sha256": "08ea5f925ac8a10981101da642e4c73d3fb5405daffe2618750404352414293c"
+    },
+    {
+      "relative_path": "_DATA - PRICING_/FX_RULES.json",
+      "size_bytes": 1628,
+      "sha256": "6200e27f4d9d05ba4fd4c537d2f5aac03521d60ebfc3d1cdd9a37a83741d0e83"
+    },
+    {
+      "relative_path": "_DATA - PRICING_/PRICING_CONTEXTS.json",
+      "size_bytes": 8540,
+      "sha256": "8632cff10172882d0e2726c363a044b7966d205918c7364de4404a3f4a7be1c7"
+    },
+    {
+      "relative_path": "_DATA - PROCUREMENT_/PROCUREMENT__SONGWAYPET__ORDER_2026-04__YF202604521.json",
+      "size_bytes": 11048,
+      "sha256": "4b21560471cbf2d3ef5e3be1e5b357457d9e3a683b84e4d536ab8a8b810b5966"
+    },
+    {
+      "relative_path": "_DATA - PROCUREMENT_/PROCUREMENT__SONGWAYPET__PAYMENTS_2026-04.json",
+      "size_bytes": 10645,
+      "sha256": "4b08c25505005bdd67e44ab98b624c473f0d2a2b329f99cb25bcfc8957580832"
+    },
+    {
+      "relative_path": "_DATA - PROCUREMENT_/PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json",
+      "size_bytes": 5924,
+      "sha256": "c254d7ef5ce4616e535b7e58ad0f87ef794faaee055e4258e91b10b7c2c552c7"
+    },
+    {
+      "relative_path": "_DATA - SKU_/SKU.json",
+      "size_bytes": 5786,
+      "sha256": "f5bf1695742a4d0f01596c59f86d647db4c2c6d18dd70345a6d5176200c356cb"
+    },
+    {
+      "relative_path": "_DATA - SKU_/SKU_BUNDLES.json",
+      "size_bytes": 1825,
+      "sha256": "08dbfb33fc270b5c270f8fc993fd498d62b6a32524e88fc2490f5983ba199d26"
+    },
+    {
+      "relative_path": "_DATA - SKU_/SKU_COMPOSITION.json",
+      "size_bytes": 7496,
+      "sha256": "5a2a0729ab32aba1dffee3ac70add785f039d48f9223c99c1f61a760b150b140"
+    },
+    {
+      "relative_path": "_DATA - SKU_/SKU_PACKAGING.json",
+      "size_bytes": 7086,
+      "sha256": "584e4154404099bffff935203ef4bb82bb5480bd0c16a1593fd612e241760725"
+    },
+    {
+      "relative_path": "_DATA - SKU_/SKU_PRICING.json",
+      "size_bytes": 6183,
+      "sha256": "e3ea44e8db647fd3c3cd72782bac93badf074611e6f85dc3cf4c83b3b3c0e12c"
+    },
+    {
+      "relative_path": "_DATA - SKU_/SKU_SPECS.json",
+      "size_bytes": 3243,
+      "sha256": "4e71151fc724d9395af1eda50a7c718955674a2cae5fd8d0026af21badbddbbb"
+    },
+    {
+      "relative_path": "_HUB - DASHBOARD_/OPS AMAZON.json",
+      "size_bytes": 8593,
+      "sha256": "8c67922dfd6090c52fd551c41146bc9a7c515f570d1f2a85d48f202cf598fccb"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.archives.json",
+      "size_bytes": 28597,
+      "sha256": "ce5b6b0707e27b2aa5384328f3bcd509648c9c6ed1ef885514a84aa51e86b0df"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.catalog.json",
+      "size_bytes": 4354,
+      "sha256": "18f3f7b7c3c1b1c1cdb10315cc045e78f4994ca8ce803b45ca6317dc22a454de"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.compliance.json",
+      "size_bytes": 13102,
+      "sha256": "05fcb98468618d814d5d7b1fb115c3673b510bb53b58ff0d569757e344baeb45"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.mapping.json",
+      "size_bytes": 5928,
+      "sha256": "eb22ad3e58edbf66cdfc5e501092e6b64dda581c2e9a87319ee8c3774d2c6280"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.narrative.md",
+      "size_bytes": 7592,
+      "sha256": "6a4c0b1bb8f1a4f912fe226c7529a98f839154f9d5251c5add6705ea2756e14f"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.procurement.json",
+      "size_bytes": 9733,
+      "sha256": "f5b05ddaa41b2e2bebe8983f2e8670724c59a93f66326115df7f529fdfa35c8e"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.profile.json",
+      "size_bytes": 1049,
+      "sha256": "e00a794298343b94eadf40341a3309a495377426bfdc6a97a2bfed41ab03a654"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/SUPPLIER__LUOYANG_XISE.archives.json",
+      "size_bytes": 20076,
+      "sha256": "968141fe3db6615c9056e87e5b054d2b5b2d592ca63b0e28f1556d04db660796"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/SUPPLIER__LUOYANG_XISE.catalog.json",
+      "size_bytes": 12410,
+      "sha256": "d3f9918f123985e58c5e4629fcc9df5387697cb14125943e6cd02c47d25560ba"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/SUPPLIER__LUOYANG_XISE.compliance.json",
+      "size_bytes": 1221,
+      "sha256": "d8cff54174f3db919762142a5a9f89028a918092c34a948b0e91422a2daef19e"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/SUPPLIER__LUOYANG_XISE.mapping.json",
+      "size_bytes": 484,
+      "sha256": "e3452da8030a134ddc0e99253df8e6697279c72faeb6f9de9d50dd4b15c26191"
+    },
+    {
+      "relative_path": "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/SUPPLIER__LUOYANG_XISE.profile.json",
+      "size_bytes": 1134,
+      "sha256": "1dc263f8b266cb084ea155143d76cb31b380e4f4a0fe24b8217b343a7ced4467"
+    }
+  ],
+  "errors": [],
+  "status": "SNAPSHOT_COMPLETE"
+}

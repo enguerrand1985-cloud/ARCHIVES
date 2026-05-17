@@ -1,0 +1,1167 @@
+{
+  "type": "object",
+  "properties": {
+    "supplier_id": {
+      "type": "string"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false
+    },
+    "children": {
+      "type": "array",
+      "items": {
+        "anyOf": [
+          {
+            "type": "object",
+            "properties": {
+              "child_id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "verification_flag": {
+                "type": "string"
+              },
+              "declared_specs": {
+                "type": "object",
+                "properties": {
+                  "length_total_cm": {
+                    "type": "integer"
+                  },
+                  "core_length_cm": {
+                    "type": "integer"
+                  },
+                  "diameter_cm": {
+                    "type": "number"
+                  },
+                  "weight_g": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "length_total_cm",
+                  "core_length_cm",
+                  "diameter_cm",
+                  "weight_g"
+                ],
+                "additionalProperties": false
+              },
+              "measured_specs": {
+                "type": "null"
+              },
+              "packaging_origin": {
+                "type": "string"
+              },
+              "incoterm": {
+                "type": "string"
+              },
+              "price_eur": {
+                "type": "object",
+                "properties": {
+                  "tiers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "min_qty": {
+                          "type": "integer"
+                        },
+                        "unit_price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "min_qty",
+                        "unit_price"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "currency": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "tiers",
+                  "currency"
+                ],
+                "additionalProperties": false
+              },
+              "compliance_docs": {
+                "type": "object",
+                "properties": {
+                  "reach": {
+                    "type": "null"
+                  },
+                  "non_toxic": {
+                    "type": "null"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "reach",
+                  "non_toxic",
+                  "notes"
+                ],
+                "additionalProperties": false
+              },
+              "sample": {
+                "type": "object",
+                "properties": {
+                  "ordered": {
+                    "type": "boolean"
+                  },
+                  "received": {
+                    "type": "boolean"
+                  },
+                  "date_ordered": {
+                    "type": "string"
+                  },
+                  "date_received": {
+                    "type": "string"
+                  },
+                  "payment_confirmed": {
+                    "type": "boolean"
+                  },
+                  "invoice_ref": {
+                    "type": "string"
+                  },
+                  "amount_usd": {
+                    "type": "number"
+                  },
+                  "amount_eur_est": {
+                    "type": "number"
+                  },
+                  "tva_import_max_eur": {
+                    "type": "number"
+                  },
+                  "tracking_number": {
+                    "type": "string"
+                  },
+                  "carrier": {
+                    "type": "string"
+                  },
+                  "service": {
+                    "type": "string"
+                  },
+                  "date_shipped": {
+                    "type": "string"
+                  },
+                  "label_image_path": {
+                    "type": "string"
+                  },
+                  "import_charge": {
+                    "type": "object",
+                    "properties": {
+                      "currency": {
+                        "type": "string"
+                      },
+                      "amount": {
+                        "type": "number"
+                      },
+                      "type": {
+                        "type": "string"
+                      },
+                      "carrier": {
+                        "type": "string"
+                      },
+                      "incoterm": {
+                        "type": "string"
+                      },
+                      "tracking_number": {
+                        "type": "string"
+                      },
+                      "receipt_number": {
+                        "type": "string"
+                      },
+                      "source_proof": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "currency",
+                      "amount",
+                      "type",
+                      "carrier",
+                      "incoterm",
+                      "tracking_number",
+                      "receipt_number",
+                      "source_proof"
+                    ],
+                    "additionalProperties": false
+                  },
+                  "received_media": {
+                    "type": "object",
+                    "properties": {
+                      "photos_local": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "notes": {
+                        "type": "string"
+                      }
+                    },
+                    "required": [
+                      "photos_local",
+                      "notes"
+                    ],
+                    "additionalProperties": false
+                  }
+                },
+                "required": [
+                  "ordered",
+                  "received",
+                  "date_ordered",
+                  "date_received",
+                  "payment_confirmed",
+                  "invoice_ref",
+                  "amount_usd",
+                  "amount_eur_est",
+                  "tva_import_max_eur",
+                  "tracking_number",
+                  "carrier",
+                  "service",
+                  "date_shipped",
+                  "label_image_path",
+                  "import_charge",
+                  "received_media"
+                ],
+                "additionalProperties": false
+              },
+              "match_to_product": {
+                "type": "object",
+                "properties": {
+                  "target_product_uid": {
+                    "type": "null"
+                  },
+                  "match_level": {
+                    "type": "string"
+                  },
+                  "mismatch_notes": {
+                    "type": "string"
+                  },
+                  "target_product_sku": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_product_uid",
+                  "match_level",
+                  "mismatch_notes",
+                  "target_product_sku"
+                ],
+                "additionalProperties": false
+              },
+              "audit": {
+                "type": "object",
+                "properties": {
+                  "events": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "events"
+                ],
+                "additionalProperties": false
+              },
+              "notes_extended": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "alibaba_url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "child_id",
+              "status",
+              "verification_flag",
+              "declared_specs",
+              "measured_specs",
+              "packaging_origin",
+              "incoterm",
+              "price_eur",
+              "compliance_docs",
+              "sample",
+              "match_to_product",
+              "audit",
+              "notes_extended",
+              "alibaba_url"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "type": "object",
+            "properties": {
+              "child_id": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              },
+              "verification_flag": {
+                "type": "string"
+              },
+              "declared_specs": {
+                "type": "object",
+                "properties": {
+                  "length_total_cm": {
+                    "type": "integer"
+                  },
+                  "core_length_cm": {
+                    "type": "integer"
+                  },
+                  "diameter_cm": {
+                    "type": "number"
+                  },
+                  "weight_g": {
+                    "type": "null"
+                  }
+                },
+                "required": [
+                  "length_total_cm",
+                  "core_length_cm",
+                  "diameter_cm",
+                  "weight_g"
+                ],
+                "additionalProperties": false
+              },
+              "measured_specs": {
+                "type": "null"
+              },
+              "packaging_origin": {
+                "type": "string"
+              },
+              "incoterm": {
+                "type": "string"
+              },
+              "price_eur": {
+                "type": "object",
+                "properties": {
+                  "tiers": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "min_qty": {
+                          "type": "integer"
+                        },
+                        "unit_price": {
+                          "type": "number"
+                        }
+                      },
+                      "required": [
+                        "min_qty",
+                        "unit_price"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "currency": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "tiers",
+                  "currency"
+                ],
+                "additionalProperties": false
+              },
+              "compliance_docs": {
+                "type": "object",
+                "properties": {
+                  "reach": {
+                    "type": "null"
+                  },
+                  "non_toxic": {
+                    "type": "null"
+                  },
+                  "notes": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "reach",
+                  "non_toxic",
+                  "notes"
+                ],
+                "additionalProperties": false
+              },
+              "sample": {
+                "type": "object",
+                "properties": {
+                  "ordered": {
+                    "type": "boolean"
+                  },
+                  "received": {
+                    "type": "boolean"
+                  },
+                  "date_ordered": {
+                    "type": "string"
+                  },
+                  "date_received": {
+                    "type": "null"
+                  },
+                  "tracking_number": {
+                    "type": "string"
+                  },
+                  "carrier": {
+                    "type": "string"
+                  },
+                  "service": {
+                    "type": "string"
+                  },
+                  "date_shipped": {
+                    "type": "string"
+                  },
+                  "label_image_path": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "ordered",
+                  "received",
+                  "date_ordered",
+                  "date_received",
+                  "tracking_number",
+                  "carrier",
+                  "service",
+                  "date_shipped",
+                  "label_image_path"
+                ],
+                "additionalProperties": false
+              },
+              "match_to_product": {
+                "type": "object",
+                "properties": {
+                  "target_product_uid": {
+                    "type": "null"
+                  },
+                  "match_level": {
+                    "type": "string"
+                  },
+                  "mismatch_notes": {
+                    "type": "string"
+                  },
+                  "target_product_sku": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "target_product_uid",
+                  "match_level",
+                  "mismatch_notes",
+                  "target_product_sku"
+                ],
+                "additionalProperties": false
+              },
+              "audit": {
+                "type": "object",
+                "properties": {
+                  "created_at": {
+                    "type": "string"
+                  },
+                  "updated_at": {
+                    "type": "string"
+                  },
+                  "events": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "required": [
+                  "created_at",
+                  "updated_at",
+                  "events"
+                ],
+                "additionalProperties": false
+              },
+              "notes_extended": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "alibaba_url": {
+                "type": "null"
+              }
+            },
+            "required": [
+              "child_id",
+              "status",
+              "verification_flag",
+              "declared_specs",
+              "measured_specs",
+              "packaging_origin",
+              "incoterm",
+              "price_eur",
+              "compliance_docs",
+              "sample",
+              "match_to_product",
+              "audit",
+              "notes_extended",
+              "alibaba_url"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    },
+    "catalog_map": {
+      "type": "array",
+      "items": {}
+    },
+    "audit": {
+      "type": "object",
+      "properties": {
+        "created_iso": {
+          "type": "string"
+        },
+        "updated_iso": {
+          "type": "string"
+        },
+        "source_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "schema_version": {
+          "type": "string"
+        },
+        "note": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "created_iso",
+        "updated_iso",
+        "source_files",
+        "schema_version",
+        "note"
+      ],
+      "additionalProperties": false
+    },
+    "scope": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string"
+        },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "policy": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "products",
+        "policy"
+      ],
+      "additionalProperties": false
+    },
+    "locks": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "type": "string"
+        },
+        "allowed_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "blocked_actions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "mode",
+        "allowed_actions",
+        "blocked_actions"
+      ],
+      "additionalProperties": false
+    },
+    "open_questions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supplier_snapshot": {
+      "type": "object",
+      "properties": {
+        "identity": {
+          "type": "object",
+          "properties": {
+            "supplier_name": {
+              "type": "string"
+            },
+            "primary_contact": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            },
+            "exclusion_scope": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "supplier_name",
+            "primary_contact",
+            "role",
+            "exclusion_scope"
+          ],
+          "additionalProperties": false
+        },
+        "strategic_positioning": {
+          "type": "object",
+          "properties": {
+            "run_build_scope": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "decision_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "run_build_scope",
+            "status",
+            "decision_rule"
+          ],
+          "additionalProperties": false
+        },
+        "locks": {
+          "type": "object",
+          "properties": {
+            "allowed_actions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "blocked_actions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "lock_reasoning": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "allowed_actions",
+            "blocked_actions",
+            "lock_reasoning"
+          ],
+          "additionalProperties": false
+        },
+        "product_constraints": {
+          "type": "object",
+          "properties": {
+            "product": {
+              "type": "string"
+            },
+            "critical_points": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "product",
+            "critical_points"
+          ],
+          "additionalProperties": false
+        },
+        "historical_context": {
+          "type": "object",
+          "properties": {
+            "summary": {
+              "type": "string"
+            },
+            "past_decisions": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "summary",
+            "past_decisions"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "identity",
+        "strategic_positioning",
+        "locks",
+        "product_constraints",
+        "historical_context"
+      ],
+      "additionalProperties": false
+    },
+    "next_actions_build_playbook": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "non_commitment_note": {
+          "type": "string"
+        },
+        "preconditions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "sequence": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "step": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "step",
+              "title"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "scope",
+        "status",
+        "non_commitment_note",
+        "preconditions",
+        "sequence"
+      ],
+      "additionalProperties": false
+    },
+    "meta": {
+      "type": "object",
+      "properties": {
+        "supplier_closure": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "patched_at": {
+              "type": "string"
+            },
+            "reason": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "status",
+            "patched_at",
+            "reason"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "supplier_closure"
+      ],
+      "additionalProperties": false
+    },
+    "packaging_specs": {
+      "type": "object",
+      "properties": {
+        "policy": {
+          "type": "object",
+          "properties": {
+            "measurement_rules": {
+              "type": "object",
+              "properties": {
+                "units": {
+                  "type": "object",
+                  "properties": {
+                    "dimensions": {
+                      "type": "string"
+                    },
+                    "weight": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "dimensions",
+                    "weight"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "units"
+              ],
+              "additionalProperties": false
+            },
+            "modes": {
+              "type": "object",
+              "properties": {
+                "opp_insert_hybrid": {
+                  "type": "object",
+                  "properties": {
+                    "rules": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "spec": {
+                      "type": "object",
+                      "properties": {
+                        "insert_std_cm": {
+                          "type": "object",
+                          "properties": {
+                            "h": {
+                              "type": "integer"
+                            },
+                            "w": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "h",
+                            "w"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "insert_xl_cm": {
+                          "type": "object",
+                          "properties": {
+                            "h": {
+                              "type": "integer"
+                            },
+                            "w": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "h",
+                            "w"
+                          ],
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "insert_std_cm",
+                        "insert_xl_cm"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "rules",
+                    "spec"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "opp_insert_hybrid"
+              ],
+              "additionalProperties": false
+            },
+            "principles": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "safety": {
+              "type": "object",
+              "properties": {
+                "suffocation_warning_required": {
+                  "type": "boolean"
+                },
+                "warning_text_bilingual": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "suffocation_warning_required",
+                "warning_text_bilingual"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "measurement_rules",
+            "modes",
+            "principles",
+            "safety"
+          ],
+          "additionalProperties": false
+        },
+        "by_sku": {
+          "type": "object",
+          "properties": {
+            "MPP-BAT-PRE-MAT-V1": {
+              "type": "object",
+              "properties": {
+                "sku": {
+                  "type": "string"
+                },
+                "product_name": {
+                  "type": "string"
+                },
+                "packaging_options": {
+                  "type": "object",
+                  "properties": {
+                    "opp_25x35": {
+                      "type": "object",
+                      "properties": {
+                        "available": {
+                          "type": "boolean"
+                        },
+                        "dims_cm": {
+                          "type": "object",
+                          "properties": {
+                            "l": {
+                              "type": "integer"
+                            },
+                            "w": {
+                              "type": "integer"
+                            }
+                          },
+                          "required": [
+                            "l",
+                            "w"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "finish": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "structure": {
+                          "type": "string"
+                        },
+                        "notes": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "available",
+                        "dims_cm",
+                        "finish",
+                        "status",
+                        "structure",
+                        "notes"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "kraft_tbd": {
+                      "type": "object",
+                      "properties": {
+                        "available": {
+                          "type": "boolean"
+                        },
+                        "dims_cm": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "additionalProperties": false
+                        },
+                        "finish": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "structure": {
+                          "type": "string"
+                        },
+                        "notes": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "available",
+                        "dims_cm",
+                        "finish",
+                        "status",
+                        "structure",
+                        "notes"
+                      ],
+                      "additionalProperties": false
+                    },
+                    "kraft_like": {
+                      "type": "object",
+                      "properties": {
+                        "available": {
+                          "type": "boolean"
+                        },
+                        "dims_cm": {
+                          "type": "object",
+                          "properties": {},
+                          "required": [],
+                          "additionalProperties": false
+                        },
+                        "finish": {
+                          "type": "string"
+                        },
+                        "status": {
+                          "type": "string"
+                        },
+                        "structure": {
+                          "type": "string"
+                        },
+                        "notes": {
+                          "type": "string"
+                        }
+                      },
+                      "required": [
+                        "available",
+                        "dims_cm",
+                        "finish",
+                        "status",
+                        "structure",
+                        "notes"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "required": [
+                    "opp_25x35",
+                    "kraft_tbd",
+                    "kraft_like"
+                  ],
+                  "additionalProperties": false
+                },
+                "preference": {
+                  "type": "object",
+                  "properties": {
+                    "primary": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "primary"
+                  ],
+                  "additionalProperties": false
+                },
+                "measurement_status": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "packaging_weight_g": {
+                  "type": "null"
+                },
+                "packaging_weight_g_estimated": {
+                  "type": "boolean"
+                },
+                "warnings": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "sku",
+                "product_name",
+                "packaging_options",
+                "preference",
+                "measurement_status",
+                "status",
+                "packaging_weight_g",
+                "packaging_weight_g_estimated",
+                "warnings"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "MPP-BAT-PRE-MAT-V1"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "policy",
+        "by_sku"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "supplier_id",
+    "slug",
+    "parent",
+    "children",
+    "catalog_map",
+    "audit",
+    "scope",
+    "locks",
+    "open_questions",
+    "supplier_snapshot",
+    "next_actions_build_playbook",
+    "meta",
+    "packaging_specs"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema for LUOYANG XISE.json"
+}

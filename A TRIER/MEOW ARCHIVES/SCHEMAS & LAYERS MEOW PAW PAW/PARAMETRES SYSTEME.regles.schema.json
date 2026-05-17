@@ -1,0 +1,410 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://meowpawpaw.local/schemas/parametres-systeme.regles.schema.json",
+  "title": "PARAMETRES SYSTEME.regles",
+  "type": "object",
+  "required": [
+    "meta",
+    "separation_contract",
+    "read_order",
+    "business_reading_model",
+    "navigation_rules",
+    "visibility_rules",
+    "source_catalog",
+    "schema_policy",
+    "xlsx_interpretation_rules",
+    "request_intent_routing",
+    "change_management",
+    "response_contract"
+  ],
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "status",
+        "updated_at",
+        "owner_scope",
+        "notes"
+      ],
+      "properties": {
+        "document_type": {
+          "const": "system_rules"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        },
+        "owner_scope": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "separation_contract": {
+      "type": "object",
+      "required": [
+        "prompt_keeps",
+        "rules_file_owns"
+      ],
+      "properties": {
+        "prompt_keeps": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rules_file_owns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "read_order": {
+      "type": "object",
+      "required": [
+        "system_requests",
+        "business_requests",
+        "mixed_requests"
+      ],
+      "properties": {
+        "system_requests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "business_requests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mixed_requests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "business_reading_model": {
+      "type": "object",
+      "required": [
+        "reading_priority",
+        "truth_status_definitions"
+      ],
+      "properties": {
+        "reading_priority": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "truth_status_definitions": {
+          "type": "object",
+          "required": [
+            "final_truth",
+            "operational_truth",
+            "working_truth",
+            "notes_only",
+            "stabilized_snapshot"
+          ],
+          "properties": {
+            "final_truth": {
+              "type": "string"
+            },
+            "operational_truth": {
+              "type": "string"
+            },
+            "working_truth": {
+              "type": "string"
+            },
+            "notes_only": {
+              "type": "string"
+            },
+            "stabilized_snapshot": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "navigation_rules": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "visibility_rules": {
+      "type": "object",
+      "required": [
+        "maintenance_system_perimeter",
+        "business_reasoning_perimeter"
+      ],
+      "properties": {
+        "maintenance_system_perimeter": {
+          "type": "object",
+          "required": [
+            "must_not_be_exposed_to_business_agents",
+            "must_not_be_cited_in_business_outputs",
+            "must_not_be_used_as_business_truth"
+          ],
+          "properties": {
+            "must_not_be_exposed_to_business_agents": {
+              "type": "boolean"
+            },
+            "must_not_be_cited_in_business_outputs": {
+              "type": "boolean"
+            },
+            "must_not_be_used_as_business_truth": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "business_reasoning_perimeter": {
+          "type": "object",
+          "required": [
+            "allowed_roots",
+            "forbidden_roots"
+          ],
+          "properties": {
+            "allowed_roots": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "forbidden_roots": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "additionalProperties": false
+    },
+    "source_catalog": {
+      "type": "object",
+      "required": [
+        "business_sources",
+        "vscode_system_sources",
+        "business_support_layers"
+      ],
+      "properties": {
+        "business_sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "vscode_system_sources": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "business_support_layers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "schema_policy": {
+      "type": "object",
+      "required": [
+        "json_content_is_truth",
+        "schema_structure_is_truth",
+        "read_schema_before_json_change",
+        "forbid_fields_outside_schema_without_explicit_validation",
+        "report_json_schema_divergence_before_fix",
+        "tabular_sources_without_json_schema"
+      ],
+      "properties": {
+        "json_content_is_truth": {
+          "type": "boolean"
+        },
+        "schema_structure_is_truth": {
+          "type": "boolean"
+        },
+        "read_schema_before_json_change": {
+          "type": "boolean"
+        },
+        "forbid_fields_outside_schema_without_explicit_validation": {
+          "type": "boolean"
+        },
+        "report_json_schema_divergence_before_fix": {
+          "type": "boolean"
+        },
+        "tabular_sources_without_json_schema": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "xlsx_interpretation_rules": {
+      "type": "object",
+      "required": [
+        "xlsx_is_not_active_truth_by_default",
+        "xlsx_can_be_stabilized_snapshot",
+        "xlsx_can_be_final_truth_if_explicitly_designated_as_validated_artifact",
+        "prefer_live_operational_source_when_xlsx_is_only_export",
+        "operational_workbook_can_be_active_truth_if_declared_in_index_sources",
+        "default_usage_modes"
+      ],
+      "properties": {
+        "xlsx_is_not_active_truth_by_default": {
+          "type": "boolean"
+        },
+        "xlsx_can_be_stabilized_snapshot": {
+          "type": "boolean"
+        },
+        "xlsx_can_be_final_truth_if_explicitly_designated_as_validated_artifact": {
+          "type": "boolean"
+        },
+        "prefer_live_operational_source_when_xlsx_is_only_export": {
+          "type": "boolean"
+        },
+        "operational_workbook_can_be_active_truth_if_declared_in_index_sources": {
+          "type": "boolean"
+        },
+        "default_usage_modes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "request_intent_routing": {
+      "type": "object",
+      "required": [
+        "final_audit_or_validated_state",
+        "current_operational_status",
+        "drafting_or_preparation",
+        "note_capture_or_idea_review"
+      ],
+      "properties": {
+        "final_audit_or_validated_state": {
+          "$ref": "#/$defs/intentRoutingRule"
+        },
+        "current_operational_status": {
+          "$ref": "#/$defs/intentRoutingRule"
+        },
+        "drafting_or_preparation": {
+          "$ref": "#/$defs/intentRoutingRule"
+        },
+        "note_capture_or_idea_review": {
+          "$ref": "#/$defs/intentRoutingRule"
+        }
+      },
+      "additionalProperties": false
+    },
+    "change_management": {
+      "type": "object",
+      "required": [
+        "require_validation_before_new_source_of_truth",
+        "require_schema_update_if_json_structure_changes",
+        "require_prompt_update_if_structural_change_validated",
+        "require_index_update_if_topology_changes",
+        "require_rfc6902_before_json_application"
+      ],
+      "properties": {
+        "require_validation_before_new_source_of_truth": {
+          "type": "boolean"
+        },
+        "require_schema_update_if_json_structure_changes": {
+          "type": "boolean"
+        },
+        "require_prompt_update_if_structural_change_validated": {
+          "type": "boolean"
+        },
+        "require_index_update_if_topology_changes": {
+          "type": "boolean"
+        },
+        "require_rfc6902_before_json_application": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "response_contract": {
+      "type": "object",
+      "required": [
+        "required_sections",
+        "rendering_constraints"
+      ],
+      "properties": {
+        "required_sections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "rendering_constraints": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "intentRoutingRule": {
+      "type": "object",
+      "required": [
+        "prefer_truth_status",
+        "avoid_truth_status"
+      ],
+      "properties": {
+        "prefer_truth_status": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "avoid_truth_status": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

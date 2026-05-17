@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "document_type": "supplier_compliance",
+    "document_role": "supplier_constraints_and_open_questions_legacy_candidate",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Luoyang Xize Import And Export Co., Ltd/LUOYANG XISE.json"
+    ]
+  },
+  "supplier_id": "SUP-LUOYANG",
+  "open_questions": [
+    "Proposer 2–3 options réelles de packaging premium (kraft rigide / étui / boîte / protection plumes).",
+    "Fournir mensurations exactes (L×l×h) du packaging retenu + surfaces planes exploitables (avant/arrière/FNSKU).",
+    "Confirmer capacité à imprimer et coller 3 stickers (avant, arrière légal, FNSKU séparé).",
+    "Fournir photos/vidéo du packaging avec produit inside avant toute décision."
+  ],
+  "product_constraints": {
+    "product": "Premium Batounet (43 cm)",
+    "critical_points": [
+      "High plume fragility",
+      "Packaging must protect feathers during transport and FBA handling",
+      "Visual premium perception required",
+      "No acceptable OPP solution"
+    ]
+  }
+}

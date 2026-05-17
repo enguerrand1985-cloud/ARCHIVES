@@ -1,0 +1,265 @@
+{
+  "meta": {
+    "document_type": "pricing_contexts",
+    "document_role": "supplier_costs_fx_and_run_pricing_contexts",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json",
+      "_HUB - DASHBOARD_/DATA HUB.xlsx",
+      "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json"
+    ]
+  },
+  "supplier_costs_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "unit_cost_native": 0.6,
+      "native_currency": "USD",
+      "unit_cost_eur": 0.516,
+      "unit_cost_eur_status": "estimated",
+      "incoterm": "EXW",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-STD-MAT-V1/pricing_truth_supplier"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3,
+          "source_columns": [
+            "unit_cost_usd",
+            "unit_cost_eur",
+            "unit_cost_status"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_supplier": {
+        "unit_cost_native": 0.6,
+        "currency": "USD",
+        "unit_cost_eur": 0.516,
+        "unit_cost_eur_status": "estimated",
+        "incoterm": "EXW"
+      }
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "unit_cost_eur_status": "unavailable",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-VAR-MAT-V1/pricing_truth_supplier"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4,
+          "source_columns": [
+            "unit_cost_usd",
+            "unit_cost_eur",
+            "unit_cost_status"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_supplier": {
+        "unit_cost_native": null,
+        "currency": null,
+        "unit_cost_eur": null,
+        "unit_cost_eur_status": null,
+        "incoterm": null
+      }
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "unit_cost_native": 0.8,
+      "native_currency": "USD",
+      "unit_cost_eur": 0.688,
+      "unit_cost_eur_status": "estimated",
+      "incoterm": "EXW",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-XL-MAT-V1/pricing_truth_supplier"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5,
+          "source_columns": [
+            "unit_cost_usd",
+            "unit_cost_eur",
+            "unit_cost_status"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_supplier": {
+        "unit_cost_native": 0.8,
+        "currency": "USD",
+        "unit_cost_eur": 0.688,
+        "unit_cost_eur_status": "estimated",
+        "incoterm": "EXW"
+      }
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "unit_cost_native": 0.55,
+      "native_currency": "USD",
+      "unit_cost_eur": 0.473,
+      "unit_cost_eur_status": "estimated",
+      "incoterm": "EXW",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BOU-S-MAT-CAT-V1/pricing_truth_supplier"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6,
+          "source_columns": [
+            "unit_cost_usd",
+            "unit_cost_eur",
+            "unit_cost_status"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_supplier": {
+        "unit_cost_native": 0.55,
+        "currency": "USD",
+        "unit_cost_eur": null,
+        "unit_cost_eur_status": null,
+        "incoterm": "EXW"
+      }
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "unit_cost_native": 1.65,
+      "native_currency": "USD",
+      "unit_cost_eur": 1.419,
+      "unit_cost_eur_status": "estimated",
+      "incoterm": "EXW",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1/pricing_truth_supplier"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7,
+          "source_columns": [
+            "unit_cost_usd",
+            "unit_cost_eur",
+            "unit_cost_status"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_supplier": {
+        "unit_cost_native": 1.65,
+        "currency": "USD",
+        "unit_cost_eur": null,
+        "unit_cost_eur_status": null,
+        "incoterm": "EXW"
+      }
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "unit_cost_native": 1.15,
+      "native_currency": "USD",
+      "unit_cost_eur": 0.989,
+      "unit_cost_eur_status": "estimated",
+      "incoterm": "EXW",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1/pricing_truth_supplier"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8,
+          "source_columns": [
+            "unit_cost_usd",
+            "unit_cost_eur",
+            "unit_cost_status"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_supplier": {
+        "unit_cost_native": 1.15,
+        "currency": "USD",
+        "unit_cost_eur": 0.99,
+        "unit_cost_eur_status": "estimated",
+        "incoterm": "EXW"
+      }
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "supplier_id": "SUP_SONGWAYPET",
+      "unit_cost_native": 1.35,
+      "native_currency": "USD",
+      "unit_cost_eur": 1.161,
+      "unit_cost_eur_status": "estimated",
+      "incoterm": "EXW",
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1/pricing_truth_supplier"
+        },
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9,
+          "source_columns": [
+            "unit_cost_usd",
+            "unit_cost_eur",
+            "unit_cost_status"
+          ]
+        }
+      ],
+      "legacy_sku_pricing_truth_supplier": {
+        "unit_cost_native": 1.35,
+        "currency": "USD",
+        "unit_cost_eur": null,
+        "unit_cost_eur_status": null,
+        "incoterm": "EXW"
+      }
+    }
+  },
+  "launch_contexts": {
+    "PRICING_CONTEXT__SONGWAYPET__2026-04_LAUNCH": {
+      "supplier_id": "SUP_SONGWAYPET",
+      "procurement_refs": [
+        "PROCUREMENT__SONGWAYPET__ORDER_2026-04__YF202604521",
+        "PROCUREMENT__SONGWAYPET__SHIPPING_2026-04"
+      ],
+      "shipping_allocation_status": "historical_cancelled_not_live",
+      "source_trace": [
+        {
+          "source_file": "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json",
+          "json_pointer": "/supplier/commercial_terms/current_launch_order_quote"
+        },
+        {
+          "source_file": "_DATA - MARKETPLACE_/MARKETPLACE RULES.json",
+          "json_pointer": "/alibaba/policies/launch_shipping"
+        }
+      ],
+      "status": "cancelled_not_usable_for_live_margin",
+      "reason": "DDP shipping model invalidated by customs clearance failure",
+      "margin_usage_guardrail": "The margin calculation for this cancelled run must not be used as the live launch baseline until a new logistics rail is confirmed.",
+      "future_analysis": [
+        "DAP + broker only if quoted and margin recalculated",
+        "EU sourcing or non-active-plant SKU to be evaluated"
+      ]
+    }
+  }
+}

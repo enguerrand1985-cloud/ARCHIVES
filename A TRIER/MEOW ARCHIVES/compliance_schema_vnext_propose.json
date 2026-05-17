@@ -1,0 +1,537 @@
+﻿{
+  "meta": {
+    "document_type": "SCHEMA_TEMPLATE_VNEXT",
+    "document_role": "REFERENCE",
+    "version": "3.0.0-draft",
+    "created_at": "",
+    "updated_at": "",
+    "timezone": "Europe/Paris",
+    "tags": [
+      "vnext",
+      "schema",
+      "llm-fiche",
+      "deterministic-rules",
+      "typed-notes",
+      "todo-triggered"
+    ],
+    "change_log": [
+      {
+        "id": "CHG__SCHEMA_VNEXT__3_0_0_DRAFT",
+        "at": "",
+        "summary": "VNext draft: data quality status, conflicts zone, derived state, entretien (renamed), deterministic rules fields, typed notes, todo trigger model, migrations metadata.",
+        "breaking_change": true
+      }
+    ],
+    "migrations_applied": [
+      {
+        "id": "",
+        "at": "",
+        "from_version": "",
+        "to_version": "",
+        "notes": ""
+      }
+    ],
+    "migration_policy": {
+      "allow_legacy_aliases": true,
+      "legacy_aliases": [
+        {
+          "from": "data.canonique.vehicules[].entretien_mini",
+          "to": "data.canonique.vehicules[].entretien",
+          "status": "temporary"
+        }
+      ]
+    },
+    "schema_contract": {
+      "required_root_keys": [
+        "meta",
+        "scope_header",
+        "llm_contract",
+        "document_header",
+        "mini_index",
+        "todo",
+        "notes",
+        "data",
+        "regles_metier"
+      ],
+      "forbidden_keys_global": [
+        "sources",
+        "evidence",
+        "source_ref",
+        "context_ref",
+        "_source_contexts",
+        "paths_promoted",
+        "sample_excerpt",
+        "extraction"
+      ]
+    },
+    "type_defs": {
+      "QualityStatus": [
+        "confirmed",
+        "estimated",
+        "missing",
+        "conflicting"
+      ],
+      "TaskState": [
+        "PLANNED",
+        "DUE",
+        "DONE",
+        "ROLLED_OVER",
+        "BLOCKED"
+      ],
+      "TriggerType": [
+        "DATE",
+        "KM",
+        "HYBRID",
+        "MANUAL"
+      ],
+      "NoteType": [
+        "incident",
+        "question",
+        "decision",
+        "reminder_maintenance",
+        "context"
+      ]
+    }
+  },
+  "scope_header": {
+    "scope": "",
+    "parent_scope": null,
+    "child_scopes": []
+  },
+  "llm_contract": {
+    "allow_inference": false,
+    "allow_merge": false,
+    "routing": null,
+    "policies": [
+      {
+        "id": "POLICY__SCOPE_CLOSED_BY_DEFAULT",
+        "title": "Scope closed by default",
+        "description": "No implicit cross-scope inference without explicit user request.",
+        "enabled": true
+      },
+      {
+        "id": "POLICY__ARCHIVES_NOT_CANONICAL",
+        "title": "Archives are not canonical",
+        "description": "Archives are for history/audit only when canonical data exists.",
+        "enabled": true
+      }
+    ],
+    "playbooks": [
+      {
+        "id": "PLAYBOOK__ONBOARDING",
+        "title": "Onboarding",
+        "steps": [
+          "Read meta",
+          "Read scope_header",
+          "Read llm_contract",
+          "Read mini_index",
+          "Read regles_metier.rules_engine",
+          "Read data.canonique",
+          "Read data.derived",
+          "Read archives/conflicts only if needed"
+        ]
+      },
+      {
+        "id": "PLAYBOOK__REBUILD_TODO",
+        "title": "Rebuild todo from rules and facts",
+        "steps": [
+          "Identify impacted canonical ids",
+          "Apply rule priorities and conflict_resolution",
+          "Project recurring/one_shot tasks with triggers",
+          "Write completion_log on task state changes"
+        ]
+      }
+    ],
+    "hints": [
+      "Fiche LLM autonome. No data invention. Canonical facts only in data.canonique. Computed values only in data.derived.",
+      ""
+    ]
+  },
+  "document_header": {
+    "title": "",
+    "description": "",
+    "owner": null,
+    "legal_entity": null
+  },
+  "mini_index": {
+    "entries": [
+      {
+        "id": "IDX__RULES_ENGINE",
+        "title": "Rules engine",
+        "path": "regles_metier.rules_engine",
+        "when_to_use": "Rule logic and deterministic execution",
+        "priority": 1
+      },
+      {
+        "id": "IDX__DATA_CANONIQUE",
+        "title": "Canonical data",
+        "path": "data.canonique",
+        "when_to_use": "Stable facts",
+        "priority": 2
+      },
+      {
+        "id": "IDX__DATA_DERIVED",
+        "title": "Derived operational state",
+        "path": "data.derived",
+        "when_to_use": "Computed deadlines/baselines",
+        "priority": 3
+      },
+      {
+        "id": "IDX__TODO",
+        "title": "Projected execution",
+        "path": "todo",
+        "when_to_use": "Upcoming actions",
+        "priority": 4
+      },
+      {
+        "id": "IDX__NOTES",
+        "title": "Typed notes",
+        "path": "notes",
+        "when_to_use": "Incidents/questions/decisions",
+        "priority": 5
+      },
+      {
+        "id": "IDX__CONFLICTS",
+        "title": "Conflicts",
+        "path": "data.scope_specifique.conflicts",
+        "when_to_use": "Data inconsistencies to resolve",
+        "priority": 6
+      },
+      {
+        "id": "IDX__ARCHIVES",
+        "title": "Archives",
+        "path": "data.scope_specifique.archives",
+        "when_to_use": "Detailed history and traces",
+        "priority": 99
+      }
+    ],
+    "legacy_paths": []
+  },
+  "todo": {
+    "recurring": [
+      {
+        "id": "",
+        "title": "",
+        "description": "",
+        "rule_id": null,
+        "priority": "P2",
+        "trigger": {
+          "type": "MANUAL",
+          "timezone": "Europe/Paris",
+          "rrule": null,
+          "due_at": null,
+          "km_interval": null,
+          "km_baseline_ref": null
+        },
+        "window_policy": {
+          "type": "NONE",
+          "days": null,
+          "km_tolerance": null
+        },
+        "inputs_required": [],
+        "stop_conditions": [],
+        "outputs_expected": [],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": null,
+          "next_run_at": null,
+          "last_result_ref": null,
+          "completion_log": [
+            {
+              "at": "",
+              "state": "PLANNED",
+              "note": ""
+            }
+          ]
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "",
+            "ref_id": "",
+            "path": null,
+            "note": ""
+          }
+        ],
+        "tags": []
+      }
+    ],
+    "one_shot": [
+      {
+        "id": "",
+        "title": "",
+        "description": "",
+        "rule_id": null,
+        "priority": "P2",
+        "trigger": {
+          "type": "DATE",
+          "timezone": "Europe/Paris",
+          "due_at": null
+        },
+        "inputs_required": [],
+        "stop_conditions": [],
+        "outputs_expected": [],
+        "status": {
+          "state": "PLANNED",
+          "last_run_at": null,
+          "last_result_ref": null,
+          "completion_log": []
+        },
+        "execution_policy": {
+          "actor": "LLM",
+          "write_allowed": false,
+          "requires_user_validation": true
+        },
+        "links": [
+          {
+            "type": "",
+            "ref_id": "",
+            "path": null,
+            "note": ""
+          }
+        ],
+        "tags": []
+      }
+    ]
+  },
+  "notes": [
+    {
+      "id": "",
+      "note_type": "context",
+      "title": "",
+      "content": "",
+      "severity": "info",
+      "tags": [],
+      "created_at": "",
+      "updated_at": "",
+      "scope_binding": {
+        "scope": "",
+        "parent_scope": null
+      },
+      "links": [
+        {
+          "type": "",
+          "ref_id": "",
+          "path": null,
+          "note": ""
+        }
+      ]
+    }
+  ],
+  "data": {
+    "canonique": {
+      "identite": {
+        "owner_display_name": "",
+        "langue": "",
+        "timezone": "Europe/Paris"
+      },
+      "personnes": [
+        {
+          "id": "",
+          "role": "",
+          "nom_legal_complet": {
+            "value": "",
+            "policy": "",
+            "quality_status": "missing"
+          }
+        }
+      ],
+      "vehicules": [
+        {
+          "id": "",
+          "type": "",
+          "marque": "",
+          "modele": "",
+          "immatriculation": "",
+          "usage": "",
+          "annee": null,
+          "vin": "",
+          "entretien": {
+            "chain": {
+              "graissage": [
+                {
+                  "date": "",
+                  "km": null
+                }
+              ],
+              "degraissage": [
+                {
+                  "date": "",
+                  "km": null
+                }
+              ],
+              "controle": [
+                {
+                  "date": "",
+                  "km": null
+                }
+              ]
+            },
+            "pneus": {
+              "gonflage": [
+                {
+                  "date": "",
+                  "km": null
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "documents_index": [
+        {
+          "id": "",
+          "doc_id": "",
+          "filename": "",
+          "sha256": "",
+          "pages": 0,
+          "category": "",
+          "tags": []
+        }
+      ]
+    },
+    "derived": {
+      "maintenance_state": [
+        {
+          "vehicle_id": "",
+          "chain_baseline": {
+            "source": "garage|personal|manual",
+            "event_id": "",
+            "date": "",
+            "km": null
+          },
+          "next_due": [
+            {
+              "kind": "",
+              "due_date": null,
+              "due_km": null,
+              "status": "PLANNED"
+            }
+          ],
+          "last_recomputed_at": ""
+        }
+      ]
+    },
+    "scope_specifique": {
+      "archives": {
+        "items": [
+          {
+            "id": "",
+            "title": "",
+            "kind": "",
+            "content": null,
+            "created_at": "",
+            "tags": [],
+            "checksum": null
+          }
+        ],
+        "policy": {
+          "not_canonical": true,
+          "read_only": true,
+          "use_only_if_explicitly_requested": true
+        }
+      },
+      "conflicts": [
+        {
+          "id": "",
+          "conflict_type": "value_mismatch|missing_required|timeline_inconsistency|duplicate_id",
+          "severity": "low|medium|high",
+          "involved_paths": [],
+          "detected_at": "",
+          "status": "open|resolved",
+          "proposed_resolution": "",
+          "resolved_at": null,
+          "resolved_by": null
+        }
+      ]
+    }
+  },
+  "regles_metier": {
+    "rules_engine": {
+      "meta": {
+        "engine_version": "3.0.0-draft",
+        "description": "Deterministic business rules engine.",
+        "defaults": {
+          "execution_policy": {
+            "actor": "LLM",
+            "write_allowed": false,
+            "requires_user_validation": true
+          },
+          "priority": "P3"
+        }
+      },
+      "rules": {
+        "RULE_ID_EXAMPLE": {
+          "title": "",
+          "description": "",
+          "category": "ADMIN",
+          "priority": "P3",
+          "scope_binding": {
+            "scope": "",
+            "parent_scope": null
+          },
+          "cadence": {
+            "type": "ADHOC",
+            "rrule": null,
+            "timezone": "Europe/Paris"
+          },
+          "window_policy": {
+            "type": "NONE",
+            "days": null,
+            "km_tolerance": null
+          },
+          "inputs": {
+            "data_paths_required": [],
+            "files_required": [],
+            "credentials_required": false
+          },
+          "stop_conditions": [],
+          "invariants": [],
+          "conflict_resolution": {
+            "policy": "",
+            "overrides_rules": [],
+            "notes": ""
+          },
+          "fallback": {
+            "on_missing_inputs": "stop|note|project_minimal_todo",
+            "on_conflict": "stop|note|prefer_priority"
+          },
+          "procedure": {
+            "steps": [],
+            "checklist": [],
+            "prompts_refs": []
+          },
+          "outputs": {
+            "artifacts": [],
+            "data_updates_allowed": false,
+            "todo_projection_allowed": true,
+            "todo_projection_strategy": "replace_impacted_only"
+          },
+          "links": [
+            {
+              "type": "",
+              "ref_id": "",
+              "path": null,
+              "note": ""
+            }
+          ],
+          "tags": [],
+          "status": {
+            "enabled": true,
+            "last_reviewed_at": null
+          }
+        }
+      }
+    },
+    "procedures": {},
+    "templates_prompts": {
+      "perplexity": {},
+      "other": {}
+    },
+    "references": {}
+  }
+}

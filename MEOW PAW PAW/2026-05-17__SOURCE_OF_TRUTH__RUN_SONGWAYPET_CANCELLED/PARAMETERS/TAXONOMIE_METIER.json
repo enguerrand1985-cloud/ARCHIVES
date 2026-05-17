@@ -1,0 +1,719 @@
+{
+  "meta": {
+    "document_type": "business_taxonomy",
+    "document_role": "canonical_business_domain_guide",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "status": "active",
+    "ownership": "business_architecture",
+    "notes": [
+      "This file defines all business domains, categories, and their taxonomic relationships.",
+      "It is the source of truth for understanding what each business source contains.",
+      "It maps INDEX_SOURCES.json sources to their business meaning and interdependencies.",
+      "Domain definitions clarify semantic meaning but do not override source truth or schema truth."
+    ]
+  },
+  "categories": {
+    "CAT_PRODUCT": {
+      "id": "CAT_PRODUCT",
+      "name": "Product Master & Identity",
+      "description": "Product identity, specifications, and core attributes",
+      "sources": [
+        "SRC_SKU"
+      ],
+      "key_domains": [
+        "sku_identity",
+        "specs",
+        "barcode_data",
+        "materials_truth"
+      ],
+      "critical_fields": {
+        "sku_id": {
+          "role": "primary_key",
+          "format": "MPP-[CODE]-[VARIANT]-[FORMAT]-V[N]",
+          "example": "MPP-BAT-STD-MAT-V1"
+        },
+        "product_uid": {
+          "role": "immutable_technical_id",
+          "format": "UUID v4",
+          "example": "9222b601-abd8-4fdf-b675-a89ce948415d"
+        },
+        "product_logical_uid": {
+          "role": "logical_grouping_key",
+          "format": "[A-Z0-9_]+",
+          "example": "BATOUNET"
+        }
+      }
+    },
+    "CAT_SOURCING": {
+      "id": "CAT_SOURCING",
+      "name": "Supplier & Procurement",
+      "description": "Supplier master data, catalogs, commercial terms, and logistics",
+      "sources": [
+        "SRC_SONGWAYPET",
+        "SRC_LUOYANG_XISE"
+      ],
+      "key_domains": [
+        "supplier_identity",
+        "catalog",
+        "commercial_terms",
+        "packaging_options",
+        "carton_options",
+        "logistics",
+        "compliance"
+      ],
+      "critical_fields": {
+        "supplier_id": {
+          "role": "primary_key",
+          "format": "SUP_[SUPPLIERNAME]",
+          "example": "SUP_SONGWAYPET"
+        },
+        "supplier_product_id": {
+          "role": "supplier_catalog_key",
+          "format": "[supplier]_[category]_[tier]",
+          "example": "songwaypet_catnip_stick_standard"
+        }
+      }
+    },
+    "CAT_PRICING": {
+      "id": "CAT_PRICING",
+      "name": "Pricing & Revenue",
+      "description": "Supplier costs (COGS), retail pricing (TTC), and marketplace fee policies",
+      "sources": [
+        "SRC_SKU",
+        "SRC_MARKETPLACE_RULES"
+      ],
+      "key_domains": [
+        "supplier_costs",
+        "ttc_pricing",
+        "amazon_fba_fees",
+        "alibaba_policies",
+        "currency_conventions"
+      ],
+      "critical_fields": {
+        "unit_cost_native": {
+          "role": "supplier_cost_in_currency",
+          "unit": "USD",
+          "example": 0.6
+        },
+        "unit_cost_eur": {
+          "role": "converted_cost",
+          "unit": "EUR",
+          "conversion_source": "IN_FX_POLICY_EURUSD"
+        },
+        "pricing_truth_ttc": {
+          "role": "retail_pricing",
+          "fields": [
+            "floor",
+            "full",
+            "promo"
+          ]
+        }
+      }
+    },
+    "CAT_PACKAGING": {
+      "id": "CAT_PACKAGING",
+      "name": "Packaging & Logistics",
+      "description": "Packaging options, carton specifications, and physical dimensions",
+      "sources": [
+        "SRC_SONGWAYPET",
+        "SRC_LUOYANG_XISE"
+      ],
+      "key_domains": [
+        "packaging_options",
+        "carton_options",
+        "packaging_specs"
+      ],
+      "critical_fields": {
+        "packaging_option_id": {
+          "role": "packaging_reference",
+          "format": "PKG_[A-Z0-9_x]+",
+          "example": "PKG_OPP_ZIP_EUROSLOT_07x28"
+        },
+        "carton_option_id": {
+          "role": "carton_reference",
+          "format": "CTN_SHIP_[A-Z0-9_xX]+",
+          "example": "CTN_SHIP_42x42x52_UNIQUE"
+        }
+      }
+    },
+    "CAT_EDITION": {
+      "id": "CAT_EDITION",
+      "name": "Labeling & Editorial",
+      "description": "Label specifications, front/back labels, prepress standards, and sticker definitions",
+      "sources": [
+        "SRC_ETIQUETTES_SPECS"
+      ],
+      "key_domains": [
+        "front_label",
+        "back_label",
+        "prepress_standards",
+        "barcode_stickers"
+      ],
+      "critical_fields": {
+        "label_id": {
+          "role": "label_key",
+          "format": "LBL_PROD_[SKU_ID]_[POSITION]",
+          "example": "LBL_PROD_MPP_BAT_STD_MAT_V1_FRONT"
+        },
+        "sticker_id": {
+          "role": "barcode_sticker_key",
+          "format": "STK_BC_FNSKU_AMZ_[SKU_ID]",
+          "example": "STK_BC_FNSKU_AMZ_MPP_BAT_STD_MAT_V1"
+        }
+      }
+    },
+    "CAT_ACCOUNTING": {
+      "id": "CAT_ACCOUNTING",
+      "name": "Accounting & Finance",
+      "description": "Accounting structure, tax codes, legal entity, chart of accounts, and ledger",
+      "sources": [
+        "SRC_COMPTA_PARAMETERS",
+        "SRC_LEDGER_COMPTABLE",
+        "SRC_PROFIL_SASU"
+      ],
+      "key_domains": [
+        "tax_codes",
+        "chart_of_accounts",
+        "legal_identity",
+        "capital",
+        "compta_model"
+      ]
+    },
+    "CAT_OPERATIONS": {
+      "id": "CAT_OPERATIONS",
+      "name": "Operations & Inventory",
+      "description": "Operational execution, Amazon FBA inbound, inventory tracking, and data quality",
+      "sources": [
+        "SRC_OPS_AMAZON",
+        "SRC_DATA_QUALITY"
+      ],
+      "key_domains": [
+        "inbound_plans",
+        "inventory_snapshots",
+        "inventory_events",
+        "sku_registry",
+        "readiness",
+        "data_quality"
+      ]
+    },
+    "CAT_STRATEGY": {
+      "id": "CAT_STRATEGY",
+      "name": "Strategy & Vision",
+      "description": "Strategic direction, KPI targets, budget, brand identity, and go-to-market",
+      "sources": [],
+      "key_domains": [
+        "budget",
+        "targets",
+        "go_to_market",
+        "brand_identity",
+        "gate_run_stable"
+      ]
+    }
+  },
+  "domain_definitions": {
+    "readiness": {
+      "label": "Readiness",
+      "category": "CAT_OPERATIONS",
+      "definition": "Etat de preparation operationnelle d'un SKU ou d'un flux pour le prochain niveau d'execution attendu.",
+      "applies_to": [
+        "SKU",
+        "workflow",
+        "launch_step"
+      ],
+      "allowed_interpretations": [
+        "ready_for_listing",
+        "ready_for_supply",
+        "ready_for_fba",
+        "ready_for_launch"
+      ],
+      "forbidden_interpretations": [
+        "general_quality_score",
+        "commercial_performance_score"
+      ],
+      "source_priority": [
+        "SRC_DATA_QUALITY",
+        "SRC_SKU",
+        "SRC_OPS_AMAZON"
+      ],
+      "owner": "operations",
+      "notes": [
+        "Readiness must always be interpreted relative to a named target state.",
+        "A readiness value without target scope is incomplete."
+      ]
+    },
+    "data_quality": {
+      "label": "Data Quality",
+      "category": "CAT_OPERATIONS",
+      "definition": "Niveau de completude, coherence et exploitabilite des donnees necessaires au pilotage.",
+      "applies_to": [
+        "SKU",
+        "catalog_entry",
+        "cross_source_record"
+      ],
+      "quality_dimensions": [
+        "completeness",
+        "consistency",
+        "uniqueness",
+        "traceability"
+      ],
+      "source_priority": [
+        "SRC_DATA_QUALITY",
+        "SRC_SKU",
+        "SRC_ETIQUETTES_SPECS",
+        "SRC_SONGWAYPET"
+      ],
+      "owner": "data_governance",
+      "notes": [
+        "Data quality is not a business KPI.",
+        "It measures trustworthiness of structured data, not commercial value."
+      ]
+    },
+    "reconciliation": {
+      "label": "Reconciliation",
+      "category": "CAT_OPERATIONS",
+      "definition": "Processus de rapprochement entre deux ou plusieurs sources pour identifier ecarts, conflits ou confirmations.",
+      "applies_to": [
+        "costs",
+        "sku_mapping",
+        "inventory",
+        "accounting"
+      ],
+      "source_priority": [
+        "SRC_DATA_QUALITY",
+        "SRC_SKU",
+        "SRC_SONGWAYPET",
+        "SRC_LEDGER_COMPTABLE"
+      ],
+      "owner": "operations_and_finance",
+      "notes": [
+        "Reconciliation must always name the compared sources.",
+        "A reconciliation result without source pair is incomplete."
+      ]
+    },
+    "gate_run_stable": {
+      "label": "Gate Run Stable",
+      "category": "CAT_STRATEGY",
+      "definition": "Jalon de validation indiquant qu'un flux RUN est suffisamment stabilise pour etre considere comme exploitable sans mode degrade.",
+      "applies_to": [
+        "launch",
+        "run_model",
+        "core_operations"
+      ],
+      "decision_type": "governance_gate",
+      "source_priority": [
+        "SRC_DATA_QUALITY",
+        "SRC_OPS_AMAZON"
+      ],
+      "owner": "strategy_and_operations",
+      "notes": [
+        "This is a decision gate, not a raw metric.",
+        "The gate should be supported by explicit criteria in strategy or operations documents."
+      ]
+    },
+    "source_pointers": {
+      "label": "Source Pointers",
+      "category": "CAT_ACCOUNTING",
+      "definition": "Pointeurs documentes vers les sources de donnees utilisees pour alimenter un calcul, une convention ou une analyse.",
+      "applies_to": [
+        "accounting_model",
+        "calculation_input",
+        "policy_reference"
+      ],
+      "source_priority": [
+        "SRC_COMPTA_PARAMETERS",
+        "SRC_MARKETPLACE_RULES",
+        "SRC_SKU",
+        "SRC_PROFIL_SASU"
+      ],
+      "owner": "finance_system_design",
+      "notes": [
+        "A source pointer does not carry business truth by itself.",
+        "It identifies where the input truth is expected to be found."
+      ]
+    },
+    "sku_identity": {
+      "label": "SKU Identity",
+      "category": "CAT_PRODUCT",
+      "definition": "Ensemble des attributs d'identification canonique d'un SKU dans le systeme produit.",
+      "applies_to": [
+        "SKU"
+      ],
+      "core_fields": [
+        "sku_id",
+        "product_uid",
+        "product_logical_uid",
+        "role",
+        "status"
+      ],
+      "source_priority": [
+        "SRC_SKU"
+      ],
+      "owner": "product_data",
+      "notes": [
+        "sku_id is the primary business key.",
+        "product_uid is a technical immutable identifier.",
+        "product_logical_uid groups variants under one logical product."
+      ]
+    },
+    "supplier_costs": {
+      "label": "Supplier Costs",
+      "category": "CAT_PRICING",
+      "definition": "Cout fournisseur unitaire de reference associe a un SKU, dans sa devise native et, si disponible, en devise convertie.",
+      "applies_to": [
+        "SKU",
+        "supplier_quote",
+        "cost_analysis"
+      ],
+      "core_fields": [
+        "unit_cost_native",
+        "currency",
+        "unit_cost_eur",
+        "unit_cost_eur_status",
+        "incoterm"
+      ],
+      "source_priority": [
+        "SRC_SKU",
+        "SRC_SONGWAYPET",
+        "SRC_LUOYANG_XISE"
+      ],
+      "owner": "sourcing_and_finance",
+      "notes": [
+        "Supplier cost is not retail price.",
+        "Converted EUR cost must always be interpreted with its conversion assumption.",
+        "Incoterm is part of cost meaning and cannot be ignored."
+      ]
+    },
+    "ttc_pricing": {
+      "label": "TTC Pricing",
+      "category": "CAT_PRICING",
+      "definition": "Prix de vente TTC de reference pour un SKU selon les scenarios de commercialisation retenus.",
+      "applies_to": [
+        "SKU",
+        "marketplace_listing",
+        "pricing_analysis"
+      ],
+      "core_fields": [
+        "floor",
+        "full",
+        "promo"
+      ],
+      "source_priority": [
+        "SRC_SKU"
+      ],
+      "owner": "pricing",
+      "notes": [
+        "floor is the minimum viable TTC price.",
+        "full is the canonical standard TTC price.",
+        "promo is the temporary promotional TTC price."
+      ]
+    },
+    "barcode_data": {
+      "label": "Barcode Data",
+      "category": "CAT_PRODUCT",
+      "definition": "Donnees de codification produit et d'etiquetage associees a un SKU pour la vente, la logistique et les marketplaces.",
+      "applies_to": [
+        "SKU",
+        "packaging",
+        "marketplace_fulfillment"
+      ],
+      "core_fields": [
+        "printed_ean_gtin",
+        "amazon_labeling_mode",
+        "gtin13",
+        "gtin13_issuer"
+      ],
+      "source_priority": [
+        "SRC_SKU",
+        "SRC_ETIQUETTES_SPECS"
+      ],
+      "owner": "product_ops",
+      "notes": [
+        "GTIN/EAN identifies the product for retail and catalog purposes.",
+        "Amazon labeling mode defines whether FNSKU labeling is required.",
+        "Barcode data must remain consistent with packaging and label assets."
+      ]
+    },
+    "supplier_identity": {
+      "label": "Supplier Identity",
+      "category": "CAT_SOURCING",
+      "definition": "Ensemble des attributs d'identification, de qualification et de contact d'un fournisseur dans le systeme.",
+      "applies_to": [
+        "supplier",
+        "factory",
+        "trading_entity"
+      ],
+      "core_fields": [
+        "supplier_id",
+        "display_name",
+        "entity_type",
+        "seller_entity",
+        "location",
+        "contact"
+      ],
+      "source_priority": [
+        "SRC_SONGWAYPET",
+        "SRC_LUOYANG_XISE"
+      ],
+      "owner": "sourcing",
+      "notes": [
+        "Supplier identity must distinguish the operational factory from the selling entity when both exist.",
+        "Location and contact data are part of supplier identity, not separate domains."
+      ]
+    },
+    "commercial_terms": {
+      "label": "Commercial Terms",
+      "category": "CAT_SOURCING",
+      "definition": "Conditions commerciales convenues ou observees avec un fournisseur pour achat, echantillons et production.",
+      "applies_to": [
+        "supplier",
+        "quote",
+        "purchase_decision"
+      ],
+      "core_fields": [
+        "moq",
+        "price_tiers",
+        "payment_terms",
+        "incoterm"
+      ],
+      "source_priority": [
+        "SRC_SONGWAYPET",
+        "SRC_LUOYANG_XISE",
+        "SRC_SKU"
+      ],
+      "owner": "sourcing_and_finance",
+      "notes": [
+        "Commercial terms must be interpreted with supplier scope and quantity context.",
+        "MOQ and incoterm materially change the meaning of any quoted cost."
+      ]
+    },
+    "packaging_options": {
+      "label": "Packaging Options",
+      "category": "CAT_PACKAGING",
+      "definition": "Options d'emballage rattachees a un fournisseur ou a un flux produit, avec dimensions, fermeture, finition et disponibilite.",
+      "applies_to": [
+        "supplier_catalog",
+        "sku_packaging_choice",
+        "shipping_preparation"
+      ],
+      "core_fields": [
+        "packaging_option_id",
+        "type",
+        "size_cm",
+        "closure",
+        "finish",
+        "availability",
+        "status"
+      ],
+      "source_priority": [
+        "SRC_SONGWAYPET",
+        "SRC_LUOYANG_XISE"
+      ],
+      "owner": "sourcing_and_packaging",
+      "notes": [
+        "Packaging options are supplier-scoped unless an explicit cross-supplier canonical packaging master exists.",
+        "Status and availability are part of business meaning, not just logistics detail."
+      ]
+    },
+    "compliance": {
+      "label": "Compliance",
+      "category": "CAT_SOURCING",
+      "definition": "Etat des exigences documentaires, matieres et preuves de conformite necessaires a l'achat, l'import ou la vente.",
+      "applies_to": [
+        "supplier",
+        "product_materials",
+        "bulk_launch"
+      ],
+      "core_fields": [
+        "required_documents",
+        "documents_state",
+        "blocking_for_bulk",
+        "material_safety"
+      ],
+      "source_priority": [
+        "SRC_SONGWAYPET",
+        "SRC_LUOYANG_XISE",
+        "SRC_ETIQUETTES_SPECS"
+      ],
+      "owner": "sourcing_and_regulatory",
+      "notes": [
+        "Compliance status must distinguish prepared, pending and blocking states.",
+        "A document reference without state is not sufficient for compliance tracking."
+      ]
+    },
+    "supplier_product_mapping": {
+      "label": "Supplier Product Mapping",
+      "category": "CAT_SOURCING",
+      "definition": "Correspondence between supplier products and internal Meow SKU.",
+      "applies_to": [
+        "supplier_mapping",
+        "sku"
+      ],
+      "core_fields": [
+        "supplier_id",
+        "supplier_product_ids",
+        "meow_sku",
+        "mapping_status"
+      ],
+      "source_priority": [
+        "SRC_SONGWAYPET_MAPPING",
+        "SRC_MAPPING_INDEX"
+      ],
+      "owner": "sourcing"
+    },
+    "procurement_run": {
+      "label": "Procurement Run",
+      "category": "CAT_PRICING",
+      "definition": "Purchase/order/shipping context for a supplier run.",
+      "applies_to": [
+        "procurement",
+        "pricing"
+      ],
+      "core_fields": [
+        "procurement_id",
+        "supplier_id",
+        "scope_skus",
+        "shipping_cost_native"
+      ],
+      "source_priority": [
+        "SRC_PROCUREMENT_ORDER_SONGWAYPET_2026_04",
+        "SRC_PROCUREMENT_SHIPPING_SONGWAYPET_2026_04"
+      ],
+      "owner": "procurement"
+    }
+  },
+  "id_contract": {
+    "description": "Canonical ID types used across all sources",
+    "id_types": [
+      {
+        "id_type": "SKU_ID",
+        "pattern": "MPP-[CODE]-[VARIANT]-[FORMAT]-V[N]",
+        "pattern_regex": "^MPP(?:-[A-Z0-9]+)+-V[0-9]+$",
+        "example": "MPP-BAT-STD-MAT-V1",
+        "home": "SRC_SKU.skus[*] (map key)",
+        "constraints": [
+          "map_key_must_equal_sku_id_field",
+          "immutable_once_assigned"
+        ]
+      },
+      {
+        "id_type": "SUPPLIER_ID",
+        "pattern": "SUP_[SUPPLIERNAME]",
+        "pattern_regex": "^SUP_[A-Z0-9_]+$",
+        "example": "SUP_SONGWAYPET",
+        "home": "SRC_SONGWAYPET.supplier.supplier_id",
+        "constraints": [
+          "unique_per_supplier",
+          "immutable"
+        ]
+      },
+      {
+        "id_type": "PACKAGING_OPTION_ID",
+        "pattern": "PKG_[TYPE]_[DIMS]",
+        "pattern_regex": "^PKG_[A-Z0-9_x]+$",
+        "example": "PKG_OPP_ZIP_EUROSLOT_07x28",
+        "home": "SRC_SONGWAYPET.supplier.packaging_options[*] (map key)",
+        "constraints": [
+          "descriptive_naming",
+          "dimensions_encoded_in_id"
+        ]
+      },
+      {
+        "id_type": "CARTON_OPTION_ID",
+        "pattern": "CTN_SHIP_[DIMS]_[VARIANT]",
+        "pattern_regex": "^CTN_SHIP_[A-Z0-9_xX]+$",
+        "example": "CTN_SHIP_42x42x52_UNIQUE",
+        "home": "SRC_SONGWAYPET.supplier.carton_options[*] (map key)",
+        "constraints": [
+          "shipping_carton_only",
+          "dimensions_encoded"
+        ]
+      },
+      {
+        "id_type": "PRODUCT_UID",
+        "pattern": "UUID v4 or custom",
+        "pattern_regex": null,
+        "example": "9222b601-abd8-4fdf-b675-a89ce948415d",
+        "home": "SRC_SKU.skus[*].product_uid",
+        "constraints": [
+          "unique",
+          "immutable",
+          "technical_id_not_business_key"
+        ]
+      },
+      {
+        "id_type": "PRODUCT_LOGICAL_UID",
+        "pattern": "[A-Z0-9_]+",
+        "pattern_regex": "^[A-Z0-9_]+$",
+        "example": "BATOUNET",
+        "home": "SRC_SKU.skus[*].product_logical_uid",
+        "constraints": [
+          "grouping_key_for_variants",
+          "human_readable"
+        ]
+      },
+      {
+        "id_type": "LABEL_ID",
+        "pattern": "LBL_PROD_[SKU_ID]_[POSITION]",
+        "pattern_regex": "^LBL_PROD_[A-Z0-9_]+(FRONT|BACK)$",
+        "example": "LBL_PROD_MPP_BAT_STD_MAT_V1_FRONT",
+        "home": "SRC_ETIQUETTES_SPECS.labels_by_sku[*].front_label.label_id",
+        "constraints": [
+          "unique_per_sku_position",
+          "position_encoded"
+        ]
+      },
+      {
+        "id_type": "STICKER_ID",
+        "pattern": "STK_BC_FNSKU_AMZ_[SKU_ID]",
+        "pattern_regex": "^STK_BC_FNSKU_AMZ_[A-Z0-9_]+$",
+        "example": "STK_BC_FNSKU_AMZ_MPP_BAT_STD_MAT_V1",
+        "home": "SRC_ETIQUETTES_SPECS (barcode_stickers)",
+        "constraints": [
+          "amazon_fnsku_only",
+          "unique_per_sku"
+        ]
+      }
+    ]
+  },
+  "relationships": [
+    {
+      "from": "SRC_SKU",
+      "to": "SRC_SONGWAYPET",
+      "relationship": "depends_on",
+      "role": "sku_references_supplier_for_pricing_and_packaging",
+      "cardinality": "many_to_one"
+    },
+    {
+      "from": "SRC_SKU",
+      "to": "SRC_ETIQUETTES_SPECS",
+      "relationship": "depends_on",
+      "role": "sku_has_label_specs",
+      "cardinality": "one_to_one"
+    },
+    {
+      "from": "SRC_ETIQUETTES_SPECS",
+      "to": "SRC_MARKETPLACE_RULES",
+      "relationship": "references",
+      "role": "labels_follow_marketplace_guidelines",
+      "cardinality": "many_to_one"
+    },
+    {
+      "from": "SRC_OPS_AMAZON",
+      "to": "SRC_SKU",
+      "relationship": "references",
+      "role": "operations_track_sku_inventory_and_financials",
+      "cardinality": "many_to_one"
+    }
+  ],
+  "operational_rules": [
+    "All sources must cite their category (CAT_*) in their INDEX_SOURCES.json entry.",
+    "ID patterns must be enforced at schema level.",
+    "Every ID change must be tracked with rationale and timestamp.",
+    "Cross-domain references must use only declared ID types."
+  ],
+  "notes": [
+    "Vision/North Star strategic direction removed from active Source of Truth taxonomy on 2026-05-01; north-star material stays in journaux/suivis until re-governed."
+  ]
+}

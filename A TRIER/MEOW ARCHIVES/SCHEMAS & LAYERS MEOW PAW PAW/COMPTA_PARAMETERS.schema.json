@@ -1,0 +1,2078 @@
+{
+  "type": "object",
+  "properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "document_type": {
+          "type": "string"
+        },
+        "document_role": {
+          "type": "string"
+        },
+        "version": {
+          "type": "string"
+        },
+        "timezone": {
+          "type": "string"
+        },
+        "scope": {
+          "type": "string"
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "document_type",
+        "document_role",
+        "version",
+        "timezone",
+        "scope",
+        "notes"
+      ],
+      "additionalProperties": false
+    },
+    "accounting_scope": {
+      "type": "object",
+      "properties": {
+        "legal_structure": {
+          "type": "string"
+        },
+        "legal_entity_name": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "tax_regime": {
+          "type": "string"
+        },
+        "sales_price_mode": {
+          "type": "string"
+        },
+        "vat_mode": {
+          "type": "string"
+        },
+        "packaging_cost_model": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "legal_structure",
+        "legal_entity_name",
+        "country",
+        "tax_regime",
+        "sales_price_mode",
+        "vat_mode",
+        "packaging_cost_model"
+      ],
+      "additionalProperties": false
+    },
+    "status_conventions": {
+      "type": "object",
+      "properties": {
+        "amount_status_allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "missing_value_status": {
+          "type": "string"
+        },
+        "reporting_rule": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "amount_status_allowed",
+        "missing_value_status",
+        "reporting_rule"
+      ],
+      "additionalProperties": false
+    },
+    "tax_reference": {
+      "type": "object",
+      "properties": {
+        "is_rate": {
+          "type": "number"
+        },
+        "tva_rate_sales": {
+          "type": "number"
+        },
+        "tva_rate_purchases": {
+          "type": "number"
+        },
+        "tva_recovery_ratio": {
+          "type": "number"
+        },
+        "include_tva_in_margins": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "is_rate",
+        "tva_rate_sales",
+        "tva_rate_purchases",
+        "tva_recovery_ratio",
+        "include_tva_in_margins"
+      ],
+      "additionalProperties": false
+    },
+    "fixed_costs_reference": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "period": {
+          "type": "string"
+        },
+        "estimated_total_eur": {
+          "type": "number"
+        },
+        "actual_total_eur": {
+          "type": "number"
+        },
+        "source_of_truth": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "legacy_file": {
+              "type": "string"
+            },
+            "json_path": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "file",
+            "legacy_file",
+            "json_path"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "status",
+        "currency",
+        "period",
+        "source_of_truth"
+      ],
+      "anyOf": [
+        {
+          "required": [
+            "estimated_total_eur"
+          ]
+        },
+        {
+          "required": [
+            "actual_total_eur"
+          ]
+        }
+      ],
+      "additionalProperties": false
+    },
+    "margin_modes": {
+      "type": "object",
+      "properties": {
+        "cash_now": {
+          "$ref": "#/$defs/margin_mode"
+        },
+        "unit_economics_launch": {
+          "$ref": "#/$defs/margin_mode"
+        },
+        "scale_scenario": {
+          "$ref": "#/$defs/margin_mode"
+        }
+      },
+      "required": [
+        "cash_now",
+        "unit_economics_launch",
+        "scale_scenario"
+      ],
+      "additionalProperties": false
+    },
+    "margin_execution_policy": {
+      "type": "object",
+      "properties": {
+        "default_margin_mode": {
+          "type": "string",
+          "enum": [
+            "cash_now",
+            "unit_economics_launch",
+            "scale_scenario"
+          ]
+        },
+        "default_sku_selection": {
+          "type": "object",
+          "properties": {
+            "launch_scope": {
+              "type": "boolean"
+            },
+            "status_equals": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "launch_scope",
+            "status_equals",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "fba_fee_resolution": {
+          "type": "object",
+          "properties": {
+            "packaged_specs_source": {
+              "type": "string"
+            },
+            "require_confirmed_measurements": {
+              "type": "boolean"
+            },
+            "fallback_behavior": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "packaged_specs_source",
+            "require_confirmed_measurements",
+            "fallback_behavior",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "fixed_cost_allocation": {
+          "type": "object",
+          "properties": {
+            "allocation_basis": {
+              "type": "string"
+            },
+            "default_monthly_units_sold": {
+              "type": "integer"
+            },
+            "allowed_monthly_units_sold_scenarios": {
+              "type": "array",
+              "items": {
+                "type": "integer"
+              }
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "allocation_basis",
+            "default_monthly_units_sold",
+            "allowed_monthly_units_sold_scenarios",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "tax_projection": {
+          "type": "object",
+          "properties": {
+            "apply_is_only_if_positive_after_fixed_costs": {
+              "type": "boolean"
+            },
+            "computation_base": {
+              "type": "string"
+            },
+            "negative_margin_behavior": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "apply_is_only_if_positive_after_fixed_costs",
+            "computation_base",
+            "negative_margin_behavior",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "uncertainty_contract": {
+          "type": "object",
+          "properties": {
+            "label_output_as_estimated_if_any_input_not_confirmed": {
+              "type": "boolean"
+            },
+            "require_explicit_assumptions_section": {
+              "type": "boolean"
+            },
+            "stop_if_sales_price_missing": {
+              "type": "boolean"
+            },
+            "stop_if_supplier_cost_missing": {
+              "type": "boolean"
+            },
+            "stop_if_required_fee_policy_missing": {
+              "type": "boolean"
+            },
+            "notes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "label_output_as_estimated_if_any_input_not_confirmed",
+            "require_explicit_assumptions_section",
+            "stop_if_sales_price_missing",
+            "stop_if_supplier_cost_missing",
+            "stop_if_required_fee_policy_missing",
+            "notes"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "default_margin_mode",
+        "default_sku_selection",
+        "fba_fee_resolution",
+        "fixed_cost_allocation",
+        "tax_projection",
+        "uncertainty_contract"
+      ],
+      "additionalProperties": false
+    },
+    "marketplace_conventions": {
+      "type": "object",
+      "properties": {
+        "currency_default": {
+          "type": "string"
+        },
+        "sales_channel_canon": {
+          "type": "string"
+        },
+        "effective_from_required_when_applicable": {
+          "type": "boolean"
+        },
+        "amount_status_allowed": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "currency_default",
+        "sales_channel_canon",
+        "effective_from_required_when_applicable",
+        "amount_status_allowed"
+      ],
+      "additionalProperties": false
+    },
+    "policy_registry": {
+      "type": "object",
+      "properties": {
+        "amazon": {
+          "type": "object",
+          "properties": {
+            "referral_fee": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            },
+            "fba_unit_costs": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            },
+            "ppc": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            },
+            "digital_services_fee": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            },
+            "observed_total_fee_overrides_by_sku": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "referral_fee",
+            "fba_unit_costs",
+            "ppc",
+            "digital_services_fee"
+          ],
+          "additionalProperties": false
+        },
+        "alibaba": {
+          "type": "object",
+          "properties": {
+            "trade_assurance": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            },
+            "card_processing": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            },
+            "launch_shipping": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            },
+            "fx": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                },
+                "source_of_truth": {
+                  "type": "object",
+                  "properties": {
+                    "file": {
+                      "type": "string"
+                    },
+                    "legacy_file": {
+                      "type": "string"
+                    },
+                    "json_path": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "file",
+                    "legacy_file",
+                    "json_path"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "status",
+                "source_of_truth"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "trade_assurance",
+            "card_processing",
+            "launch_shipping",
+            "fx"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "amazon",
+        "alibaba"
+      ],
+      "additionalProperties": false
+    },
+    "source_map": {
+      "type": "object",
+      "properties": {
+        "owner_profile": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "legacy_file": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "file",
+            "legacy_file",
+            "role"
+          ],
+          "additionalProperties": false
+        },
+        "marketplace_rules": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "legacy_file": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "file",
+            "legacy_file",
+            "role"
+          ],
+          "additionalProperties": false
+        },
+        "sku_master": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "legacy_file": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "file",
+            "legacy_file",
+            "role"
+          ],
+          "additionalProperties": false
+        },
+        "ledger": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "legacy_file": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "file",
+            "legacy_file",
+            "role"
+          ],
+          "additionalProperties": false
+        },
+        "ops_amazon": {
+          "type": "object",
+          "properties": {
+            "file": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            },
+            "note": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "file",
+            "role",
+            "note"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "owner_profile",
+        "marketplace_rules",
+        "sku_master",
+        "ledger",
+        "ops_amazon"
+      ],
+      "additionalProperties": false
+    },
+    "inputs_catalog": {
+      "type": "object",
+      "properties": {
+        "sales_price_mode": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "sales_price_canon": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "sales_currency": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule"
+          ],
+          "additionalProperties": false
+        },
+        "sales_channel": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule"
+          ],
+          "additionalProperties": false
+        },
+        "supplier_unit_cost": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "packaging_cost_mode": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "referral_fee_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule"
+          ],
+          "additionalProperties": false
+        },
+        "fba_fee_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule"
+          ],
+          "additionalProperties": false
+        },
+        "ppc_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule"
+          ],
+          "additionalProperties": false
+        },
+        "dsf_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "trade_assurance_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule"
+          ],
+          "additionalProperties": false
+        },
+        "card_processing_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule"
+          ],
+          "additionalProperties": false
+        },
+        "launch_shipping_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "fx_policy": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "fixed_costs_monthly_base": {
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "home": {
+              "type": "string"
+            },
+            "status_rule": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "category",
+            "home",
+            "status_rule",
+            "notes"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "sales_price_mode",
+        "sales_price_canon",
+        "sales_currency",
+        "sales_channel",
+        "supplier_unit_cost",
+        "packaging_cost_mode",
+        "referral_fee_policy",
+        "fba_fee_policy",
+        "ppc_policy",
+        "dsf_policy",
+        "trade_assurance_policy",
+        "card_processing_policy",
+        "launch_shipping_policy",
+        "fx_policy",
+        "fixed_costs_monthly_base"
+      ],
+      "additionalProperties": false
+    },
+    "source_pointers": {
+      "type": "object",
+      "properties": {
+        "sales_price_mode": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "sales_price_canon": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            },
+            "json_pointer_template": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "status",
+            "notes",
+            "json_pointer_template"
+          ],
+          "additionalProperties": false
+        },
+        "sales_currency": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "sales_channel": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "supplier_unit_cost": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer_template": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer_template",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "referral_fee_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "fba_fee_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "ppc_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "dsf_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "trade_assurance_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "card_processing_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "launch_shipping_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "fx_policy": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "fixed_costs_monthly_base": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "period": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status",
+            "period"
+          ],
+          "additionalProperties": false
+        },
+        "is_rate": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "vat_sales_rate": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "notes": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status",
+            "notes"
+          ],
+          "additionalProperties": false
+        },
+        "vat_purchases_rate": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "vat_recovery_ratio": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "include_tva_in_margins": {
+          "type": "object",
+          "properties": {
+            "canonical_id": {
+              "type": "string"
+            },
+            "json_pointer": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "canonical_id",
+            "json_pointer",
+            "status"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "sales_price_mode",
+        "sales_price_canon",
+        "sales_currency",
+        "sales_channel",
+        "supplier_unit_cost",
+        "referral_fee_policy",
+        "fba_fee_policy",
+        "ppc_policy",
+        "dsf_policy",
+        "trade_assurance_policy",
+        "card_processing_policy",
+        "launch_shipping_policy",
+        "fx_policy",
+        "fixed_costs_monthly_base",
+        "is_rate",
+        "vat_sales_rate",
+        "vat_purchases_rate",
+        "vat_recovery_ratio",
+        "include_tva_in_margins"
+      ],
+      "additionalProperties": false
+    },
+    "ledger_standard": {
+      "type": "object",
+      "properties": {
+        "append_only": {
+          "type": "boolean"
+        },
+        "format": {
+          "type": "string"
+        },
+        "date_format": {
+          "type": "string"
+        },
+        "required_min_columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "optional_columns": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "catalog_descriptor": {
+          "type": "object",
+          "properties": {
+            "primary_key": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "columns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          },
+          "required": [
+            "primary_key",
+            "columns"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "append_only",
+        "format",
+        "date_format",
+        "required_min_columns",
+        "optional_columns",
+        "catalog_descriptor"
+      ],
+      "additionalProperties": false
+    },
+    "ledger_workbook_schema": {
+      "type": "object",
+      "properties": {
+        "sheets": {
+          "type": "object",
+          "properties": {
+            "ledger": {
+              "type": "object",
+              "properties": {
+                "primary_key": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "primary_key",
+                "columns"
+              ],
+              "additionalProperties": false
+            },
+            "chart_of_accounts": {
+              "type": "object",
+              "properties": {
+                "primary_key": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "primary_key",
+                "columns"
+              ],
+              "additionalProperties": false
+            },
+            "tax_codes": {
+              "type": "object",
+              "properties": {
+                "primary_key": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "primary_key",
+                "columns"
+              ],
+              "additionalProperties": false
+            },
+            "partners": {
+              "type": "object",
+              "properties": {
+                "primary_key": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "primary_key",
+                "columns"
+              ],
+              "additionalProperties": false
+            },
+            "sources": {
+              "type": "object",
+              "properties": {
+                "primary_key": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              },
+              "required": [
+                "primary_key",
+                "columns"
+              ],
+              "additionalProperties": false
+            },
+            "validation": {
+              "type": "object",
+              "properties": {
+                "columns": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "notes": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "columns",
+                "notes"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "ledger",
+            "chart_of_accounts",
+            "tax_codes",
+            "partners",
+            "sources",
+            "validation"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "sheets"
+      ],
+      "additionalProperties": false
+    },
+    "id_pivots": {
+      "type": "object",
+      "properties": {
+        "sku_id": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "supplier_id": {
+          "type": "object",
+          "properties": {
+            "source": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "source",
+            "status"
+          ],
+          "additionalProperties": false
+        },
+        "amazon": {
+          "type": "object",
+          "properties": {
+            "msku": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "fnsku": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "asin": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "shipment_id": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "inbound_plan_id": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "additionalProperties": false
+            },
+            "stock_item_id": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "msku",
+            "fnsku",
+            "asin",
+            "shipment_id",
+            "inbound_plan_id",
+            "stock_item_id"
+          ],
+          "additionalProperties": false
+        },
+        "ledger": {
+          "type": "object",
+          "properties": {
+            "entry_id": {
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "status"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "required": [
+            "entry_id"
+          ],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "sku_id",
+        "supplier_id",
+        "amazon",
+        "ledger"
+      ],
+      "additionalProperties": false
+    },
+    "reporting_contract": {
+      "type": "object",
+      "properties": {
+        "must_cite_sources": {
+          "type": "boolean"
+        },
+        "must_separate_statuses": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "stop_if_numeric_readout_not_traceable": {
+          "type": "boolean"
+        },
+        "do_not_present_target_as_actual": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "must_cite_sources",
+        "must_separate_statuses",
+        "stop_if_numeric_readout_not_traceable",
+        "do_not_present_target_as_actual"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "meta",
+    "accounting_scope",
+    "status_conventions",
+    "tax_reference",
+    "fixed_costs_reference",
+    "margin_modes",
+    "marketplace_conventions",
+    "policy_registry",
+    "source_map",
+    "inputs_catalog",
+    "source_pointers",
+    "ledger_standard",
+    "ledger_workbook_schema",
+    "id_pivots",
+    "reporting_contract"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "margin_mode": {
+      "type": "object",
+      "properties": {
+        "purpose": {
+          "type": "string"
+        },
+        "include_inputs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "include_policies_when_active": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "exclude_until_real_activity": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "notes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": [
+        "purpose",
+        "include_inputs",
+        "notes"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Schema for COMPTA_PARAMETERS.json"
+}

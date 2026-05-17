@@ -1,0 +1,162 @@
+{
+  "meta": {
+    "document_type": "data_quality_registry",
+    "document_role": "readiness_reconciliation_and_quality_status_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-16",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_HUB - DASHBOARD_/DATA HUB.xlsx"
+    ]
+  },
+  "quality_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "sku_stage": "launch_suspended_assets_ready_run_cancelled",
+      "label_status": "ready",
+      "insert_status": "tbd",
+      "data_completeness_pct": 75,
+      "reconciliation_status": "run_cancelled_source_of_truth_updated",
+      "last_verified_at": "2026-05-15",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 3
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "Current operational watchpoints formalized."
+        }
+      ],
+      "open_operational_points": [
+        "preserve_listing_assets",
+        "reconcile_qonto_may_statement",
+        "recadre_first_launch_sku_or_logistics_rail",
+        "do_not_relaunch_catnip_import_without_forwarder_confirmed_ddp"
+      ],
+      "historical_completed_points": [
+        "final_cartonization_before_fba_plan",
+        "qc_package_before_balance_payment",
+        "verify_alibaba_balance_historical_completed_then_refunded"
+      ]
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "sku_stage": "build",
+      "label_status": "pending",
+      "insert_status": "tbd",
+      "blocking_reason": "GTIN manquant — coût fournisseur absent",
+      "data_completeness_pct": 35,
+      "reconciliation_status": "to_be_reconciled",
+      "last_verified_at": "2026-03-14",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 4
+        }
+      ]
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "sku_stage": "build",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "blocking_reason": "GTIN manquant",
+      "data_completeness_pct": 55,
+      "reconciliation_status": "to_be_reconciled",
+      "last_verified_at": "2026-03-14",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 5
+        }
+      ]
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "sku_stage": "build",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "blocking_reason": "GTIN manquant — prix TTC non défini — coût EUR absent",
+      "data_completeness_pct": 40,
+      "reconciliation_status": "to_be_reconciled",
+      "last_verified_at": "2026-03-14",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 6
+        }
+      ]
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "sku_stage": "build",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "blocking_reason": "GTIN manquant — coût EUR absent",
+      "data_completeness_pct": 45,
+      "reconciliation_status": "to_be_reconciled",
+      "last_verified_at": "2026-03-14",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 7
+        }
+      ]
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "sku_stage": "launch_suspended_assets_ready_run_cancelled",
+      "label_status": "ready",
+      "insert_status": "tbd",
+      "data_completeness_pct": 65,
+      "reconciliation_status": "run_cancelled_source_of_truth_updated",
+      "last_verified_at": "2026-05-15",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 8
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "Current operational watchpoints formalized."
+        }
+      ],
+      "open_operational_points": [
+        "preserve_listing_assets",
+        "reconcile_qonto_may_statement",
+        "recadre_first_launch_sku_or_logistics_rail",
+        "do_not_relaunch_catnip_import_without_forwarder_confirmed_ddp"
+      ],
+      "historical_completed_points": [
+        "final_cartonization_before_fba_plan",
+        "qc_package_before_balance_payment",
+        "verify_alibaba_balance_historical_completed_then_refunded"
+      ]
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "sku_stage": "build",
+      "label_status": "rework",
+      "insert_status": "tbd",
+      "blocking_reason": "GTIN manquant — coût EUR absent",
+      "data_completeness_pct": 45,
+      "reconciliation_status": "to_be_reconciled",
+      "last_verified_at": "2026-03-14",
+      "source_trace": [
+        {
+          "source_file": "_HUB - DASHBOARD_/DATA HUB.xlsx",
+          "source_sheet": "DATA HUB",
+          "source_row": 9
+        }
+      ]
+    }
+  }
+}

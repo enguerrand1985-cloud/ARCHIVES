@@ -1,0 +1,203 @@
+{
+  "meta": {
+    "document_type": "owner_profile",
+    "document_role": "legal_owner_profile_and_finance_baseline",
+    "version": "refactor_owner_profile_v2",
+    "timezone": "Europe/Paris",
+    "simplified_for": "copilot_m365_truth",
+    "simplified_from": "data__owner_profile.json",
+    "source_updated_at": "2026-04-16T00:00:00+02:00",
+    "updated_at": "2026-05-16"
+  },
+  "identity": {
+    "legal_entity": {
+      "form": "SASU",
+      "denomination": "TRADE-VISION",
+      "president": "KALFAIAN Enguerrand Henri",
+      "siren": "994492353",
+      "siret": "99449235300010",
+      "rcs": "Paris",
+      "registration_date": "2025-12-11"
+    },
+    "headquarters": {
+      "address": "61 rue de Lyon, 75012 Paris, France",
+      "domiciliation": {
+        "provider": "Les Tricolores",
+        "status": "active"
+      }
+    },
+    "capital": {
+      "amount_eur": 2000,
+      "nature": "numeraire",
+      "status": "libere_integralement",
+      "release_date": "2025-12-17"
+    },
+    "bank_account": {
+      "bank": "Qonto (Olinda SAS)",
+      "account_type": "compte_courant_professionnel",
+      "status": "active"
+    },
+    "trademarks": [
+      {
+        "brand_label_exact": "Meow Paw Paw",
+        "jurisdiction": "FR",
+        "office": "INPI",
+        "application_number": "5214718",
+        "filed_at": "2026-01-07",
+        "status": "filed"
+      }
+    ],
+    "budget_and_storage": {
+      "total_budget_eur": 2000,
+      "storage_policy": "FBA direct, pas de stockage chez soi",
+      "fixed_costs_estimate": {
+        "status": "estimated",
+        "currency": "EUR",
+        "period": "monthly",
+        "estimated_total_eur": 132.69,
+        "components": [
+          {
+            "name": "Qonto carte",
+            "kind": "bank_fee",
+            "status": "active",
+            "amount_eur_monthly": 2.4,
+            "amount_eur_yearly": 28.8
+          },
+          {
+            "name": "CFE",
+            "kind": "tax",
+            "status": "active",
+            "amount_eur_monthly": 25,
+            "amount_eur_yearly": 250
+          },
+          {
+            "name": "Les Tricolores",
+            "kind": "domiciliation",
+            "status": "active",
+            "amount_eur_monthly": 16.09,
+            "amount_eur_yearly": 193.08
+          },
+          {
+            "name": "Audit / bilan comptable",
+            "kind": "accounting",
+            "status": "anticipated_not_engaged",
+            "amount_eur_monthly": 20,
+            "amount_eur_yearly": 240
+          },
+          {
+            "name": "GS1 France",
+            "kind": "subscription",
+            "status": "active",
+            "amount_eur_monthly": 22.4,
+            "amount_eur_yearly": 268.8
+          },
+          {
+            "name": "Amazon Seller Central",
+            "kind": "subscription",
+            "status": "to_be_verified",
+            "billing_review_status": "to_be_verified_billing_unclear",
+            "theoretical_monthly_amount_eur": 46.8,
+            "current_debit_confirmation": "not_confirmed",
+            "support_confirmation_needed": true
+          }
+        ]
+      },
+      "fixed_costs_actual_current": {
+        "status": "confirmed",
+        "as_of": "2026-04-16",
+        "currency": "EUR",
+        "period": "monthly",
+        "actual_total_eur": 40.89,
+        "components": [
+          {
+            "name": "Les Tricolores",
+            "kind": "domiciliation",
+            "status": "active",
+            "amount_eur_monthly": 16.09,
+            "amount_eur_yearly": 193.08
+          },
+          {
+            "name": "Qonto carte",
+            "kind": "bank_fee",
+            "status": "active",
+            "amount_eur_monthly": 2.4,
+            "amount_eur_yearly": 28.8
+          },
+          {
+            "name": "GS1 France",
+            "kind": "subscription",
+            "status": "active",
+            "amount_eur_monthly": 22.4,
+            "amount_eur_yearly": 268.8
+          },
+          {
+            "name": "CFE",
+            "kind": "tax",
+            "status": "not_active_yet",
+            "amount_eur_monthly": 0,
+            "amount_eur_yearly": 0
+          },
+          {
+            "name": "Audit / bilan comptable",
+            "kind": "accounting",
+            "status": "not_active_yet",
+            "amount_eur_monthly": 0,
+            "amount_eur_yearly": 0
+          },
+          {
+            "name": "Amazon Seller Central",
+            "kind": "subscription",
+            "status": "to_be_verified",
+            "billing_review_status": "to_be_verified_billing_unclear",
+            "theoretical_monthly_amount_eur": 46.8,
+            "current_debit_confirmation": "not_confirmed",
+            "support_confirmation_needed": true
+          }
+        ]
+      },
+      "amazon_seller_central_billing_review_20260516": {
+        "amazon_seller_central_fixed_cost_status": "to_be_verified_billing_unclear",
+        "status": "to_be_verified",
+        "billing_review_status": "to_be_verified_billing_unclear",
+        "theoretical_monthly_amount_eur": 46.8,
+        "current_debit_confirmation": "not_confirmed",
+        "support_confirmation_needed": true,
+        "note": "Amazon subscription billing anomaly / no current charge visible / support confirmation needed."
+      }
+    },
+    "constraints_and_dependencies": {
+      "experience_level": "novice",
+      "certifications": {
+        "reach": "optionnel (à obtenir si Amazon le demande)",
+        "non_toxic": "optionnel (post-lancement / si nécessaire)"
+      },
+      "potential_blockers": [
+        "inexpérience",
+        "dépendance DDP pour éviter douane"
+      ]
+    },
+    "compta_model": {
+      "sales_price_mode": "TTC",
+      "vat_mode": "disabled_at_launch",
+      "packaging_cost_model": "embedded_in_supplier_quote",
+      "tax_reference": {
+        "is_rate": 0.15
+      },
+      "vat_reference": {
+        "tva_rate_sales": 0.2,
+        "tva_rate_purchases": 0.2,
+        "tva_recovery_ratio": 0,
+        "include_tva_in_margins": false
+      }
+    }
+  },
+  "scope_boundary": {
+    "profile_scope": "legal_identity_owner_finance_baseline_and_brand_registration",
+    "excluded_from_profile": [
+      "directional_brand_vision",
+      "roadmap",
+      "north_star_targets"
+    ],
+    "vision_status": "removed_from_source_of_truth_meow_profile_and_kept_in_journaux_suivis_if_needed"
+  }
+}

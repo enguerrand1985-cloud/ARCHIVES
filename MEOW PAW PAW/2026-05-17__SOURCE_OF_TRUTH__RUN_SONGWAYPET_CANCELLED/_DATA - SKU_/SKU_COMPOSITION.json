@@ -1,0 +1,195 @@
+{
+  "meta": {
+    "document_type": "sku_composition",
+    "document_role": "commercial_composition_truth_by_sku",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - SKU_/SKU.json"
+    ]
+  },
+  "composition_by_sku": {
+    "MPP-BAT-STD-MAT-V1": {
+      "sku_id": "MPP-BAT-STD-MAT-V1",
+      "composition_status": "current_run_confirmed_supplier_declaration",
+      "materials": [
+        "Cataire (herbe à chat euphorisante)",
+        "Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+        "Chanvre naturel (corde solide, biodégradable)",
+        "Raphia végétal (tresse pliable)",
+        "Plume naturelle",
+        "Fruit de galle / Gallfruit (silvervine gall fruit)"
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-STD-MAT-V1/materials_truth"
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "Gallfruit confirmation formalized from active follow-up."
+        }
+      ],
+      "legacy_sku_materials_truth": {
+        "elements": [
+          "Cataire (herbe à chat euphorisante)",
+          "Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+          "Chanvre naturel (corde solide, biodégradable)",
+          "Raphia végétal (tresse pliable)",
+          "Plume naturelle"
+        ]
+      },
+      "current_run_composition_confirmations": {
+        "gallfruit_expected": true,
+        "gallfruit_replacement_by_catnip_accepted": false,
+        "confirmation_source_type": "supplier_chat_declaration_after_forwarder_check",
+        "watchpoint": "verify production photos and QC package remain aligned with gallfruit version"
+      }
+    },
+    "MPP-BAT-VAR-MAT-V1": {
+      "sku_id": "MPP-BAT-VAR-MAT-V1",
+      "composition_status": "legacy_retained",
+      "materials": [
+        "Cataire (herbe à chat euphorisante)",
+        "Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+        "Chanvre naturel (corde solide, biodégradable)",
+        "Plume naturelle"
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-VAR-MAT-V1/materials_truth"
+        }
+      ],
+      "legacy_sku_materials_truth": {
+        "elements": [
+          "Cataire (herbe à chat euphorisante)",
+          "Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+          "Chanvre naturel (corde solide, biodégradable)",
+          "Plume naturelle"
+        ]
+      }
+    },
+    "MPP-BAT-XL-MAT-V1": {
+      "sku_id": "MPP-BAT-XL-MAT-V1",
+      "composition_status": "legacy_retained",
+      "materials": [
+        "Cataire (herbe à chat euphorisante)",
+        "Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+        "Chanvre naturel (corde solide, biodégradable)",
+        "Raphia végétal (tresse pliable)",
+        "Plume naturelle"
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BAT-XL-MAT-V1/materials_truth"
+        }
+      ],
+      "legacy_sku_materials_truth": {
+        "elements": [
+          "Cataire (herbe à chat euphorisante)",
+          "Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+          "Chanvre naturel (corde solide, biodégradable)",
+          "Raphia végétal (tresse pliable)",
+          "Plume naturelle"
+        ]
+      }
+    },
+    "MPP-BOU-S-MAT-CAT-V1": {
+      "sku_id": "MPP-BOU-S-MAT-CAT-V1",
+      "composition_status": "legacy_retained",
+      "materials": [
+        "Bois : Matatabi (silvervine)",
+        "Intérieur : Catnip + liant (amidon très faible)",
+        "Reliants / connecteurs : plastique (liaison des pièces de bois)"
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BOU-S-MAT-CAT-V1/materials_truth"
+        }
+      ],
+      "legacy_sku_materials_truth": {
+        "elements": [
+          "Bois : Matatabi (silvervine)",
+          "Intérieur : Catnip + liant (amidon très faible)",
+          "Reliants / connecteurs : plastique (liaison des pièces de bois)"
+        ]
+      }
+    },
+    "MPP-BUN-3BOU-S-V1": {
+      "sku_id": "MPP-BUN-3BOU-S-V1",
+      "composition_status": "legacy_retained",
+      "materials": [],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-3BOU-S-V1/materials_truth"
+        }
+      ],
+      "legacy_sku_materials_truth": {
+        "elements": []
+      }
+    },
+    "MPP-BUN-STD-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-STD-1BOU-S-V1",
+      "composition_status": "current_run_confirmed_supplier_declaration",
+      "materials": [
+        "Batounet standard : Cataire (herbe a chat euphorisante)",
+        "Batounet standard : Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+        "Batounet standard : Chanvre naturel (corde solide, biodegradable)",
+        "Batounet standard : Raphia vegetal (tresse pliable)",
+        "Batounet standard : Plume naturelle",
+        "Boulette S : Bois : Matatabi (silvervine)",
+        "Boulette S : Interieur : Catnip + liant (amidon tres faible)",
+        "Boulette S : Reliants / connecteurs : plastique (liaison des pieces de bois)",
+        "Batounet standard : Fruit de galle / Gallfruit (silvervine gall fruit)"
+      ],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-STD-1BOU-S-V1/materials_truth"
+        },
+        {
+          "source_file": "JOURNAUX/SUIVIS/MEOW_PAW_PAW/SUIVI__MEOW_PAW_PAW__ETAT_ACTIF.md",
+          "detail": "Gallfruit confirmation formalized from active follow-up."
+        }
+      ],
+      "legacy_sku_materials_truth": {
+        "elements": [
+          "Batounet standard : Cataire (herbe a chat euphorisante)",
+          "Batounet standard : Silvervine / Matatabi (fruit + bois stimulant dentaire)",
+          "Batounet standard : Chanvre naturel (corde solide, biodegradable)",
+          "Batounet standard : Raphia vegetal (tresse pliable)",
+          "Batounet standard : Plume naturelle",
+          "Boulette S : Bois : Matatabi (silvervine)",
+          "Boulette S : Interieur : Catnip + liant (amidon tres faible)",
+          "Boulette S : Reliants / connecteurs : plastique (liaison des pieces de bois)"
+        ]
+      },
+      "current_run_composition_confirmations": {
+        "gallfruit_expected": true,
+        "gallfruit_replacement_by_catnip_accepted": false,
+        "confirmation_source_type": "supplier_chat_declaration_after_forwarder_check",
+        "watchpoint": "verify production photos and QC package remain aligned with gallfruit version"
+      }
+    },
+    "MPP-BUN-XL-1BOU-S-V1": {
+      "sku_id": "MPP-BUN-XL-1BOU-S-V1",
+      "composition_status": "legacy_retained",
+      "materials": [],
+      "source_trace": [
+        {
+          "source_file": "_DATA - SKU_/SKU.json",
+          "json_pointer": "/skus/MPP-BUN-XL-1BOU-S-V1/materials_truth"
+        }
+      ],
+      "legacy_sku_materials_truth": {
+        "elements": []
+      }
+    }
+  }
+}

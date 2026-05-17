@@ -1,0 +1,158 @@
+{
+  "meta": {
+    "document_type": "supplier_catalog",
+    "document_role": "supplier_products_packaging_and_stable_terms",
+    "version": "refactor_ecommerce_v1",
+    "timezone": "Europe/Paris",
+    "updated_at": "2026-05-01",
+    "migration_status": "refactored_from_legacy_sources",
+    "source_files": [
+      "_DATA - FOURNISSEURS_/Hebei Yuanfeng Import And Export Trading Co., Ltd/SONGWAYPET.json"
+    ]
+  },
+  "supplier_id": "SUP_SONGWAYPET",
+  "catalog": [
+    {
+      "supplier_product_id": "songwaypet_catnip_stick_standard",
+      "display_name": "Kitten Catnip Stick",
+      "category": "stick",
+      "tier": "standard",
+      "run_available": true,
+      "default_packaging_option_id": "PKG_OPP_ZIP_EUROSLOT_07x28"
+    },
+    {
+      "supplier_product_id": "songwaypet_catnip_stick_xl",
+      "display_name": "Big Cat Catnip Stick",
+      "category": "stick",
+      "tier": "xl",
+      "run_available": true,
+      "default_packaging_option_id": "PKG_OPP_ZIP_EUROSLOT_28x35"
+    },
+    {
+      "supplier_product_id": "songwaypet_catnip_silvervine_ball",
+      "display_name": "Catnip + Silver Vine (Ball) Ø 5.99 cm",
+      "category": "ball",
+      "tier": "ball_5_99",
+      "run_available": true,
+      "default_packaging_option_id": "PKG_BALL_CLEAR_SEALED"
+    },
+    {
+      "supplier_product_id": "songwaypet_catnip_silvervine_ball_7_5cm",
+      "display_name": "Catnip + Silver Vine (Ball) Ø 7.5 cm",
+      "category": "ball",
+      "tier": "ball_7_5",
+      "run_available": true,
+      "default_packaging_option_id": "PKG_BALL_CLEAR_SEALED"
+    }
+  ],
+  "packaging_options": {
+    "PKG_KRAFT_DOLLY_BAG_BULK": {
+      "type": "laminated brown kraft zip bag",
+      "size_cm": {
+        "w": 15,
+        "l": 22.5,
+        "h": 4
+      },
+      "closure": "zip refermable + thermoscellable",
+      "euro_slot": null,
+      "finish": "brun naturel semi-mat",
+      "finish_options": null,
+      "availability": "large_orders_only",
+      "status": "available_large_orders_only"
+    },
+    "PKG_BALL_CLEAR_SEALED": {
+      "type": "sealed_clear_plastic_bag",
+      "size_cm": null,
+      "closure": null,
+      "euro_slot": null,
+      "finish": null,
+      "finish_options": null,
+      "availability": null,
+      "status": "baseline_dims_unknown"
+    },
+    "PKG_OPP_ZIP_EUROSLOT_28x35": {
+      "type": "OPP zip bag",
+      "size_cm": {
+        "w": 28,
+        "l": 35
+      },
+      "closure": "zip",
+      "euro_slot": true,
+      "finish": null,
+      "finish_options": [
+        "glossy",
+        "matte"
+      ],
+      "availability": null,
+      "status": "unavailable_supplier_no_stock"
+    },
+    "PKG_OPP_ZIP_EUROSLOT_07x28": {
+      "type": "OPP zip bag",
+      "size_cm": {
+        "w": 7,
+        "l": 28
+      },
+      "closure": "zip",
+      "euro_slot": true,
+      "finish": null,
+      "finish_options": [
+        "glossy",
+        "matte"
+      ],
+      "availability": null,
+      "status": "confirmed"
+    },
+    "PKG_OPP_ZIP_EUROSLOT_12x28": {
+      "type": "OPP zip bag",
+      "size_cm": {
+        "w": 12,
+        "l": 28
+      },
+      "closure": "zip",
+      "euro_slot": true,
+      "finish": null,
+      "finish_options": [
+        "glossy",
+        "matte"
+      ],
+      "availability": null,
+      "status": "confirmed"
+    },
+    "PKG_KRAFT_LAMINATED_ZIP_22x15_BULK": {
+      "type": "laminated_kraft_zip_bag",
+      "size_cm": {
+        "w": 15,
+        "l": 22
+      },
+      "closure": "zip",
+      "euro_slot": null,
+      "finish": "kraft_laminated",
+      "finish_options": null,
+      "availability": "large_orders_only",
+      "status": "available_large_orders_only"
+    }
+  },
+  "carton_options": {
+    "CTN_SHIP_42x42x52_UNIQUE": {
+      "usage": "shipping_carton",
+      "scope": "all_skus",
+      "dims_cm": {
+        "l": 52,
+        "w": 42,
+        "h": 42
+      },
+      "gross_weight_kg": 9.5,
+      "gross_weight_status": "estimated",
+      "units_per_carton": 300,
+      "units_per_carton_status": "estimated",
+      "status": "supplier_stated_usual_not_confirmed_for_order"
+    }
+  },
+  "commercial_terms_stable": {
+    "moq": {
+      "baseline_units": 900,
+      "flexible": true,
+      "negotiable": true
+    }
+  }
+}
