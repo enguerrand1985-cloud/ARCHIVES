@@ -1,56 +1,295 @@
 {
   "meta": {
-    "document_type": "scope_archive_index",
-    "document_role": "canonical_archive_index_for_meow_paw_paw",
+    "document_type": "archive_scope_index",
+    "document_role": "durable_navigation_index",
     "scope": "MEOW_PAW_PAW",
-    "version": "1.0.0",
-    "status": "active_reference_archive",
+    "version": "1.1.0",
+    "status": "active_archive_index",
     "updated_at": "2026-05-18",
-    "timezone": "Europe/Paris"
+    "timezone": "Europe/Paris",
+    "index_policy": "This file is the durable archive index. CSV workspace results are temporary migration evidence, not the primary index."
   },
-  "active_external_baseline": {
-    "status": "NO_ACTIVE_PRODUCT_RUN / NEW_PRODUCT_TO_DEFINE",
-    "source_of_truth_index": "C:/Users/engue/__SYSTEME - GITHUB__/SOURCE OF TRUTH/INDEX SOURCES_MEOW_PAW_PAW.json",
-    "note": "La baseline active Meow n'est pas dans ARCHIVES."
-  },
-  "github_structured_archive": {
-    "snapshot_path": "C:/Users/engue/__SYSTEME - GITHUB__/ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED",
-    "manifest_path": "C:/Users/engue/__SYSTEME - GITHUB__/ARCHIVES/MEOW PAW PAW/ARCHIVE_MANIFEST__MEOW_PAW_PAW__RUN_SONGWAYPET_CANCELLED__20260517.json",
-    "contains": [
-      "anciens SKU / ASIN / FNSKU / GTIN / packaging",
-      "anciens fichiers procurement SongwayPet",
-      "anciens fichiers fournisseur SongwayPet",
-      "ancien fournisseur teste Luoyang",
-      "marketplace / Amazon / fulfillment / labels historiques",
-      "ledger snapshot historique"
+  "scope_status": {
+    "active_business_state": "NO_ACTIVE_PRODUCT_RUN",
+    "next_business_state": "NEW_PRODUCT_TO_DEFINE",
+    "active_truth_source": "SOURCE OF TRUTH/INDEX SOURCES_MEOW_PAW_PAW.json",
+    "archive_role": "historical_reference_only",
+    "do_not_use_archive_as": [
+      "active_source_of_truth",
+      "active_product_catalog",
+      "active_supplier_registry",
+      "active_fba_plan",
+      "active_sku_basis",
+      "active_workbook_source"
     ]
   },
-  "onedrive_physical_archive": {
-    "path": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE",
-    "role": "preuves humaines, fichiers lourds, PSD, RAW, shoots, packaging, assets ancien produit et dossiers fournisseurs testes sortis du flux actif",
-    "index_file_status": "removed_from_onedrive; canonical index lives in ARCHIVES repo"
+  "archive_roots": {
+    "github_archive_root": "ARCHIVES/MEOW PAW PAW",
+    "github_structured_snapshot_root": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED",
+    "github_manifest": "ARCHIVES/MEOW PAW PAW/ARCHIVE_MANIFEST__MEOW_PAW_PAW__RUN_SONGWAYPET_CANCELLED__20260517.json",
+    "onedrive_archive_root": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE",
+    "active_source_of_truth_root": "C:/Users/engue/__SYSTEME - GITHUB__/SOURCE OF TRUTH/MEOW PAW PAW"
   },
-  "linked_journaux": {
-    "reports": [
-      "JOURNAUX/RAPPORTS/RAPPORT__MEOW_PAW_PAW__REBOOT_PRODUIT_ET_ARCHIVAGE_SOURCE_OF_TRUTH__20260517.md",
-      "JOURNAUX/RAPPORTS/RAPPORT__MEOW_PAW_PAW__ARCHIVAGE_WORKSPACES_ANCIEN_RUN_SONGWAYPET__20260517.md"
-    ],
-    "workspace_results": [
-      "JOURNAUX/WORKSPACE_RESULTS/TABLE_DEPLACEMENT__MEOW__ARCHIVE_WIP_SONGWAYPET_RECADRAGE__20260517.csv",
-      "JOURNAUX/WORKSPACE_RESULTS/TABLE_DECISION__MEOW_PAW_PAW__REBOOT_PRODUIT_ET_ARCHIVAGE__20260517.csv"
-    ]
-  },
-  "read_rules": [
-    "Pour l'etat actif : lire SOURCE OF TRUTH.",
-    "Pour les donnees structurees historiques : lire ce snapshot GitHub.",
-    "Pour les preuves humaines / fichiers lourds : lire l'archive OneDrive.",
-    "Pour la comptabilite reelle : lire le ledger actif Source of Truth.",
-    "Pour un nouveau produit : repartir des fichiers actifs nettoyes, pas de cette archive."
+  "archive_events": [
+    {
+      "archive_event_id": "MEOW_ARCHIVE_EVENT__SONGWAYPET_RUN_CANCELLED__20260517",
+      "event_type": "product_run_cancelled_and_archived",
+      "date": "2026-05-17",
+      "business_reason": "SongwayPet / DDP / catnip run cancelled before dispatch; Meow reset for new product selection.",
+      "status": "archived",
+      "structured_snapshot_root": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED",
+      "physical_archive_root": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE",
+      "manifest": "ARCHIVES/MEOW PAW PAW/ARCHIVE_MANIFEST__MEOW_PAW_PAW__RUN_SONGWAYPET_CANCELLED__20260517.json"
+    }
   ],
+  "key_identifiers": {
+    "cancelled_supplier": [
+      "SONGWAYPET",
+      "Hebei Yuanfeng Import And Export Trading Co., Ltd"
+    ],
+    "archived_tested_supplier": [
+      "Luoyang Xize Import And Export Co., Ltd"
+    ],
+    "cancelled_procurement": [
+      "YF202604521",
+      "RUN_SONGWAYPET_2026_04"
+    ],
+    "cancelled_fba": [
+      "FBA15LSK0YD6"
+    ],
+    "archived_skus": [
+      "MPP-BAT-STD-MAT-V1",
+      "MPP-BAT-VAR-MAT-V1",
+      "MPP-BAT-XL-MAT-V1",
+      "MPP-BOU-S-MAT-CAT-V1",
+      "MPP-BUN-3BOU-S-V1",
+      "MPP-BUN-STD-1BOU-S-V1",
+      "MPP-BUN-XL-1BOU-S-V1"
+    ],
+    "business_flags": [
+      "run_cancelled",
+      "supplier_not_active",
+      "old_skus_dormant",
+      "fba_cancelled",
+      "new_product_to_define"
+    ]
+  },
+  "structured_archive_units": [
+    {
+      "unit_id": "STRUCTURED_SNAPSHOT_ROOT",
+      "archive_type": "github_structured_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED",
+      "role": "Complete Source of Truth snapshot before Meow reboot.",
+      "status": "snapshot_complete",
+      "manifest": "ARCHIVES/MEOW PAW PAW/ARCHIVE_MANIFEST__MEOW_PAW_PAW__RUN_SONGWAYPET_CANCELLED__20260517.json"
+    },
+    {
+      "unit_id": "PARAMETERS",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED/PARAMETERS",
+      "contains": [
+        "COMPTA_PARAMETERS.json",
+        "PROFIL_SASU.json",
+        "TAXONOMIE_METIER.json"
+      ],
+      "role": "Durable parameters snapshot; active parameters remain in Source of Truth.",
+      "status": "historical_snapshot"
+    },
+    {
+      "unit_id": "SKU_OLD_RUN",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED/_DATA - SKU_",
+      "contains": [
+        "SKU.json",
+        "SKU_SPECS.json",
+        "SKU_COMPOSITION.json",
+        "SKU_BUNDLES.json",
+        "SKU_PRICING.json",
+        "SKU_PACKAGING.json"
+      ],
+      "role": "Old SKU truth snapshot for cancelled product run.",
+      "status": "archived_reference_not_active"
+    },
+    {
+      "unit_id": "SUPPLIERS_OLD_RUN",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED/_DATA - FOURNISSEURS_",
+      "contains": [
+        "SUPPLIERS.registry.json",
+        "Hebei Yuanfeng Import And Export Trading Co., Ltd/SUPPLIER__SONGWAYPET.*",
+        "Luoyang Xize Import And Export Co., Ltd/SUPPLIER__LUOYANG_XISE.*"
+      ],
+      "role": "Historical supplier records for cancelled / tested suppliers.",
+      "status": "archived_reference_not_active"
+    },
+    {
+      "unit_id": "PROCUREMENT_SONGWAYPET_2026_04",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED/_DATA - PROCUREMENT_",
+      "contains": [
+        "PROCUREMENT__SONGWAYPET__ORDER_2026-04__YF202604521.json",
+        "PROCUREMENT__SONGWAYPET__PAYMENTS_2026-04.json",
+        "PROCUREMENT__SONGWAYPET__SHIPPING_2026-04.json"
+      ],
+      "role": "Cancelled SongwayPet order / payment / shipping snapshot.",
+      "status": "archived_cancelled_run"
+    },
+    {
+      "unit_id": "MARKETPLACE_AMAZON_CANCELLED_RUN",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED/_DATA - MARKETPLACE_",
+      "contains": [
+        "AMAZON_FULFILLMENT.json",
+        "AMAZON_LABELS.json",
+        "AMAZON_LISTINGS.json",
+        "MARKETPLACE RULES.json"
+      ],
+      "role": "Amazon listings, labels and FBA state at cancellation.",
+      "status": "archived_reference_not_active"
+    },
+    {
+      "unit_id": "IDENTIFIANTS_AND_MAPPINGS",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED",
+      "contains": [
+        "_DATA - IDENTIFIANTS_/PRODUCT_IDENTIFIERS.json",
+        "_DATA - MAPPINGS_/MAP_INDEX__SUPPLIER_PRODUCT__MEOW_SKU.json"
+      ],
+      "role": "Historical SKU / supplier / product mapping and identifiers.",
+      "status": "archived_reference_not_active"
+    },
+    {
+      "unit_id": "PRICING_AND_DATA_QUALITY",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED",
+      "contains": [
+        "_DATA - PRICING_/COST_CALCULATION_RULES.json",
+        "_DATA - PRICING_/FX_RULES.json",
+        "_DATA - PRICING_/PRICING_CONTEXTS.json",
+        "_DATA - DATA_QUALITY_/DATA_QUALITY.json"
+      ],
+      "role": "Pricing context and data quality state at archive time.",
+      "status": "historical_snapshot"
+    },
+    {
+      "unit_id": "COMPTABILITE_SNAPSHOT",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED/_DATA - COMPTABILITE_/LEDGER_COMPTABLE.json",
+      "role": "Historical ledger snapshot only; active ledger remains in active Source of Truth.",
+      "status": "historical_snapshot_not_accounting_truth"
+    },
+    {
+      "unit_id": "OPS_AMAZON_SNAPSHOT",
+      "archive_type": "structured_truth_snapshot",
+      "path": "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED/_HUB - DASHBOARD_/OPS AMAZON.json",
+      "role": "OPS Amazon JSON snapshot at cancellation.",
+      "status": "historical_snapshot"
+    }
+  ],
+  "physical_archive_units": [
+    {
+      "unit_id": "SP_SUPPLIERS",
+      "archive_type": "onedrive_physical_archive",
+      "path": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE/01 - SHAREPOINT - FOURNISSEURS",
+      "role": "Supplier proofs, SongwayPet folders, contracts, compliance, conversations, tested supplier WIP.",
+      "source_space": [
+        "SharePoint Pro",
+        "OneDrive Pro"
+      ],
+      "status": "physical_archive"
+    },
+    {
+      "unit_id": "SP_OLD_SKU_PRODUCTS",
+      "archive_type": "onedrive_physical_archive",
+      "path": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE/02 - SHAREPOINT - PRODUITS SKU ANCIENS",
+      "role": "Final product / SKU documents from old run.",
+      "source_space": [
+        "SharePoint Pro"
+      ],
+      "status": "physical_archive"
+    },
+    {
+      "unit_id": "SP_AMAZON_FBA_FNSKU",
+      "archive_type": "onedrive_physical_archive",
+      "path": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE/03 - SHAREPOINT - AMAZON FBA ET FNSKU",
+      "role": "Cancelled FBA proofs, FNSKU labels, import / customs documents.",
+      "source_space": [
+        "SharePoint Pro"
+      ],
+      "status": "physical_archive"
+    },
+    {
+      "unit_id": "OD_PSD_VISUELS_OLD",
+      "archive_type": "onedrive_physical_archive",
+      "path": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE/04 - ONEDRIVE - PSD ET VISUELS ANCIENS",
+      "role": "Old PSD, image work, raw shoots, old asset banks and SKU visual work.",
+      "source_space": [
+        "OneDrive Pro"
+      ],
+      "status": "physical_archive"
+    },
+    {
+      "unit_id": "OD_KRAFT_PACKAGING_ARCHIVE",
+      "archive_type": "onedrive_physical_archive",
+      "path": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE/05 - ONEDRIVE - ARCHIVES EMBALLAGES KRAFT",
+      "role": "Old kraft packaging archive and rendering assets.",
+      "source_space": [
+        "OneDrive Pro"
+      ],
+      "status": "physical_archive"
+    }
+  ],
+  "cross_references": {
+    "active_truth_after_reboot": [
+      "SOURCE OF TRUTH/INDEX SOURCES_MEOW_PAW_PAW.json",
+      "SOURCE OF TRUTH/MEOW PAW PAW"
+    ],
+    "journaux_reports": [
+      "JOURNAUX/RAPPORTS/RAPPORT__MEOW_PAW_PAW__REBOOT_PRODUIT_ET_ARCHIVAGE_SOURCE_OF_TRUTH__20260517.md",
+      "JOURNAUX/RAPPORTS/RAPPORT__MEOW_PAW_PAW__ARCHIVAGE_WORKSPACES_ANCIEN_RUN_SONGWAYPET__20260517.md",
+      "JOURNAUX/RAPPORTS/RAPPORT__SYSTEM_IA__ARCHIVES_MEOW_RECABLING__20260518_002707.md"
+    ],
+    "migration_evidence_legacy": [
+      {
+        "path": "JOURNAUX/WORKSPACE_RESULTS/TABLE_DECISION__MEOW_PAW_PAW__REBOOT_PRODUIT_ET_ARCHIVAGE__20260517.csv",
+        "status": "temporary_migration_evidence",
+        "durability": "may_be_removed_after_crm_recabling"
+      },
+      {
+        "path": "JOURNAUX/WORKSPACE_RESULTS/TABLE_DEPLACEMENT__MEOW__ARCHIVE_WIP_SONGWAYPET_RECADRAGE__20260517.csv",
+        "status": "temporary_migration_evidence",
+        "durability": "may_be_removed_after_crm_recabling"
+      },
+      {
+        "path": "JOURNAUX/WORKSPACE_RESULTS/ETAT_LIEUX__MEOW__DEPLACEMENT_SHAREPOINT_VERS_ARCHIVES_WIP__20260517_180546.csv",
+        "status": "temporary_migration_evidence",
+        "durability": "may_be_removed_after_crm_recabling"
+      }
+    ]
+  },
+  "read_routing": {
+    "for_active_meow_state": [
+      "SOURCE OF TRUTH/INDEX SOURCES_MEOW_PAW_PAW.json",
+      "SOURCE OF TRUTH/MEOW PAW PAW"
+    ],
+    "for_old_run_structured_history": [
+      "ARCHIVES/INDEX_ARCHIVES.json",
+      "ARCHIVES/MEOW PAW PAW/INDEX__ARCHIVES_MEOW_PAW_PAW.json",
+      "ARCHIVES/MEOW PAW PAW/ARCHIVE_MANIFEST__MEOW_PAW_PAW__RUN_SONGWAYPET_CANCELLED__20260517.json",
+      "ARCHIVES/MEOW PAW PAW/2026-05-17__SOURCE_OF_TRUTH__RUN_SONGWAYPET_CANCELLED"
+    ],
+    "for_old_run_human_files": [
+      "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE"
+    ],
+    "for_migration_audit_only": [
+      "JOURNAUX/WORKSPACE_RESULTS/*.csv"
+    ]
+  },
   "guardrails": [
-    "Ne pas relancer SongwayPet ou l'ancien produit depuis cette archive.",
-    "Ne pas reutiliser les labels FBA, anciens SKU, anciens PSD ou anciens packagings sans review produit complete.",
-    "Ne pas modifier les preuves archivees ; copier vers un nouveau workspace si une analyse est necessaire.",
-    "Ne pas traiter cette archive comme Source of Truth active."
+    "Do not use this archive as active Source of Truth.",
+    "Do not reactivate SongwayPet from archive data.",
+    "Do not reuse old SKUs, old FBA labels, old cartons, old PSD or old supplier mappings as active inputs without explicit human review.",
+    "Do not edit physical archive files in place; copy out to a new workspace if analysis is needed.",
+    "Do not treat CSV workspace results as durable index records."
   ]
 }
