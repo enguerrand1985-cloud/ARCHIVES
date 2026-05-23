@@ -3,9 +3,9 @@
     "document_type": "archive_scope_index",
     "document_role": "durable_navigation_index",
     "scope": "MEOW_PAW_PAW",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "status": "active_archive_index",
-    "updated_at": "2026-05-18",
+    "updated_at": "2026-05-23",
     "timezone": "Europe/Paris",
     "index_policy": "This file is the durable archive index. CSV workspace results are temporary migration evidence, not the primary index."
   },
@@ -223,6 +223,15 @@
       "archive_type": "onedrive_physical_archive",
       "path": "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE/04 - ONEDRIVE - PSD ET VISUELS ANCIENS",
       "role": "Old PSD, image work, raw shoots, old asset banks and SKU visual work.",
+      "contains": [
+        "SHOOTS PHOTO BRUTS/MPP-BAT-STD-MAT-V1_STD",
+        "SHOOTS PHOTO BRUTS/MPP-BAT-VAR-MAT-V1_VARIANTE",
+        "SHOOTS PHOTO BRUTS/MPP-BAT-XL-MAT-V1_GROS BATOUNET",
+        "SHOOTS PHOTO BRUTS/MPP-BOU-S-MAT-CAT-V1_BOULETTE",
+        "SHOOTS PHOTO BRUTS/MPP-BUN-STD-1BOU-S-V1 _BUNDLE STD",
+        "SHOOTS PHOTO BRUTS/MPP-BUN-XL-1BOU-S-V1_BUNDLE XL",
+        "BANQUE ASSETS/CHATS Dentitions"
+      ],
       "source_space": [
         "OneDrive Pro"
       ],
@@ -244,28 +253,8 @@
       "SOURCE OF TRUTH/INDEX SOURCES_MEOW_PAW_PAW.json",
       "SOURCE OF TRUTH/MEOW PAW PAW"
     ],
-    "journaux_reports": [
-      "JOURNAUX/RAPPORTS/RAPPORT__MEOW_PAW_PAW__REBOOT_PRODUIT_ET_ARCHIVAGE_SOURCE_OF_TRUTH__20260517.md",
-      "JOURNAUX/RAPPORTS/RAPPORT__MEOW_PAW_PAW__ARCHIVAGE_WORKSPACES_ANCIEN_RUN_SONGWAYPET__20260517.md",
-      "JOURNAUX/RAPPORTS/RAPPORT__SYSTEM_IA__ARCHIVES_MEOW_RECABLING__20260518_002707.md"
-    ],
-    "migration_evidence_legacy": [
-      {
-        "path": "JOURNAUX/WORKSPACE_RESULTS/TABLE_DECISION__MEOW_PAW_PAW__REBOOT_PRODUIT_ET_ARCHIVAGE__20260517.csv",
-        "status": "temporary_migration_evidence",
-        "durability": "may_be_removed_after_crm_recabling"
-      },
-      {
-        "path": "JOURNAUX/WORKSPACE_RESULTS/TABLE_DEPLACEMENT__MEOW__ARCHIVE_WIP_SONGWAYPET_RECADRAGE__20260517.csv",
-        "status": "temporary_migration_evidence",
-        "durability": "may_be_removed_after_crm_recabling"
-      },
-      {
-        "path": "JOURNAUX/WORKSPACE_RESULTS/ETAT_LIEUX__MEOW__DEPLACEMENT_SHAREPOINT_VERS_ARCHIVES_WIP__20260517_180546.csv",
-        "status": "temporary_migration_evidence",
-        "durability": "may_be_removed_after_crm_recabling"
-      }
-    ]
+    "journaux_log": "JOURNAUX/SUIVIS/SYSTEM_IA/ARCHIVES/LOG/LOG_SYSTEM.md",
+    "migration_evidence_legacy": "Historical reports and CSV tables were logged then removed from active JOURNAUX; recover exact files through Git history only if audit contradiction requires it."
   },
   "read_routing": {
     "for_active_meow_state": [
@@ -282,7 +271,8 @@
       "C:/Users/engue/OneDrive - Enguerrand Kalfaian/MEOW PAW PAW - ARCHIVES WIP/2026-05 - SONGWAYPET RUN ANNULE - CONSOLIDATION AVANT RECADRAGE"
     ],
     "for_migration_audit_only": [
-      "JOURNAUX/WORKSPACE_RESULTS/*.csv"
+      "JOURNAUX Git history",
+      "JOURNAUX/SUIVIS/SYSTEM_IA/ARCHIVES/LOG/LOG_SYSTEM.md"
     ]
   },
   "guardrails": [
